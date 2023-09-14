@@ -18,6 +18,7 @@ namespace Platformer.Mechanics
         private readonly static Vector3 RIGHT_TURN = new Vector3(0,180,0);
         private readonly static Vector3 LEFT_TURN = new Vector3(0,-180,0);
         private GameObject _ghost_model;
+        private GameObject _parent;
         private const float speed = 0.125f;
         public Turn_Direction turn_dir = NOT_TURNING;
         public Turn_Direction last_turn_dir = NOT_TURNING;
@@ -31,6 +32,7 @@ namespace Platformer.Mechanics
         {
             _ghost_model = GameObject.Find("ghost basic");
             _rigidbody = GetComponent<Rigidbody>();
+            _parent = transform.parent.gameObject;
         }
 
         protected void FixedUpdate()
@@ -67,6 +69,8 @@ namespace Platformer.Mechanics
                     new Vector3(sideMove * Time.deltaTime,
                                 0,
                                 0));
+            _parent.transform.position = _parent.transform.position +
+                    new Vector3(sideMove * Time.deltaTime, 0, 0);
             
             // Spoooky float!
             var curr_pos = _ghost_model.transform.position;
