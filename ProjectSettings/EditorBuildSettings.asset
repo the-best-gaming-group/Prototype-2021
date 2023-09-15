@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TanyaScene 1.unity
+    guid: b06aee6f9ef000d4abc7c05486f8e268
+  - enabled: 1
+    path: Assets/Scenes/CombatScene.unity
+    guid: cef0016c04dda4f7fba5a9b9a0ed43a9
   m_configObjects: {}
