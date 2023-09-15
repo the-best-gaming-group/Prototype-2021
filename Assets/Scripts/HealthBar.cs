@@ -18,10 +18,17 @@ public class HealthBar : MonoBehaviour
         
         fill.color = gradient.Evaluate(1f);
     }
+
     public void SetHealth(int health)
     {
+        Debug.Log("Setting health to: " + health);
+
+        // Ensure that health is within the valid range (0 to slider.maxValue)
+        health = Mathf.Clamp(health, 0, (int)slider.maxValue);
 
         slider.value = health;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
+
+
 }
