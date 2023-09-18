@@ -8,12 +8,13 @@ public class PlayerHealthBar : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
+	private RectTransform canvasRectTransform;
 
-    void Start()
+	void Start()
     {
         currentHealth = GameManager.Instance.playerHealth;
-        // Check if we are in the CombatScene
-        if (SceneManager.GetActiveScene().name == "CombatScene")
+		// Check if we are in the CombatScene
+		if (SceneManager.GetActiveScene().name == "CombatScene")
         {
             // If in the CombatScene, set healthBar to currentHealth
             Debug.Log("Combat Scene rn, current health is "+ currentHealth);
@@ -33,7 +34,8 @@ public class PlayerHealthBar : MonoBehaviour
         // Continuously update the health bar to reflect current health
         Debug.Log("Update health " + currentHealth);
         healthBar.SetHealth(currentHealth);
-    }
+
+	}
 
     private void OnCollisionEnter(Collision collision)
     {
