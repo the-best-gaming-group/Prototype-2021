@@ -8,26 +8,25 @@ using UnityEngine.SceneManagement;
 
 namespace Platformer.Mechanics
 {
-    [RequireComponent(typeof(Invokable))]
+    [RequireComponent(typeof(Collider), typeof(Invokable))]
     public class InvokeOnCover : MonoBehaviour
     {
         public Invokable invokableObject;
-        Transform _transform;
-        SpriteRenderer spriteRenderer; // We will need to find a "3d" way of getting this info
-        // Start is called before the first frame update
         GameObject playerObj;
+        Collider _collider;
+        public Bounds Bounds => _collider.bounds;
+        // Start is called before the first frame update
         void Start()
         {
+            _collider = GetComponent<Collider>();
             invokableObject = GetComponent<Invokable>();
-            _transform = GetComponent<Transform>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         // Update is called once per frame
         void Update()
         {
             if (playerObj == null) {
-                playerObj = GameObject.Find("Player");
+                playerObj = GameObject.Find("GhostPC");
             }
             else if (IsInteractable() && ( Input.GetAxis("Vertical") > 0 || Input.GetButtonDown("Jump"))) {
                 invokableObject.Invoke();
@@ -35,8 +34,8 @@ namespace Platformer.Mechanics
         }
         
         bool IsInteractable() {
-            var playerSpriteRenderer = playerObj.GetComponent<SpriteRenderer>();
-            if (spriteRenderer.bounds.Intersects(playerSpriteRenderer.bounds)) {
+            var playerBounds = playerObj.GetComponent<GhostController>().Bounds;
+            if (playerBounds.Intersects(Bounds)) {
                 return true;
             }
             else {

@@ -5,26 +5,42 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            StartCoroutine(SwitchSceneWithDelay(collision.gameObject.GetComponent<Enemy>().enemyType));
-        }
-    }
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Enemy"))
+		{
+			StartCoroutine(SwitchSceneWithDelay(collision.gameObject));
+		}
+	}
 
-    private IEnumerator SwitchSceneWithDelay(string enemyType)
-    {
-        // Wait for the GameManager to be initialized
-        yield return new WaitForEndOfFrame();
+	private IEnumerator SwitchSceneWithDelay(GameObject enemyToSpawn)
+	{
+		// Wait for the GameManager to be initialized
+		yield return new WaitForEndOfFrame();
 
-        // Store enemy type and player health in the GameManager script
-        GameManager.Instance.enemyType = enemyType;
-        GameManager.Instance.playerHealth = GetComponent<PlayerHealthBar>().currentHealth;
-        Debug.Log("EnemyType = " + GameManager.Instance.enemyType);
-        Debug.Log("PlayerHealth = " + GameManager.Instance.playerHealth);
+		// Store the enemy to spawn and player health in the GameManager script
+		GameManager.Instance.enemyToSpawn = enemyToSpawn;
 
-        // Load the combat scene. Make sure you have this scene created in your Unity project.
-        SceneManager.LoadScene("CombatScene");
-    }
+		// You can't directly store a GameObject in PlayerPrefs, so we'll store its name or a unique identifier
+		PlayerPrefs.SetString("ObjectToSpawn", enemyToSpawn.name);
+
+		// Get the player's health from the PlayerHealthBar component
+		PlayerHealthBar playerHealthBar = GetComponent<PlayerHealthBar>();
+		if (playerHealthBar != null)
+		{
+			GameManager.Instance.playerHealth = playerHealthBar.currentHealth;
+		}
+		else
+		{
+			// Handle the case where the PlayerHealthBar component is not found
+			Debug.LogError("PlayerHealthBar component not found on the player!");
+		}
+
+		Debug.Log("EnemyToSpawn = " + GameManager.Instance.enemyToSpawn);
+		Debug.Log("PlayerHealth = " + GameManager.Instance.playerHealth);
+
+		// Load the combat scene. Make sure you have this scene created in your Unity project.
+		SceneManager.LoadScene("CombatScene");
+	}
 }
+
