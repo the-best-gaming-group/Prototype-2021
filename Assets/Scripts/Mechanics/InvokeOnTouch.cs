@@ -7,7 +7,7 @@ using Platformer.Core;
 
 namespace Platformer.Mechanics
 {
-    [RequireComponent(typeof(Collider2D), typeof(Invokable))]
+    [RequireComponent(typeof(Collider), typeof(Invokable))]
     public class InvokeOnTouch : MonoBehaviour
     {
         public Invokable invokableObject;
@@ -25,7 +25,7 @@ namespace Platformer.Mechanics
                 invokableObject.Invoke();
             }
         }
-        void OnCollisionStay2D(Collision2D collision)
+        void OnCollisionStay(Collision collision)
         {
             var player = collision.gameObject.GetComponent<GhostController>();
             if (player != null)
@@ -34,7 +34,7 @@ namespace Platformer.Mechanics
             }
         }
         
-        void OnCollisionExit2D(Collision2D collision) {
+        void OnCollisionExit(Collision collision) {
             var player = collision.gameObject.GetComponent<GhostController>();
             Debug.Log(player);
             if (player != null)
