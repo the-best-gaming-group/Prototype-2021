@@ -23,7 +23,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             visualCue.SetActive(true);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
             }
