@@ -56,6 +56,12 @@ namespace Platformer.Mechanics
 
         protected void FixedUpdate()
         {
+            // froze the player when playing dialogue
+            if (DialogueManager.GetInstance().dialogueIsPlaying)
+            {
+                return;
+            }
+
             var sideMove = keyHoriz * moveSpeed;
             HandleTurn(sideMove);
             var upMove = HandleJump();

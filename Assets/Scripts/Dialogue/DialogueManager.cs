@@ -58,7 +58,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         //handle continuing to the next line in the dialogue when submit is pressed
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             ContinueStory();
         }
