@@ -9,37 +9,39 @@ namespace Platformer.Mechanics {
     public class DialogStateMachine
     {
         public S state = S.DSM;
-        public DS dialogState = SPELL_ONE;
+        public DS dialogState = RUNES;
         public RS runeState = RUNE_ONE;
+        private RS lastRune = RUNE_THREE;
+        private bool movingOffReroll = false;
         private readonly DS[,] dsm = new DS [(int)DS.SIZE,4] {
             /* RUNES       = 0 */
             {RUNES, RUNES, SUBMIT, SPELL_ONE},
             /* SPELL_ONE   = 1 */
-            {RUNES, SPELL_ONE, SPELL_TWO, SPELL_THREE},
+            {RUNES, SPELL_ONE, SPELL_TWO, SPELL_ONE},
             /* SPELL_TWO   = 2 */
-            {SUBMIT, SPELL_ONE, SPELL_TWO, SPELL_FOUR},
+            {RUNES, SPELL_ONE, SPELL_THREE, SPELL_TWO},
             /* SPELL_THREE = 3 */
-            {SPELL_ONE, SPELL_THREE, SPELL_FOUR, SPELL_THREE},
+            {SUBMIT, SPELL_TWO, SPELL_FOUR, SPELL_THREE},
             /* SPELL_FOUR  = 4 */
-            {SPELL_TWO, SPELL_THREE, SPELL_FOUR, SPELL_FOUR},
+            {SUBMIT, SPELL_THREE, SPELL_FOUR, SPELL_FOUR},
             /* SUBMIT      = 5 */
-            {SUBMIT, RUNES, SUBMIT, SPELL_TWO}
+            {SUBMIT, RUNES, SUBMIT, SPELL_FOUR}
         };
-        private readonly RS[,] rsm = new RS [(int)RS.SIZE,2] {
+        private readonly RS[,] rsm = new RS [(int)RS.SIZE,4] {
             /* RUNE_ONE   = 0 */ 
-            {RUNE_ONE,   RUNE_TWO},
+            {RUNE_ONE, RUNE_ONE, RUNE_TWO, RUNE_FOUR},
             /* RUNE_TWO   = 1 */ 
-            {RUNE_ONE,   RUNE_THREE},
+            {RUNE_TWO, RUNE_ONE, RUNE_THREE, RUNE_FIVE},
             /* RUNE_THREE = 2 */ 
-            {RUNE_TWO,   RUNE_FOUR},
+            {RUNE_THREE, RUNE_TWO, REROLL, RUNE_SIX},
             /* RUNE_FOUR  = 3 */ 
-            {RUNE_THREE, RUNE_FIVE},
+            {RUNE_ONE, RUNE_FOUR, RUNE_FIVE, RUNE_FOUR},
             /* RUNE_FIVE  = 4 */ 
-            {RUNE_FOUR,  RUNE_SIX},
+            {RUNE_TWO, RUNE_FOUR, RUNE_SIX, RUNE_FIVE},
             /* RUNE_SIX   = 5 */ 
-            {RUNE_FIVE,  REROLL},
+            {RUNE_THREE, RUNE_FIVE, REROLL, RUNE_SIX},
             /* REROLL     = 6 */ 
-            {RUNE_SIX,   REROLL}
+            {REROLL, RUNE_THREE, REROLL, REROLL}
         };
         
         public void RunStateMachine(BUTTON movement) {
@@ -89,9 +91,6 @@ namespace Platformer.Mechanics {
                 state = S.DSM;
                 return;
             }
-            else if (movement == UP || movement == DOWN) {
-                return;
-            }
             else if (movement == SELECT) {
                 if (runeState == RUNE_ONE) {
                     Debug.Log("Selected Rune ONE!");
@@ -118,10 +117,23 @@ namespace Platformer.Mechanics {
                     Debug.LogError("DialogStateMachine.RunRSM(): Incorrect state pressed!");
                 }
             }
+            movingOffReroll = false;
             if (movement == SELECT) {
                 return;
             }
-            runeState = rsm[(int)runeState,(int)movement-1];
+            if (runeState == RUNE_THREE) {
+                lastRune = RUNE_THREE;
+            }
+            else if (runeState == RUNE_SIX) {
+                lastRune = RUNE_SIX;
+            }
+            else if (runeState == REROLL) {
+                movingOffReroll = true;
+            }
+            runeState = rsm[(int)runeState,(int)movement];
+            if (movingOffReroll && runeState != REROLL) {
+                runeState = lastRune;
+            }
         }
     }
     /** Dialog State */

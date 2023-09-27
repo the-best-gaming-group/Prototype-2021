@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Selectable: MonoBehaviour
 {
-    private SpriteRenderer selectSpriteRenderer;
+    public Image selectImage;
     void Start()
     {
-        selectSpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        selectSpriteRenderer.enabled = false;
+    }
+    
+    void Awake() {
+        Hide();
     }
 
     // Update is called once per frame
@@ -18,14 +21,14 @@ public class Selectable: MonoBehaviour
         
     }
     public void Hide() {
-        selectSpriteRenderer.enabled = false;
+        selectImage.enabled = false;
     }
 
     public void Show() {
-        selectSpriteRenderer.enabled = true;
+        selectImage.enabled = true;
     }
     
     public bool IsShowing() {
-        return selectSpriteRenderer.enabled;
+        return selectImage.enabled;
     }
 }
