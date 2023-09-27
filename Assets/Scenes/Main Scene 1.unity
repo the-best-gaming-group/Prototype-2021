@@ -1068,6 +1068,7 @@ MonoBehaviour:
   choices:
   - {fileID: 792152329}
   - {fileID: 792152328}
+  player: {fileID: 1915441468}
 --- !u!4 &1801064022
 Transform:
   m_ObjectHideFlags: 0
@@ -1088,6 +1089,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4610735470543699890, guid: 1872e431fd733454880e62a5df24368b, type: 3}
   m_PrefabInstance: {fileID: 4610735469602470398}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1915441468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4610735470543699889, guid: 1872e431fd733454880e62a5df24368b, type: 3}
+  m_PrefabInstance: {fileID: 4610735469602470398}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915441463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738af83bfce607449baf93177cde5a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2128232368 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8878086224806487025, guid: 1872e431fd733454880e62a5df24368b, type: 3}
