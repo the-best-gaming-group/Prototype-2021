@@ -1,7 +1,6 @@
+using Platformer.Mechanics;
+
 public interface IInteractable
 {
-    void Interact()
-    {
-
-    }
+    void Interact(GhostController player);
 }
