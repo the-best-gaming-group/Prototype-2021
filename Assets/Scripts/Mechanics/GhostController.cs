@@ -1,26 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Platformer.Mechanics
 {
     using static Platformer.Mechanics.TurnDirection;
     using static Platformer.Mechanics.JumpState;
-    public enum TurnDirection {
-        LEFT,
-        RIGHT,
-        FRONT,
-        BACK,
-        NOT_TURNING
-    }
-    
-    public enum JumpState
-    {
-        Grounded,
-        PrepareToJump,
-        Jumping,
-        InFlight,
-        Landed
-    }
     /// <summary>
     /// This is the main class used to implement control of the player.
     /// </summary>
@@ -34,6 +17,7 @@ namespace Platformer.Mechanics
         public TurnDirection turn_dir = NOT_TURNING;
         public TurnDirection last_turn_dir = NOT_TURNING;
         public JumpState jump = InFlight;
+        private bool controlEnabled = true;
         private bool usedDoubleJump = false;
         private float keyHoriz = 0f;
         private bool jumpPending = false;
@@ -56,8 +40,16 @@ namespace Platformer.Mechanics
 
         protected void FixedUpdate()
         {
+            // Spoooky float!
+            var curr_pos = _ghost_model.transform.position;
+            _ghost_model.transform.position = new Vector3(
+                curr_pos.x,
+                curr_pos.y + floatSpeed * Mathf.Cos(Time.time) * Time.fixedDeltaTime,
+                curr_pos.z
+            );
+
             // froze the player when playing dialogue
-            if (DialogueManager.GetInstance().dialogueIsPlaying)
+            if (!controlEnabled)
             {
                 return;
             }
@@ -71,14 +63,18 @@ namespace Platformer.Mechanics
                     new Vector3(sideMove * Time.deltaTime, 0, 0));
             // Move vertically
             _rigidbody.AddForce(new Vector3(0, upMove, 0), ForceMode.Impulse);
-            
-            // Spoooky float!
-            var curr_pos = _ghost_model.transform.position;
-            _ghost_model.transform.position = new Vector3(
-                curr_pos.x,
-                curr_pos.y + floatSpeed * Mathf.Cos(Time.time) * Time.fixedDeltaTime,
-                curr_pos.z
-            );
+        }
+        
+        public bool getControlStatus() {
+            return controlEnabled;
+        }
+        
+        public void disableControl() {
+            controlEnabled = false;
+        }
+        
+        public void enableControl() {
+            controlEnabled = true;
         }
         
         private void HandleTurn(float sideMove) {
@@ -155,5 +151,21 @@ namespace Platformer.Mechanics
             }
             return upMove;
         }
+    }
+    public enum TurnDirection {
+        LEFT,
+        RIGHT,
+        FRONT,
+        BACK,
+        NOT_TURNING
+    }
+    
+    public enum JumpState
+    {
+        Grounded,
+        PrepareToJump,
+        Jumping,
+        InFlight,
+        Landed
     }
 }
