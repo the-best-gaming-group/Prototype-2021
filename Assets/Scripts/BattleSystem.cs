@@ -1,8 +1,10 @@
+using DigitalRuby.PyroParticles;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
 public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
@@ -10,7 +12,7 @@ public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 public enum CombatOptions//rename
 {
     Slam = 2,
-    Fireball = 3,
+    Firebolt = 3,
     Electrocute = 4,
     Icefreeze= 5
 }
@@ -24,6 +26,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject enemy;
     PlayerHealthBar enemyHP;
 
+    public GameObject firebolt;
+
     public Text dialogText;//rename
 
     public BattleState state;
@@ -34,11 +38,9 @@ public class BattleSystem : MonoBehaviour
 
     Animator animator;
 
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        //animator = player.GetComponentInChildren<Animator>();
         state = BattleState.START;
         playerHP = player.GetComponent<PlayerHealthBar>();
         enemyHP = enemy.GetComponent<PlayerHealthBar>();
@@ -47,7 +49,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        dialogText.text = "Fighting (someone)";// + enemyUnit.unitName;
+        dialogText.text = "Fighting <enemy>";// + enemyUnit.unitName;
 
         yield return new WaitForSeconds(dialogWaitTime);
 
@@ -68,8 +70,15 @@ public class BattleSystem : MonoBehaviour
     {
         foreach (var action in turnActions)
         {
-            animator.SetTrigger("Enemy"+CombatOptions.Slam.ToString());
+            animator.SetTrigger("Enemy" + action.ToString());
 
+            if (action == CombatOptions.Firebolt)
+            {
+                var currentPrefabObject = GameObject.Instantiate(firebolt);
+                currentPrefabObject.transform.position = player.transform.position + new Vector3(1, 0, 0);
+                currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);
+                yield return new WaitForSeconds(.1f);
+            }
             int enemyNewHP = enemyHP.TakeDamage(((int)action));
             dialogText.text = "<enemyName> takes " + action.ToString();
             yield return new WaitForSeconds(dialogWaitTime);
@@ -139,6 +148,11 @@ public class BattleSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.Space)) {
+        //    var currentPrefabObject = GameObject.Instantiate(firebolt);
+        //    currentPrefabObject.transform.position = player.transform.position + new Vector3(1, 0, 0);
+        //    currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);
+        //}
     }
 
 
@@ -150,6 +164,14 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.PLAYER_TURN)
         {
             turnActions.Add(CombatOptions.Slam);
+        }
+    }
+
+    public void OnFireButton()
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(CombatOptions.Firebolt);
         }
     }
 

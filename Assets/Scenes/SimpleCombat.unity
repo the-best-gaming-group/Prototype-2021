@@ -148,15 +148,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6014157548294511, guid: 2fc4a15208154429194132edc2e58b23, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6014157548294511, guid: 2fc4a15208154429194132edc2e58b23, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6014157548294511, guid: 2fc4a15208154429194132edc2e58b23, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6014157548294511, guid: 2fc4a15208154429194132edc2e58b23, type: 3}
       propertyPath: m_LocalPosition.x
@@ -575,6 +575,7 @@ MonoBehaviour:
   dialogWaitTime: 2
   player: {fileID: 1915441463}
   enemy: {fileID: 1662389401}
+  firebolt: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
   dialogText: {fileID: 1410240024}
   state: 0
   isPlayerFirstTurn: 1
@@ -1130,6 +1131,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 377116115}
+    - target: {fileID: 1695143051954845092, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 377116115}
+    - target: {fileID: 1695143051954845092, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695143051954845092, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnFireButton
+      objectReference: {fileID: 0}
     - target: {fileID: 3736514195767739697, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1249,7 +1262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4610735470543699886, guid: 1872e431fd733454880e62a5df24368b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.049999237
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4610735470543699886, guid: 1872e431fd733454880e62a5df24368b, type: 3}
       propertyPath: m_LocalRotation.w
