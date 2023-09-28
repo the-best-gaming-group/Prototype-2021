@@ -9,11 +9,6 @@ namespace Platformer.Mechanics
     /// </summary>
     public class GhostController : MonoBehaviour
     {
-        // Dialogue part
-        [SerializeField] private DialogueUI dialogueUI;
-        public DialogueUI DialogueUI => dialogueUI;
-        public IInteractable Interactable { get; set; }
-
         private readonly static Vector3 RIGHT_TURN = new Vector3(0, 180, 0);
         private readonly static Vector3 LEFT_TURN = new Vector3(0, -180, 0);
         private GameObject _ghost_model;
@@ -41,24 +36,8 @@ namespace Platformer.Mechanics
 
         void Update()
         {
-            // Dialogue part
-            if (dialogueUI.IsOpen) return;
-
             keyHoriz = Input.GetAxis("Horizontal");
             jumpPending = jumpPending || Input.GetButtonDown("Jump");
-
-            // Dialogue part
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                Interactable?.Interact(this);
-                /*
-                meaning:
-                if (Interactable != null)
-                {
-                    Interactable.Interact(this);
-                }
-                */
-            }
         }
 
         protected void FixedUpdate()

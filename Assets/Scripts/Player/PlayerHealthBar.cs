@@ -46,19 +46,18 @@ public class PlayerHealthBar : MonoBehaviour
         }
     }
 
-    void TakeDamage(int damage)
+    public int TakeDamage(int damage)
     {
         Debug.Log("Taking damage: " + damage);
-        currentHealth -= damage;
-
-        // Ensure health doesn't go below 0
-        currentHealth = Mathf.Max(currentHealth, 0);
+        currentHealth = damage >= currentHealth ? 0 : (currentHealth - damage);
 
         // Store the updated health in the GameManager
         GameManager.Instance.playerHealth = currentHealth;
 
         // Update the health bar
         healthBar.SetHealth(currentHealth);
+
+        return currentHealth;
     }
 
 }
