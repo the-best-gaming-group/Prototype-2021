@@ -36,8 +36,8 @@ public class SceneSwitcher : MonoBehaviour
 			Debug.LogError("PlayerHealthBar component not found on the player!");
 		}
 
-		Debug.Log("EnemyToSpawn = " + GameManager.Instance.enemyToSpawn);
-		Debug.Log("PlayerHealth = " + GameManager.Instance.playerHealth);
+		// Debug.Log("EnemyToSpawn = " + GameManager.Instance.enemyToSpawn);
+		// Debug.Log("PlayerHealth = " + GameManager.Instance.playerHealth);
 
 		// Load the combat scene. Make sure you have this scene created in your Unity project.
 		SceneManager.LoadScene("CombatScene");
