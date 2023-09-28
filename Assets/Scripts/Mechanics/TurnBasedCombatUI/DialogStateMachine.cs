@@ -54,73 +54,11 @@ namespace Platformer.Mechanics {
         }
         
         private void RunDSM(BUTTON movement) {
-            if (movement == BACK) {
-                return;
-            }
-            else if (movement == SELECT) {
-                if (dialogState == RUNES) {
-                    state = S.RSM;
-                }
-                else if (dialogState == SPELL_ONE) {
-                   Debug.Log("Pressed spell ONE!");
-                }
-                else if (dialogState == SPELL_TWO) {
-                   Debug.Log("Pressed spell TWO!");
-                }
-                else if (dialogState == SPELL_THREE) {
-                   Debug.Log("Pressed spell THREE!");
-                }
-                else if (dialogState == SPELL_FOUR) {
-                   Debug.Log("Pressed spell FOUR!");
-                }
-                else if (dialogState == SUBMIT) {
-                    Debug.Log("Pressed SUBMIT!");
-                }
-                else {
-                    Debug.LogError("DialogStateMachine.RunDSM(): Incorrect state pressed!");
-                }
-            }
-            if (movement == SELECT) {
-                return;
-            }
             dialogState = dsm[(int)dialogState,(int)movement];
         }
         
         private void RunRSM(BUTTON movement) {
-            if (movement == BACK) {
-                state = S.DSM;
-                return;
-            }
-            else if (movement == SELECT) {
-                if (runeState == RUNE_ONE) {
-                    Debug.Log("Selected Rune ONE!");
-                }
-                else if (runeState == RUNE_TWO) {
-                    Debug.Log("Selected Rune TWO!");
-                }
-                else if (runeState == RUNE_THREE) {
-                    Debug.Log("Selected Rune THREE!");
-                }
-                else if (runeState == RUNE_FOUR) {
-                    Debug.Log("Selected Rune FOUR!");
-                }
-                else if (runeState == RUNE_FIVE) {
-                    Debug.Log("Selected Rune FIVE!");
-                }
-                else if (runeState == RUNE_SIX) {
-                    Debug.Log("Selected Rune SIX!");
-                }
-                else if (runeState == REROLL) {
-                    Debug.Log("Rerolling!");
-                }
-                else {
-                    Debug.LogError("DialogStateMachine.RunRSM(): Incorrect state pressed!");
-                }
-            }
             movingOffReroll = false;
-            if (movement == SELECT) {
-                return;
-            }
             if (runeState == RUNE_THREE) {
                 lastRune = RUNE_THREE;
             }
