@@ -35,7 +35,7 @@ namespace Platformer.Mechanics
 
         void Awake()
         {
-            _ghost_model = GameObject.Find("ghost basic"); 
+            _ghost_model = GameObject.Find("ghost basic");
             _rigidbody = GetComponent<Rigidbody>();
         }
 
