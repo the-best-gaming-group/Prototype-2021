@@ -17,12 +17,12 @@ public class PlayerHealthBar : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == "CombatScene")
         {
             // If in the CombatScene, set healthBar to currentHealth
-            Debug.Log("Combat Scene rn, current health is "+ currentHealth);
+            // Debug.Log("Combat Scene rn, current health is "+ currentHealth);
             healthBar.SetHealth(currentHealth);
         }
         else
         {
-            Debug.Log("Set currentHealth to maxHealth when starting the game.");
+            // Debug.Log("Set currentHealth to maxHealth when starting the game.");
             currentHealth = maxHealth;
             // If not in the CombatScene, set healthBar to maxHealth
             healthBar.SetMaxHealth(maxHealth);
@@ -32,7 +32,7 @@ public class PlayerHealthBar : MonoBehaviour
     void Update()
     {
         // Continuously update the health bar to reflect current health
-        Debug.Log("Update health " + currentHealth);
+        // Debug.Log("Update health " + currentHealth);
         healthBar.SetHealth(currentHealth);
 
 	}
@@ -41,14 +41,14 @@ public class PlayerHealthBar : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Player collided with an enemy.");
+            // Debug.Log("Player collided with an enemy.");
             TakeDamage(20);
         }
     }
 
     void TakeDamage(int damage)
     {
-        Debug.Log("Taking damage: " + damage);
+        // Debug.Log("Taking damage: " + damage);
         currentHealth -= damage;
 
         // Ensure health doesn't go below 0

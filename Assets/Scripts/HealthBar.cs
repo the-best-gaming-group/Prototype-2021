@@ -21,7 +21,7 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealth(int health)
     {
-        Debug.Log("Setting health to: " + health);
+        // Debug.Log("Setting health to: " + health);
 
         // Ensure that health is within the valid range (0 to slider.maxValue)
         health = Mathf.Clamp(health, 0, (int)slider.maxValue);
