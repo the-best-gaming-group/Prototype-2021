@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bf74ce4b3c22e4c99a5a1ee59625c0, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  dialogue:
+  - I open my eyes and see nothing but darkness, and no memory left.
+  - "What\u2019s going on? What is this place? Who am I?"
+  - A spirit floats in the middle of the foyer, I walk forward and ask it what place
+    this is. The spirit just floats there without answering.
+  - What should I do?
+  responses:
+  - responseText: Leave to explore elsewhere.
+    dialogueObject: {fileID: 11400000, guid: a2f13f88256eb994c929a2d593358f1d, type: 2}
+  - responseText: Tap its shoulder to try to wake it up
+    dialogueObject: {fileID: 11400000, guid: 6ea935b71204e2e42b05ec77b8999830, type: 2}

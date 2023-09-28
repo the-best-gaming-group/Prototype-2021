@@ -57,7 +57,7 @@ namespace Platformer.Mechanics
         protected void FixedUpdate()
         {
             // froze the player when playing dialogue
-            if (DialogueManager.GetInstance().dialogueIsPlaying)
+            if (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().dialogueIsPlaying)
             {
                 return;
             }
