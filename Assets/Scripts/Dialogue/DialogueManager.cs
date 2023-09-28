@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using Platformer.Mechanics;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
+    public GhostController player;
     public bool dialogueIsPlaying { get; private set; }
 
     private static DialogueManager instance;
@@ -54,8 +56,11 @@ public class DialogueManager : MonoBehaviour
         //return right away if dialogue isn't playing
         if (!dialogueIsPlaying)
         {
+            player.enableControl();
             return;
         }
+        
+        player.disableControl();
 
         //handle continuing to the next line in the dialogue when submit is pressed
         if (Input.GetKeyDown(KeyCode.Space))
