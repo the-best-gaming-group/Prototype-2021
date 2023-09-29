@@ -9,6 +9,7 @@ public class Selectable: MonoBehaviour
     public Image selectImage;
     void Start()
     {
+        Hide();
     }
     
     void Awake() {

@@ -1,15 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Ink.Runtime;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.XR.Haptics;
-using UnityEngine.Rendering;
 
 namespace Platformer.Mechanics
 {
+    using static Rune;
     public class TurnbasedDialogHandler : MonoBehaviour
     {
         // Start is called before the first frame update
@@ -21,10 +16,21 @@ namespace Platformer.Mechanics
         public SpellController[] scs = new SpellController[4];
         public SubmitController sc;
         private Selectable previousSelect;
+        public ResourceHandler resourceHandler = new ResourceHandler();
+        private bool[] rerolls = new bool[6];
+        public Dictionary<Rune, Color> runeColorMap = new Dictionary<Rune, Color> {
+            {WATER, Color.blue},
+            {FIRE, Color.red},
+            {EARTH, Color.green},
+            {AIR, Color.yellow}
+        };
+
         void Start()
         {
             previousSelect = rpc;
             rpc.Show();
+            resourceHandler.Initialize(null);
+            ColorRunes();
         }
         
         void Awake() {
@@ -126,21 +132,37 @@ namespace Platformer.Mechanics
             else
             {
                 Selectable sel = dsm.dialogState switch {
-                    DS.RUNES => rpc,
-                    DS.SPELL_ONE => scs[0],
-                    DS.SPELL_TWO => scs[1],
+                    DS.RUNES       => rpc,
+                    DS.SPELL_ONE   => scs[0],
+                    DS.SPELL_TWO   => scs[1],
                     DS.SPELL_THREE => scs[2],
-                    DS.SPELL_FOUR => scs[3],
-                    DS.SUBMIT => sc,
-                    _ => rpc
+                    DS.SPELL_FOUR  => scs[3],
+                    DS.SUBMIT      => sc,
+                    _              => rpc
                 };
                 previousSelect.Hide();
                 sel.Show();
                 previousSelect = sel;
             }
         }
+        
+        private void WipeRerolls()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                rerolls[i] = false;
+            }
+        }
+        
+        private void ColorRunes()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                rpc.runes[i].ChangeColor(runeColorMap[resourceHandler.runes[i]]);
+            }
+        }
 
-        /* All of these return an int because c# doesn't have function pointers */
+        /* All of these return a string because c# doesn't have function pointers */
         public string spellOneSelected()
         {
             return "Pressed spell ONE!";
@@ -174,36 +196,45 @@ namespace Platformer.Mechanics
 
         public string RuneOneSelected()
         {
+            rerolls[0] ^= true;
             return "Pressed RUNE ONE!";
         }
 
         public string RuneTwoSelected()
         {
+            rerolls[1] ^= true;
             return "Pressed RUNE TWO!";
         }
 
         public string RuneThreeSelected()
         {
+            rerolls[2] ^= true;
             return "Pressed RUNE THREE!";
         }
 
         public string RuneFourSelected()
         {
+            rerolls[3] ^= true;
             return "Pressed RUNE FOUR!";
         }
 
         public string RuneFiveSelected()
         {
+            rerolls[4] ^= true;
             return "Pressed RUNE FIVE!";
         }
 
         public string RuneSixSelected()
         {
+            rerolls[5] ^= true;
             return "Pressed RUNE SIX!";
         }
         
         public string RuneRerollSelected()
         {
+            resourceHandler.Reroll(rerolls);
+            ColorRunes();
+            WipeRerolls();
             return "Pressed REROLL";
         }
     }
