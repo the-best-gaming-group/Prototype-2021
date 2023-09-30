@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using Platformer.Mechanics;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
+    public GhostController player;
     public bool dialogueIsPlaying { get; private set; }
 
     private static DialogueManager instance;
@@ -54,11 +56,14 @@ public class DialogueManager : MonoBehaviour
         //return right away if dialogue isn't playing
         if (!dialogueIsPlaying)
         {
+            player.enableControl();
             return;
         }
+        
+        player.disableControl();
 
         //handle continuing to the next line in the dialogue when submit is pressed
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (currentStory.currentChoices.Count == 0 && Input.GetKeyDown(KeyCode.Space))
         {
             ContinueStory();
         }
@@ -111,14 +116,14 @@ public class DialogueManager : MonoBehaviour
         // enable and initialize the choices up to the amount of choices for this line of dialogue
         foreach (Choice choice in currentChoices)
         {
-            choices[index].gameObject.SetActive(true);
+            choices[index].SetActive(true);
             choicesText[index].text = choice.text;
             index++;
         }
         // go through the remaining choices the UI supports and make sure they're hidden
         for (int i = index; i < choices.Length; i++)
         {
-            choices[i].gameObject.SetActive(false);
+            choices[i].SetActive(false);
         }
 
         StartCoroutine(SelectFirstChoice());
@@ -129,11 +134,12 @@ public class DialogueManager : MonoBehaviour
         // Event System requires we clear it first, then wait for at least one frame before we set the current selected object
         EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForEndOfFrame();
-        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+        EventSystem.current.SetSelectedGameObject(choices[0]);
     }
 
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
+        ContinueStory();
     }
 }
