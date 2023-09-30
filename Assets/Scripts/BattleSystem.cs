@@ -1,10 +1,7 @@
-using DigitalRuby.PyroParticles;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
 public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
@@ -21,35 +18,44 @@ public class BattleSystem : MonoBehaviour
 {
     public float dialogWaitTime = 2f;
 
-    public GameObject player;
+    GameObject player;
     PlayerHealthBar playerHP;
-    public GameObject enemy;
+    RigidbodyConstraints playerRBConstraints;
+    GameObject enemy;
     PlayerHealthBar enemyHP;
 
     public GameObject firebolt;
 
-    public Text dialogText;//rename
+    Text battleDialog;
 
-    public BattleState state;
+    BattleState state;
     public bool isPlayerFirstTurn;
 
     bool playerDodged = false;
-    List<CombatOptions> turnActions = new List<CombatOptions>();
 
     Animator animator;
-
+    List<(CombatOptions action, float waitTime, Action actionFunc)> turnActions = new List<(CombatOptions, float, Action)>();
     void Start()
     {
         animator = GetComponent<Animator>();
         state = BattleState.START;
+        player = GameObject.FindWithTag("Player");
+        enemy = GameObject.FindWithTag("Enemy");
         playerHP = player.GetComponent<PlayerHealthBar>();
         enemyHP = enemy.GetComponent<PlayerHealthBar>();
+        battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<Text>();
+
+        //freeze rotation/position
+        playerRBConstraints = player.GetComponentInChildren<Rigidbody>().constraints;
+        player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
+        enemy.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;
+
         StartCoroutine(SetupBattle());
     }
 
     IEnumerator SetupBattle()
     {
-        dialogText.text = "Fighting <enemy>";// + enemyUnit.unitName;
+        battleDialog.text = "Fighting <enemy>";
 
         yield return new WaitForSeconds(dialogWaitTime);
 
@@ -61,7 +67,7 @@ public class BattleSystem : MonoBehaviour
 
     void PlayerTurn()
     {
-        dialogText.text = "What you gonna do?";
+        battleDialog.text = "What you gonna do?";
         state = BattleState.PLAYER_TURN;
         //todo: set limit to what actions can be done based on energy and exp
     }
@@ -70,17 +76,10 @@ public class BattleSystem : MonoBehaviour
     {
         foreach (var action in turnActions)
         {
-            animator.SetTrigger("Enemy" + action.ToString());
-
-            if (action == CombatOptions.Firebolt)
-            {
-                var currentPrefabObject = GameObject.Instantiate(firebolt);
-                currentPrefabObject.transform.position = player.transform.position + new Vector3(1, 0, 0);
-                currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);
-                yield return new WaitForSeconds(.1f);
-            }
-            int enemyNewHP = enemyHP.TakeDamage(((int)action));
-            dialogText.text = "<enemyName> takes " + action.ToString();
+            action.actionFunc();
+            yield return new WaitForSeconds(action.waitTime);
+            int enemyNewHP = enemyHP.TakeDamage(((int)action.action));
+            battleDialog.text = "<enemyName> takes " + action.action.ToString();
             yield return new WaitForSeconds(dialogWaitTime);
             if (enemyNewHP == 0)
             {
@@ -101,18 +100,18 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        dialogText.text = "<enemyName> attacks!";
+        battleDialog.text = "<enemyName> attacks!";
 
         const int enemySlamDamage = 5; //todo: add other attack abilities
         if (!playerDodged)
         {
             int playerNewHP = playerHP.TakeDamage(enemySlamDamage);
-            dialogText.text = "<enemy> slammed <player>";
+            battleDialog.text = "<enemy> slammed <player>";
             animator.SetTrigger("PlayerSlam");
         }
         else
         {
-            dialogText.text = "<player> dodged, <enemy> slam attack failed";
+            battleDialog.text = "<player> dodged, <enemy> slam attack failed";
         }
 
         playerDodged = false;
@@ -135,24 +134,30 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.WON)
         {
-            dialogText.text = "You won against <enemy>";
+            battleDialog.text = "You won against <enemy>";
             //move on w/ quest
         }
         else
         {
-            dialogText.text = "You lost against <enemy>";
+            battleDialog.text = "You lost against <enemy>";
             //move back to checkpoint
         }
+        player.GetComponentInChildren<Rigidbody>().constraints = playerRBConstraints;//restore ability to move/rotate
     }
 
-    // Update is called once per frame
+    void sendFirebolt()//use for enemy as well?
+    {
+        var currentPrefabObject = GameObject.Instantiate(firebolt);
+        currentPrefabObject.transform.position = player.transform.position + new Vector3(1, 0, 0);//from player, need change for from enemy
+        currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);//from player to enemy, might need change for backward
+    }
+    void sendSlam()//use for enemy as well?
+    {
+        animator.SetTrigger("EnemySlam");
+    }
+
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space)) {
-        //    var currentPrefabObject = GameObject.Instantiate(firebolt);
-        //    currentPrefabObject.transform.position = player.transform.position + new Vector3(1, 0, 0);
-        //    currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);
-        //}
     }
 
 
@@ -163,7 +168,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(CombatOptions.Slam);
+            turnActions.Add(new ValueTuple<CombatOptions, float, Action>(CombatOptions.Slam, 1, sendSlam)) ;
         }
     }
 
@@ -171,7 +176,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(CombatOptions.Firebolt);
+            turnActions.Add(new ValueTuple<CombatOptions, float, Action>(CombatOptions.Firebolt, .1f, sendFirebolt));
         }
     }
 
@@ -182,8 +187,8 @@ public class BattleSystem : MonoBehaviour
             playerDodged = !playerDodged;
             //for debugging
             if (playerDodged)
-                dialogText.text += "dodging";
-            else dialogText.text = dialogText.text.Replace("dodging", "");
+                battleDialog.text += "dodging";
+            else battleDialog.text = battleDialog.text.Replace("dodging", "");
         }
     }
     public void OnEndTurnButton()
