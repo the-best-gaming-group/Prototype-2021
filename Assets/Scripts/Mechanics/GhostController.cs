@@ -42,7 +42,7 @@ namespace Platformer.Mechanics
         void Update()
         {
             // Dialogue part
-            if (dialogueUI.IsOpen) return;
+            if (dialogueUI != null && dialogueUI.IsOpen) return;
 
             keyHoriz = Input.GetAxis("Horizontal");
             jumpPending = jumpPending || Input.GetButtonDown("Jump");
