@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     Vector2 moveDirection = Vector2.zero;
 
+    public DialogueActivator Interactable { get; internal set; }
+
     private void OnEnable()
     {
         playerControls.Enable();

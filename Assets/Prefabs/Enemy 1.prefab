@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6014157548294510}
   - component: {fileID: 6014157548294509}
   - component: {fileID: 6014157548294508}
-  - component: {fileID: 6014157548294416}
   - component: {fileID: 6014157548294417}
+  - component: {fileID: 9214679407003998590}
   - component: {fileID: 4316960912586494352}
+  - component: {fileID: 6014157548294416}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -100,22 +101,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6014157548294416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6014157548294506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be39cd11783f44c1598bd27c5dd3638b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  currentHealth: 50
-  damage: 10
-  enemyType: Random
 --- !u!54 &6014157548294417
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,6 +117,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!195 &9214679407003998590
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014157548294506}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &4316960912586494352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,3 +151,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4f2a1d88fab4706a55e338d31bb9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6014157548294416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014157548294506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be39cd11783f44c1598bd27c5dd3638b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  range: 30
+  sightRange: 18
+  attackRange: 2

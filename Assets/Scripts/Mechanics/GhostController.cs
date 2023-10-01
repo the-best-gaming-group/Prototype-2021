@@ -9,8 +9,13 @@ namespace Platformer.Mechanics
     /// </summary>
     public class GhostController : MonoBehaviour
     {
-        private readonly static Vector3 RIGHT_TURN = new Vector3(0,180,0);
-        private readonly static Vector3 LEFT_TURN = new Vector3(0,-180,0);
+        // Dialogue part
+        [SerializeField] private DialogueUI dialogueUI;
+        public DialogueUI DialogueUI => dialogueUI;
+        public IInteractable Interactable { get; set; }
+
+        private readonly static Vector3 RIGHT_TURN = new Vector3(0, 180, 0);
+        private readonly static Vector3 LEFT_TURN = new Vector3(0, -180, 0);
         private GameObject _ghost_model;
         private const float floatSpeed = 0.125f;
         private const float moveSpeed = 4f;
@@ -21,7 +26,8 @@ namespace Platformer.Mechanics
         private bool usedDoubleJump = false;
         private float keyHoriz = 0f;
         private bool jumpPending = false;
-        /*internal new*/ public Collider _collider;
+        /*internal new*/
+        public Collider _collider;
 
         public Rigidbody _rigidbody;
 
@@ -32,10 +38,27 @@ namespace Platformer.Mechanics
             _ghost_model = GameObject.Find("ghost basic");
             _rigidbody = GetComponent<Rigidbody>();
         }
-        
-        void Update() {
+
+        void Update()
+        {
+            // Dialogue part
+            if (dialogueUI != null && dialogueUI.IsOpen) return;
+
             keyHoriz = Input.GetAxis("Horizontal");
             jumpPending = jumpPending || Input.GetButtonDown("Jump");
+
+            // Dialogue part
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                Interactable?.Interact(this);
+                /*
+                meaning:
+                if (Interactable != null)
+                {
+                    Interactable.Interact(this);
+                }
+                */
+            }
         }
 
         protected void FixedUpdate()
@@ -64,58 +87,71 @@ namespace Platformer.Mechanics
             // Move vertically
             _rigidbody.AddForce(new Vector3(0, upMove, 0), ForceMode.Impulse);
         }
-        
-        public bool getControlStatus() {
+
+        public bool getControlStatus()
+        {
             return controlEnabled;
         }
-        
-        public void disableControl() {
+
+        public void disableControl()
+        {
             controlEnabled = false;
         }
-        
-        public void enableControl() {
+
+        public void enableControl()
+        {
             controlEnabled = true;
         }
-        
-        private void HandleTurn(float sideMove) {
+
+        private void HandleTurn(float sideMove)
+        {
             // Clamp down the movement before we go futher. This would be easier if
             // Unity didn't roll 0 back to 359 and went negative instead
             last_turn_dir = turn_dir;
-            if (turn_dir == RIGHT && transform.eulerAngles.y > 180) {
+            if (turn_dir == RIGHT && transform.eulerAngles.y > 180)
+            {
                 _rigidbody.MoveRotation(Quaternion.Euler(0, 180f, 0));
             }
-            else if (turn_dir == LEFT && transform.eulerAngles.y > 270) {
+            else if (turn_dir == LEFT && transform.eulerAngles.y > 270)
+            {
                 _rigidbody.MoveRotation(Quaternion.Euler(0, 0, 0));
             }
 
             // Figure out which direction we need to try to turn toward
-            if (sideMove > 0 || sideMove == 0 && last_turn_dir == RIGHT && _rigidbody.transform.eulerAngles.y < 180) {
+            if (sideMove > 0 || sideMove == 0 && last_turn_dir == RIGHT && _rigidbody.transform.eulerAngles.y < 180)
+            {
                 turn_dir = RIGHT;
             }
-            else if (sideMove < 0 || last_turn_dir == LEFT && _rigidbody.transform.eulerAngles.y > 0) {
+            else if (sideMove < 0 || last_turn_dir == LEFT && _rigidbody.transform.eulerAngles.y > 0)
+            {
                 turn_dir = LEFT;
             }
-            else {
+            else
+            {
                 turn_dir = NOT_TURNING;
             }
-            
+
             // Set the turn
             Quaternion deltaRotation = Quaternion.identity;
-            if (turn_dir == RIGHT ) {
+            if (turn_dir == RIGHT)
+            {
                 deltaRotation = Quaternion.Euler(RIGHT_TURN * Time.fixedDeltaTime);
             }
-            else if (turn_dir == LEFT) {
+            else if (turn_dir == LEFT)
+            {
                 deltaRotation = Quaternion.Euler(LEFT_TURN * Time.fixedDeltaTime);
             }
 
             // Turn
             _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
         }
-        
-        private float HandleJump() {
+
+        private float HandleJump()
+        {
             // Jump!
             var upMove = 0f;
-            switch (jump) {
+            switch (jump)
+            {
                 case InFlight:
                     if (_rigidbody.velocity.y == 0)
                     {
@@ -123,7 +159,8 @@ namespace Platformer.Mechanics
                         usedDoubleJump = false;
                         jumpPending = false;
                     }
-                    else if (!usedDoubleJump && jumpPending) {
+                    else if (!usedDoubleJump && jumpPending)
+                    {
                         usedDoubleJump = true;
                         upMove = moveSpeed;
                         jumpPending = false;
@@ -136,30 +173,33 @@ namespace Platformer.Mechanics
                     }
                     break;
                 case Grounded:
-                    if (jumpPending) {
+                    if (jumpPending)
+                    {
                         upMove = moveSpeed;
                         jump = InFlight;
                         jumpPending = false;
                     }
                     break;
                 case Jumping:
-                    if (_rigidbody.velocity.y < 0) {
+                    if (_rigidbody.velocity.y < 0)
+                    {
                         jump = InFlight;
                     }
                     break;
-                    
+
             }
             return upMove;
         }
     }
-    public enum TurnDirection {
+    public enum TurnDirection
+    {
         LEFT,
         RIGHT,
         FRONT,
         BACK,
         NOT_TURNING
     }
-    
+
     public enum JumpState
     {
         Grounded,
