@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Scripting;
 using UnityEngine.UI;
 
 public class RuneController : Selectable
 {
     public Image i;
+    public TextMeshProUGUI x;
 
     public void Awake() {
         i = transform.Find("Rune").gameObject.GetComponent<Image>();
+        x = transform.Find("Rolling").gameObject.GetComponent<TextMeshProUGUI>();
+        x.enabled = false;
     }
     
     void Update() {
@@ -18,5 +19,10 @@ public class RuneController : Selectable
     public void ChangeColor(Color c)
     {
         i.color = c;
+    }
+    
+    public void Toggle()
+    {
+        x.enabled ^= true;
     }
 }

@@ -18,7 +18,6 @@ namespace Platformer.Mechanics
         public ResourceHandler resourceHandler = new();
         public readonly float buttonDelay = 0.3f;
         public float delayRemaining = 0f;
-        private readonly bool[] rerolls = new bool[6];
         private LASTSELECTED lastSelected = BUTTONUP;
         public Dictionary<Rune, Color> runeColorMap = new()
         {
@@ -33,7 +32,7 @@ namespace Platformer.Mechanics
             previousSelect = rpc;
             rpc.Show();
             resourceHandler.Initialize(null);
-            ColorRunes();
+            rpc.ColorRunes(runeColorMap, resourceHandler);
         }
 
         void Awake()
@@ -101,6 +100,7 @@ namespace Platformer.Mechanics
             else
             {
                 lastSelected = BUTTONUP;
+                DoHighlightChange();
                 return;
             }
 
@@ -109,7 +109,7 @@ namespace Platformer.Mechanics
         }
 
         private void DoButtonClick() {
-            string result = null;
+            string result;
             if (dsm.state == S.DSM)
             {
                 result = dsm.dialogState switch
@@ -149,10 +149,12 @@ namespace Platformer.Mechanics
                 if (currentState == S.RSM)
                 {
                     rpc.LoseFocus();
+                    rpc.Show();
                 }
                 else
                 {
                     rpc.GainFocus();
+                    rpc.Hide();
                 }
             }
 
@@ -179,22 +181,6 @@ namespace Platformer.Mechanics
             }
         }
 
-        private void WipeRerolls()
-        {
-            for (int i = 0; i < 6; i++)
-            {
-                rerolls[i] = false;
-            }
-        }
-
-        private void ColorRunes()
-        {
-            for (int i = 0; i < 6; i++)
-            {
-                rpc.runes[i].ChangeColor(runeColorMap[resourceHandler.runes[i]]);
-            }
-        }
-
         /* All of these return a string because c# doesn't have function pointers */
         public string SpellSelected(int i)
         {
@@ -213,15 +199,14 @@ namespace Platformer.Mechanics
 
         public string RuneSelected(int i)
         {
-            rerolls[i] ^= true;
+            rpc.ToggleRune(i);
             return string.Format("Pressed RUNE {0}!", i+1);
         }
 
         public string RuneRerollSelected()
         {
-            resourceHandler.Reroll(rerolls);
-            ColorRunes();
-            WipeRerolls();
+            resourceHandler.Reroll(rpc.rerolls);
+            rpc.DoReroll(runeColorMap, resourceHandler);
             return "Pressed REROLL";
         }
     }
