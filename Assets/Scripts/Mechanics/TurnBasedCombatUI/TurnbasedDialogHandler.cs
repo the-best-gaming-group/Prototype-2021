@@ -8,7 +8,7 @@ namespace Platformer.Mechanics
     public class TurnbasedDialogHandler : MonoBehaviour
     {
         // Start is called before the first frame update
-        public DialogStateMachine dsm = new DialogStateMachine();
+        public DialogStateMachine dsm = new();
         public S currentState = S.DSM;
         public readonly float buttonDelay = 0.3f;
         public float delayRemaining = 0f;
@@ -16,13 +16,14 @@ namespace Platformer.Mechanics
         public SpellController[] scs = new SpellController[4];
         public SubmitController sc;
         private Selectable previousSelect;
-        public ResourceHandler resourceHandler = new ResourceHandler();
-        private bool[] rerolls = new bool[6];
-        public Dictionary<Rune, Color> runeColorMap = new Dictionary<Rune, Color> {
+        public ResourceHandler resourceHandler = new();
+        private readonly bool[] rerolls = new bool[6];
+        public Dictionary<Rune, Color> runeColorMap = new()
+        {
             {WATER, Color.blue},
-            {FIRE, Color.red},
+            {FIRE,  Color.red},
             {EARTH, Color.green},
-            {AIR, Color.yellow}
+            {AIR,   Color.yellow}
         };
 
         void Start()
@@ -32,8 +33,9 @@ namespace Platformer.Mechanics
             resourceHandler.Initialize(null);
             ColorRunes();
         }
-        
-        void Awake() {
+
+        void Awake()
+        {
         }
 
         // Update is called once per frame
@@ -77,40 +79,42 @@ namespace Platformer.Mechanics
             delayRemaining = buttonDelay;
             DoHighlightChange();
         }
-        
+
         private void DoButtonClick() {
-            Func<string> buttonFunc = null;
+            string result = null;
             if (dsm.state == S.DSM)
             {
-                buttonFunc = dsm.dialogState switch {
-                    DS.RUNES       => runePanelSelected,
-                    DS.SPELL_ONE   => spellOneSelected,
-                    DS.SPELL_TWO   => spellTwoSelected,
-                    DS.SPELL_THREE => spellThreeSelected,
-                    DS.SPELL_FOUR  => spellFourSelected,
-                    DS.SUBMIT      => submitSelected,
+                result = dsm.dialogState switch
+                {
+                    DS.RUNES       => RunePanelSelected(),
+                    DS.SPELL_ONE   => SpellSelected(0),
+                    DS.SPELL_TWO   => SpellSelected(1),
+                    DS.SPELL_THREE => SpellSelected(2),
+                    DS.SPELL_FOUR  => SpellSelected(3),
+                    DS.SUBMIT      => SubmitSelected(),
                     _              => null
                 };
             }
             else
             {
-                buttonFunc = dsm.runeState switch {
-                    RS.RUNE_ONE   => RuneOneSelected,
-                    RS.RUNE_TWO   => RuneTwoSelected,
-                    RS.RUNE_THREE => RuneThreeSelected,
-                    RS.RUNE_FOUR  => RuneFourSelected,
-                    RS.RUNE_FIVE  => RuneFiveSelected,
-                    RS.RUNE_SIX   => RuneSixSelected,
-                    RS.REROLL     => RuneRerollSelected,
+                result = dsm.runeState switch
+                {
+                    RS.RUNE_ONE   => RuneSelected(0),
+                    RS.RUNE_TWO   => RuneSelected(1),
+                    RS.RUNE_THREE => RuneSelected(2),
+                    RS.RUNE_FOUR  => RuneSelected(3),
+                    RS.RUNE_FIVE  => RuneSelected(4),
+                    RS.RUNE_SIX   => RuneSelected(5),
+                    RS.REROLL     => RuneRerollSelected(),
                     _             => null
                 };                    
             }
-            if (buttonFunc != null)
+            if (result != null)
             {
-                Debug.Log(Time.time + " " + buttonFunc());
+                Debug.Log(Time.time + " " + result);
             }
         }
-        
+
         private void DoHighlightChange() {
             if (dsm.state != currentState)
             {
@@ -131,7 +135,8 @@ namespace Platformer.Mechanics
             }
             else
             {
-                Selectable sel = dsm.dialogState switch {
+                Selectable sel = dsm.dialogState switch
+                {
                     DS.RUNES       => rpc,
                     DS.SPELL_ONE   => scs[0],
                     DS.SPELL_TWO   => scs[1],
@@ -145,7 +150,7 @@ namespace Platformer.Mechanics
                 previousSelect = sel;
             }
         }
-        
+
         private void WipeRerolls()
         {
             for (int i = 0; i < 6; i++)
@@ -153,7 +158,7 @@ namespace Platformer.Mechanics
                 rerolls[i] = false;
             }
         }
-        
+
         private void ColorRunes()
         {
             for (int i = 0; i < 6; i++)
@@ -163,73 +168,27 @@ namespace Platformer.Mechanics
         }
 
         /* All of these return a string because c# doesn't have function pointers */
-        public string spellOneSelected()
+        public string SpellSelected(int i)
         {
-            return "Pressed spell ONE!";
+            return string.Format("Pressed spell {0}!", i+1);
         }
-
-        public string spellTwoSelected()
-        {
-            return "Pressed spell TWO!";
-        }
-
-        public string spellThreeSelected()
-        {
-            return "Pressed spell THREE!";
-        }
-
-        public string spellFourSelected()
-        {
-            return "Pressed spell FOUR!";
-        }
-
-        public string submitSelected()
+        public string SubmitSelected()
         {
             return "Pressed SUBMIT!";
         }
 
-        public string runePanelSelected()
+        public string RunePanelSelected()
         {
             dsm.state = S.RSM;
             return "Pressed RUNE PANEL!";
         }
 
-        public string RuneOneSelected()
+        public string RuneSelected(int i)
         {
-            rerolls[0] ^= true;
-            return "Pressed RUNE ONE!";
+            rerolls[i] ^= true;
+            return string.Format("Pressed RUNE {0}!", i+1);
         }
 
-        public string RuneTwoSelected()
-        {
-            rerolls[1] ^= true;
-            return "Pressed RUNE TWO!";
-        }
-
-        public string RuneThreeSelected()
-        {
-            rerolls[2] ^= true;
-            return "Pressed RUNE THREE!";
-        }
-
-        public string RuneFourSelected()
-        {
-            rerolls[3] ^= true;
-            return "Pressed RUNE FOUR!";
-        }
-
-        public string RuneFiveSelected()
-        {
-            rerolls[4] ^= true;
-            return "Pressed RUNE FIVE!";
-        }
-
-        public string RuneSixSelected()
-        {
-            rerolls[5] ^= true;
-            return "Pressed RUNE SIX!";
-        }
-        
         public string RuneRerollSelected()
         {
             resourceHandler.Reroll(rerolls);
