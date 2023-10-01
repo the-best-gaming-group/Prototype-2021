@@ -5,19 +5,21 @@ using UnityEngine;
 namespace Platformer.Mechanics
 {
     using static Rune;
+    using static LASTSELECTED;
     public class TurnbasedDialogHandler : MonoBehaviour
     {
         // Start is called before the first frame update
         public DialogStateMachine dsm = new();
         public S currentState = S.DSM;
-        public readonly float buttonDelay = 0.3f;
-        public float delayRemaining = 0f;
         public RunePanelController rpc;
         public SpellController[] scs = new SpellController[4];
         public SubmitController sc;
         private Selectable previousSelect;
         public ResourceHandler resourceHandler = new();
+        public readonly float buttonDelay = 0.3f;
+        public float delayRemaining = 0f;
         private readonly bool[] rerolls = new bool[6];
+        private LASTSELECTED lastSelected = BUTTONUP;
         public Dictionary<Rune, Color> runeColorMap = new()
         {
             {WATER, Color.blue},
@@ -41,41 +43,67 @@ namespace Platformer.Mechanics
         // Update is called once per frame
         void Update()
         {
+            if (Input.GetButtonUp("Jump"))
+            {
+                DoButtonClick();
+            }
+
             if (delayRemaining > 0f)
             {
                 delayRemaining -= Time.deltaTime;
                 return;
             }
-
-            if (Input.GetButtonUp("Jump"))
+            else
             {
-                DoButtonClick();
+                lastSelected = BUTTONUP;
             }
-            else if (Input.GetKeyUp(KeyCode.Escape))
+
+            if (Input.GetKeyUp(KeyCode.Escape))
             {
                 dsm.state = S.DSM;
             }
             else if (Input.GetAxis("Horizontal") > 0)
             {
+                if (lastSelected == RIGHT)
+                {
+                    return;
+                }
                 dsm.RunStateMachine(BUTTON.RIGHT);
+                lastSelected = RIGHT;
             }
             else if (Input.GetAxis("Horizontal") < 0)
             {
+                if (lastSelected == LEFT)
+                {
+                    return;
+                }
                 dsm.RunStateMachine(BUTTON.LEFT);
+                lastSelected = LEFT;
             }
             else if (Input.GetAxis("Vertical") > 0)
             {
+                if (lastSelected == UP)
+                {
+                    return;
+                }
                 dsm.RunStateMachine(BUTTON.UP);
+                lastSelected = UP;
             }
             else if (Input.GetAxis("Vertical") < 0)
             {
+                if (lastSelected == DOWN)
+                {
+                    return;
+                }
                 dsm.RunStateMachine(BUTTON.DOWN);
+                lastSelected = DOWN;
             }
             else
             {
+                lastSelected = BUTTONUP;
                 return;
             }
-            
+
             delayRemaining = buttonDelay;
             DoHighlightChange();
         }
@@ -196,5 +224,13 @@ namespace Platformer.Mechanics
             WipeRerolls();
             return "Pressed REROLL";
         }
+    }
+    
+    enum LASTSELECTED {
+        UP = 0,
+        LEFT = 1,
+        RIGHT = 2,
+        DOWN = 3,
+        BUTTONUP = 4
     }
 }
