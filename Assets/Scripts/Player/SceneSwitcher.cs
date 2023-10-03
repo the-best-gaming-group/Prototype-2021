@@ -41,6 +41,7 @@ public class SceneSwitcher : MonoBehaviour
 
 		// Load the combat scene. Make sure you have this scene created in your Unity project.
 		SceneManager.LoadScene("CombatScene");
+
 	}
 }
 
