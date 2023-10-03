@@ -22,4 +22,3 @@ public class MusicClass : MonoBehaviour
         _audioSource.Stop();
     }
 }
-

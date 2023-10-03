@@ -9,6 +9,7 @@ TagManager:
   - NPC
   - Fire
   - Music
+  - BackgroundMusic
   layers:
   - Default
   - TransparentFX

@@ -30,7 +30,7 @@ namespace Platformer.Mechanics
                 playerObj = GameObject.Find("GhostPC");
             }
             else if (IsInteractable() && ( Input.GetAxis("Vertical") > 0 || Input.GetButtonDown("Jump"))) {
-                 if(doorSound != null)
+                if (doorSound != null)
                 {
                     doorSound.Play();
                 }
