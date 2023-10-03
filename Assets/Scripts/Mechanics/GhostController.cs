@@ -26,6 +26,7 @@ namespace Platformer.Mechanics
         private bool usedDoubleJump = false;
         private float keyHoriz = 0f;
         private float keyVert = 0f;
+        private bool upPressed = false;
         private bool jumpPending = false;
         /*internal new*/
         public Collider _collider;
@@ -46,6 +47,7 @@ namespace Platformer.Mechanics
             if (dialogueUI != null && dialogueUI.IsOpen)
             {
                 DisableControl();
+                return;
             }
 
             keyHoriz = Input.GetAxis("Horizontal");
@@ -53,8 +55,9 @@ namespace Platformer.Mechanics
             jumpPending = jumpPending || Input.GetButtonDown("Jump");
 
             // Dialogue part
-            if (keyVert > 0)
+            if (keyVert > 0 && !upPressed)
             {
+                upPressed = true;
                 Interactable?.Interact(this);
                 dialogueUI?.RegisterCloseAction(EnableControl);
                 /*
@@ -64,6 +67,10 @@ namespace Platformer.Mechanics
                     Interactable.Interact(this);
                 }
                 */
+            }
+            else
+            {
+                upPressed = false;
             }
         }
 

@@ -18,7 +18,7 @@ namespace Platformer.Mechanics
         public SubmitController rc;
         private Selectable previousSelect;
         public ResourceHandler resourceHandler;
-        public readonly float buttonDelay = 0.3f;
+        public readonly float buttonDelay = 0.35f;
         public float delayRemaining = 0f;
         public bool isEnabled = true;
         private LASTSELECTED lastSelected = BUTTONUP;

@@ -60,6 +60,7 @@ public class BattleSystem : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         enemy = GameObject.FindWithTag("Enemy");
         playerHP = player.GetComponent<PlayerHealthBar>();
+        playerHP.TakeDamage(100 - GameManager.Instance.playerHealth);
         enemyHP = enemy.GetComponent<PlayerHealthBar>();
         battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
 
@@ -263,11 +264,8 @@ public class BattleSystem : MonoBehaviour
     public void OnDodgeButton()
     {
         if (state == BattleState.PLAYER_TURN)
-        { playerDodged = !playerDodged;
-            //for debugging
-            if (playerDodged)
-                battleDialog.text += "dodging";
-            else battleDialog.text = battleDialog.text.Replace("dodging", "");
+        {
+            playerDodged = !playerDodged;
         }
     }
     public void OnEndTurnButton()

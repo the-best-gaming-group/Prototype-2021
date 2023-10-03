@@ -8,7 +8,7 @@ public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
-    private List<Action> actionsOnClose;
+    private List<Action> actionsOnClose = new();
 
     internal void ShowDialogue()
     {
