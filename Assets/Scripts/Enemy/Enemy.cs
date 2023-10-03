@@ -25,14 +25,14 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 		agent.updateRotation = false;
-        agent.speed = 5;
+        agent.speed = 2;
 		player = GameObject.Find("GhostPC");
 	}
 
 	void Update()
     {
 		Vector3 newPosition = transform.position;
-		newPosition.z = 26.94f; // Store the initial Z position when the enemy is initialized
+		newPosition.z = player.transform.position.z;
 		transform.position = newPosition;
 
 		if (SceneManager.GetActiveScene().name != "CombatScene")
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         {
 			Debug.Log("Chase");
 			agent.SetDestination(player.transform.position);
-			agent.speed = 10;
+			agent.speed = 3.5f;
 		}
     }
     void Attack()
