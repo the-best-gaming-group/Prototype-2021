@@ -56,11 +56,11 @@ public class DialogueManager : MonoBehaviour
         //return right away if dialogue isn't playing
         if (!dialogueIsPlaying)
         {
-            player.enableControl();
+            player.EnableControl();
             return;
         }
         
-        player.disableControl();
+        player.DisableControl();
 
         //handle continuing to the next line in the dialogue when submit is pressed
         if (currentStory.currentChoices.Count == 0 && Input.GetKeyDown(KeyCode.Space))

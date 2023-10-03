@@ -40,7 +40,7 @@ public class SceneSwitcher : MonoBehaviour
 		// Debug.Log("PlayerHealth = " + GameManager.Instance.playerHealth);
 
 		// Load the combat scene. Make sure you have this scene created in your Unity project.
-		SceneManager.LoadScene("CombatScene");
+		SceneManager.LoadScene("SimpleCombat");
 
 	}
 }

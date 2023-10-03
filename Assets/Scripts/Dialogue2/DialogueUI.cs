@@ -2,11 +2,13 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Collections.Generic;
 
 public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
+    private List<Action> actionsOnClose;
 
     internal void ShowDialogue()
     {
@@ -84,5 +86,14 @@ public class DialogueUI : MonoBehaviour
         IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
+        foreach (var act in actionsOnClose)
+        {
+            act();
+        }
+    }
+    
+    public void RegisterCloseAction(Action act)
+    {
+        actionsOnClose.Add(act);
     }
 }

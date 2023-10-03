@@ -25,6 +25,7 @@ namespace Platformer.Mechanics
         public bool controlEnabled = true;
         private bool usedDoubleJump = false;
         private float keyHoriz = 0f;
+        private float keyVert = 0f;
         private bool jumpPending = false;
         /*internal new*/
         public Collider _collider;
@@ -42,15 +43,20 @@ namespace Platformer.Mechanics
         void Update()
         {
             // Dialogue part
-            if (dialogueUI != null && dialogueUI.IsOpen) return;
+            if (dialogueUI != null && dialogueUI.IsOpen)
+            {
+                DisableControl();
+            }
 
             keyHoriz = Input.GetAxis("Horizontal");
+            keyVert = Input.GetAxis("Vertical");
             jumpPending = jumpPending || Input.GetButtonDown("Jump");
 
             // Dialogue part
-            if (Input.GetKeyDown(KeyCode.W))
+            if (keyVert > 0)
             {
                 Interactable?.Interact(this);
+                dialogueUI?.RegisterCloseAction(EnableControl);
                 /*
                 meaning:
                 if (Interactable != null)
@@ -88,17 +94,17 @@ namespace Platformer.Mechanics
             _rigidbody.AddForce(new Vector3(0, upMove, 0), ForceMode.Impulse);
         }
 
-        public bool getControlStatus()
+        public bool GetControlStatus()
         {
             return controlEnabled;
         }
 
-        public void disableControl()
+        public void DisableControl()
         {
             controlEnabled = false;
         }
 
-        public void enableControl()
+        public void EnableControl()
         {
             controlEnabled = true;
         }
