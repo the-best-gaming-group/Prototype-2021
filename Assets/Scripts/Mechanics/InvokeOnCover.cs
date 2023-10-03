@@ -14,6 +14,7 @@ namespace Platformer.Mechanics
         public Invokable invokableObject;
         GameObject playerObj;
         Collider _collider;
+        [SerializeField] AudioSource doorSound;
         public Bounds Bounds => _collider.bounds;
         // Start is called before the first frame update
         void Start()
@@ -29,14 +30,21 @@ namespace Platformer.Mechanics
                 playerObj = GameObject.Find("GhostPC");
             }
             else if (IsInteractable() && ( Input.GetAxis("Vertical") > 0 || Input.GetButtonDown("Jump"))) {
+                 if(doorSound != null)
+                {
+                    doorSound.Play();
+                }
                 invokableObject.Invoke();
+                
             }
         }
         
         bool IsInteractable() {
             var playerBounds = playerObj.GetComponent<GhostController>().Bounds;
             if (playerBounds.Intersects(Bounds)) {
+                //doorSound.Play();
                 return true;
+               
             }
             else {
                 return false;            
