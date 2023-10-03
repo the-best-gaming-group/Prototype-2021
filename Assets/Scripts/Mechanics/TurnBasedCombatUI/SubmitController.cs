@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SubmitController : Selectable
 {
-    // Start is called before the first frame update
-    void Start()
+    public Image button;
+    private readonly Color enableColor = new (.4f, .4f, 0.9568628f);
+    private readonly Color disableColor = Color.grey;
+    public bool IsEnabled => button.color == enableColor;
+    public void Awake()
     {
-        
+        button = transform.Find("Button").GetComponent<Image>();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void DoDisable()
     {
-        
+        button.color = disableColor;
+    }
+    
+    public void DoEnable()
+    {
+        button.color = enableColor;
     }
 }

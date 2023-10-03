@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 using static Rune;
 public enum Rune
@@ -6,23 +8,22 @@ public enum Rune
     WATER = 0,
     FIRE  = 1,
     EARTH = 2,
-    AIR   = 3
+    AIR   = 3,
+    USED = 4
 }
 
 public class Spell
 {
     public string name;    
     public int[] cost = {0, 0, 0, 0};
+    public Func<string> effect;
 }
 
 public class ResourceHandler
 {
-    public Rune[] runes = new Rune[6];
+    private Rune[] runes = new Rune[6];
+    private readonly bool[] committed = new bool[6];
     /* The below code is for example purposes */
-    public Spell slam     = new Spell { name = "Slam" };
-    public Spell fireBall = new Spell { name = "Fire Ball" };
-    public Spell dodge    = new Spell { name = "Dodge" };
-    public Spell heal     = new Spell { name = "Heal" };
     private int[] cumSum;
 
     public void Initialize(int[] chances)
@@ -32,16 +33,6 @@ public class ResourceHandler
             chances = new int[]{25, 25, 25, 25};            
         }
     /* The below code is for example purposes */
-        fireBall.cost[(int)FIRE] = 2;
-        fireBall.cost[(int)AIR] = 1;
-        
-        slam.cost[(int)FIRE] = 1;
-        slam.cost[(int)EARTH] = 1;
-        
-        dodge.cost[(int)WATER] = 2;
-        dodge.cost[(int)AIR] = 1;
-        
-        heal.cost[(int)WATER] = 3;
         
         int runningSum = 0;
         cumSum = new int[4];
@@ -57,6 +48,10 @@ public class ResourceHandler
         for (int i = 0; i < 6; i++)
         {
             RerollRune(i);
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            committed[i] = false;
         }
     }
     public void Reroll(bool[] roll)
@@ -89,5 +84,63 @@ public class ResourceHandler
         {
             runes[idx] = AIR;
         }
+    }
+    
+    public bool CanCastSpell(Spell spell)
+    {
+        var totalResources = new int[4];
+        for (int i = 0; i < 6; i++)
+        {
+            if (!committed[i])
+            {
+                totalResources[(int)runes[i]]++;
+            }
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (totalResources[i] < spell.cost[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public void CommitRunesForSpell(Spell s)
+    {
+        int[] costLeft = new int[4];
+        Array.Copy(s.cost, costLeft, 4);
+        for (int i = 0; i < 6; i++)
+        {
+            if (!committed[i] && costLeft[(int)runes[i]]-- > 0)
+            {
+                committed[i] = true;
+            }
+        }
+    }
+
+    public void UncommitRunes()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            committed[i] = false;
+        }
+    }
+    
+    public Rune[] GetRuneTypes()
+    {
+        var runeTypes = new Rune[6];
+        for (int i = 0; i < 6; i++)
+        {
+            if (committed[i])
+            {
+                runeTypes[i] = USED;
+            }
+            else
+            {
+                runeTypes[i] = runes[i];
+            }
+        }
+        return runeTypes;
     }
 }

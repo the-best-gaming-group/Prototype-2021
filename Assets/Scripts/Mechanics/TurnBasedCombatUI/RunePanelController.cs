@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Net.Sockets;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-
+using static Rune;
 public class RunePanelController : Selectable
 {
     private const int numChildren = 7;
@@ -17,6 +16,15 @@ public class RunePanelController : Selectable
     private readonly string noRollseft = "No Rerolls Left";
     private int rollsLeft = 2;
     private int currentlySelected = 0;
+    public bool HasRollsLeft => rollsLeft > 0;
+    static public Dictionary<Rune, Color> runeColorMap = new()
+    {
+        {WATER, Color.blue},
+        {FIRE,  Color.red},
+        {EARTH, Color.green},
+        {AIR,   Color.yellow},
+        {USED, Color.black}
+    };
     // Start is called before the first frame update
     void Start()
     {
@@ -47,23 +55,16 @@ public class RunePanelController : Selectable
         selects[currentlySelected].Show();
     }
     
-    public void DoReroll(Dictionary<Rune, Color> runeColorMap, ResourceHandler resourceHandler)
+    public void DoReroll(ResourceHandler resourceHandler)
     {
-        bool noneSelected = true;
-        for (int i = 0; i < rerolls.Length; i++)
-        {
-            if (rerolls[i])
-            {
-                noneSelected = false;
-            }
-        }
+        bool noneSelected = !rerolls.Aggregate((x,y) => x | y);
         if (noneSelected)
         {
             return;
         }
 
         WipeRerolls();
-        ColorRunes(runeColorMap, resourceHandler);
+        ColorRunes(resourceHandler);
         if (text.text.Equals(twoRollsLeft))
         {
             text.text = oneRollLeft;
@@ -97,13 +98,21 @@ public class RunePanelController : Selectable
             }
         }
     }
+    
+    public void DoReset(ResourceHandler resourceHandler)
+    {
+        text.text = twoRollsLeft;
+        rollsLeft = 2;
+        WipeRerolls();
+        ColorRunes(resourceHandler);
+        rrc.Enable();
+    }
 
-        public void ColorRunes(Dictionary<Rune, Color> runeColorMap, ResourceHandler resourceHandler)
+    public void ColorRunes(ResourceHandler resourceHandler)
+    {
+        for (int i = 0; i < 6; i++)
         {
-            for (int i = 0; i < 6; i++)
-            {
-                runes[i].ChangeColor(runeColorMap[resourceHandler.runes[i]]);
-            }
+            runes[i].ChangeColor(runeColorMap[resourceHandler.GetRuneTypes()[i]]);
         }
-
+    }
 }

@@ -22,7 +22,7 @@ namespace Platformer.Mechanics
         public TurnDirection turn_dir = NOT_TURNING;
         public TurnDirection last_turn_dir = NOT_TURNING;
         public JumpState jump = InFlight;
-        private bool controlEnabled = true;
+        public bool controlEnabled = true;
         private bool usedDoubleJump = false;
         private float keyHoriz = 0f;
         private bool jumpPending = false;

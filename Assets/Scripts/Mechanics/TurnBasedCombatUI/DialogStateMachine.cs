@@ -2,8 +2,6 @@ namespace Platformer.Mechanics {
     using System;
     using static Platformer.Mechanics.DS;
     using static Platformer.Mechanics.RS;
-    using static Platformer.Mechanics.BUTTON;
-    using UnityEngine;
 
     [Serializable]
     public class DialogStateMachine
@@ -13,6 +11,8 @@ namespace Platformer.Mechanics {
         public RS runeState = RUNE_ONE;
         private RS lastRune = RUNE_THREE;
         private bool movingOffReroll = false;
+        private DS lastDialog = SUBMIT;
+        private bool movingOffRunes = false;
         private readonly DS[,] dsm = new DS [(int)DS.SIZE,4] {
             /* RUNES       = 0 */
             {RUNES, RUNES, SUBMIT, SPELL_ONE},
@@ -21,11 +21,13 @@ namespace Platformer.Mechanics {
             /* SPELL_TWO   = 2 */
             {RUNES, SPELL_ONE, SPELL_THREE, SPELL_TWO},
             /* SPELL_THREE = 3 */
-            {SUBMIT, SPELL_TWO, SPELL_FOUR, SPELL_THREE},
+            {RESET, SPELL_TWO, SPELL_FOUR, SPELL_THREE},
             /* SPELL_FOUR  = 4 */
-            {SUBMIT, SPELL_THREE, SPELL_FOUR, SPELL_FOUR},
+            {RESET, SPELL_THREE, SPELL_FOUR, SPELL_FOUR},
             /* SUBMIT      = 5 */
-            {SUBMIT, RUNES, SUBMIT, SPELL_FOUR}
+            {SUBMIT, RUNES, SUBMIT, RESET},
+            /* RESET       = 7 */
+            {SUBMIT, RUNES, RESET, SPELL_FOUR }
         };
         private readonly RS[,] rsm = new RS [(int)RS.SIZE,4] {
             /* RUNE_ONE   = 0 */ 
@@ -54,7 +56,20 @@ namespace Platformer.Mechanics {
         }
         
         private void RunDSM(BUTTON movement) {
+            movingOffRunes = false;
+            if (dialogState == SUBMIT) {
+                lastDialog = SUBMIT;
+            }
+            else if (dialogState == RESET) {
+                lastDialog = RESET;
+            }
+            else if (dialogState == RUNES) {
+                movingOffRunes = true;
+            }
             dialogState = dsm[(int)dialogState,(int)movement];
+            if (movingOffRunes && dialogState != RUNES && movement == BUTTON.RIGHT) {
+                dialogState = lastDialog;
+            }
         }
         
         private void RunRSM(BUTTON movement) {
@@ -83,7 +98,8 @@ namespace Platformer.Mechanics {
         SPELL_THREE = 3,
         SPELL_FOUR  = 4,
         SUBMIT      = 5,
-        SIZE        = 6
+        RESET       = 6,
+        SIZE        = 7
     }
     /** Rune State */
     [Serializable]

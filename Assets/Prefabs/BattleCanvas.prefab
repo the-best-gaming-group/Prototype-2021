@@ -7,6 +7,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2975880188780177915, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7866
+      objectReference: {fileID: 0}
+    - target: {fileID: 2975880188780177915, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.8316224
+      objectReference: {fileID: 0}
+    - target: {fileID: 2975880188780177915, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7866
+      objectReference: {fileID: 0}
+    - target: {fileID: 2975880188780177915, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 144
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_fontSize
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_margin.x
+      value: -136.40883
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8945914272445893510, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -90,6 +134,10 @@ PrefabInstance:
     - target: {fileID: 8945914272445893510, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8945914272445893513, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8945914272445893514, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
       propertyPath: m_Name

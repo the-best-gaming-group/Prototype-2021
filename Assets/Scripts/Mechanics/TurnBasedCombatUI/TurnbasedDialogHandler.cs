@@ -9,30 +9,40 @@ namespace Platformer.Mechanics
     public class TurnbasedDialogHandler : MonoBehaviour
     {
         // Start is called before the first frame update
+        public BattleSystem bs;
         public DialogStateMachine dsm = new();
         public S currentState = S.DSM;
         public RunePanelController rpc;
         public SpellController[] scs = new SpellController[4];
         public SubmitController sc;
+        public SubmitController rc;
         private Selectable previousSelect;
-        public ResourceHandler resourceHandler = new();
+        public ResourceHandler resourceHandler;
         public readonly float buttonDelay = 0.3f;
         public float delayRemaining = 0f;
+        public bool isEnabled = true;
         private LASTSELECTED lastSelected = BUTTONUP;
-        public Dictionary<Rune, Color> runeColorMap = new()
-        {
-            {WATER, Color.blue},
-            {FIRE,  Color.red},
-            {EARTH, Color.green},
-            {AIR,   Color.yellow}
-        };
-
+        private List<Func<string>> spellEffects = new();
+        
+        private Spell[] spells;
         void Start()
         {
             previousSelect = rpc;
             rpc.Show();
-            resourceHandler.Initialize(null);
-            rpc.ColorRunes(runeColorMap, resourceHandler);
+            Disable();
+            resourceHandler = bs.resourceHandler;
+            bs.RegisterPlayerTurnBeginListener(() => {
+                spells = bs.spells;
+                for (int i = 0; i < 4; i++)
+                {
+                    scs[i].SetCost(spells[i]);
+                }
+                SetupNewRound();
+                return "Setting up new round";
+            });
+            bs.RegisterPlayerTurnBeginListener(() => {Enable(); return "Enabled player turn";});
+            bs.RegisterPlayerTurnEndListener(() => {Disable(); return "Disabled player turn";});
+            /* All of these return a string because c# doesn't have function pointers */
         }
 
         void Awake()
@@ -42,6 +52,10 @@ namespace Platformer.Mechanics
         // Update is called once per frame
         void Update()
         {
+            if (!isEnabled)
+            {
+                return;
+            }
             if (Input.GetButtonUp("Jump"))
             {
                 DoButtonClick();
@@ -57,9 +71,27 @@ namespace Platformer.Mechanics
                 lastSelected = BUTTONUP;
             }
 
-            if (Input.GetKeyUp(KeyCode.Escape))
+            if (Input.GetKeyUp(KeyCode.Escape)
+                || (Input.GetAxis("Horizontal") > 0
+                    && dsm.state == S.RSM
+                    && dsm.runeState == RS.REROLL)
+                || (Input.GetAxis("Vertical") < 0)
+                    && dsm.state == S.RSM
+                    && (dsm.runeState == RS.RUNE_FOUR
+                        || dsm.runeState == RS.RUNE_FIVE
+                        || dsm.runeState == RS.RUNE_SIX
+                        || dsm.runeState == RS.REROLL
+                ))
             {
                 dsm.state = S.DSM;
+            }
+            else if ((Input.GetAxis("Horizontal") < 0
+                    || Input.GetAxis("Vertical") > 0)
+                        && dsm.state == S.DSM
+                        && dsm.dialogState == DS.RUNES
+                    )
+            {
+                dsm.state = S.RSM;
             }
             else if (Input.GetAxis("Horizontal") > 0)
             {
@@ -107,19 +139,40 @@ namespace Platformer.Mechanics
             delayRemaining = buttonDelay;
             DoHighlightChange();
         }
+        
+        public void Enable()
+        {
+            isEnabled = true;
+            transform.gameObject.SetActive(true);            
+        }
 
-        private void DoButtonClick() {
+        public void Disable()
+        {
+            isEnabled = false;
+            transform.gameObject.SetActive(false);            
+        }
+        
+        public void SetupNewRound()
+        {
+            resourceHandler.Initialize(null);
+            rpc.DoReset(resourceHandler);
+            ColorButtons();
+        }
+
+        private void DoButtonClick()
+        {
             string result;
             if (dsm.state == S.DSM)
             {
                 result = dsm.dialogState switch
                 {
                     DS.RUNES       => RunePanelSelected(),
-                    DS.SPELL_ONE   => SpellSelected(0),
-                    DS.SPELL_TWO   => SpellSelected(1),
-                    DS.SPELL_THREE => SpellSelected(2),
-                    DS.SPELL_FOUR  => SpellSelected(3),
+                    DS.SPELL_ONE   => OnSpellButton(0),
+                    DS.SPELL_TWO   => OnSpellButton(1),
+                    DS.SPELL_THREE => OnSpellButton(2),
+                    DS.SPELL_FOUR  => OnSpellButton(3),
                     DS.SUBMIT      => SubmitSelected(),
+                    DS.RESET       => ResetSelected(),
                     _              => null
                 };
             }
@@ -173,6 +226,7 @@ namespace Platformer.Mechanics
                     DS.SPELL_THREE => scs[2],
                     DS.SPELL_FOUR  => scs[3],
                     DS.SUBMIT      => sc,
+                    DS.RESET       => rc,
                     _              => rpc
                 };
                 previousSelect.Hide();
@@ -182,13 +236,24 @@ namespace Platformer.Mechanics
         }
 
         /* All of these return a string because c# doesn't have function pointers */
-        public string SpellSelected(int i)
-        {
-            return string.Format("Pressed spell {0}!", i+1);
-        }
         public string SubmitSelected()
         {
+            if (sc.enabled)
+            {
+                foreach (var func in spellEffects)
+                {
+                    func();
+                }
+                spellEffects.Clear();
+                bs.OnEndTurnButton();
+            }
             return "Pressed SUBMIT!";
+        }
+        
+        public string ResetSelected()
+        {
+            OnResetButton();
+            return "Pressed RESET!";
         }
 
         public string RunePanelSelected()
@@ -199,15 +264,63 @@ namespace Platformer.Mechanics
 
         public string RuneSelected(int i)
         {
-            rpc.ToggleRune(i);
+            if (resourceHandler.GetRuneTypes()[i] != USED)
+            {
+                rpc.ToggleRune(i);
+            }
             return string.Format("Pressed RUNE {0}!", i+1);
         }
 
         public string RuneRerollSelected()
         {
             resourceHandler.Reroll(rpc.rerolls);
-            rpc.DoReroll(runeColorMap, resourceHandler);
+            rpc.DoReroll(resourceHandler);
+            ColorButtons();
             return "Pressed REROLL";
+        }
+        
+        public void OnResetButton()
+        {
+            resourceHandler.UncommitRunes();
+            rpc.ColorRunes(resourceHandler);
+            spellEffects.Clear();
+            ColorButtons();
+        }
+        
+        public string OnSpellButton(int i)
+        {
+            if (resourceHandler.CanCastSpell(spells[i]))
+            {
+                resourceHandler.CommitRunesForSpell(spells[i]);
+                spellEffects.Add(spells[i].effect);
+                rpc.ColorRunes(resourceHandler);
+                ColorButtons();
+            }
+            return string.Format("Pressed spell {0}!", i+1);
+        }
+        
+        public void ColorButtons()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (resourceHandler.CanCastSpell(spells[i]))
+                {
+                    scs[i].DoEnable();
+                }
+                else
+                {
+                    scs[i].DoDisable();
+                }
+            }
+            if (rpc.HasRollsLeft && spellEffects.Count == 0)
+            {
+                sc.DoDisable();
+            }
+            else
+            {
+                sc.DoEnable();
+            }
+
         }
     }
     
