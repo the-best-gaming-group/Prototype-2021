@@ -13,7 +13,7 @@ using static Platformer.Core.Simulation;
     public class DoorController : MonoBehaviour
     {
         internal Collider _collider;
-
+        [SerializeField] AudioSource doorSound;
         public Bounds Bounds => _collider.bounds;
         public Invokable invokable;
 
@@ -27,6 +27,7 @@ using static Platformer.Core.Simulation;
         {
             if (isInteractable() && Input.GetAxis("Vertical") > 0) {
                 invokable.Invoke();
+                doorSound.Play();
             }
         }
 
