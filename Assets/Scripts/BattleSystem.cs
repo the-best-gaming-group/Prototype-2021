@@ -1,3 +1,4 @@
+using DigitalRuby.LightningBolt;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,8 +20,8 @@ public enum CombatOptions//rename
 public class TurnActions {
     public CombatOptions action;
     public float waitTime;
-    public Action actionFunc;
-    public TurnActions(CombatOptions co, float f, Action a)
+    public Func<GameObject> actionFunc;
+    public TurnActions(CombatOptions co, float f, Func<GameObject> a)
     {
         action = co;
         waitTime = f;
@@ -39,6 +40,7 @@ public class BattleSystem : MonoBehaviour
     PlayerHealthBar enemyHP;
 
     public GameObject firebolt;
+    public GameObject lightningAsset;
 
     TextMeshProUGUI battleDialog;
 
@@ -52,7 +54,7 @@ public class BattleSystem : MonoBehaviour
     Animator animator;
     readonly List<TurnActions> turnActions = new ();
     public ResourceHandler resourceHandler = new();
-    public Spell[] spells = new Spell[4];
+    public Spell[] spells = new Spell[5];
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -125,6 +127,17 @@ public class BattleSystem : MonoBehaviour
             },
             cost = healCost
         };
+        
+        var lightningCost = new int[4];
+        lightningCost[(int)FIRE] = 3;
+        spells[4] = new Spell {
+            name = "Electrocute",
+            effect = () =>
+            {
+                return "Pressed spell 5!";
+            },
+            cost = lightningCost
+        };
     }
 
     IEnumerator SetupBattle()
@@ -168,6 +181,7 @@ public class BattleSystem : MonoBehaviour
                 state = BattleState.WON;
                 break;
             }
+
         }
         turnActions.Clear();
 
@@ -213,6 +227,7 @@ public class BattleSystem : MonoBehaviour
 
     void EndBattle()
     {
+        player.GetComponentInChildren<Rigidbody>().constraints = playerRBConstraints;//restore ability to move/rotate
         if (state == BattleState.WON)
         {
             battleDialog.text = "You have prevailed!";
@@ -223,22 +238,45 @@ public class BattleSystem : MonoBehaviour
             battleDialog.text = "You were vanquished!";
             //move back to checkpoint
         }
-        player.GetComponentInChildren<Rigidbody>().constraints = playerRBConstraints;//restore ability to move/rotate
     }
 
-    void sendFirebolt()//use for enemy as well?
+    GameObject sendFirebolt()//use for enemy as well
     {
         var currentPrefabObject = GameObject.Instantiate(firebolt);
         currentPrefabObject.transform.position = enemy.transform.position;
         currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);//from player to enemy, might need change for backward
+
+        return currentPrefabObject;
     }
-    void sendSlam()//use for enemy as well?
+    GameObject sendSlam()//use for enemy as well?
     {
         animator.SetTrigger("EnemySlam");
+
+        return null;
+    }
+    GameObject sendLightning()//use for enemy as well?
+    {
+        var lightningObj = GameObject.Instantiate(lightningAsset);
+
+        var lightningProps = lightningObj.GetComponent<LightningBoltScript>();
+        lightningProps.StartObject = player;
+        lightningProps.EndObject = enemy;
+        lightningProps.Generations = 3;
+
+        return lightningObj;
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            GameObject.Instantiate(lightningAsset);
+            var lightningObj = GameObject.FindFirstObjectByType<LightningBoltScript>();
+            lightningObj.StartObject = player;
+            lightningObj.EndObject = enemy;
+            lightningObj.Generations = 3;
+
+        }
     }
 
 
@@ -253,7 +291,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void OnFireButton()
+    public void OnFireButton()//todo: remove listener on mouse click
     {
         if (state == BattleState.PLAYER_TURN)
         {
@@ -261,14 +299,14 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void OnDodgeButton()
+    public void OnDodgeButton()//todo: remove listener on mouse click, need this func?
     {
         if (state == BattleState.PLAYER_TURN)
         {
             playerDodged = !playerDodged;
         }
     }
-    public void OnEndTurnButton()
+    public void OnEndTurnButton()//todo: remove listener on mouse click
     {
         if (state == BattleState.PLAYER_TURN)
         {
