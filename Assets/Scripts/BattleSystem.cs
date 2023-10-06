@@ -39,7 +39,7 @@ public class BattleSystem : MonoBehaviour
     GameObject enemy;
     PlayerHealthBar enemyHP;
 
-    public GameObject firebolt;
+    public GameObject fireboltAsset;
     public GameObject lightningAsset;
 
     TextMeshProUGUI battleDialog;
@@ -120,9 +120,14 @@ public class BattleSystem : MonoBehaviour
         var healCost = new int[4];
         healCost[(int)WATER] = 3;
         spells[3] = new Spell {
-            name = "Heal",
+            name = "Electrocute",
             effect = () =>
             {
+
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.Electrocute, 1f, sendLightning));
+        }
                 return "Pressed spell 4!";
             },
             cost = healCost
@@ -171,10 +176,12 @@ public class BattleSystem : MonoBehaviour
 
         foreach (var action in turnActions)
         {
-            action.actionFunc();
+            //todo: maybe add code for enemy to randomly be able to dodge?
+            battleDialog.text = "The enemy takes " + action.action.ToString();
+            var gameObj = action.actionFunc();
             yield return new WaitForSeconds(action.waitTime);
             int enemyNewHP = enemyHP.TakeDamage((int)action.action);
-            battleDialog.text = "The enemy takes " + action.action.ToString();
+            GameObject.Destroy(gameObj);
             yield return new WaitForSeconds(dialogWaitTime);
             if (enemyNewHP == 0)
             {
@@ -242,8 +249,8 @@ public class BattleSystem : MonoBehaviour
 
     GameObject sendFirebolt()//use for enemy as well
     {
-        var currentPrefabObject = GameObject.Instantiate(firebolt);
-        currentPrefabObject.transform.position = enemy.transform.position;
+        var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
+        currentPrefabObject.transform.position = player.transform.position + Vector3.right;
         currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);//from player to enemy, might need change for backward
 
         return currentPrefabObject;
@@ -257,26 +264,16 @@ public class BattleSystem : MonoBehaviour
     GameObject sendLightning()//use for enemy as well?
     {
         var lightningObj = GameObject.Instantiate(lightningAsset);
-
-        var lightningProps = lightningObj.GetComponent<LightningBoltScript>();
-        lightningProps.StartObject = player;
-        lightningProps.EndObject = enemy;
-        lightningProps.Generations = 3;
+        var lightningComp = lightningObj.GetComponent<LightningBoltScript>();
+        lightningComp.StartObject = player;
+        lightningComp.EndObject = enemy;
+        lightningComp.Generations = 3;
 
         return lightningObj;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            GameObject.Instantiate(lightningAsset);
-            var lightningObj = GameObject.FindFirstObjectByType<LightningBoltScript>();
-            lightningObj.StartObject = player;
-            lightningObj.EndObject = enemy;
-            lightningObj.Generations = 3;
-
-        }
     }
 
 
@@ -306,6 +303,16 @@ public class BattleSystem : MonoBehaviour
             playerDodged = !playerDodged;
         }
     }
+
+    public void OnElectrocuteButton() //for quick debug, not really needed
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.Electrocute, 1f, sendLightning));
+        }
+    }
+
+
     public void OnEndTurnButton()//todo: remove listener on mouse click
     {
         if (state == BattleState.PLAYER_TURN)
