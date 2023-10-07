@@ -6,17 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangeInvokable : MonoBehaviour, Invokable
 {
+	[SerializeField] Animator transitionAnim;
 	public string sceneName;
-	public void ChangeScene()
+
+	IEnumerator ChangeScene()
 	{
+		Debug.Log("Changing Scene");
+		transitionAnim.SetTrigger("Start");
+		yield return new WaitForSeconds(1);
 		SceneManager.LoadScene(sceneName);
+		transitionAnim.SetTrigger("End");
 	}
 	public void Exit()
 	{
-		Application.Quit ();
+		Application.Quit();
 	}
-	
-	public void Invoke() {
-		ChangeScene();
+
+	public void Invoke()
+	{
+		StartCoroutine(ChangeScene());
 	}
 }
