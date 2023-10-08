@@ -7517,11 +7517,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 767aebfc64dc45b4fb5bd55441c7e8b9, type: 3}
---- !u!82 &1597131339 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8600831655312811794, guid: 767aebfc64dc45b4fb5bd55441c7e8b9, type: 3}
-  m_PrefabInstance: {fileID: 1597131338}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1798552307
 GameObject:
   m_ObjectHideFlags: 0
@@ -7771,7 +7766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da6417bd6398d84ea3fa6a8865f508a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorSound: {fileID: 1597131339}
 --- !u!114 &1806088564
 MonoBehaviour:
   m_ObjectHideFlags: 0
