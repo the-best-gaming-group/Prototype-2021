@@ -5888,6 +5888,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 5234224487576293797, guid: 43c63ab56e31b4ea685102d662a23ca0, type: 3}
   m_PrefabInstance: {fileID: 487758161}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &909992398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4725837761477249125, guid: 810a3151378bb5b49a9eeb9b495076b4, type: 3}
+  m_PrefabInstance: {fileID: 43646593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2876aa0606b91f42950c8f3a7eb5235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &990763960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7194,7 +7205,7 @@ PrefabInstance:
     - target: {fileID: 1915072591730145694, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
       propertyPath: dialogueUI
       value: 
-      objectReference: {fileID: 1694881212}
+      objectReference: {fileID: 909992398}
     - target: {fileID: 2062877490671790701, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
       propertyPath: m_Range
       value: 4.84
@@ -7511,22 +7522,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 767aebfc64dc45b4fb5bd55441c7e8b9, type: 3}
---- !u!82 &1597131339 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8600831655312811794, guid: 767aebfc64dc45b4fb5bd55441c7e8b9, type: 3}
-  m_PrefabInstance: {fileID: 1597131338}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1694881212 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4725837761477249125, guid: 810a3151378bb5b49a9eeb9b495076b4, type: 3}
-  m_PrefabInstance: {fileID: 43646593}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2876aa0606b91f42950c8f3a7eb5235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1798552307
 GameObject:
   m_ObjectHideFlags: 0
@@ -7776,7 +7771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da6417bd6398d84ea3fa6a8865f508a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorSound: {fileID: 1597131339}
 --- !u!114 &1806088564
 MonoBehaviour:
   m_ObjectHideFlags: 0
