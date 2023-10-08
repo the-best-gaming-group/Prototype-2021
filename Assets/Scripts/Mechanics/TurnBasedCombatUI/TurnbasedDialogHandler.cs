@@ -36,6 +36,7 @@ namespace Platformer.Mechanics
                 for (int i = 0; i < 4; i++)
                 {
                     scs[i].SetCost(spells[i]);
+                    scs[i].text.text = spells[i].name;
                 }
                 SetupNewRound();
                 return "Setting up new round";
