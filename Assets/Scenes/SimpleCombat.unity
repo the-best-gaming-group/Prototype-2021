@@ -1018,7 +1018,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogWaitTime: 2
-  firebolt: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
+  fireboltAsset: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
+  lightningAsset: {fileID: 178460, guid: 2736bbc2f2c78a949957b0719c2992bd, type: 3}
   isPlayerFirstTurn: 1
 --- !u!4 &377116116
 Transform:
@@ -1134,7 +1135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogWaitTime: 2
-  firebolt: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
+  fireboltAsset: {fileID: 0}
+  lightningAsset: {fileID: 0}
   isPlayerFirstTurn: 1
 --- !u!111 &414349560
 Animation:
@@ -2266,6 +2268,10 @@ PrefabInstance:
     - target: {fileID: 3415851045544517601, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
       propertyPath: m_Name
       value: ghost basic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7486674368554127779, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
+      propertyPath: currentHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8600030685186368333, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
       propertyPath: m_AffectTranslationY
