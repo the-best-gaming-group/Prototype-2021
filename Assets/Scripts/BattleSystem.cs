@@ -300,7 +300,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            playerDodged = !playerDodged;
+            playerDodged = true;
         }
     }
 
