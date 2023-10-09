@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bf74ce4b3c22e4c99a5a1ee59625c0, type: 3}
+  m_Name: Fireplace
+  m_EditorClassIdentifier: 
+  dialogue:
+  - The residue in the fireplace seems to have burned out for a long time, and there
+    was no spark and temperature.
+  - ... ...
+  - Wait...
+  - There appears to be a torn piece of note paper here.
+  responses:
+  - responseText: Open the notes.
+    dialogueObject: {fileID: 11400000, guid: bc18855972180e948a8667ebf7c101d4, type: 2}
