@@ -250,10 +250,10 @@ public class BattleSystem : MonoBehaviour
     GameObject sendFirebolt()//use for enemy as well
     {
         var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
-        currentPrefabObject.transform.position = player.transform.position + Vector3.right;
+        currentPrefabObject.transform.position = player.transform.position + new Vector3(1, 1, 0);
         currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);//from player to enemy, might need change for backward
 
-        return currentPrefabObject;
+        return null;
     }
     GameObject sendSlam()//use for enemy as well?
     {
