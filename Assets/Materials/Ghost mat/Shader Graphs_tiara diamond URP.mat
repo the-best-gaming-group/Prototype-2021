@@ -34,7 +34,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shader Graphs_tiara diamond URP
-  m_Shader: {fileID: -6465566751694194690, guid: e8d30ae55c8b8354da512beb453f5385, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2153aa617adaf014b999419d570ce388, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 1
@@ -48,6 +48,14 @@ Material:
     m_TexEnvs:
     - _SampleTexture2D_5e787b6e7e3e49ff9cb7e5ca42a22c57_Texture_1:
         m_Texture: {fileID: 2800000, guid: 430615b652842d34fabdd9913190fb2c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_b8c8400505fa41fa8684f6afd72a464d_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 430615b652842d34fabdd9913190fb2c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_6a1e67f2d58b4ab8bd86dd91a7ac8f4c_Out_0:
+        m_Texture: {fileID: 2800000, guid: 83b94d5f12aaa3942aae1b8af139bd4c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _caus_001:
