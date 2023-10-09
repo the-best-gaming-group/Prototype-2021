@@ -14374,6 +14374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackGroundMusic
       objectReference: {fileID: 0}
+    - target: {fileID: 3703814138041152658, guid: e34cbbd9432d3864184c8385db8b004a, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: e2d93566fb4e4d4468c3e3c5fa84df3e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e34cbbd9432d3864184c8385db8b004a, type: 3}
 --- !u!1 &3862758944012925844
