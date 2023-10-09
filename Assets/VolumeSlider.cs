@@ -11,11 +11,12 @@ public class VolumeSlider : MonoBehaviour
 		slider = GetComponent<Slider>();
 		InitializeSliderValue();
 		slider.onValueChanged.AddListener(OnSliderValueChanged);
+		OnSliderValueChanged(slider.value);
 	}
 
 	private void InitializeSliderValue()
 	{
-		float currentVolume = PlayerPrefs.GetFloat("volume", 0.5f);
+		float currentVolume = PlayerPrefs.GetFloat("volume", 0.0f);
 		slider.value = currentVolume;
 	}
 
