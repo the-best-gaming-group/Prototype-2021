@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,19 +8,21 @@ public class SpellController : Selectable
     private readonly Color enableColor = new (0.7495804f, 0.9622642f, 0.8802516f);
     private readonly Color disableColor = Color.grey;
 
-    public Image button;
-    public bool IsEnabled => button.enabled;
+    public Image image;
+    public TextMeshProUGUI text;
+    public bool IsEnabled => image.enabled;
     public Image[] runes;
     // Start is called before the first frame update
     void Awake()
     {
-        button = transform.Find("Button").GetComponent<Image>();
+        image = transform.Find("Button").GetComponent<Image>();
         DoEnable();
         runes = transform.Find("Runes").GetComponentsInChildren<Image>();
         foreach (var rune in runes)
         {
             rune.enabled = false;
         }
+        text = image.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -29,12 +32,12 @@ public class SpellController : Selectable
     }
     public void DoDisable()
     {
-        button.color = disableColor;
+        image.color = disableColor;
     }
     
     public void DoEnable()
     {
-        button.color = enableColor;
+        image.color = enableColor;
     }
     
     public void SetCost(Spell s)

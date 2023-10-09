@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2770560921316737384}
   - component: {fileID: 6838845337847805045}
   - component: {fileID: 8600831655312811794}
+  - component: {fileID: 7993062913464413878}
   m_Layer: 3
   m_Name: Door
   m_TagString: Untagged
@@ -112,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a75c1f89380ea724d8e1a7d9e19a2367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionAnim: {fileID: 0}
   sceneName: 
 --- !u!114 &6838845337847805045
 MonoBehaviour:
@@ -222,3 +224,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7993062913464413878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2770560921316737391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70191c9e14903ec49889c8445540e590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorSound: {fileID: 8600831655312811794}
