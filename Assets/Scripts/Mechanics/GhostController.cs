@@ -39,6 +39,11 @@ namespace Platformer.Mechanics
         {
             _ghost_model = GameObject.Find("ghost basic");
             _rigidbody = GetComponent<Rigidbody>();
+            var gm = GameManager.Instance;
+            if (gm != null && gm.PlayerPos.TryGetValue(gm.SceneName, out Vector3 pos))
+            {
+                transform.position = pos;
+            }
         }
 
         void Update()
@@ -189,14 +194,15 @@ namespace Platformer.Mechanics
                     if (jumpPending)
                     {
                         upMove = moveSpeed;
-                        jump = InFlight;
+                        jump = Jumping;
                         jumpPending = false;
                     }
                     break;
                 case Jumping:
-                    if (_rigidbody.velocity.y < 0)
+                    if (Input.GetAxis("Vertical") <= 0)
                     {
                         jump = InFlight;
+                        jumpPending = false;
                     }
                     break;
 

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Enemy : MonoBehaviour
 {
 
+    public string uID;
     GameObject player;
     NavMeshAgent agent;
 

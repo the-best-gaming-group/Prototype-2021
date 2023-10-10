@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Rune;
 
+[Serializable]
 public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
 public enum CombatOptions//rename
@@ -44,7 +45,7 @@ public class BattleSystem : MonoBehaviour
 
     TextMeshProUGUI battleDialog;
 
-    BattleState state;
+    public BattleState state;
     public bool isPlayerFirstTurn;
     private readonly List<Func<string>> playerTurnBeginListeners = new();
     private readonly List<Func<string>> playerTurnEndListeners = new();
@@ -65,7 +66,7 @@ public class BattleSystem : MonoBehaviour
         playerHP.TakeDamage(100 - GameManager.Instance.GetPlayerHealth());
         enemyHP = enemy.GetComponent<PlayerHealthBar>();
         battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
-
+        
         //freeze rotation/position
         playerRBConstraints = player.GetComponentInChildren<Rigidbody>().constraints;
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
@@ -199,7 +200,7 @@ public class BattleSystem : MonoBehaviour
             StartCoroutine(EnemyTurn());
         }
         else
-            EndBattle();
+            StartCoroutine(EndBattle());
     }
 
     IEnumerator EnemyTurn()
@@ -224,7 +225,7 @@ public class BattleSystem : MonoBehaviour
         if (playerHP.currentHealth <= 0)
         {
             state = BattleState.LOST;
-            EndBattle();
+            StartCoroutine(EndBattle());
         }
         else
         {
@@ -233,13 +234,18 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    void EndBattle()
+    IEnumerator EndBattle()
     {
         player.GetComponentInChildren<Rigidbody>().constraints = playerRBConstraints;//restore ability to move/rotate
         if (state == BattleState.WON)
         {
             battleDialog.text = "You have prevailed!";
             //move on w/ quest
+            // This can be replaced with a confirmation UI when we're ready
+            yield return new WaitForSecondsRealtime(2f);
+            var sceneChanger = GetComponent<SceneChangeInvokable>();
+            sceneChanger.sceneName = GameManager.Instance.PrepareForReturnFromCombat();
+            sceneChanger.Invoke();
         }
         else
         {
