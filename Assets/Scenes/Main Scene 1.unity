@@ -6505,7 +6505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 0}
+  dialogueObject: {fileID: 11400000, guid: 75e8ed652db7d6143903b5a895470427, type: 2}
   visualCue: {fileID: 1932158418}
 --- !u!65 &1043635298
 BoxCollider:
