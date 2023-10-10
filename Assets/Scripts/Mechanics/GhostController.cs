@@ -52,10 +52,10 @@ namespace Platformer.Mechanics
 
             keyHoriz = Input.GetAxis("Horizontal");
             keyVert = Input.GetAxis("Vertical");
-            jumpPending = jumpPending || Input.GetButtonDown("Jump");
+            jumpPending = jumpPending || keyVert > 0;
 
             // Dialogue part
-            if (keyVert > 0 && !upPressed)
+            if (Input.GetButtonDown("Jump") && !upPressed)
             {
                 upPressed = true;
                 Interactable?.Interact(this);

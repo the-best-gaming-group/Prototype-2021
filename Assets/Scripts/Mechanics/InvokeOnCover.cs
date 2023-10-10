@@ -28,7 +28,7 @@ namespace Platformer.Mechanics
             if (playerObj == null) {
                 playerObj = GameObject.Find("GhostPC");
             }
-            else if (IsInteractable() && ( Input.GetAxis("Vertical") > 0 || Input.GetButtonDown("Jump"))) {
+            else if (IsInteractable() && Input.GetButtonDown("Jump")) {
                 invokableObject.Invoke();
                 
             }
