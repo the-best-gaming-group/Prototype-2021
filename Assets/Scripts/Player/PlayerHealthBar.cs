@@ -60,4 +60,9 @@ public class PlayerHealthBar : MonoBehaviour
         return currentHealth;
     }
 
+    public void HPManager(int damage)
+    {
+        TakeDamage(damage);
+    }
+
 }
