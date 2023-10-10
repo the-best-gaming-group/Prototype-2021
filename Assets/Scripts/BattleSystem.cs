@@ -13,7 +13,7 @@ public enum CombatOptions//rename
 {
     Slam = 20,
     Firebolt = 25,
-    Electrocute = 4,
+    Electrocute = 40,
     Icefreeze= 5
 }
 
@@ -76,6 +76,11 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(SetupBattle());
     }
     
+    /** 
+     *  Going to need to move all of the spell creation to the GameManager,
+     *  or at least some of it. We need to know the spells the player has
+     *  when we replace them.
+     */
     public void SetupSpells()
     {
         var slamCost = new int[4];
@@ -117,31 +122,27 @@ public class BattleSystem : MonoBehaviour
             cost = dodgeCost
         };
         
-        var healCost = new int[4];
-        healCost[(int)WATER] = 3;
+        var lightningCost = new int[4];
+        lightningCost[(int)FIRE] = 3;
         spells[3] = new Spell {
             name = "Electrocute",
             effect = () =>
             {
-
-        if (state == BattleState.PLAYER_TURN)
-        {
-            turnActions.Add(new(CombatOptions.Electrocute, 1f, sendLightning));
-        }
+                OnElectrocuteButton();
                 return "Pressed spell 4!";
             },
-            cost = healCost
+            cost = lightningCost
         };
-        
-        var lightningCost = new int[4];
-        lightningCost[(int)FIRE] = 3;
+
+        var healCost = new int[4];
+        healCost[(int)WATER] = 3;
         spells[4] = new Spell {
-            name = "Electrocute",
+            name = "Heal",
             effect = () =>
             {
                 return "Pressed spell 5!";
             },
-            cost = lightningCost
+            cost = healCost
         };
     }
 
