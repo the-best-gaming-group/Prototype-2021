@@ -62,7 +62,7 @@ public class BattleSystem : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         enemy = GameObject.FindWithTag("Enemy");
         playerHP = player.GetComponent<PlayerHealthBar>();
-        playerHP.TakeDamage(100 - GameManager.Instance.playerHealth);
+        playerHP.TakeDamage(100 - GameManager.Instance.GetPlayerHealth());
         enemyHP = enemy.GetComponent<PlayerHealthBar>();
         battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
 

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager Instance; // Singleton instance
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
-	public int playerHealth;
+	private int playerHealth;
 
 	private void Awake()
 	{
@@ -20,6 +20,16 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+	}
+	
+	public void SetPlayerHealth(int i)
+	{
+		playerHealth = i;
+	}
+	
+	public int GetPlayerHealth()
+	{
+		return playerHealth;		
 	}
 
 }

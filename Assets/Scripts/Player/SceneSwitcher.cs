@@ -28,7 +28,7 @@ public class SceneSwitcher : MonoBehaviour
 		PlayerHealthBar playerHealthBar = GetComponent<PlayerHealthBar>();
 		if (playerHealthBar != null)
 		{
-			GameManager.Instance.playerHealth = playerHealthBar.currentHealth;
+			GameManager.Instance.SetPlayerHealth(playerHealthBar.currentHealth);
 		}
 		else
 		{

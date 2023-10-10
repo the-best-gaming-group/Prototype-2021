@@ -12,7 +12,7 @@ public class PlayerHealthBar : MonoBehaviour
 
 	void Start()
     {
-        currentHealth = GameManager.Instance.playerHealth;
+        currentHealth = GameManager.Instance.GetPlayerHealth();
 		// Check if we are in the CombatScene
 		if (SceneManager.GetActiveScene().name == "CombatScene")
         {
@@ -52,7 +52,7 @@ public class PlayerHealthBar : MonoBehaviour
         currentHealth = damage >= currentHealth ? 0 : (currentHealth - damage);
 
         // Store the updated health in the GameManager
-        GameManager.Instance.playerHealth = currentHealth;
+        GameManager.Instance.SetPlayerHealth(currentHealth);
 
         // Update the health bar
         healthBar.SetHealth(currentHealth);
