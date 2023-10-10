@@ -7,13 +7,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Rune;
 
+[Serializable]
 public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
 public enum CombatOptions//rename
 {
     Slam = 20,
     Firebolt = 25,
-    Electrocute = 4,
+    Electrocute = 40,
     Icefreeze= 5
 }
 
@@ -44,7 +45,7 @@ public class BattleSystem : MonoBehaviour
 
     TextMeshProUGUI battleDialog;
 
-    BattleState state;
+    public BattleState state;
     public bool isPlayerFirstTurn;
     private readonly List<Func<string>> playerTurnBeginListeners = new();
     private readonly List<Func<string>> playerTurnEndListeners = new();
@@ -62,10 +63,10 @@ public class BattleSystem : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         enemy = GameObject.FindWithTag("Enemy");
         playerHP = player.GetComponent<PlayerHealthBar>();
-        playerHP.TakeDamage(100 - GameManager.Instance.playerHealth);
+        playerHP.TakeDamage(100 - GameManager.Instance.GetPlayerHealth());
         enemyHP = enemy.GetComponent<PlayerHealthBar>();
         battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
-
+        
         //freeze rotation/position
         playerRBConstraints = player.GetComponentInChildren<Rigidbody>().constraints;
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
@@ -76,6 +77,11 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(SetupBattle());
     }
     
+    /** 
+     *  Going to need to move all of the spell creation to the GameManager,
+     *  or at least some of it. We need to know the spells the player has
+     *  when we replace them.
+     */
     public void SetupSpells()
     {
         var slamCost = new int[4];
@@ -117,31 +123,27 @@ public class BattleSystem : MonoBehaviour
             cost = dodgeCost
         };
         
-        var healCost = new int[4];
-        healCost[(int)WATER] = 3;
+        var lightningCost = new int[4];
+        lightningCost[(int)FIRE] = 3;
         spells[3] = new Spell {
             name = "Electrocute",
             effect = () =>
             {
-
-        if (state == BattleState.PLAYER_TURN)
-        {
-            turnActions.Add(new(CombatOptions.Electrocute, 1f, sendLightning));
-        }
+                OnElectrocuteButton();
                 return "Pressed spell 4!";
             },
-            cost = healCost
+            cost = lightningCost
         };
-        
-        var lightningCost = new int[4];
-        lightningCost[(int)FIRE] = 3;
+
+        var healCost = new int[4];
+        healCost[(int)WATER] = 3;
         spells[4] = new Spell {
-            name = "Electrocute",
+            name = "Heal",
             effect = () =>
             {
                 return "Pressed spell 5!";
             },
-            cost = lightningCost
+            cost = healCost
         };
     }
 
@@ -198,7 +200,7 @@ public class BattleSystem : MonoBehaviour
             StartCoroutine(EnemyTurn());
         }
         else
-            EndBattle();
+            StartCoroutine(EndBattle());
     }
 
     IEnumerator EnemyTurn()
@@ -223,7 +225,7 @@ public class BattleSystem : MonoBehaviour
         if (playerHP.currentHealth <= 0)
         {
             state = BattleState.LOST;
-            EndBattle();
+            StartCoroutine(EndBattle());
         }
         else
         {
@@ -232,13 +234,18 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    void EndBattle()
+    IEnumerator EndBattle()
     {
         player.GetComponentInChildren<Rigidbody>().constraints = playerRBConstraints;//restore ability to move/rotate
         if (state == BattleState.WON)
         {
             battleDialog.text = "You have prevailed!";
             //move on w/ quest
+            // This can be replaced with a confirmation UI when we're ready
+            yield return new WaitForSecondsRealtime(2f);
+            var sceneChanger = GetComponent<SceneChangeInvokable>();
+            sceneChanger.sceneName = GameManager.Instance.PrepareForReturnFromCombat();
+            sceneChanger.Invoke();
         }
         else
         {

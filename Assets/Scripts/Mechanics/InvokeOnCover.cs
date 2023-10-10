@@ -15,11 +15,15 @@ namespace Platformer.Mechanics
         GameObject playerObj;
         Collider _collider;
         public Bounds Bounds => _collider.bounds;
+        public const float ActiveWaitTime = 1f;
+        public bool isReady = false;
         // Start is called before the first frame update
         void Start()
         {
             _collider = GetComponent<Collider>();
             invokableObject = GetComponent<Invokable>();
+            isReady = false;
+            StartCoroutine(SetActive());
         }
 
         // Update is called once per frame
@@ -28,9 +32,11 @@ namespace Platformer.Mechanics
             if (playerObj == null) {
                 playerObj = GameObject.Find("GhostPC");
             }
-            else if (IsInteractable() && ( Input.GetAxis("Vertical") > 0 || Input.GetButtonDown("Jump"))) {
+            else if (isReady && IsInteractable() && Input.GetButtonDown("Jump")) {
+                // Save player position
+                var gm = GameManager.Instance;
+                gm.PlayerPos[gm.SceneName] = playerObj.transform.position;
                 invokableObject.Invoke();
-                
             }
         }
         
@@ -44,6 +50,12 @@ namespace Platformer.Mechanics
             else {
                 return false;            
             }
+        }
+        
+        IEnumerator SetActive()
+        {
+            yield return new WaitForSeconds(ActiveWaitTime);
+            isReady = true;
         }
     }
 }

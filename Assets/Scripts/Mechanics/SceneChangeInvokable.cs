@@ -8,10 +8,16 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 {
 	[SerializeField] Animator transitionAnim;
 	public string sceneName;
+	public bool IsDoor = true;
 
 	IEnumerator ChangeScene()
 	{
 		Debug.Log("Changing Scene");
+
+		var gm = GameManager.Instance;
+		gm.PrepareForSceneEnter(sceneName);
+		gm.PlayDoorSound[sceneName] = IsDoor;
+
 		transitionAnim.SetTrigger("Start");
 		yield return new WaitForSeconds(1);
 		SceneManager.LoadScene(sceneName);

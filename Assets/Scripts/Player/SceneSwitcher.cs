@@ -28,7 +28,7 @@ public class SceneSwitcher : MonoBehaviour
 		PlayerHealthBar playerHealthBar = GetComponent<PlayerHealthBar>();
 		if (playerHealthBar != null)
 		{
-			GameManager.Instance.playerHealth = playerHealthBar.currentHealth;
+			GameManager.Instance.SetPlayerHealth(playerHealthBar.currentHealth);
 		}
 		else
 		{
@@ -39,8 +39,11 @@ public class SceneSwitcher : MonoBehaviour
 		// Debug.Log("EnemyToSpawn = " + GameManager.Instance.enemyToSpawn);
 		// Debug.Log("PlayerHealth = " + GameManager.Instance.playerHealth);
 
+		var newScene = "SimpleCombat";
+		// We need to save the scene we're using before switching so we know what to return to
+		GameManager.Instance.PrepareForCombatSceneEnter(newScene, transform.position, enemyToSpawn.GetComponent<Enemy>().uID);
 		// Load the combat scene. Make sure you have this scene created in your Unity project.
-		SceneManager.LoadScene("SimpleCombat");
+		SceneManager.LoadScene(newScene);
 
 	}
 }
