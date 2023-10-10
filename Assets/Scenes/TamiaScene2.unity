@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1256871894}
-  m_IndirectSpecularColor: {r: 0.40689307, g: 0.47329712, b: 0.5744541, a: 1}
+  m_IndirectSpecularColor: {r: 0.224462, g: 0.26133078, b: 0.31733516, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: c38d28e837863b5439633ad2e32d8017, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: af863292da1a3e34cb8b7719072b7b5f, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 6eb36369880a1cb4a89cc05e7a64a293, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -7380,7 +7380,7 @@ ReflectionProbe:
   m_Enabled: 1
   serializedVersion: 2
   m_Type: 0
-  m_Mode: 0
+  m_Mode: 2
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
   m_Resolution: 128
@@ -7402,7 +7402,7 @@ ReflectionProbe:
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 1
-  m_CustomBakedTexture: {fileID: 0}
+  m_CustomBakedTexture: {fileID: 8900000, guid: 6c49fbd7614d9e6429f299207f894902, type: 3}
 --- !u!4 &1460422000
 Transform:
   m_ObjectHideFlags: 0
@@ -7694,11 +7694,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 767aebfc64dc45b4fb5bd55441c7e8b9, type: 3}
---- !u!82 &1597131339 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8600831655312811794, guid: 767aebfc64dc45b4fb5bd55441c7e8b9, type: 3}
-  m_PrefabInstance: {fileID: 1597131338}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1694881212 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4725837761477249125, guid: 810a3151378bb5b49a9eeb9b495076b4, type: 3}
@@ -7959,7 +7954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da6417bd6398d84ea3fa6a8865f508a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorSound: {fileID: 1597131339}
 --- !u!114 &1806088564
 MonoBehaviour:
   m_ObjectHideFlags: 0

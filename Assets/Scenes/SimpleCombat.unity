@@ -1869,7 +1869,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.3232467, g: 0.48704147, b: 0.754717, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 4.99
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5516,7 +5516,7 @@ ReflectionProbe:
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 1
-  m_CustomBakedTexture: {fileID: 8900000, guid: 076984a6dbe813b40b7eb25eb868a2f8, type: 3}
+  m_CustomBakedTexture: {fileID: 8900000, guid: 6c49fbd7614d9e6429f299207f894902, type: 3}
 --- !u!1 &4215642202841099233
 GameObject:
   m_ObjectHideFlags: 0
