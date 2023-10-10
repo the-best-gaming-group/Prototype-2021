@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main Scene 1 temp.unity
+    path: Assets/Scenes/Main Scene 1.unity
     guid: dadb75c1c1c6d4b03b8fbfd358d319b9
   - enabled: 1
     path: Assets/Scenes/PrototypeRoomScene.unity
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SimpleCombat.unity
     guid: 89fccebaeb30e664c98ed85918bf6e87
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2c19a80f0216d6c428a9b621176783ed
   m_configObjects: {}
