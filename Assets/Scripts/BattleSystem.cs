@@ -21,8 +21,8 @@ public enum CombatOptions//rename
 public class TurnActions {
     public CombatOptions action;
     public float waitTime;
-    public Func<GameObject> actionFunc;
-    public TurnActions(CombatOptions co, float f, Func<GameObject> a)
+    public Func<bool, GameObject> actionFunc;
+    public TurnActions(CombatOptions co, float f, Func<bool, GameObject> a)
     {
         action = co;
         waitTime = f;
@@ -42,6 +42,7 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject fireboltAsset;
     public GameObject lightningAsset;
+    public GameObject knifeAsset;
 
     TextMeshProUGUI battleDialog;
 
@@ -134,7 +135,7 @@ public class BattleSystem : MonoBehaviour
             },
             cost = lightningCost
         };
-
+        //following is extra
         var healCost = new int[4];
         healCost[(int)WATER] = 3;
         spells[4] = new Spell {
@@ -180,7 +181,7 @@ public class BattleSystem : MonoBehaviour
         {
             //todo: maybe add code for enemy to randomly be able to dodge?
             battleDialog.text = "The enemy takes " + action.action.ToString();
-            var gameObj = action.actionFunc();
+            var gameObj = action.actionFunc(true);
             yield return new WaitForSeconds(action.waitTime);
             int enemyNewHP = enemyHP.TakeDamage((int)action.action);
             GameObject.Destroy(gameObj);
@@ -205,18 +206,41 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        battleDialog.text = "The enemy attacks!";
-        const int enemySlamDamage = 15; //todo: add other attack abilities
-        if (!playerDodged)
+        int randomInt = Time.renderedFrameCount % 100;
+        CombatOptions enemyAction;
+        String dialogText = "The enemy <harm> you";
+
+        if (playerDodged) animator.SetTrigger("PlayerDodge");
+        switch (randomInt)
         {
-            int playerNewHP = playerHP.TakeDamage(enemySlamDamage);
-            battleDialog.text = "The enemy slammed you!";
-            animator.SetTrigger("PlayerSlam");
+            case < 25:
+                enemyAction = CombatOptions.Slam;
+                battleDialog.text = playerDodged ? "You dodged enemy's slam!" : dialogText.Replace("<harm>", "slammed");
+                if (!playerDodged) sendSlam(false);
+                yield return new WaitForSeconds(1f);
+                break;
+            case < 50:
+                enemyAction = CombatOptions.Firebolt;
+                battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
+                sendFirebolt(false);
+                yield return new WaitForSeconds(.1f);
+                break;
+            case < 75:
+                enemyAction = CombatOptions.Electrocute;
+                battleDialog.text = dialogText.Replace("<harm>", "electrocutes");
+                var lightning = sendLightning();
+                yield return new WaitForSeconds(1f);
+                Destroy(lightning);
+                break;
+            default:
+                animator.Play("EnemyThrowKnife");
+                enemyAction = CombatOptions.ThrowKnife;
+                battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
+                yield return new WaitForSeconds(1f);
+                break;
         }
-        else
-        {
-            battleDialog.text = "You dodged, the enemy's slam attack failed";
-        }
+        if (!playerDodged || enemyAction is CombatOptions.Electrocute)
+            playerHP.TakeDamage((int)enemyAction);//todo: use other damage values?
 
         playerDodged = false;
 
@@ -240,7 +264,6 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.WON)
         {
             battleDialog.text = "You have prevailed!";
-            //move on w/ quest
             // This can be replaced with a confirmation UI when we're ready
             yield return new WaitForSecondsRealtime(2f);
             var sceneChanger = GetComponent<SceneChangeInvokable>();
@@ -254,7 +277,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    GameObject sendFirebolt()//use for enemy as well
+    GameObject sendFirebolt(bool isFromPlayer = true)//todo: change for enemy
     {
         var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
         currentPrefabObject.transform.position = player.transform.position + new Vector3(1, 1, 0);
@@ -262,13 +285,13 @@ public class BattleSystem : MonoBehaviour
 
         return null;
     }
-    GameObject sendSlam()//use for enemy as well?
+    GameObject sendSlam(bool isFromPlayer = true)
     {
-        animator.SetTrigger("EnemySlam");
+        animator.SetTrigger((isFromPlayer ? "Player" : "Enemy") + "Slam");
 
         return null;
     }
-    GameObject sendLightning()//use for enemy as well?
+    GameObject sendLightning(bool isFromPlayer = true)
     {
         var lightningObj = GameObject.Instantiate(lightningAsset);
         var lightningComp = lightningObj.GetComponent<LightningBoltScript>();
@@ -277,6 +300,13 @@ public class BattleSystem : MonoBehaviour
         lightningComp.Generations = 3;
 
         return lightningObj;
+    }
+
+    GameObject sendKnife(bool isFromPlayer = true)
+    { 
+        animator.SetTrigger((isFromPlayer ? "Player" : "Enemy") + "Knife");
+
+        return null;
     }
 
     void Update()
@@ -316,6 +346,14 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.PLAYER_TURN)
         {
             turnActions.Add(new(CombatOptions.Electrocute, 1f, sendLightning));
+        }
+    }
+
+    public void OnKnifeButton()
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.ThrowKnife, 1f, sendKnife));
         }
     }
 
