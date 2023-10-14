@@ -12,10 +12,10 @@ public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
 public enum CombatOptions//rename
 {
-    Slam = 2,
-    Firebolt = 3,
-    Electrocute = 4,
-    ThrowKnife= 5
+    Slam = 20,
+    Firebolt = 25,
+    Electrocute = 40,
+    ThrowKnife = 5
 }
 
 public class TurnActions {
@@ -211,7 +211,6 @@ public class BattleSystem : MonoBehaviour
         String dialogText = "The enemy <harm> you";
 
         if (playerDodged) animator.Play("PlayerDodge");
-        //if (playerDodged) animator.SetTrigger("PlayerDodge");
         switch (randomInt)
         {
             case < 25:
@@ -221,20 +220,19 @@ public class BattleSystem : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 break;
             case < 50:
-                //enemyAction = CombatOptions.Firebolt;
-                //battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
-                //sendFirebolt(false);
-                //yield return new WaitForSeconds(.1f);
-                //break;
+                enemyAction = CombatOptions.Firebolt;
+                battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
+                sendFirebolt(false);
+                yield return new WaitForSeconds(.1f);
+                break;
             case < 75:
-                //enemyAction = CombatOptions.Electrocute;
-                //battleDialog.text = dialogText.Replace("<harm>", "electrocutes");
-                //var lightning = sendLightning();
-                //yield return new WaitForSeconds(1f);
-                //Destroy(lightning);
-                //break;
+                enemyAction = CombatOptions.Electrocute;
+                battleDialog.text = dialogText.Replace("<harm>", "electrocutes");
+                var lightning = sendLightning();
+                yield return new WaitForSeconds(1f);
+                Destroy(lightning);
+                break;
             default:
-                //animator.Play("EnemyThrowKnife");
                 sendKnife(false);
                 enemyAction = CombatOptions.ThrowKnife;
                 battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
@@ -290,7 +288,6 @@ public class BattleSystem : MonoBehaviour
     GameObject sendSlam(bool isFromPlayer = true)
     {
         animator.Play((isFromPlayer ? "Enemy" : "Player") + "Slammed");
-        //animator.SetTrigger((isFromPlayer ? "Player" : "Enemy") + "Slam");
 
         return null;
     }
@@ -308,7 +305,6 @@ public class BattleSystem : MonoBehaviour
     GameObject sendKnife(bool isFromPlayer = true)
     { 
         animator.Play((isFromPlayer ? "Player" : "Enemy") + "ThrowKnife");
-        //animator.SetTrigger((isFromPlayer ? "Player" : "Enemy") + "Knife");
 
         return null;
     }
