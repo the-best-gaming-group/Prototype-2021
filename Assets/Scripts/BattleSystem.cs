@@ -15,7 +15,7 @@ public enum CombatOptions//rename
     Slam = 20,
     Firebolt = 25,
     Electrocute = 40,
-    Icefreeze= 5
+    ThrowKnife= 5
 }
 
 public class TurnActions {
