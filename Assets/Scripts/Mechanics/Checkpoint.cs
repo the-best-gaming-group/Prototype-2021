@@ -1,12 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Http.Headers;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
-using UnityEngine.TextCore.LowLevel;
 
 namespace Platformer.Mechanics
 {

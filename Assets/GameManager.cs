@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Platformer.Mechanics;
-using System.Linq;
 using Platformer.Core;
 
 public class GameManager : MonoBehaviour
@@ -85,8 +84,7 @@ public class GameManager : MonoBehaviour
 			PlayerPos,
 			SceneName
 		);
-		var json = JsonUtility.ToJson(Checkpoint);
-		var res = SaveFileManager.WriteToSaveFile(saveFilePath, JsonUtility.ToJson(Checkpoint));
+		SaveFileManager.WriteToSaveFile(saveFilePath, JsonUtility.ToJson(Checkpoint));
 	}
 	
 	public void LoadCheckpoint()
