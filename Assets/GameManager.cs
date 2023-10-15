@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 			saveFilePath = Application.dataPath + "/save_file.txt";
 			// This is just a PoC, this will need to be mapped to menu buttons
 			// Uncomment to see the load checkpoint work!
-			LoadCheckpoint();
+			// LoadCheckpoint();
 		}
 		else
 		{
