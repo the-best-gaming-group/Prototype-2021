@@ -86,10 +86,7 @@ public class GameManager : MonoBehaviour
 			SceneName
 		);
 		var json = JsonUtility.ToJson(Checkpoint);
-		Debug.Log(saveFilePath);
-		Debug.Log(json);
 		var res = SaveFileManager.WriteToSaveFile(saveFilePath, JsonUtility.ToJson(Checkpoint));
-		Debug.Log(res);
 	}
 	
 	public void LoadCheckpoint()
