@@ -91,8 +91,10 @@ public class GameManager : MonoBehaviour
 	{
 		if (Checkpoint == null)
 		{
-			SaveFileManager.ReadFromSaveFile(saveFilePath, out string json);
-			Checkpoint = JsonUtility.FromJson<Checkpoint>(json);
+			if (SaveFileManager.ReadFromSaveFile(saveFilePath, out string json))
+			{
+				Checkpoint = JsonUtility.FromJson<Checkpoint>(json);
+			}
 		}
 		playerHealth = Checkpoint.playerHealth;
 		EnemySpawns = Checkpoint.enemySpawns;
