@@ -6,6 +6,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
 
     [SerializeField] private DialogueObject dialogueObject;
     [SerializeField] private GameObject visualCue;
+    [SerializeField] AudioSource diaSound;
 
     public void UpdateDialogueObject(DialogueObject dialogueObject)
     {
@@ -45,5 +46,6 @@ public class DialogueActivator : MonoBehaviour, IInteractable
             player.DialogueUI.AddResponseEvents(responseEvents.Events);
         }
         player.DialogueUI.ShowDialogue(dialogueObject);
+        diaSound.Play();
     }
 }

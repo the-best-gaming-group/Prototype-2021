@@ -32,7 +32,7 @@ namespace Platformer.Mechanics
         public Collider _collider;
 
         public Rigidbody _rigidbody;
-
+        [SerializeField] AudioSource jumpSound;
         public Bounds Bounds => _collider.bounds;
 
         void Awake()
@@ -180,6 +180,7 @@ namespace Platformer.Mechanics
                     else if (!usedDoubleJump && jumpPending)
                     {
                         usedDoubleJump = true;
+                        jumpSound.Play();
                         upMove = moveSpeed;
                         jumpPending = false;
                         var curr_vel = _rigidbody.velocity;
@@ -188,14 +189,18 @@ namespace Platformer.Mechanics
                             0,
                             curr_vel.z
                         );
+                     
                     }
                     break;
                 case Grounded:
                     if (jumpPending)
                     {
+                        
                         upMove = moveSpeed;
+                        jumpSound.Play();
                         jump = Jumping;
                         jumpPending = false;
+                        
                     }
                     break;
                 case Jumping:

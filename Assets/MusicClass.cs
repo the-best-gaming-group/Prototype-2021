@@ -1,29 +1,3 @@
-/*
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MusicClass : MonoBehaviour
-{
-    private AudioSource _audioSource;
-    private void Awake()
-    {
-        DontDestroyOnLoad(transform.gameObject);
-        _audioSource = GetComponent<AudioSource>();
-    }
-
-    public void PlayMusic()
-    {
-        if (_audioSource.isPlaying) return;
-        _audioSource.Play();
-    }
-
-    public void StopMusic()
-    {
-        _audioSource.Stop();
-    }
-}
-*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,14 +6,27 @@ using UnityEngine.SceneManagement;
 public class MusicClass : MonoBehaviour
 {
 	private AudioSource _audioSource;
+    private static MusicClass _instance;
 
-	private void Awake()
+    private void Awake()
 	{
-		DontDestroyOnLoad(gameObject);
-		_audioSource = GetComponent<AudioSource>();
-	}
+       
+        if (_instance == null)
+        {
+           
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+            _audioSource = GetComponent<AudioSource>();
+        }
+        else
+        {
+            //for going back to scene and not have big music mess
+            Destroy(gameObject);
+        }
 
-	private void OnEnable()
+    }
+
+    private void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
