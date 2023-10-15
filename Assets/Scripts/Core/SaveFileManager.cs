@@ -1,13 +1,16 @@
 using System.IO;
 using System;
 using System.Text;
+using Platformer.Mechanics;
+using UnityEngine;
 
 namespace Platformer.Core
 {
     public static class SaveFileManager
     {
-        public static bool WriteToSaveFile(string fp, string json)
+        public static bool WriteToSaveFile(string fp, Checkpoint checkpoint)
         {
+            var json = JsonUtility.ToJson(checkpoint);
             try
             {
                 if (File.Exists(fp))
@@ -28,20 +31,21 @@ namespace Platformer.Core
             }
         }
         
-        public static bool ReadFromSaveFile(string fp, out string json)
+        public static bool ReadFromSaveFile(string fp, out Checkpoint checkpoint)
         {
             try
             {
                 using FileStream fs = File.OpenRead(fp);
                 byte[] bytes = new byte[int.MaxValue];
                 fs.Read(bytes);
-                json = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+                var json = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
                 fs.Close();
+                checkpoint = JsonUtility.FromJson<Checkpoint>(json);
                 return true;
             }
             catch (Exception)
             {
-                json = "";
+                checkpoint = null;
                 return false;
             }
             

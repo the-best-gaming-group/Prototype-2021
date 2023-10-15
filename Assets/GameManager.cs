@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 			saveFilePath = Application.dataPath + "/save_file.txt";
 			// This is just a PoC, this will need to be mapped to menu buttons
 			// Uncomment to see the load checkpoint work!
-			// LoadCheckpoint();
+			LoadCheckpoint();
 		}
 		else
 		{
@@ -84,16 +84,17 @@ public class GameManager : MonoBehaviour
 			PlayerPos,
 			SceneName
 		);
-		SaveFileManager.WriteToSaveFile(saveFilePath, JsonUtility.ToJson(Checkpoint));
+		SaveFileManager.WriteToSaveFile(saveFilePath, Checkpoint);
 	}
 	
 	public void LoadCheckpoint()
 	{
 		if (Checkpoint == null)
 		{
-			if (SaveFileManager.ReadFromSaveFile(saveFilePath, out string json))
+			if (!SaveFileManager.ReadFromSaveFile(saveFilePath, out Checkpoint))
 			{
-				Checkpoint = JsonUtility.FromJson<Checkpoint>(json);
+				Debug.LogError("Tried to load nonexistent checkpoint file");
+				return;
 			}
 		}
 		playerHealth = Checkpoint.playerHealth;
