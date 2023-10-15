@@ -14,7 +14,6 @@ namespace Platformer.Mechanics
     public class Checkpoint 
     {
         public int playerHealth;
-        public string[] scenes;
         public EnemySpawns enemySpawns = new ();
         public PlayDoorSound playDoorSound = new();
         public PlayerPos playerPos = new();
@@ -22,7 +21,6 @@ namespace Platformer.Mechanics
         
         public Checkpoint(
             int playerHealth,
-            Stack<string> scenes,
             EnemySpawns EnemySpawns,
             PlayDoorSound PlayDoorSound,
             PlayerPos PlayerPos,
@@ -31,9 +29,6 @@ namespace Platformer.Mechanics
         {
             this.playerHealth = Math.Min(100, playerHealth + 30);        
 
-            this.scenes = new string[scenes.Count];
-            scenes.CopyTo(this.scenes, 0);
-            
             enemySpawns = EnemySpawns.GetCopy();
             playDoorSound = PlayDoorSound.GetCopy();
             playerPos = PlayerPos.GetCopy();

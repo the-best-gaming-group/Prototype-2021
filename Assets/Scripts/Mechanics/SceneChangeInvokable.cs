@@ -15,14 +15,12 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 		Debug.Log("Changing Scene");
 
 		var gm = GameManager.Instance;
-		gm.PrepareForSceneEnter(sceneName);
 		gm.PlayDoorSound[sceneName] = IsDoor;
 
 		transitionAnim.SetTrigger("Start");
 		yield return new WaitForSeconds(1);
 		SceneManager.LoadScene(sceneName);
 		transitionAnim.SetTrigger("End");
-		gm.SaveCheckpoint();
 	}
 	public void Exit()
 	{
