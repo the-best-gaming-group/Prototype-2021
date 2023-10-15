@@ -64,7 +64,7 @@ public class BattleSystem : MonoBehaviour
         enemy = GameObject.FindWithTag("Enemy");
         playerHP = player.GetComponent<PlayerHealthBar>();
         playerHP.TakeDamage(100 - GameManager.Instance.GetPlayerHealth());
-        enemyHP = enemy.GetComponent<PlayerHealthBar>();
+        enemyHP = enemy.GetComponentInChildren<PlayerHealthBar>();
         battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
         
         //freeze rotation/position
