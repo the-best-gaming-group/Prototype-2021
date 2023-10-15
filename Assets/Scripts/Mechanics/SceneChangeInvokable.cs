@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangeInvokable : MonoBehaviour, Invokable
 {
-	[SerializeField] Animator transitionAnim;
+	[SerializeField] public Animator transitionAnim;
 	public string sceneName;
 	public bool IsDoor = true;
 
@@ -22,6 +22,7 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 		yield return new WaitForSeconds(1);
 		SceneManager.LoadScene(sceneName);
 		transitionAnim.SetTrigger("End");
+		gm.SaveCheckpoint();
 	}
 	public void Exit()
 	{

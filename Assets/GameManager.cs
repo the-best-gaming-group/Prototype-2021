@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Platformer.Mechanics;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +13,13 @@ public class GameManager : MonoBehaviour
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
 	private int playerHealth;
 	public Stack<string> scenes = new ();
-	private Dictionary<string, Dictionary<string, bool>> EnemySpawns = new ();
-	public Dictionary<string, bool> PlayDoorSound = new();
-	public Dictionary<string, Vector3> PlayerPos = new();
+	public Checkpoint.EnemySpawns EnemySpawns = new ();
+	public Checkpoint.PlayDoorSound PlayDoorSound = new();
+	public Checkpoint.PlayerPos PlayerPos = new();
 	public string SceneName => SceneManager.GetActiveScene().name;
 	private string enemyUID;
+	private Checkpoint Checkpoint;
+	public SceneChangeInvokable sceneChange;
 
 	private void Awake()
 	{
@@ -23,6 +27,7 @@ public class GameManager : MonoBehaviour
 		{
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
+			DontDestroyOnLoad(sceneChange.transitionAnim);
 			scenes.Push(SceneName);
 		}
 		else
@@ -49,6 +54,7 @@ public class GameManager : MonoBehaviour
 	
 	public void PrepareForCombatSceneEnter(string newScene, Vector3 playerPos, string enemyUID)
 	{
+		if (Checkpoint == null) SaveCheckpoint();
         if (!scenes.TryPeek(out string outSceneStack) || !SceneName.Equals(outSceneStack))
         {
 			scenes.Push(SceneName);
@@ -80,6 +86,29 @@ public class GameManager : MonoBehaviour
 	public bool CanSpawn(string uID)
 	{
 		return EnemySpawns[SceneName][uID];
+	}
+	
+	public void SaveCheckpoint()
+	{
+		Checkpoint = new Checkpoint(
+			playerHealth,
+			scenes,
+			EnemySpawns,
+			PlayDoorSound,
+			PlayerPos,
+			SceneName
+		);
+	}
+	
+	public void LoadCheckpoint()
+	{
+		playerHealth = Checkpoint.playerHealth;
+		scenes = new Stack<string>(Checkpoint.scenes);
+		EnemySpawns = Checkpoint.enemySpawns;
+		PlayDoorSound = Checkpoint.playDoorSound;
+		PlayerPos  = Checkpoint.playerPos;
+		sceneChange.sceneName = Checkpoint.SceneName;
+		sceneChange.Invoke();
 	}
 
 }

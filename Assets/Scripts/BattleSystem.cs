@@ -251,6 +251,8 @@ public class BattleSystem : MonoBehaviour
         {
             battleDialog.text = "You were vanquished!";
             //move back to checkpoint
+            yield return new WaitForSecondsRealtime(3f);
+            GameManager.Instance.LoadCheckpoint();
         }
     }
 
