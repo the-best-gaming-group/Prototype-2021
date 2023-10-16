@@ -55,7 +55,6 @@ public class ShopManager : MonoBehaviour
 	}
 	public void DisableItemButton(int itemID)
 	{
-		Debug.Log("itemId : " + itemID);
 		if (itemID < itemButtons.Length)
 		{
 			itemButtons[itemID-1].interactable = false; // Disable the button
