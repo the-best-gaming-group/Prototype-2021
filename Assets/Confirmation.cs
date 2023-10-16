@@ -10,30 +10,44 @@ public class Confirmation : MonoBehaviour
 	public Button noButton;
 	public TextMeshProUGUI messageText;
 
-	[SerializeField] private Confirmation myConfirmationWindow;
+	private ShopManager shopManager; // Reference to the ShopManager
+
+	private int itemID; // Item ID for the confirmation
 
 	void Start()
 	{
-		OpenConfirmationWindow("Are you sure?");
+		shopManager = FindObjectOfType<ShopManager>();
+		yesButton.onClick.AddListener(YesClicked);
+		noButton.onClick.AddListener(NoClicked);
+		gameObject.SetActive(false);
 	}
 
-	private void OpenConfirmationWindow(string message)
+	public void OpenConfirmationWindow(string message, int itemID)
 	{
-		myConfirmationWindow.gameObject.SetActive(true);
-		myConfirmationWindow.yesButton.onClick.AddListener(YesClicked);
-		myConfirmationWindow.noButton.onClick.AddListener(NoClicked);
-		myConfirmationWindow.messageText.text = message;
+		Debug.Log("Confirmation Windows Opened");
+		this.itemID = itemID; // Store the item ID for later use
+		messageText.text = message;
+		gameObject.SetActive(true);
 	}
 
 	private void YesClicked()
 	{
-		myConfirmationWindow.gameObject.SetActive(false);
-		Debug.Log("Yes Clicked");
+		// Close the confirmation window
+		gameObject.SetActive(false);
+
+		// Reduce the coins and hide the item (you can add the logic here)
+		int itemPrice = shopManager.shopItems[2, itemID];
+		shopManager.coins -= itemPrice;
+		shopManager.ConisTXT.text = "Coins: " + shopManager.coins.ToString();
+
+		// Optionally hide or disable the item
+		// You can use the itemID to identify and hide the specific item button
 	}
 
 	private void NoClicked()
 	{
-		myConfirmationWindow.gameObject.SetActive(false);
-		Debug.Log("No Clicked");
+		// Close the confirmation window
+		gameObject.SetActive(false);
 	}
 }
+
