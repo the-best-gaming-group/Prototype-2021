@@ -46,6 +46,10 @@ public class DialogueActivator : MonoBehaviour, IInteractable
             player.DialogueUI.AddResponseEvents(responseEvents.Events);
         }
         player.DialogueUI.ShowDialogue(dialogueObject);
-        diaSound.Play();
+        if(diaSound != null)
+        {
+            diaSound.Play();
+        }
+        
     }
 }
