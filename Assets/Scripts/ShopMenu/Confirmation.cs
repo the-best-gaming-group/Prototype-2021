@@ -24,7 +24,6 @@ public class Confirmation : MonoBehaviour
 
 	public void OpenConfirmationWindow(string message, int itemID)
 	{
-		Debug.Log("Confirmation Windows Opened");
 		this.itemID = itemID; // Store the item ID for later use
 		messageText.text = message;
 		gameObject.SetActive(true);
@@ -40,8 +39,7 @@ public class Confirmation : MonoBehaviour
 		shopManager.coins -= itemPrice;
 		shopManager.ConisTXT.text = "Coins: " + shopManager.coins.ToString();
 
-		// Optionally hide or disable the item
-		// You can use the itemID to identify and hide the specific item button
+		shopManager.DisableItemButton(itemID);
 	}
 
 	private void NoClicked()
