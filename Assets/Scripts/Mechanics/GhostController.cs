@@ -34,15 +34,23 @@ namespace Platformer.Mechanics
         public Rigidbody _rigidbody;
 
         public Bounds Bounds => _collider.bounds;
+        public bool SaveCheckpoint = true;
 
         void Awake()
         {
             _ghost_model = GameObject.Find("ghost basic");
             _rigidbody = GetComponent<Rigidbody>();
             var gm = GameManager.Instance;
-            if (gm != null && gm.PlayerPos.TryGetValue(gm.SceneName, out Vector3 pos))
+            if (gm != null)
             {
-                transform.position = pos;
+                if (SaveCheckpoint)
+                {
+                    gm.SaveCheckpoint();
+                }
+                if (gm.PlayerPos.TryGetValue(gm.SceneName, out Vector3 pos))
+                {
+                    transform.position = pos;
+                }
             }
         }
 
