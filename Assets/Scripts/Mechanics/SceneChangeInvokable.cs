@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangeInvokable : MonoBehaviour, Invokable
 {
-	[SerializeField] Animator transitionAnim;
+	[SerializeField] public Animator transitionAnim;
 	public string sceneName;
 	public bool IsDoor = true;
 
@@ -15,7 +15,6 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 		Debug.Log("Changing Scene");
 
 		var gm = GameManager.Instance;
-		gm.PrepareForSceneEnter(sceneName);
 		gm.PlayDoorSound[sceneName] = IsDoor;
 
 		transitionAnim.SetTrigger("Start");
