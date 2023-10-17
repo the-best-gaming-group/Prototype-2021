@@ -3,6 +3,7 @@ using System;
 using System.Text;
 using Platformer.Mechanics;
 using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Platformer.Core
 {
@@ -30,23 +31,26 @@ namespace Platformer.Core
                 return false;
             }
         }
-        
-        public static bool ReadFromSaveFile(string fp, out Checkpoint checkpoint)
+        public static async Task<Checkpoint> ReadFromSaveFile(string fp)
         {
             try
             {
+                Debug.Log("Opening File");
                 using FileStream fs = File.OpenRead(fp);
                 byte[] bytes = new byte[int.MaxValue];
-                fs.Read(bytes);
+                Debug.Log("Reading File");
+                await fs.ReadAsync(bytes);
+                Debug.Log("Encoding File");
                 var json = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
                 fs.Close();
-                checkpoint = JsonUtility.FromJson<Checkpoint>(json);
-                return true;
+                Debug.Log("Converting File");
+                var checkpoint = JsonUtility.FromJson<Checkpoint>(json);
+                Debug.Log("Returning Checkpoint");
+                return checkpoint;
             }
             catch (Exception)
             {
-                checkpoint = null;
-                return false;
+                return null;
             }
             
         }
