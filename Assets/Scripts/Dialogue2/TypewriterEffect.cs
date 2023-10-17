@@ -6,7 +6,7 @@ using TMPro;
 public class TypewriterEffect : MonoBehaviour
 {
     [SerializeField] private float typewriterSpeed = 50f;
-
+    
     public bool IsRunning { get; private set; }
 
     private readonly List<Punctuation> punctuations = new List<Punctuation>()
@@ -35,7 +35,7 @@ public class TypewriterEffect : MonoBehaviour
 
         float t = 0;
         int charIndex = 0;
-
+        AudioSource audioSource = GetComponent<AudioSource>();
         while (charIndex < textToType.Length)
         {
             int lastCharIndex = charIndex;
@@ -53,6 +53,7 @@ public class TypewriterEffect : MonoBehaviour
                 {
                     yield return new WaitForSeconds(waitTime);
                 }
+                audioSource.Play();
             }
 
             yield return null;
