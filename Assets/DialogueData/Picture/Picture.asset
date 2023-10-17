@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Picture
   m_EditorClassIdentifier: 
   dialogue:
-  - What a beautiful scenery.
-  - But why...does it feel familiar? It was as if I had been to the place in the
-    painting.
+  - What a beautiful scene.
+  - But why...does it feel familiar? It's like I've been there before.
   - I think this is deja vu.
   responses: []
