@@ -43,7 +43,6 @@ namespace Platformer.Mechanics
         bool IsInteractable() {
             var playerBounds = playerObj.GetComponent<GhostController>().Bounds;
             if (playerBounds.Intersects(Bounds)) {
-                //doorSound.Play();
                 return true;
                
             }

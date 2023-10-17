@@ -9,7 +9,7 @@ public class CameraAnchor : MonoBehaviour
     void Start()
     {
         if (anchor == null) {
-            Debug.Log("Error: Anchor needs an anchor point");
+            Debug.LogError("Anchor needs an anchor point");
         }
     }
 

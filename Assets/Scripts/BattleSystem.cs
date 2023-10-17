@@ -65,7 +65,7 @@ public class BattleSystem : MonoBehaviour
         enemy = GameObject.FindWithTag("Enemy");
         playerHP = player.GetComponent<PlayerHealthBar>();
         playerHP.TakeDamage(100 - GameManager.Instance.GetPlayerHealth());
-        enemyHP = enemy.GetComponent<PlayerHealthBar>();
+        enemyHP = enemy.GetComponentInChildren<PlayerHealthBar>();
         battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
         
         //freeze rotation/position
@@ -274,6 +274,8 @@ public class BattleSystem : MonoBehaviour
         {
             battleDialog.text = "You were vanquished!";
             //move back to checkpoint
+            yield return new WaitForSecondsRealtime(3f);
+            GameManager.Instance.LoadCheckpoint();
         }
     }
 
