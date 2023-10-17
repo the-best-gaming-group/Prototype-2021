@@ -10,16 +10,16 @@ namespace Platformer.Mechanics
     public class Checkpoint 
     {
         public int playerHealth;
-        public Spawns spawns = new ();
-        public PlayDoorSound playDoorSound = new();
-        public PlayerPos playerPos = new();
+        public SpawnsDict spawns = new ();
+        public PlayDoorSoundDict playDoorSound = new();
+        public PlayerPosDict playerPos = new();
         public string SceneName;
         
         public Checkpoint(
             int playerHealth,
-            Spawns Spawns,
-            PlayDoorSound PlayDoorSound,
-            PlayerPos PlayerPos,
+            SpawnsDict Spawns,
+            PlayDoorSoundDict PlayDoorSound,
+            PlayerPosDict PlayerPos,
             string SceneName
             )
         {
@@ -32,10 +32,10 @@ namespace Platformer.Mechanics
         }
 
         [Serializable]
-        public class SceneSpawns : SerializedDictionary<string,int> {
-            public SceneSpawns GetCopy()
+        public class SceneSpawnsDict : SerializedDictionary<string,int> {
+            public SceneSpawnsDict GetCopy()
             {
-                var ret = new SceneSpawns();
+                var ret = new SceneSpawnsDict();
                 foreach (var (key, val) in this)
                 {
                     ret[key] = val;
@@ -44,11 +44,11 @@ namespace Platformer.Mechanics
             }
         }
         [Serializable]
-        public class Spawns : SerializedDictionary<string,SceneSpawns>
+        public class SpawnsDict : SerializedDictionary<string,SceneSpawnsDict>
         {
-            public Spawns GetCopy()
+            public SpawnsDict GetCopy()
             {
-                var ret = new Spawns();
+                var ret = new SpawnsDict();
                 foreach (var (key, val) in this)
                 {
                     ret[key] = val.GetCopy();
@@ -57,10 +57,10 @@ namespace Platformer.Mechanics
             }
         }
         [Serializable]
-        public class PlayDoorSound : SerializedDictionary<string,bool>{
-            public PlayDoorSound GetCopy()
+        public class PlayDoorSoundDict : SerializedDictionary<string,bool>{
+            public PlayDoorSoundDict GetCopy()
             {
-                var ret = new PlayDoorSound();
+                var ret = new PlayDoorSoundDict();
                 foreach (var (key, val) in this)
                 {
                     ret[key] = val;
@@ -70,10 +70,10 @@ namespace Platformer.Mechanics
         }
 
         [Serializable]
-        public class PlayerPos : SerializedDictionary<string, Vector3>{
-            public PlayerPos GetCopy()
+        public class PlayerPosDict : SerializedDictionary<string, Vector3>{
+            public PlayerPosDict GetCopy()
             {
-                var ret = new PlayerPos();
+                var ret = new PlayerPosDict();
                 foreach (var (key, val) in this)
                 {
                     ret[key] = val;

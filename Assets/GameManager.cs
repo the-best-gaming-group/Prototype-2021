@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
 	private int playerHealth;
-	public Checkpoint.Spawns Spawns = new ();
-	public Checkpoint.PlayDoorSound PlayDoorSound = new();
-	public Checkpoint.PlayerPos PlayerPos = new();
+	public Checkpoint.SpawnsDict Spawns = new ();
+	public Checkpoint.PlayDoorSoundDict PlayDoorSound = new();
+	public Checkpoint.PlayerPosDict PlayerPos = new();
 	public string SceneName => SceneManager.GetActiveScene().name;
 	private string prevScene;
 	private string enemyUID;

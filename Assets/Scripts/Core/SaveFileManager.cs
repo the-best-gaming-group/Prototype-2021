@@ -4,20 +4,32 @@ using System.Text;
 using Platformer.Mechanics;
 using UnityEngine;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Platformer.Core
 {
     public static class SaveFileManager
     {
-        public static bool WriteToSaveFile(string fp, Checkpoint checkpoint)
+        public static void DeleteSaveFile(string fp)
         {
-            var json = JsonUtility.ToJson(checkpoint);
             try
             {
                 if (File.Exists(fp))
                 {
                     File.Delete(fp);
                 }
+            }
+            catch (Exception)
+            {
+                Debug.LogError("Failed to delete save file: " + fp);
+            }
+        }
+        public static bool WriteToSaveFile(string fp, Checkpoint checkpoint)
+        {
+            var json = JsonUtility.ToJson(checkpoint);
+            try
+            {
+                DeleteSaveFile(fp);
                 using (FileStream fs = File.OpenWrite(fp))
                 {
                     byte[] jsonBytes = new UTF8Encoding(true).GetBytes(json);
@@ -28,6 +40,7 @@ namespace Platformer.Core
             }
             catch (Exception)
             {
+                Debug.LogError("Failed to write new save file: " + fp);
                 return false;
             }
         }
@@ -50,6 +63,7 @@ namespace Platformer.Core
             }
             catch (Exception)
             {
+                Debug.LogError("Failed to load save file: " + fp);
                 return null;
             }
             
