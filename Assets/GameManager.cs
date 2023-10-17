@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
 	private int playerHealth;
-	public Checkpoint.EnemySpawns EnemySpawns = new ();
+	public Checkpoint.Spawns Spawns = new ();
 	public Checkpoint.PlayDoorSound PlayDoorSound = new();
 	public Checkpoint.PlayerPos PlayerPos = new();
 	public string SceneName => SceneManager.GetActiveScene().name;
@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 	public SceneChangeInvokable sceneChange;
 	public string SaveFilePath;
 	private bool tryingLoadingCheckpoint = false;
+	private const int CAN_SPAWN = -1;
+	private const int CANT_SPAWN = 0;
 
 	private void Awake()
 	{
@@ -51,10 +53,10 @@ public class GameManager : MonoBehaviour
 		return playerHealth;		
 	}
 	
-	public void RegisterRoomEnemySpawner(RoomEnemySpawner res)
+	public void RegisterRoomSpawner(RoomSpawner res)
 	{
-		EnemySpawns.TryAdd(SceneName, new ());
-		EnemySpawns[SceneName].TryAdd(res.uID, true);
+		Spawns.TryAdd(SceneName, new ());
+		Spawns[SceneName].TryAdd(res.uID, CAN_SPAWN);
 	}
 	
 	public void PrepareForCombatSceneEnter(Vector3 playerPos, string enemyUID)
@@ -67,20 +69,32 @@ public class GameManager : MonoBehaviour
 
 	public string PrepareForReturnFromCombat()
 	{
-		EnemySpawns[prevScene][enemyUID] = false;
+		Spawns[prevScene][enemyUID] = CANT_SPAWN;
 		return prevScene;
 	}
 	
 	public bool CanSpawn(string uID)
 	{
-		return EnemySpawns[SceneName][uID];
+		return Spawns[SceneName][uID] == CAN_SPAWN;
+	}
+	
+	public int SavedDialogueIdx(string uID)
+	{
+		return Spawns[SceneName][uID];
+	}
+	
+	public void SaveDialogue(string uID, int idx, Vector3 pos)
+	{
+		PlayerPos[SceneName] = pos;
+		Spawns[SceneName][uID] = idx;
+		SaveCheckpoint();
 	}
 	
 	public void SaveCheckpoint()
 	{
 		Checkpoint = new Checkpoint(
 			playerHealth,
-			EnemySpawns,
+			Spawns,
 			PlayDoorSound,
 			PlayerPos,
 			SceneName
@@ -95,7 +109,7 @@ public class GameManager : MonoBehaviour
 			return;
 		}
 		playerHealth = Checkpoint.playerHealth;
-		EnemySpawns = Checkpoint.enemySpawns;
+		Spawns = Checkpoint.spawns;
 		PlayDoorSound = Checkpoint.playDoorSound;
 		PlayerPos  = Checkpoint.playerPos;
 		sceneChange.sceneName = Checkpoint.SceneName;

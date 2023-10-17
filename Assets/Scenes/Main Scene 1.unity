@@ -5925,8 +5925,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: c17dc1c06549f6849bc4547f649e10eb, type: 2}
   visualCue: {fileID: 310986666}
+  diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags: []
 --- !u!65 &374959338
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6058,9 +6063,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: 4a0e0806ea2ac74488c76c70664ead8c, type: 2}
   visualCue: {fileID: 1663392166}
   diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags:
+  - {fileID: 11400000, guid: 42d9b6e859d6d0847999a05004313d9b, type: 2}
 --- !u!65 &383565683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6486,9 +6496,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: 20c42e4d8932fbd4b8c1368f28001bd3, type: 2}
   visualCue: {fileID: 505324828}
   diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags: []
 --- !u!65 &660244586
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6534,9 +6548,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: 75e8ed652db7d6143903b5a895470427, type: 2}
   visualCue: {fileID: 1908347249}
   diaSound: {fileID: 0}
+  savedDiagIdx: 0
+  finalDiags: []
 --- !u!65 &875224108
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6739,9 +6757,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: e63ef04aabfa65d4bb3646e2cb5b69ed, type: 2}
   visualCue: {fileID: 1470192213}
   diaSound: {fileID: 1045865332}
+  savedDiagIdx: -1
+  finalDiags: []
 --- !u!65 &1045865329
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7037,9 +7059,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: f5389325052b9b245a4f86ef0d9a3a3e, type: 2}
   visualCue: {fileID: 1353622373}
   diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags:
+  - {fileID: 11400000, guid: 8b07c7c838de28f4b80699434cc4dd77, type: 2}
 --- !u!65 &1126984667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9944,7 +9971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
   events:
-  - name: Thouch it.
+  - name: Touch it.
     onPickedResponse:
       m_PersistentCalls:
         m_Calls:
@@ -10012,9 +10039,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
   visualCue: {fileID: 1233117384}
   diaSound: {fileID: 1889928783}
+  savedDiagIdx: -1
+  finalDiags:
+  - {fileID: 11400000, guid: d752b21f5a7db5642a91a871bd242bd6, type: 2}
 --- !u!65 &1889928780
 BoxCollider:
   m_ObjectHideFlags: 0
