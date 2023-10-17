@@ -41,7 +41,7 @@ public class SceneSwitcher : MonoBehaviour
 
 		var newScene = "SimpleCombat";
 		// We need to save the scene we're using before switching so we know what to return to
-		GameManager.Instance.PrepareForCombatSceneEnter(newScene, transform.position, enemyToSpawn.GetComponent<Enemy>().uID);
+		GameManager.Instance.PrepareForCombatSceneEnter(transform.position, enemyToSpawn.GetComponent<Enemy>().uID);
 		// Load the combat scene. Make sure you have this scene created in your Unity project.
 		SceneManager.LoadScene(newScene);
 

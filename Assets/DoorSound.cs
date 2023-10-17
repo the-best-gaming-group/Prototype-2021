@@ -8,7 +8,8 @@ public class DoorSound : MonoBehaviour
     void Start()
     {
         var gm = GameManager.Instance;
-        if (!gm.PlayDoorSound.TryGetValue(gm.SceneName, out bool playSound) || playSound)
+        var entryExists = gm.PlayDoorSound.TryGetValue(gm.SceneName, out bool playSound);
+        if (entryExists && playSound)
         {
             gameObject.GetComponent<AudioSource>().Play();
         }

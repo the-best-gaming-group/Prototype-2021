@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Platformer.Mechanics;
+using Platformer.Core;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,12 +12,15 @@ public class GameManager : MonoBehaviour
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
 	private int playerHealth;
-	public Stack<string> scenes = new ();
-	private Dictionary<string, Dictionary<string, bool>> EnemySpawns = new ();
-	public Dictionary<string, bool> PlayDoorSound = new();
-	public Dictionary<string, Vector3> PlayerPos = new();
+	public Checkpoint.EnemySpawns EnemySpawns = new ();
+	public Checkpoint.PlayDoorSound PlayDoorSound = new();
+	public Checkpoint.PlayerPos PlayerPos = new();
 	public string SceneName => SceneManager.GetActiveScene().name;
+	private string prevScene;
 	private string enemyUID;
+	private Checkpoint Checkpoint;
+	public SceneChangeInvokable sceneChange;
+	private string saveFilePath;
 
 	private void Awake()
 	{
@@ -23,7 +28,11 @@ public class GameManager : MonoBehaviour
 		{
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
-			scenes.Push(SceneName);
+			DontDestroyOnLoad(sceneChange.transitionAnim);
+			saveFilePath = Application.dataPath + "/save_file.txt";
+			// This is just a PoC, this will need to be mapped to menu buttons
+			// Uncomment to see the load checkpoint work!
+			// LoadCheckpoint();
 		}
 		else
 		{
@@ -47,32 +56,16 @@ public class GameManager : MonoBehaviour
 		EnemySpawns[SceneName].TryAdd(res.uID, true);
 	}
 	
-	public void PrepareForCombatSceneEnter(string newScene, Vector3 playerPos, string enemyUID)
+	public void PrepareForCombatSceneEnter(Vector3 playerPos, string enemyUID)
 	{
-        if (!scenes.TryPeek(out string outSceneStack) || !SceneName.Equals(outSceneStack))
-        {
-			scenes.Push(SceneName);
-        }
-		scenes.Push(newScene);
+		if (Checkpoint == null) SaveCheckpoint();
 		PlayerPos[SceneName] = playerPos;
 		this.enemyUID = enemyUID;
+		prevScene = SceneName;
     }
 
-	public void PrepareForSceneEnter(string newScene)
-	{
-        if (!scenes.TryPeek(out string outSceneStack) || !SceneName.Equals(outSceneStack))
-        {
-			scenes.Push(SceneName);
-        }
-		scenes.Push(newScene);
-    }
-	
 	public string PrepareForReturnFromCombat()
 	{
-		// Remove combat scene
-		scenes.Pop();
-		// Get name of previous scene
-		var prevScene = scenes.Peek();
 		EnemySpawns[prevScene][enemyUID] = false;
 		return prevScene;
 	}
@@ -80,6 +73,36 @@ public class GameManager : MonoBehaviour
 	public bool CanSpawn(string uID)
 	{
 		return EnemySpawns[SceneName][uID];
+	}
+	
+	public void SaveCheckpoint()
+	{
+		Checkpoint = new Checkpoint(
+			playerHealth,
+			EnemySpawns,
+			PlayDoorSound,
+			PlayerPos,
+			SceneName
+		);
+		SaveFileManager.WriteToSaveFile(saveFilePath, Checkpoint);
+	}
+	
+	public void LoadCheckpoint()
+	{
+		if (Checkpoint == null)
+		{
+			if (!SaveFileManager.ReadFromSaveFile(saveFilePath, out Checkpoint))
+			{
+				Debug.LogError("Tried to load nonexistent checkpoint file");
+				return;
+			}
+		}
+		playerHealth = Checkpoint.playerHealth;
+		EnemySpawns = Checkpoint.enemySpawns;
+		PlayDoorSound = Checkpoint.playDoorSound;
+		PlayerPos  = Checkpoint.playerPos;
+		sceneChange.sceneName = Checkpoint.SceneName;
+		sceneChange.Invoke();
 	}
 
 }
