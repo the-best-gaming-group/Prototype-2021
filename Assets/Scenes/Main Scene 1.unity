@@ -5927,6 +5927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: c17dc1c06549f6849bc4547f649e10eb, type: 2}
   visualCue: {fileID: 310986666}
+  diaSound: {fileID: 0}
 --- !u!65 &374959338
 BoxCollider:
   m_ObjectHideFlags: 0
