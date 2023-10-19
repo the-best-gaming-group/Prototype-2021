@@ -3,17 +3,16 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    [SerializeField] private InventoryData data;
     [SerializeField] private RectTransform panel;
     [SerializeField] private RectTransform inventoryFrame;
-    [SerializeField] private InventoryData data;
+    [SerializeField] private RectTransform inventoryIcon;
 
     private int inventoryCount;
-    private float panelHeight;
 
     private void Start()
     {
         inventoryCount = 0;
-        panelHeight = 0;
     }
 
     private void Update()
@@ -26,16 +25,37 @@ public class InventoryUI : MonoBehaviour
 
     private void UpdateInventory(InventoryData data)
     {
-        //ClearInventory();
-        
-        // if inventory added
+        // Clear the inventory UI before updating it
+        ClearInventory();
+
+        // Iterate through the inventory items and create UI slots for each item
+        foreach (InventoryItem item in data.items)
+        {
+            GameObject inventorySlot = Instantiate(inventoryFrame.gameObject, panel);
+            inventorySlot.gameObject.SetActive(true);
+            inventorySlot.transform.GetChild(0).GetComponent<Image>().sprite = item.itemIcon;
+
+            // Add a button component to the inventory slot
+            Button button = inventorySlot.AddComponent<Button>();
+            button.onClick.AddListener(() => OnInventorySlotClick(item));
+        }
+
+        panel.sizeDelta = new Vector2(panel.sizeDelta.x, inventoryFrame.sizeDelta.y * data.items.Count);
+        inventoryCount = data.items.Count;
+    }
+
+
+    /*
+    private void UpdateInventory(InventoryData data)
+    {
         if (inventoryCount < data.items.Count)
         {
+            // Add new items to the inventory UI
             for (int i = inventoryCount; i < data.items.Count; i++)
             {
                 GameObject inventorySlot = Instantiate(inventoryFrame.gameObject, panel);
                 inventorySlot.gameObject.SetActive(true);
-                inventorySlot.GetComponent<Image>().sprite = data.items[i].itemIcon;
+                inventorySlot.transform.GetChild(0).GetComponent<Image>().sprite = data.items[i].itemIcon;
 
                 // Add a button component to the inventory slot
                 Button button = inventorySlot.AddComponent<Button>();
@@ -45,36 +65,30 @@ public class InventoryUI : MonoBehaviour
             }
             panel.sizeDelta = new Vector2(panel.sizeDelta.x, panelHeight);
         }
-        /*
-        else
+        else if (inventoryCount > data.items.Count)
         {
-            panelHeight -= inventoryFrame.sizeDelta.y;
+            // Remove items from the inventory UI
+            int itemsToRemove = inventoryCount - data.items.Count;
+            for (int i = 0; i < itemsToRemove; i++)
+            {
+                Transform slotTransform = panel.GetChild(panel.childCount - 1); // Get the last child
+                Destroy(slotTransform.gameObject); // Remove the GameObject from the UI
+                panelHeight -= inventoryFrame.sizeDelta.y;
+            }
             panel.sizeDelta = new Vector2(panel.sizeDelta.x, panelHeight);
         }
-        */
-        /*
-        foreach (InventoryItem item in data.items)
-        {
-            GameObject inventorySlot = Instantiate(inventoryFrame.gameObject, panel);
-            inventorySlot.gameObject.SetActive(true);
-            inventorySlot.GetComponent<Image>().sprite = item.itemIcon;
-
-            // Add a button component to the inventory slot
-            Button button = inventorySlot.AddComponent<Button>();
-            button.onClick.AddListener(() => OnInventorySlotClick(item));
-
-            panelHeight += inventoryFrame.sizeDelta.y;
-        }
-        */
 
         panel.gameObject.SetActive(true);
         inventoryCount = data.items.Count;
     }
+    */
+
 
     private void ClearInventory()
     {
-        foreach (Transform child in panel.transform)
+        for (int i = 1; i < panel.childCount; i++)
         {
+            Transform child = panel.GetChild(i);
             Destroy(child.gameObject);
         }
     }
@@ -86,58 +100,3 @@ public class InventoryUI : MonoBehaviour
         Debug.Log("Clicked on: " + item.itemName);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class InventoryUI : MonoBehaviour
-{
-    [SerializeField] private RectTransform panel;
-    [SerializeField] private RectTransform inventoryFrame;
-    [SerializeField] private InventoryData data;
-
-    private void ShowInventory(InventoryData data)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void ShowInventory(InventoryItem[] items)
-    {
-        float panelHeight = 0;
-
-        for (int i = 0; i < items.Length; i++)
-        {
-            InventoryItem item = items[i];
-            int ItemIndex = i;
-
-            GameObject inventorySlot = Instantiate(inventoryFrame.gameObject, panel);
-            inventorySlot.gameObject.SetActive(true);
-            inventorySlot.GetComponent<Image>().sprite = item.itemIcon;
-            // inventorySlot.GetComponent<Button>().onClick.AddListener(() => OnPickedResponse(response, ItemIndex));
-
-            panelHeight += inventoryFrame.sizeDelta.y;
-        }
-
-        panel.sizeDelta = new Vector2(panel.sizeDelta.x, panelHeight);
-        panel.gameObject.SetActive(true);
-    }
-}
-*/
