@@ -5,64 +5,63 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealthBar : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
-    public HealthBar healthBar;
+	public int maxHealth = 100;
+	public int currentHealth;
+	public HealthBar healthBar;
 	private RectTransform canvasRectTransform;
 
-	void Start()
-    {
-        currentHealth = GameManager.Instance.GetPlayerHealth();
-		// Check if we are in the CombatScene
-		if (SceneManager.GetActiveScene().name == "CombatScene")
-        {
-            // If in the CombatScene, set healthBar to currentHealth
-            //Debug.Log("Combat Scene rn, current health is "+ currentHealth);
-            healthBar.SetHealth(currentHealth);
-        }
-        else
-        {
-            //Debug.Log("Set currentHealth to maxHealth when starting the game.");
-            currentHealth = maxHealth;
-            // If not in the CombatScene, set healthBar to maxHealth
-            healthBar.SetMaxHealth(maxHealth);
-        }
-    }
+	private void Start()
+	{
+		// Check if the initial health value is already set in PlayerPrefs
+		if (PlayerPrefs.HasKey("InitialHealth"))
+		{
+			currentHealth = PlayerPrefs.GetInt("InitialHealth");
+		}
+		else
+		{
+			// If not set, initialize health to the maximum
+			currentHealth = maxHealth;
+			// Store the initial health value
+			PlayerPrefs.SetInt("InitialHealth", currentHealth);
+		}
 
-    void Update()
-    {
-        // Continuously update the health bar to reflect current health
-        //Debug.Log("Update health " + currentHealth);
-        healthBar.SetHealth(currentHealth);
-
+		healthBar.SetHealth(currentHealth);
 	}
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            //Debug.Log("Player collided with an enemy.");
-            TakeDamage(20);
-        }
-    }
+	private void Update()
+	{
+		// Continuously update the health bar to reflect current health
+		healthBar.SetHealth(currentHealth);
+	}
+	/*
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Enemy"))
+		{
+			Debug.Log ("Player collided with an enemy.");
+			TakeDamage(10);
+		}
+	}
+	*/
 
-    public int TakeDamage(int damage)
-    {
-        //Debug.Log("Taking damage: " + damage);
-        currentHealth = damage >= currentHealth ? 0 : (currentHealth - damage);
+	public int TakeDamage(int damage)
+	{
+		Debug.Log("Taking damage: " + damage);
+		currentHealth = damage >= currentHealth ? 0 : (currentHealth - damage);
 
-        // Store the updated health in the GameManager
-        GameManager.Instance.SetPlayerHealth(currentHealth);
+		// Store the updated health in PlayerPrefs
+		PlayerPrefs.SetInt("InitialHealth", currentHealth);
+		PlayerPrefs.Save(); // Make sure to save PlayerPrefs
 
-        // Update the health bar
-        healthBar.SetHealth(currentHealth);
+		// Update the health bar
+		healthBar.SetHealth(currentHealth);
 
-        return currentHealth;
-    }
+		return currentHealth;
+	}
 
-    public void HPManager(int damage)
-    {
-        TakeDamage(damage);
-    }
+	public void HPManager(int damage)
+	{
+		TakeDamage(damage);
+	}
 
 }
