@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bf74ce4b3c22e4c99a5a1ee59625c0, type: 3}
+  m_Name: NewspaperRemove
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Which pieces do you want to remove?
+  responses:
+  - responseText: 1
+    dialogueObject: {fileID: 11400000, guid: 0a199344d11659544b7c22184bf6b22a, type: 2}
+  - responseText: 2
+    dialogueObject: {fileID: 11400000, guid: f533717bd07e3014cb1685129f5e6663, type: 2}
+  - responseText: 3
+    dialogueObject: {fileID: 11400000, guid: eac5d87f306f6e74c81fe20666815c2c, type: 2}
