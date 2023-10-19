@@ -5927,6 +5927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: c17dc1c06549f6849bc4547f649e10eb, type: 2}
   visualCue: {fileID: 310986666}
+  diaSound: {fileID: 0}
 --- !u!65 &374959338
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6512,6 +6513,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5140712386346641024, guid: 3538b68fe47ca4d4ba3fc05f53d8980b, type: 3}
   m_PrefabInstance: {fileID: 1533577187}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &765653237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4340404315868691800, guid: 3538b68fe47ca4d4ba3fc05f53d8980b, type: 3}
+  m_PrefabInstance: {fileID: 1533577187}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765653236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bdc523210568841a7778a941a1debe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &875224105 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2314505919143015208, guid: 1befdca1b2f07ca49bb9d7d04ccaf843, type: 3}
@@ -8493,6 +8505,10 @@ PrefabInstance:
       propertyPath: dialogueUI
       value: 
       objectReference: {fileID: 909992398}
+    - target: {fileID: 1915072591730145694, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
+      propertyPath: shopManager
+      value: 
+      objectReference: {fileID: 765653237}
     - target: {fileID: 2062877490671790701, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
       propertyPath: m_Range
       value: 4.84
@@ -9138,6 +9154,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2870905442293998782, guid: 3538b68fe47ca4d4ba3fc05f53d8980b, type: 3}
+      propertyPath: shopManager
+      value: 
+      objectReference: {fileID: 765653237}
     - target: {fileID: 3349328608221494465, guid: 3538b68fe47ca4d4ba3fc05f53d8980b, type: 3}
       propertyPath: m_Layer
       value: 5
