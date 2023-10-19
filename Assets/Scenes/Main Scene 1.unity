@@ -5927,6 +5927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: c17dc1c06549f6849bc4547f649e10eb, type: 2}
   visualCue: {fileID: 310986666}
+  diaSound: {fileID: 0}
 --- !u!65 &374959338
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8493,6 +8494,10 @@ PrefabInstance:
       propertyPath: dialogueUI
       value: 
       objectReference: {fileID: 909992398}
+    - target: {fileID: 1915072591730145694, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
+      propertyPath: shopManager
+      value: 
+      objectReference: {fileID: 1533577188}
     - target: {fileID: 2062877490671790701, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
       propertyPath: m_Range
       value: 4.84
@@ -9252,6 +9257,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3538b68fe47ca4d4ba3fc05f53d8980b, type: 3}
+--- !u!114 &1533577188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4340404315868691800, guid: 3538b68fe47ca4d4ba3fc05f53d8980b, type: 3}
+  m_PrefabInstance: {fileID: 1533577187}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765653236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bdc523210568841a7778a941a1debe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &1589586915
 NavMeshAgent:
   m_ObjectHideFlags: 0
