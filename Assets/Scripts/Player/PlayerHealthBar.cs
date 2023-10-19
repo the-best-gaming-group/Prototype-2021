@@ -12,13 +12,16 @@ public class PlayerHealthBar : MonoBehaviour
 
 	private void Start()
 	{
+		// Check if the initial health value is already set in PlayerPrefs
 		if (PlayerPrefs.HasKey("InitialHealth"))
 		{
 			currentHealth = PlayerPrefs.GetInt("InitialHealth");
 		}
 		else
 		{
+			// If not set, initialize health to the maximum
 			currentHealth = maxHealth;
+			// Store the initial health value
 			PlayerPrefs.SetInt("InitialHealth", currentHealth);
 		}
 
@@ -27,21 +30,23 @@ public class PlayerHealthBar : MonoBehaviour
 
 	private void Update()
 	{
+		// Continuously update the health bar to reflect current health
 		healthBar.SetHealth(currentHealth);
 	}
-
+	/*
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.CompareTag("Enemy"))
 		{
-			//Debug.Log "Player collided with an enemy.");
+			Debug.Log ("Player collided with an enemy.");
 			TakeDamage(10);
 		}
 	}
+	*/
 
 	public int TakeDamage(int damage)
 	{
-		//Debug.Log("Taking damage: " + damage);
+		Debug.Log("Taking damage: " + damage);
 		currentHealth = damage >= currentHealth ? 0 : (currentHealth - damage);
 
 		// Store the updated health in PlayerPrefs
@@ -58,4 +63,5 @@ public class PlayerHealthBar : MonoBehaviour
 	{
 		TakeDamage(damage);
 	}
+
 }
