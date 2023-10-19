@@ -13,11 +13,11 @@ namespace Platformer.Mechanics
         [SerializeField] private DialogueUI dialogueUI;
         public DialogueUI DialogueUI => dialogueUI;
         public IInteractable Interactable { get; set; }
-
-        private readonly static Vector3 RIGHT_TURN = new Vector3(0, 180, 0);
+		public ShopManager shopManager;
+		private readonly static Vector3 RIGHT_TURN = new Vector3(0, 180, 0);
         private readonly static Vector3 LEFT_TURN = new Vector3(0, -180, 0);
         private GameObject _ghost_model;
-        private const float floatSpeed = 0.125f;
+		private const float floatSpeed = 0.125f;
         private const float moveSpeed = 4f;
         public TurnDirection turn_dir = NOT_TURNING;
         public TurnDirection last_turn_dir = NOT_TURNING;
@@ -57,7 +57,7 @@ namespace Platformer.Mechanics
         void Update()
         {
             // Dialogue part
-            if (dialogueUI != null && dialogueUI.IsOpen)
+            if (dialogueUI != null && dialogueUI.IsOpen || shopManager.IsOpen)
             {
                 DisableControl();
                 return;
