@@ -10,32 +10,32 @@ namespace Platformer.Mechanics
     public class Checkpoint 
     {
         public int playerHealth;
-        public EnemySpawns enemySpawns = new ();
-        public PlayDoorSound playDoorSound = new();
-        public PlayerPos playerPos = new();
+        public SpawnsDict spawns = new ();
+        public PlayDoorSoundDict playDoorSound = new();
+        public PlayerPosDict playerPos = new();
         public string SceneName;
         
         public Checkpoint(
             int playerHealth,
-            EnemySpawns EnemySpawns,
-            PlayDoorSound PlayDoorSound,
-            PlayerPos PlayerPos,
+            SpawnsDict Spawns,
+            PlayDoorSoundDict PlayDoorSound,
+            PlayerPosDict PlayerPos,
             string SceneName
             )
         {
             this.playerHealth = Math.Min(100, playerHealth + 30);        
 
-            enemySpawns = EnemySpawns.GetCopy();
+            spawns = Spawns.GetCopy();
             playDoorSound = PlayDoorSound.GetCopy();
             playerPos = PlayerPos.GetCopy();
             this.SceneName = SceneName;
         }
 
         [Serializable]
-        public class SceneEnemySpawns : SerializedDictionary<string,bool> {
-            public SceneEnemySpawns GetCopy()
+        public class SceneSpawnsDict : SerializedDictionary<string,int> {
+            public SceneSpawnsDict GetCopy()
             {
-                var ret = new SceneEnemySpawns();
+                var ret = new SceneSpawnsDict();
                 foreach (var (key, val) in this)
                 {
                     ret[key] = val;
@@ -44,11 +44,11 @@ namespace Platformer.Mechanics
             }
         }
         [Serializable]
-        public class EnemySpawns : SerializedDictionary<string,SceneEnemySpawns>
+        public class SpawnsDict : SerializedDictionary<string,SceneSpawnsDict>
         {
-            public EnemySpawns GetCopy()
+            public SpawnsDict GetCopy()
             {
-                var ret = new EnemySpawns();
+                var ret = new SpawnsDict();
                 foreach (var (key, val) in this)
                 {
                     ret[key] = val.GetCopy();
@@ -57,10 +57,10 @@ namespace Platformer.Mechanics
             }
         }
         [Serializable]
-        public class PlayDoorSound : SerializedDictionary<string,bool>{
-            public PlayDoorSound GetCopy()
+        public class PlayDoorSoundDict : SerializedDictionary<string,bool>{
+            public PlayDoorSoundDict GetCopy()
             {
-                var ret = new PlayDoorSound();
+                var ret = new PlayDoorSoundDict();
                 foreach (var (key, val) in this)
                 {
                     ret[key] = val;
@@ -70,10 +70,10 @@ namespace Platformer.Mechanics
         }
 
         [Serializable]
-        public class PlayerPos : SerializedDictionary<string, Vector3>{
-            public PlayerPos GetCopy()
+        public class PlayerPosDict : SerializedDictionary<string, Vector3>{
+            public PlayerPosDict GetCopy()
             {
-                var ret = new PlayerPos();
+                var ret = new PlayerPosDict();
                 foreach (var (key, val) in this)
                 {
                     ret[key] = val;

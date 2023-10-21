@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Platformer.Mechanics;
 using Platformer.Core;
+using System.Threading.Tasks;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,15 +14,18 @@ public class GameManager : MonoBehaviour
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
 	private int playerHealth;
-	public Checkpoint.EnemySpawns EnemySpawns = new ();
-	public Checkpoint.PlayDoorSound PlayDoorSound = new();
-	public Checkpoint.PlayerPos PlayerPos = new();
+	public Checkpoint.SpawnsDict Spawns = new ();
+	public Checkpoint.PlayDoorSoundDict PlayDoorSound = new();
+	public Checkpoint.PlayerPosDict PlayerPos = new();
 	public string SceneName => SceneManager.GetActiveScene().name;
 	private string prevScene;
 	private string enemyUID;
-	private Checkpoint Checkpoint;
+	public Checkpoint Checkpoint = null;
 	public SceneChangeInvokable sceneChange;
-	private string saveFilePath;
+	public string SaveFilePath;
+	private bool tryingLoadingCheckpoint = false;
+	private const int CAN_SPAWN = -1;
+	private const int CANT_SPAWN = 0;
 
 	private void Awake()
 	{
@@ -28,11 +33,8 @@ public class GameManager : MonoBehaviour
 		{
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
-			DontDestroyOnLoad(sceneChange.transitionAnim);
-			saveFilePath = Application.dataPath + "/save_file.txt";
-			// This is just a PoC, this will need to be mapped to menu buttons
-			// Uncomment to see the load checkpoint work!
-			// LoadCheckpoint();
+			SaveFilePath = Application.dataPath + "/save_file.txt";
+			Task.Run(AsyncGetCheckpoint);
 		}
 		else
 		{
@@ -50,15 +52,15 @@ public class GameManager : MonoBehaviour
 		return playerHealth;		
 	}
 	
-	public void RegisterRoomEnemySpawner(RoomEnemySpawner res)
+	public void RegisterRoomSpawner(RoomSpawner res)
 	{
-		EnemySpawns.TryAdd(SceneName, new ());
-		EnemySpawns[SceneName].TryAdd(res.uID, true);
+		Spawns.TryAdd(SceneName, new ());
+		Spawns[SceneName].TryAdd(res.uID, CAN_SPAWN);
 	}
 	
 	public void PrepareForCombatSceneEnter(Vector3 playerPos, string enemyUID)
 	{
-		if (Checkpoint == null) SaveCheckpoint();
+		if (Checkpoint.SceneName == "") SaveCheckpoint();
 		PlayerPos[SceneName] = playerPos;
 		this.enemyUID = enemyUID;
 		prevScene = SceneName;
@@ -66,43 +68,91 @@ public class GameManager : MonoBehaviour
 
 	public string PrepareForReturnFromCombat()
 	{
-		EnemySpawns[prevScene][enemyUID] = false;
+		Spawns[prevScene][enemyUID] = CANT_SPAWN;
 		return prevScene;
 	}
 	
 	public bool CanSpawn(string uID)
 	{
-		return EnemySpawns[SceneName][uID];
+		return Spawns[SceneName][uID] == CAN_SPAWN;
+	}
+	
+	public int SavedDialogueIdx(string uID)
+	{
+		return Spawns[SceneName][uID];
+	}
+	
+	public void SaveDialogue(string uID, int idx, Vector3 pos)
+	{
+		PlayerPos[SceneName] = pos;
+		Spawns[SceneName][uID] = idx;
+		SaveCheckpoint();
 	}
 	
 	public void SaveCheckpoint()
 	{
 		Checkpoint = new Checkpoint(
 			playerHealth,
-			EnemySpawns,
+			Spawns,
 			PlayDoorSound,
 			PlayerPos,
 			SceneName
 		);
-		SaveFileManager.WriteToSaveFile(saveFilePath, Checkpoint);
+		SaveFileManager.WriteToSaveFile(SaveFilePath, Checkpoint);
 	}
 	
 	public void LoadCheckpoint()
 	{
-		if (Checkpoint == null)
+		if (Checkpoint.SceneName == "")
 		{
-			if (!SaveFileManager.ReadFromSaveFile(saveFilePath, out Checkpoint))
-			{
-				Debug.LogError("Tried to load nonexistent checkpoint file");
-				return;
-			}
+			return;
 		}
 		playerHealth = Checkpoint.playerHealth;
-		EnemySpawns = Checkpoint.enemySpawns;
+		Spawns = Checkpoint.spawns;
 		PlayDoorSound = Checkpoint.playDoorSound;
 		PlayerPos  = Checkpoint.playerPos;
 		sceneChange.sceneName = Checkpoint.SceneName;
 		sceneChange.Invoke();
 	}
+	
+	public void NewGame()
+	{
+		const string scene = "Main Scene 1";
+		Checkpoint = new(100, new(), new(), new(), scene);
+		LoadCheckpoint();
+	}
+	
+	public void Continue()
+	{
+		if (!File.Exists(SaveFilePath))
+		{
+			Debug.LogError("Tried to load nonexistent checkpoint file");
+			return;
+		}
+		else if (tryingLoadingCheckpoint)
+		{
+			return;
+		}
+		StartCoroutine(TryLoadCheckpoint());
+	}
 
+	public async void AsyncGetCheckpoint()
+	{
+		Checkpoint = await SaveFileManager.ReadFromSaveFile(SaveFilePath);
+	}
+	
+	IEnumerator TryLoadCheckpoint()
+	{
+		tryingLoadingCheckpoint = true;
+		for (int i = 0; i < 30; i++)
+		{
+			if (Checkpoint.SceneName != "")
+			{
+				LoadCheckpoint();
+				break;
+			}
+			yield return new WaitForSeconds(1f);
+		}
+		tryingLoadingCheckpoint = false;
+	}
 }

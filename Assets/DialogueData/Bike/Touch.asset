@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Touch
   m_EditorClassIdentifier: 
   dialogue:
-  - The bike wagged its tail happily and restored 10 HP points for you.
+  - The bike wags its tail happily and restores 10 HP points for you.
   responses: []

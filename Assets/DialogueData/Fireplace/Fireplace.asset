@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Fireplace
   m_EditorClassIdentifier: 
   dialogue:
-  - It's a cold, lifeless fireplace, its once warm glow but now only last emptiness.
-  - Residue in the fireplace seems to have burned out for a long time; no spark,
-    no flicker of warmth. Just a void now...
+  - It's a cold, lifeless fireplace, its once warm glow replaced by emptiness.
+  - Residue in the fireplace seems to have been cold for a long time; no spark, no
+    flicker of warmth. Just a void now...
   - ...
   - But wait, what's this?
   - A fragile fragment of note paper stuck in the corner.

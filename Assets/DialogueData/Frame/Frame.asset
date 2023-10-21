@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Frame
   m_EditorClassIdentifier: 
   dialogue:
-  - It's a frame of a page of newspaper, why would newspaper be in a frame?
-  - It seems like there's missing some pieces of it. Maybe I can find some information
-    from the news if I put them together.
+  - It's a frame of a page of newspaper, why would a newspaper be framed?
+  - It seems like it's missing some pieces. Maybe I can find some information from
+    the news if I put them together.
   responses:
   - responseText: Go find the pieces.
     dialogueObject: {fileID: 11400000, guid: 8b07c7c838de28f4b80699434cc4dd77, type: 2}
