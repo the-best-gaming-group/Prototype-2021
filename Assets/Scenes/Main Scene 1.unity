@@ -612,9 +612,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: 8d4099f2275d8374b9900393073c91ff, type: 2}
   visualCue: {fileID: 790693350}
   diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags: []
 --- !u!65 &158413484
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6602,9 +6606,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: c17dc1c06549f6849bc4547f649e10eb, type: 2}
   visualCue: {fileID: 310986666}
   diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags: []
 --- !u!65 &374959338
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9831,9 +9839,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: f5389325052b9b245a4f86ef0d9a3a3e, type: 2}
   visualCue: {fileID: 1286762970}
   diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags:
+  - {fileID: 11400000, guid: 8b07c7c838de28f4b80699434cc4dd77, type: 2}
 --- !u!65 &1855196185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9901,13 +9914,18 @@ PrefabInstance:
     - target: {fileID: 6013862213860267869, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
       propertyPath: transitionAnim
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1885970771}
     - target: {fileID: 6013862213860267870, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
+--- !u!95 &1885970771 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2551489439692984317, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
+  m_PrefabInstance: {fileID: 1885970770}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1904074573
 GameObject:
   m_ObjectHideFlags: 0
@@ -10118,9 +10136,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: e5c9ab0f67d62a04c859ec49e619b6d3, type: 2}
   visualCue: {fileID: 652884478}
   diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags: []
 --- !u!65 &2116278596
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20318,9 +20340,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: 20c42e4d8932fbd4b8c1368f28001bd3, type: 2}
   visualCue: {fileID: 280693959}
   diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags: []
 --- !u!114 &5681661759785543478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21047,9 +21073,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: e63ef04aabfa65d4bb3646e2cb5b69ed, type: 2}
   visualCue: {fileID: 1606656146}
   diaSound: {fileID: 5978611769044493580}
+  savedDiagIdx: -1
+  finalDiags: []
 --- !u!114 &5978611769044493579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22035,9 +22065,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: 4a0e0806ea2ac74488c76c70664ead8c, type: 2}
   visualCue: {fileID: 1543957784}
   diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags:
+  - {fileID: 11400000, guid: 42d9b6e859d6d0847999a05004313d9b, type: 2}
 --- !u!114 &7083286782933293395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22056,7 +22091,7 @@ MonoBehaviour:
     onPickedResponse:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 7083286782933293394}
           m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
           m_MethodName: UpdateDialogueObject
           m_Mode: 2
@@ -23704,9 +23739,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
   dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
   visualCue: {fileID: 1452735063}
   diaSound: {fileID: 8624485246491585287}
+  savedDiagIdx: -1
+  finalDiags:
+  - {fileID: 11400000, guid: d752b21f5a7db5642a91a871bd242bd6, type: 2}
 --- !u!114 &8624485246491585286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23737,7 +23777,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 8624485246491585285}
           m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
           m_MethodName: UpdateDialogueObject
           m_Mode: 2
@@ -23765,7 +23805,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 8624485246491585285}
           m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
           m_MethodName: UpdateDialogueObject
           m_Mode: 2

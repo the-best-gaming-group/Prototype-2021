@@ -1,21 +1,38 @@
+using System;
 using Platformer.Mechanics;
 using UnityEngine;
 
-public class DialogueActivator : MonoBehaviour, IInteractable
+public class DialogueActivator : RoomSpawner, IInteractable
 {
 
     [SerializeField] private DialogueObject dialogueObject;
     [SerializeField] private GameObject visualCue;
     [SerializeField] AudioSource diaSound;
+    [SerializeField] private int savedDiagIdx = -1;
+    [SerializeField] private DialogueObject[] finalDiags;
+    private GhostController ghostpc;
 
     public void UpdateDialogueObject(DialogueObject dialogueObject)
     {
+        if (finalDiags.Length > 0 && (savedDiagIdx = Array.IndexOf(finalDiags, dialogueObject)) >= 0)
+        {
+            GameManager.Instance.SaveDialogue(uID, savedDiagIdx, ghostpc.transform.position);
+        }
         this.dialogueObject = dialogueObject;
     }
 
     private void Awake()
     {
         visualCue.SetActive(false);
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        if (finalDiags.Length > 0 && (savedDiagIdx = GameManager.Instance.SavedDialogueIdx(uID)) >= 0)
+        {
+            dialogueObject = finalDiags[savedDiagIdx];
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,6 +67,6 @@ public class DialogueActivator : MonoBehaviour, IInteractable
         {
             diaSound.Play();
         }
-        
+        this.ghostpc = player;
     }
 }
