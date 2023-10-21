@@ -207,7 +207,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         int randomInt = Time.renderedFrameCount % 100;
-        CombatOptions enemyAction;
+        CombatOptions enemyAction = CombatOptions.ThrowKnife;
         String dialogText = "The enemy <harm> you";
 
         if (playerDodged) animator.Play("PlayerDodge");
@@ -234,7 +234,6 @@ public class BattleSystem : MonoBehaviour
                 break;
             default:
                 sendKnife(false);
-                enemyAction = CombatOptions.ThrowKnife;
                 battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
                 yield return new WaitForSeconds(1f);
                 break;
@@ -282,8 +281,9 @@ public class BattleSystem : MonoBehaviour
     GameObject sendFirebolt(bool isFromPlayer = true)//todo: change for enemy
     {
         var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
-        currentPrefabObject.transform.position = player.transform.position + new Vector3(1, 1, 0);
-        currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);//from player to enemy, might need change for backward
+        int fireSrcOffset = isFromPlayer ? 1 : -1;
+        currentPrefabObject.transform.position = (isFromPlayer ? player : enemy).transform.position + new Vector3(fireSrcOffset, .5f, 0);
+        currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f * fireSrcOffset, 0, 0.70711f);
 
         return null;
     }
