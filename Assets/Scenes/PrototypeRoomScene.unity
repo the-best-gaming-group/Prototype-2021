@@ -3488,13 +3488,18 @@ PrefabInstance:
     - target: {fileID: 6013862213860267869, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
       propertyPath: transitionAnim
       value: 
-      objectReference: {fileID: 1785457825}
+      objectReference: {fileID: 1126523012}
     - target: {fileID: 6013862213860267870, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
+--- !u!95 &1126523012 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2551489439692984317, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
+  m_PrefabInstance: {fileID: 1126523011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1136455652
 GameObject:
   m_ObjectHideFlags: 0
@@ -4712,11 +4717,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43c63ab56e31b4ea685102d662a23ca0, type: 3}
---- !u!95 &1785457825 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5234224487576293797, guid: 43c63ab56e31b4ea685102d662a23ca0, type: 3}
-  m_PrefabInstance: {fileID: 1785457824}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1808129635
 PrefabInstance:
   m_ObjectHideFlags: 0

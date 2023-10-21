@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6013862213860267867}
   - component: {fileID: 6013862213860267868}
   - component: {fileID: 6013862213860267869}
+  - component: {fileID: 2551489439692984317}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyToSpawn: {fileID: 0}
-  EnemySpawns:
+  Spawns:
     m_Keys: []
     m_Values: []
   PlayDoorSound:
@@ -55,7 +56,20 @@ MonoBehaviour:
   PlayerPos:
     m_Keys: []
     m_Values: []
+  Checkpoint:
+    playerHealth: 0
+    spawns:
+      m_Keys: []
+      m_Values: []
+    playDoorSound:
+      m_Keys: []
+      m_Values: 
+    playerPos:
+      m_Keys: []
+      m_Values: []
+    SceneName: 
   sceneChange: {fileID: 6013862213860267869}
+  SaveFilePath: 
 --- !u!114 &6013862213860267869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,3 +85,23 @@ MonoBehaviour:
   transitionAnim: {fileID: 0}
   sceneName: 
   IsDoor: 0
+--- !u!95 &2551489439692984317
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6013862213860267870}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 01334c621a23445c18bc641322779a5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

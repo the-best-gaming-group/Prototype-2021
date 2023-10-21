@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
 		{
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
-			DontDestroyOnLoad(sceneChange.transitionAnim);
 			SaveFilePath = Application.dataPath + "/save_file.txt";
 			Task.Run(AsyncGetCheckpoint);
 		}
