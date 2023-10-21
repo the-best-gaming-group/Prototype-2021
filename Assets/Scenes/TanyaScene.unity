@@ -5837,6 +5837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: 4a0e0806ea2ac74488c76c70664ead8c, type: 2}
   visualCue: {fileID: 1663392166}
+  diaSound: {fileID: 0}
 --- !u!65 &383565683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6264,6 +6265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: 20c42e4d8932fbd4b8c1368f28001bd3, type: 2}
   visualCue: {fileID: 505324828}
+  diaSound: {fileID: 0}
 --- !u!65 &660244586
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6306,6 +6308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: 75e8ed652db7d6143903b5a895470427, type: 2}
   visualCue: {fileID: 1908347249}
+  diaSound: {fileID: 0}
 --- !u!65 &875224108
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6510,6 +6513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: e63ef04aabfa65d4bb3646e2cb5b69ed, type: 2}
   visualCue: {fileID: 1470192213}
+  diaSound: {fileID: 0}
 --- !u!65 &1045865329
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6711,6 +6715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: f5389325052b9b245a4f86ef0d9a3a3e, type: 2}
   visualCue: {fileID: 1353622373}
+  diaSound: {fileID: 0}
 --- !u!65 &1126984667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7103,6 +7108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321804588}
   - component: {fileID: 1321804587}
+  - component: {fileID: 1321804589}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7123,6 +7129,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyToSpawn: {fileID: 0}
+  EnemySpawns:
+    m_Keys: []
+    m_Values: []
+  PlayDoorSound:
+    m_Keys: []
+    m_Values: 
+  PlayerPos:
+    m_Keys: []
+    m_Values: []
+  sceneChange: {fileID: 0}
 --- !u!4 &1321804588
 Transform:
   m_ObjectHideFlags: 0
@@ -7138,6 +7154,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1321804589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321804586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73dace9100bbccc42a2426a08b7693d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1324326902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9280,6 +9308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
   visualCue: {fileID: 1233117384}
+  diaSound: {fileID: 0}
 --- !u!65 &1889928780
 BoxCollider:
   m_ObjectHideFlags: 0
