@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: News1
   m_EditorClassIdentifier: 
   itemName: News1
-  itemIcon: {fileID: 21300000, guid: d52d9a7f0e0b3406193769bb15ec57ee, type: 3}
+  itemIcon: {fileID: 21300000, guid: 7b8fb0b3510a53549bdc1bfe7caefc7b, type: 3}

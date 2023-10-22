@@ -20,7 +20,7 @@ public class VolumeSlider : MonoBehaviour
 		slider.value = currentVolume;
 	}
 
-	private void OnSliderValueChanged(float value)
+	public void OnSliderValueChanged(float value)
 	{
 		optionsMenu.SetVolume(value);
 		PlayerPrefs.SetFloat("volume", value);

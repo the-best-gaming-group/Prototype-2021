@@ -598,3 +598,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
+--- !u!1 &8950806256273724147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8950806255565733741, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
+  m_PrefabInstance: {fileID: 8950806256273724146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8950806256273724148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8950806255902895187, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
+  m_PrefabInstance: {fileID: 8950806256273724146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8950806256273724149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8950806255277808593, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
+  m_PrefabInstance: {fileID: 8950806256273724146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8950806256273724150 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8950806255364099333, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
+  m_PrefabInstance: {fileID: 8950806256273724146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8950806256273724151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950806256273724147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2298a7d63462aa40b4f01c0b6cf37d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 8950806256273724150}
+  - {fileID: 8950806256273724149}
+  - {fileID: 8950806256273724148}
+  hasSlider: 0
+  volumeSlider: {fileID: 0}
+  sliderIndex: 0

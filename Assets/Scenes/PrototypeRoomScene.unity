@@ -4443,6 +4443,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
+--- !u!1 &1635468798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8950806255565733741, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
+  m_PrefabInstance: {fileID: 1635468797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1635468799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8950806255902895187, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
+  m_PrefabInstance: {fileID: 1635468797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1635468800 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8950806255277808593, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
+  m_PrefabInstance: {fileID: 1635468797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1635468801 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8950806255364099333, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
+  m_PrefabInstance: {fileID: 1635468797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1635468802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635468798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2298a7d63462aa40b4f01c0b6cf37d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertical: 1
+  buttons:
+  - {fileID: 1635468801}
+  - {fileID: 1635468800}
+  - {fileID: 1635468799}
+  hasSlider: 0
+  volumeSlider: {fileID: 0}
+  sliderIndex: 0
 --- !u!1 &1677076921 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1915072591730145693, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
