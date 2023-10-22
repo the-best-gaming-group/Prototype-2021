@@ -82,7 +82,6 @@ public class PlayerHealthBar : MonoBehaviour
         {
 			currentHealth = GameManager.Instance.GetPlayerHealth();
             Debug.Log("Player Health Bar Start current HP is " + currentHealth);
-			GameManager.Instance.SetPlayerHealth(currentHealth);
 			healthBar.SetHealth(currentHealth);
 		}
         else
@@ -96,7 +95,7 @@ public class PlayerHealthBar : MonoBehaviour
 	public int TakeDamage(int damage, bool isPlayer)
 	{
 		Debug.Log("Taking damage: " + damage);
-		currentHealth = damage >= currentHealth ? 0 : (currentHealth - damage);
+		currentHealth = Mathf.Max(0, currentHealth - damage);
 
 		if (isPlayer)
 		{

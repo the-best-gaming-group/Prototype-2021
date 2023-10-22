@@ -199,6 +199,7 @@ public class BattleSystem : MonoBehaviour
         {
             state = BattleState.ENEMY_TURN;
             StartCoroutine(EnemyTurn());
+            StartCoroutine(EnemyTurn());
         }
         else
             StartCoroutine(EndBattle());
@@ -274,6 +275,7 @@ public class BattleSystem : MonoBehaviour
             battleDialog.text = "You were vanquished!";
             //move back to checkpoint
             yield return new WaitForSecondsRealtime(3f);
+            // Debug.Log("AFter being defeated " + GameManager.Instance.GetPlayerHealth());
             GameManager.Instance.LoadCheckpoint();
         }
     }

@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-	
+
 	public void SetPlayerHealth(int i)
 	{
 		playerHealth = i;
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
 			PlayerPos,
 			SceneName
 		);
-		Debug.Log("When saving checkpoint playerHP = " + playerHealth);
+		// Debug.Log("When saving checkpoint playerHP = " + playerHealth);
 		SaveFileManager.WriteToSaveFile(SaveFilePath, Checkpoint);
 	}
 	
@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
 			return;
 		}
 		playerHealth = Checkpoint.playerHealth;
+		// Debug.Log("Hp when loading checkpoint" + playerHealth);
 		Spawns = Checkpoint.spawns;
 		PlayDoorSound = Checkpoint.playDoorSound;
 		PlayerPos  = Checkpoint.playerPos;
