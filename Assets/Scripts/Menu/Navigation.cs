@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Navigation : MonoBehaviour
 {
-    public bool vertical;
     public Button[] buttons; // Array to store your buttons
     private int selectedButtonIndex = 0; // Index of the currently selected button
 
@@ -23,54 +20,34 @@ public class Navigation : MonoBehaviour
 
     private void Update()
     {
-        // Use W and S keys to navigate through the buttons
-        if (Input.GetKeyDown(KeyCode.W) && vertical)
-        {
-            // Move to the previous button
-            selectedButtonIndex -= 1;
-            if (selectedButtonIndex < 0)
+            // Use W and S keys to navigate through the buttons
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                selectedButtonIndex = 0;
+                // Move to the previous button
+                selectedButtonIndex -= 1;
+                if (selectedButtonIndex < 0)
+                {
+                    selectedButtonIndex = 0;
+                }
+                SelectButton(selectedButtonIndex);
             }
-            SelectButton(selectedButtonIndex);
-        }
-        else if (Input.GetKeyDown(KeyCode.S) && vertical)
-        {
-            // Move to the next button
-            selectedButtonIndex += 1;
-            if (selectedButtonIndex >= buttons.Length)
+            else if (Input.GetKeyDown(KeyCode.S))
             {
-                selectedButtonIndex = buttons.Length - 1;
+                // Move to the next button
+                selectedButtonIndex += 1;
+                if (selectedButtonIndex >= buttons.Length)
+                {
+                    selectedButtonIndex = buttons.Length - 1;
+                }
+                SelectButton(selectedButtonIndex);
             }
-            SelectButton(selectedButtonIndex);
-        }
-        else if (Input.GetKeyDown(KeyCode.A) && !vertical)
-        {
-            // Move to the previous button
-            selectedButtonIndex -= 1;
-            if (selectedButtonIndex < 0)
-            {
-                selectedButtonIndex = 0;
-            }
-            SelectButton(selectedButtonIndex);
-        }
-        else if (Input.GetKeyDown(KeyCode.D) && !vertical)
-        {
-            // Move to the next button
-            selectedButtonIndex += 1;
-            if (selectedButtonIndex >= buttons.Length)
-            {
-                selectedButtonIndex = buttons.Length - 1;
-            }
-            SelectButton(selectedButtonIndex);
-        }
 
-        // Handle button press when Enter key is pressed
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
-        {
-            // Call the corresponding button's onClick event
-            buttons[selectedButtonIndex].onClick.Invoke();
-        }
+            // Handle button press when Enter key is pressed
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            {
+                // Call the corresponding button's onClick event
+                buttons[selectedButtonIndex].onClick.Invoke();
+            }
 
         if (volumeActive)
         {
