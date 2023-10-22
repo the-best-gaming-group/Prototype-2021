@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
 			PlayerPos,
 			SceneName
 		);
+		Debug.Log("When saving checkpoint playerHP = " + playerHealth);
 		SaveFileManager.WriteToSaveFile(SaveFilePath, Checkpoint);
 	}
 	

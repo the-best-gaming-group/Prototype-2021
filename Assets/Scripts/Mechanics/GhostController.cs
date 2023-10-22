@@ -41,6 +41,7 @@ namespace Platformer.Mechanics
             _ghost_model = GameObject.Find("ghost basic");
             _rigidbody = GetComponent<Rigidbody>();
             var gm = GameManager.Instance;
+            Debug.Log("Player health before saving checking point " + gm.GetPlayerHealth());
             if (gm != null)
             {
                 if (SaveCheckpoint)
