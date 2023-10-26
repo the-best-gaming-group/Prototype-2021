@@ -41,7 +41,30 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-	
+
+	private Dictionary<int, int> playerInventory = new Dictionary<int, int>();
+
+	public void AddToInventory(int itemID, int quantity)
+	{
+		if (playerInventory.ContainsKey(itemID))
+		{
+			playerInventory[itemID] += quantity;
+		}
+		else
+		{
+			playerInventory[itemID] = quantity;
+		}
+	}
+
+	public int GetInventoryQuantity(int itemID)
+	{
+		if (playerInventory.ContainsKey(itemID))
+		{
+			return playerInventory[itemID];
+		}
+		return 0;
+	}
+
 	public void SetPlayerHealth(int i)
 	{
 		playerHealth = i;

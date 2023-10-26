@@ -38,8 +38,10 @@ public class Confirmation : MonoBehaviour
 		int itemPrice = shopManager.shopItems[2, itemID];
 		shopManager.coins -= itemPrice;
 		shopManager.ConisTXT.text = "Coins: " + shopManager.coins.ToString();
-
+		GameManager.Instance.AddToInventory(itemID, 1);
 		shopManager.DisableItemButton(itemID);
+		Debug.Log(GameManager.Instance.GetInventoryQuantity(itemID));
+
 	}
 
 	private void NoClicked()
