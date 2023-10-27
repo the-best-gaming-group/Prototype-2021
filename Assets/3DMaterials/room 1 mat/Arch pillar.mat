@@ -24,6 +24,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BaseColor:
+        m_Texture: {fileID: 2800000, guid: 738f445931aad70498d8ddccc7ee7668, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Color:
         m_Texture: {fileID: 2800000, guid: 738f445931aad70498d8ddccc7ee7668, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -38,6 +42,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Rough:
         m_Texture: {fileID: 2800000, guid: 0f9041e9224304b418d6fc7afb9ee9d4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Specular_if_no_rough:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _metallic:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
