@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 	// Initialize the default spells
 	private void InitializeSpells()
 	{
+		Debug.Log("StartInitializeSpells");
 		spells.Add(new Spell("Slam"));
 		spells.Add(new Spell("Fireball"));
 		spells.Add(new Spell("Lightning"));
