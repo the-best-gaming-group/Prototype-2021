@@ -27,8 +27,30 @@ public class GameManager : MonoBehaviour
 	private const int CAN_SPAWN = -1;
 	private const int CANT_SPAWN = 0;
 
+	public class Spell
+	{
+		public string name;
+
+		public Spell(string name)
+		{
+			this.name = name;
+		}
+	}
+
+	public List<Spell> spells = new List<Spell>();
+
+	// Initialize the default spells
+	private void InitializeSpells()
+	{
+		spells.Add(new Spell("Slam"));
+		spells.Add(new Spell("Fireball"));
+		spells.Add(new Spell("Lightning"));
+		spells.Add(new Spell("Electrocute"));
+	}
+
 	private void Awake()
 	{
+		InitializeSpells();
 		if (Instance == null)
 		{
 			Instance = this;

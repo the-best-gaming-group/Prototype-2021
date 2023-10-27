@@ -2371,6 +2371,7 @@ MonoBehaviour:
   - {fileID: 8212959806224349160}
   - {fileID: 8277084244019539840}
   - {fileID: 8277084244019539840}
+  IsOpen: 0
 --- !u!1 &5643257114854298794
 GameObject:
   m_ObjectHideFlags: 0

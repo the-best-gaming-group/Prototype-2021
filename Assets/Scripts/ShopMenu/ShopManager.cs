@@ -13,9 +13,16 @@ public class ShopManager : MonoBehaviour
 	public TextMeshProUGUI ConisTXT;
 	public Confirmation confirmationWindow;
 	public Button[] itemButtons;
+	public bool IsOpen = false;
+
+	void Update()
+	{
+		IsOpen = gameObject.activeSelf; 
+	}
 
 	void Start()
 	{
+		IsOpen = true;
 		//ID's
 		ConisTXT.text = "Coins:" + coins.ToString();
 		shopItems[1, 1] = 1;
@@ -35,7 +42,6 @@ public class ShopManager : MonoBehaviour
 		itemNames[3] = "Bomb";
 		itemNames[4] = "Wind Spell";
 	}
-
 	public void Buy(int itemID)
 	{
 		// Retrieve the price for the item
