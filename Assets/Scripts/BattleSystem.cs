@@ -199,7 +199,6 @@ public class BattleSystem : MonoBehaviour
         {
             state = BattleState.ENEMY_TURN;
             StartCoroutine(EnemyTurn());
-            StartCoroutine(EnemyTurn());
         }
         else
             StartCoroutine(EndBattle());
