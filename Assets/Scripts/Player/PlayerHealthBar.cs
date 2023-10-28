@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,48 +10,98 @@ public class PlayerHealthBar : MonoBehaviour
 	public HealthBar healthBar;
 	private RectTransform canvasRectTransform;
 
+    private bool isPlayer; // Indicate if it's the player
+
+    private void Start()
+    {
+        isPlayer = CompareTag("Player"); // Check if this is the player
+
+        // Check if the initial health value is already set in PlayerPrefs
+        if (isPlayer && PlayerPrefs.HasKey("InitialHealth"))
+        {
+            currentHealth = PlayerPrefs.GetInt("InitialHealth");
+        }
+        else
+        {
+            // If not set or not the player, initialize health to the maximum
+            currentHealth = maxHealth;
+
+            if (isPlayer)
+            {
+                // Store the initial health value only for the player
+                PlayerPrefs.SetInt("InitialHealth", currentHealth);
+            }
+        }
+
+        healthBar.SetHealth(currentHealth);
+    }
+
+    // Rest of the script remains the same...
+
+    public int TakeDamage(int damage, bool isPlayer)
+    {
+        Debug.Log("Taking damage: " + damage);
+        currentHealth = damage >= currentHealth ? 0 : (currentHealth - damage);
+
+        // Store the updated health in PlayerPrefs only for the player
+        if (isPlayer)
+        {
+            PlayerPrefs.SetInt("InitialHealth", currentHealth);
+            PlayerPrefs.Save();
+        }
+
+        // Update the health bar
+        healthBar.SetHealth(currentHealth);
+
+        return currentHealth;
+    }
+
+    public void HPManager(int damage)
+	{
+		TakeDamage(damage, true);
+	}
+
+}
+*/
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class PlayerHealthBar : MonoBehaviour
+{
+	public int maxHealth = 100;
+	public HealthBar healthBar;
+	public int currentHealth;
+	private bool isPlayer; // Indicate if it's the player
+
 	private void Start()
 	{
-		// Check if the initial health value is already set in PlayerPrefs
-		if (PlayerPrefs.HasKey("InitialHealth"))
-		{
-			currentHealth = PlayerPrefs.GetInt("InitialHealth");
+		isPlayer = CompareTag("Player");
+		if (isPlayer)
+        {
+			currentHealth = GameManager.Instance.GetPlayerHealth();
+            Debug.Log("Player Health Bar Start current HP is " + currentHealth);
+			healthBar.SetHealth(currentHealth);
 		}
-		else
-		{
-			// If not set, initialize health to the maximum
-			currentHealth = maxHealth;
-			// Store the initial health value
-			PlayerPrefs.SetInt("InitialHealth", currentHealth);
+        else
+        {
+            Debug.Log("set 100");
+			healthBar.SetHealth(maxHealth);
 		}
 
-		healthBar.SetHealth(currentHealth);
 	}
 
-	private void Update()
-	{
-		// Continuously update the health bar to reflect current health
-		healthBar.SetHealth(currentHealth);
-	}
-	/*
-	private void OnCollisionEnter(Collision collision)
-	{
-		if (collision.gameObject.CompareTag("Enemy"))
-		{
-			Debug.Log ("Player collided with an enemy.");
-			TakeDamage(10);
-		}
-	}
-	*/
-
-	public int TakeDamage(int damage)
+	public int TakeDamage(int damage, bool isPlayer)
 	{
 		Debug.Log("Taking damage: " + damage);
-		currentHealth = damage >= currentHealth ? 0 : (currentHealth - damage);
+		currentHealth = Mathf.Max(0, currentHealth - damage);
 
-		// Store the updated health in PlayerPrefs
-		PlayerPrefs.SetInt("InitialHealth", currentHealth);
-		PlayerPrefs.Save(); // Make sure to save PlayerPrefs
+		if (isPlayer)
+		{
+			// Use GameManager to update the health for the player
+			GameManager.Instance.SetPlayerHealth(currentHealth);
+		}
 
 		// Update the health bar
 		healthBar.SetHealth(currentHealth);
@@ -61,7 +111,6 @@ public class PlayerHealthBar : MonoBehaviour
 
 	public void HPManager(int damage)
 	{
-		TakeDamage(damage);
+		TakeDamage(damage, true);
 	}
-
 }
