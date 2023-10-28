@@ -23,9 +23,9 @@ namespace Platformer.Mechanics
             string SceneName
             )
         {
-            this.playerHealth = Math.Min(100, playerHealth + 30);        
-
-            spawns = Spawns.GetCopy();
+			//this.playerHealth = Math.Min(100, playerHealth + 30);        
+			this.playerHealth = playerHealth;
+			spawns = Spawns.GetCopy();
             playDoorSound = PlayDoorSound.GetCopy();
             playerPos = PlayerPos.GetCopy();
             this.SceneName = SceneName;
