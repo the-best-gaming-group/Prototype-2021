@@ -183,7 +183,7 @@ public class BattleSystem : MonoBehaviour
             battleDialog.text = "The enemy takes " + action.action.ToString();
             var gameObj = action.actionFunc(true);
             yield return new WaitForSeconds(action.waitTime);
-            int enemyNewHP = enemyHP.TakeDamage((int)action.action);
+            int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
             GameObject.Destroy(gameObj);
             yield return new WaitForSeconds(dialogWaitTime);
             if (enemyNewHP == 0)
@@ -239,7 +239,7 @@ public class BattleSystem : MonoBehaviour
                 break;
         }
         if (!playerDodged || enemyAction is CombatOptions.Electrocute)
-            playerHP.TakeDamage((int)enemyAction);//todo: use other damage values?
+            playerHP.TakeDamage((int)enemyAction, true);//todo: use other damage values?
 
         playerDodged = false;
 
@@ -274,6 +274,7 @@ public class BattleSystem : MonoBehaviour
             battleDialog.text = "You were vanquished!";
             //move back to checkpoint
             yield return new WaitForSecondsRealtime(3f);
+            // Debug.Log("AFter being defeated " + GameManager.Instance.GetPlayerHealth());
             GameManager.Instance.LoadCheckpoint();
         }
     }
