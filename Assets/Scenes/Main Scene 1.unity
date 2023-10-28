@@ -18173,9 +18173,6 @@ GameObject:
   - component: {fileID: 3207275291790006333}
   - component: {fileID: 2380027172081252976}
   - component: {fileID: 6102692636947437202}
-  - component: {fileID: 6102692636947437204}
-  - component: {fileID: 6102692636947437203}
-  - component: {fileID: 6102692636947437205}
   m_Layer: 0
   m_Name: Door_5
   m_TagString: Untagged
@@ -21496,68 +21493,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6102692636947437203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3231064949903269365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WillSpawn: 1
-  uID: 
-  dialogueObject: {fileID: 11400000, guid: 11b0826979aa3914c875e15ceaa73d2f, type: 2}
-  visualCue: {fileID: 1120847152}
-  diaSound: {fileID: 0}
-  savedDiagIdx: -1
-  finalDiags: []
---- !u!65 &6102692636947437204
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3231064949903269365}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 103.85387, y: 155.41676, z: 159.39587}
-  m_Center: {x: -2.244852, y: -65.06423, z: 1.0358214}
---- !u!114 &6102692636947437205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3231064949903269365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 11400000, guid: 11b0826979aa3914c875e15ceaa73d2f, type: 2}
-  events:
-  - name: Leave
-    onPickedResponse:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6102692636947437203}
-          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
-          m_MethodName: UpdateDialogueObject
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 66029db82d868ac45bcf76acc81cd548, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!4 &6109294227860487156
 Transform:
   m_ObjectHideFlags: 0
