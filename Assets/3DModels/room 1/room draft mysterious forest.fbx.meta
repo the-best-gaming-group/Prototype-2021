@@ -1,0 +1,296 @@
+fileFormatVersion: 2
+guid: b802b94bb931045449a54033d498f18f
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arch Gem
+    second: {fileID: 2100000, guid: c4694646a3ecd9548873758058100d9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arch Gold emblem
+    second: {fileID: 2100000, guid: b3985908ed94d504eaa72f22c8be8dee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arch Ivy
+    second: {fileID: 2100000, guid: 1d2540e335ab17f4fa46cee95b60fce9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arch Ivy gold
+    second: {fileID: 2100000, guid: f719dce2c80fd334cb68295b10f0232f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arch pillar
+    second: {fileID: 2100000, guid: ad04f1268ab2354408daf41910936d96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arch step
+    second: {fileID: 2100000, guid: 8fc6133a2ecd4b84ab9f1914a6056642, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BG cloud
+    second: {fileID: 2100000, guid: 9a4496542077f9f4f8837c3e3f50b0d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BG night forest
+    second: {fileID: 2100000, guid: 863653f5d81007f41b4e82764492d148, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Balcony marble pillars
+    second: {fileID: 2100000, guid: 204d50eefdd876b4f81dfc52c87f6ae9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Balcony stone floor
+    second: {fileID: 2100000, guid: 78cc3063ae4d4324a9e982f4d037a949, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Daises 01 petal
+    second: {fileID: 2100000, guid: 24f5611ebc12d0f44ba92daf03360540, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Daises 01 pollen
+    second: {fileID: 2100000, guid: 6bf0f6ffe7ccdb44ca4143a7fc2cb5d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Daises 01 stem
+    second: {fileID: 2100000, guid: 891864ebf9badda47a110c969affd94a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dandelion 01 head white
+    second: {fileID: 2100000, guid: 6455c27e715145a4cb1a0703bb5ea849, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dandelion 01 leaves
+    second: {fileID: 2100000, guid: 9adfc0382b1316649a729160dc4e68e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dandelion 01 pollen
+    second: {fileID: 2100000, guid: bd1c0432b8b49414aa7d37b720a93eba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door_rock
+    second: {fileID: 2100000, guid: c42caae898424444aa8535a9072ab486, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door_wood
+    second: {fileID: 2100000, guid: 2a20035ccc15cf84f87550625dbc2806, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Doorframe portal
+    second: {fileID: 2100000, guid: 9ceecf52c17ef6240ba0274e34381633, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Doorframes
+    second: {fileID: 2100000, guid: 56cebe32ac08999478257ab4d69cd434, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fern 02
+    second: {fileID: 2100000, guid: 896647576e0268c4fb932e854aa972cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grass 01 02 tiny
+    second: {fileID: 2100000, guid: ebe4f6d8e22bbed4c9e29b8770da4a91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grass medium 01
+    second: {fileID: 2100000, guid: dd8bba7cb663b4848b532d5fdf76da92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Moon
+    second: {fileID: 2100000, guid: 6d2b67c428686c742a17707c420ece0a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paperwhite Dandelion leaves
+    second: {fileID: 2100000, guid: 9ab032ef155890140b8dbdf248dec7d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paperwhite leaf
+    second: {fileID: 2100000, guid: 5a7dcb8fab7884848a18929a16b69968, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paperwhite poppy pollen
+    second: {fileID: 2100000, guid: ec5187ba93857ed46a371b42e3676f48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paperwhite wild flower white
+    second: {fileID: 2100000, guid: a92cb92122e2ee847a108d40affa8b66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rockplain  Flower petal
+    second: {fileID: 2100000, guid: acbc847b885e1274bad726c75c78caa0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rockplain clover creeper stem
+    second: {fileID: 2100000, guid: 0687d2c399c57fe468bf9cc50223ce7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rockplain leaf set
+    second: {fileID: 2100000, guid: 3a76d875e8f155f4bbe2eed08e6c62fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seedling
+    second: {fileID: 2100000, guid: 454aefa5e35635c448379b7d3879ee7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seedling 02 stem
+    second: {fileID: 2100000, guid: 4974b53870f320d42a13a4d4c15827c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree bark
+    second: {fileID: 2100000, guid: b0136ae8ad756ac47a16af14fed2d343, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bricks (building)
+    second: {fileID: 2100000, guid: 8213bdb1ddca7b9468f2f4935c8beb19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grass base
+    second: {fileID: 2100000, guid: 684ef0dfa56158d449c9ef2e6087477a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: type E
+    second: {fileID: 2100000, guid: 07d3f00db6aa0854d9dc033ce1a95ee3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: type F clover
+    second: {fileID: 2100000, guid: 91ecd548c1e1aea42b5c76589dc2762f, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
