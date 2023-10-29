@@ -347,20 +347,6 @@ Transform:
   m_Father: {fileID: 543450653413880469}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: -56.4, y: 40.7, z: -132.37}
---- !u!64 &451046770
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2571546298565777208}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6596421120192813242, guid: 1937b5b166acfa24a8a8a653afc08057, type: 3}
 --- !u!1001 &519494133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2422,6 +2408,10 @@ PrefabInstance:
       propertyPath: m_CullTransparentMesh
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1196057454215817492, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1196057454215817495, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -2.1005075
@@ -4063,7 +4053,6 @@ GameObject:
   - component: {fileID: 6053970025021113507}
   - component: {fileID: 1424727155974986983}
   - component: {fileID: 6289539495913212048}
-  - component: {fileID: 451046770}
   m_Layer: 0
   m_Name: Rug
   m_TagString: Untagged
