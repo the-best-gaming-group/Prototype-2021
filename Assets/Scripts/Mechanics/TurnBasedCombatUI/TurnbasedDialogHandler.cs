@@ -16,7 +16,7 @@ namespace Platformer.Mechanics
         public SpellController[] scs = new SpellController[4];
         public SubmitController sc;
         public SubmitController rc;
-        private Selectable previousSelect;
+        private Hoverable previousSelect;
         public ResourceHandler resourceHandler;
         public readonly float buttonDelay = 0.35f;
         public float delayRemaining = 0f;
@@ -219,7 +219,7 @@ namespace Platformer.Mechanics
             }
             else
             {
-                Selectable sel = dsm.dialogState switch
+                Hoverable sel = dsm.dialogState switch
                 {
                     DS.RUNES       => rpc,
                     DS.SPELL_ONE   => scs[0],

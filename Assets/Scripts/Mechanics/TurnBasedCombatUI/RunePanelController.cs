@@ -3,10 +3,10 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using static Rune;
-public class RunePanelController : Selectable
+public class RunePanelController : Hoverable
 {
     private const int numChildren = 7;
-    public Selectable[] selects = new Selectable[numChildren];
+    public Hoverable[] selects = new Hoverable[numChildren];
     public readonly bool[] rerolls = new bool[6];
     public RuneController[] runes = new RuneController[numChildren-1];
     private TextMeshProUGUI text;

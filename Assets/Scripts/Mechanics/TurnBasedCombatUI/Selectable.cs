@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Selectable: MonoBehaviour
+public class Hoverable: MonoBehaviour
 {
     public Image selectImage;
     void Start()

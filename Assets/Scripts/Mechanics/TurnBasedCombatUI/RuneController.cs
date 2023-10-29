@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RuneController : Selectable
+public class RuneController : Hoverable
 {
     public Image i;
     public TextMeshProUGUI x;

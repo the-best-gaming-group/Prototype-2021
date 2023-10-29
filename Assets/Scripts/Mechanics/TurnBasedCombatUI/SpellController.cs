@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpellController : Selectable
+public class SpellController : Hoverable
 {
     private readonly Color enableColor = new (0.7495804f, 0.9622642f, 0.8802516f);
     private readonly Color disableColor = Color.grey;

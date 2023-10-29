@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SubmitController : Selectable
+public class SubmitController : Hoverable
 {
     public Image button;
     private readonly Color enableColor = new (.4f, .4f, 0.9568628f);
