@@ -1026,6 +1026,7 @@ MonoBehaviour:
   fireboltAsset: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
   lightningAsset: {fileID: 178460, guid: 2736bbc2f2c78a949957b0719c2992bd, type: 3}
   knifeAsset: {fileID: 1450812945882496, guid: 1533f2e2578f00d4c8ae061c9420478f, type: 3}
+  enemyStunAsset: {fileID: 5659291355382750488, guid: b3db7d4d711f94d4796743baa5ba7a38, type: 3}
   state: 0
   isPlayerFirstTurn: 1
 --- !u!4 &377116116
@@ -1161,6 +1162,7 @@ MonoBehaviour:
   fireboltAsset: {fileID: 0}
   lightningAsset: {fileID: 0}
   knifeAsset: {fileID: 0}
+  enemyStunAsset: {fileID: 0}
   state: 0
   isPlayerFirstTurn: 1
 --- !u!111 &414349560
@@ -3965,8 +3967,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 100
   healthBar: {fileID: 1043528275}
+  currentHealth: 100
 --- !u!1 &1669975361
 GameObject:
   m_ObjectHideFlags: 0

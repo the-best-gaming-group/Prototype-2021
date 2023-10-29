@@ -15,7 +15,8 @@ public enum CombatOptions//rename
     Slam = 20,
     Firebolt = 25,
     Electrocute = 40,
-    ThrowKnife = 5
+    ThrowKnife = 5,
+    Stun = 7
 }
 
 public class TurnActions {
@@ -43,6 +44,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject fireboltAsset;
     public GameObject lightningAsset;
     public GameObject knifeAsset;
+    public GameObject enemyStunAsset;
+    public GameObject stunObj;
 
     TextMeshProUGUI battleDialog;
 
@@ -311,9 +314,21 @@ public class BattleSystem : MonoBehaviour
 
         return null;
     }
+    GameObject sendStun(bool isFromPlayer = true)
+    {
+        enemyStunAsset.gameObject.SetActive(true);
+
+        return null;
+    }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K)) {
+            stunObj = Instantiate(enemyStunAsset, enemy.transform);
+        }
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            Destroy(stunObj);
+        }
     }
 
 
