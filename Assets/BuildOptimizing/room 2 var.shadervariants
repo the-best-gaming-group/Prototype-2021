@@ -6,117 +6,8 @@ ShaderVariantCollection:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: room 1 vari
+  m_Name: room 2 var
   m_Shaders:
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 13
-      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
-          _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS
-        passType: 13
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 0}
-    second:
-      variants:
-      - keywords: 
-        passType: 13
-      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
-          _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS
-        passType: 13
   - first: {fileID: 15104, guid: 0000000000000000f000000000000000, type: 0}
     second:
       variants:
@@ -142,6 +33,11 @@ ShaderVariantCollection:
       variants:
       - keywords: 
         passType: 0
+  - first: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
   - first: {fileID: 103, guid: 0000000000000000f000000000000000, type: 0}
     second:
       variants:
@@ -192,7 +88,12 @@ ShaderVariantCollection:
       variants:
       - keywords: 
         passType: 0
-  - first: {fileID: 9104, guid: 0000000000000000f000000000000000, type: 0}
+  - first: {fileID: 10721, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
     second:
       variants:
       - keywords: 
@@ -201,6 +102,8 @@ ShaderVariantCollection:
     second:
       variants:
       - keywords: 
+        passType: 0
+      - keywords: _DEPTH_MSAA_2
         passType: 0
   - first: {fileID: 4800000, guid: 65df88701913c224d95fc554db28381a, type: 3}
     second:
@@ -212,7 +115,9 @@ ShaderVariantCollection:
       variants:
       - keywords: 
         passType: 0
-      - keywords: _BLOOM_LQ _TONEMAP_NEUTRAL
+      - keywords: _BLOOM_LQ _CHROMATIC_ABERRATION _FILM_GRAIN _TONEMAP_ACES
+        passType: 0
+      - keywords: _BLOOM_LQ _CHROMATIC_ABERRATION _FILM_GRAIN _TONEMAP_NEUTRAL
         passType: 0
   - first: {fileID: 4800000, guid: e6e9a19c3678ded42a3bc431ebef7dbd, type: 3}
     second:
@@ -223,6 +128,11 @@ ShaderVariantCollection:
     second:
       variants:
       - keywords: DISABLE_TEXTURE2D_X_ARRAY
+        passType: 0
+  - first: {fileID: 4800000, guid: 2aed67ad60045d54ba3a00c91e2d2631, type: 3}
+    second:
+      variants:
+      - keywords: 
         passType: 0
   - first: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
     second:
@@ -242,10 +152,9 @@ ShaderVariantCollection:
         passType: 11
       - keywords: _EMISSION _SPECULAR_SETUP
         passType: 11
+      - keywords: _METALLICSPECGLOSSMAP
+        passType: 11
       - keywords: 
-        passType: 13
-      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
-          _ADDITIONAL_LIGHT_SHADOWS _EMISSION _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
         passType: 13
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _EMISSION _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
@@ -267,10 +176,33 @@ ShaderVariantCollection:
           _SURFACE_TYPE_TRANSPARENT
         passType: 13
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _EMISSION _MAIN_LIGHT_SHADOWS _SURFACE_TYPE_TRANSPARENT
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
         passType: 13
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS _METALLICSPECGLOSSMAP _PARALLAXMAP
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _MAIN_LIGHT_SHADOWS _RECEIVE_SHADOWS_OFF
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _EMISSION _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _EMISSION _MAIN_LIGHT_SHADOWS
         passType: 13
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
@@ -278,23 +210,15 @@ ShaderVariantCollection:
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _EMISSION _LIGHT_COOKIES
-          _MAIN_LIGHT_SHADOWS _RECEIVE_SHADOWS_OFF _SPECULAR_SETUP
-        passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _EMISSION _LIGHT_COOKIES
-          _MAIN_LIGHT_SHADOWS _SPECULAR_SETUP _SURFACE_TYPE_TRANSPARENT
+      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS
         passType: 13
       - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _EMISSION _MAIN_LIGHT_SHADOWS
           _RECEIVE_SHADOWS_OFF _SPECULAR_SETUP
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _EMISSION _MAIN_LIGHT_SHADOWS
-          _SPECULAR_SETUP _SURFACE_TYPE_TRANSPARENT
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS _RECEIVE_SHADOWS_OFF
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
+          _METALLICSPECGLOSSMAP _PARALLAXMAP
         passType: 13
   - first: {fileID: -6465566751694194690, guid: 7d64afdd37806eb4cac984d99a73c40c, type: 3}
     second:
@@ -344,6 +268,9 @@ ShaderVariantCollection:
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
         passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
+        passType: 13
   - first: {fileID: -6465566751694194690, guid: 45abe063547786d438ea372b909a25b2, type: 3}
     second:
       variants:
@@ -361,6 +288,14 @@ ShaderVariantCollection:
       variants:
       - keywords: 
         passType: 8
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
+        passType: 13
   - first: {fileID: -6465566751694194690, guid: 5bce879e394fcae4da4e768690bfa233, type: 3}
     second:
       variants:
@@ -368,13 +303,15 @@ ShaderVariantCollection:
         passType: 8
       - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
         passType: 8
+      - keywords: 
+        passType: 13
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
         passType: 13
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: -6465566751694194690, guid: f17d8b8d12e3df9439ebb0dc21af3f78, type: 3}
     second:
@@ -391,13 +328,21 @@ ShaderVariantCollection:
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: -6465566751694194690, guid: 0abfd035552942f4a916a0bea003138b, type: 3}
     second:
       variants:
       - keywords: 
         passType: 8
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
+        passType: 13
   - first: {fileID: -6465566751694194690, guid: e7a8d1203ceee3f4886cdc381ca51562, type: 3}
     second:
       variants:
@@ -415,7 +360,10 @@ ShaderVariantCollection:
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: -6465566751694194690, guid: a1aff189ddf7e0f429fbbbd603899f1d, type: 3}
     second:
@@ -428,6 +376,9 @@ ShaderVariantCollection:
         passType: 13
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: -6465566751694194690, guid: 989b83fa270c6a74dae2aca08529b933, type: 3}
     second:
@@ -452,6 +403,9 @@ ShaderVariantCollection:
         passType: 13
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: -6465566751694194690, guid: e3ea87442be37a04f8c99dc76cdbd3fc, type: 3}
     second:
@@ -485,8 +439,6 @@ ShaderVariantCollection:
       - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
         passType: 8
       - keywords: 
-        passType: 11
-      - keywords: 
         passType: 13
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
@@ -494,16 +446,6 @@ ShaderVariantCollection:
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
-          _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
-        passType: 13
-  - first: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
-    second:
-      variants:
-      - keywords: _SURFACE_TYPE_TRANSPARENT
-        passType: 0
   - first: {fileID: -6465566751694194690, guid: 2f35bbb04d6b4da4ebc8bdd8a5329297, type: 3}
     second:
       variants:
@@ -515,6 +457,9 @@ ShaderVariantCollection:
         passType: 13
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: -6465566751694194690, guid: c3274764132798341a53480f5c335e52, type: 3}
     second:
@@ -533,7 +478,10 @@ ShaderVariantCollection:
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: -6465566751694194690, guid: 4d1b3f6ff2126a54390d9116935ff679, type: 3}
     second:
@@ -574,7 +522,7 @@ ShaderVariantCollection:
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: -6465566751694194690, guid: a80e0f900c21ccf499235789e422e507, type: 3}
     second:
@@ -588,11 +536,22 @@ ShaderVariantCollection:
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
         passType: 13
+      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS
+        passType: 13
   - first: {fileID: -6465566751694194690, guid: 50dd9040e1e106741b84beda0af52f4a, type: 3}
     second:
       variants:
       - keywords: 
         passType: 8
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
+        passType: 13
   - first: {fileID: -6465566751694194690, guid: cea5395f398014642b5194e70cdc66bd, type: 3}
     second:
       variants:
@@ -601,9 +560,14 @@ ShaderVariantCollection:
       - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
         passType: 8
       - keywords: 
+        passType: 11
+      - keywords: 
         passType: 13
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
@@ -619,6 +583,9 @@ ShaderVariantCollection:
         passType: 13
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: -6465566751694194690, guid: cb11dce94cf4a484ba6ca76775fcc208, type: 3}
     second:
@@ -639,8 +606,15 @@ ShaderVariantCollection:
         passType: 8
       - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
         passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
@@ -657,17 +631,15 @@ ShaderVariantCollection:
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
         passType: 13
-  - first: {fileID: 4800000, guid: 50b406436c6214c49aaaa6011b71dde8, type: 3}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 4800000, guid: 5caf62d8bd7c44596ace77ef9eb8ea31, type: 3}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
+        passType: 13
   - first: {fileID: 4800000, guid: 36e335017ad71d54fbb10842863188ae, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
     second:
       variants:
       - keywords: 
@@ -691,13 +663,15 @@ ShaderVariantCollection:
         passType: 8
       - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
         passType: 8
+      - keywords: 
+        passType: 13
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
         passType: 13
       - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
           _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: -6465566751694194690, guid: a623cd9b8e10e484ca6b22da3971f168, type: 3}
     second:
@@ -728,13 +702,19 @@ ShaderVariantCollection:
         passType: 8
       - keywords: 
         passType: 11
+      - keywords: 
+        passType: 13
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
         passType: 13
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS
         passType: 13
       - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
@@ -755,20 +735,25 @@ ShaderVariantCollection:
       - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
           _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
-          _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
-          _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
-          _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS
-        passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_COOKIES _MAIN_LIGHT_SHADOWS
-        passType: 13
       - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
-      - keywords: _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS
+  - first: {fileID: -6465566751694194690, guid: ebd0b03976b169c4c93edd5ed448c804, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: da5b0bd7382ff6d4a936cf1055a67d6d, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED LIGHTMAP_ON SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS
+          _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: SHADOWS_SHADOWMASK _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS
         passType: 13
