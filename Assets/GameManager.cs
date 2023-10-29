@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager Instance; // Singleton instance
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
-	private int playerHealth;
+	[SerializeField] private int playerHealth;
 	public Checkpoint.SpawnsDict Spawns = new ();
 	public Checkpoint.PlayDoorSoundDict PlayDoorSound = new();
 	public Checkpoint.PlayerPosDict PlayerPos = new();
@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 	
 	public int GetPlayerHealth()
 	{
+		Debug.Log("Player Health is: " + playerHealth);
 		return playerHealth;		
 	}
 	
