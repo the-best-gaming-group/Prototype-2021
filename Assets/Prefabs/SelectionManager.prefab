@@ -370,7 +370,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2104827438914148469}
   - component: {fileID: 5089702390722408593}
-  - component: {fileID: 6392247458441158125}
   m_Layer: 0
   m_Name: SelectionManager
   m_TagString: Untagged
@@ -408,20 +407,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionPanel: {fileID: 2104827437942470153}
   selectedPanel: {fileID: 2104827439406820319}
+  selectionCanvas: {fileID: 2104827438982040171}
   spellButtonPrefab: {fileID: 7313625124187144831, guid: 7711bc75f954a4901aefe43cb7be7832, type: 3}
---- !u!114 &6392247458441158125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104827438914148470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a8ef13dfce7f3247852fbdffecb3a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SelectionManager: {fileID: 2104827438914148470}
 --- !u!1 &2104827438982040171
 GameObject:
   m_ObjectHideFlags: 0

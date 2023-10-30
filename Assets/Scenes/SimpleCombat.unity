@@ -2119,6 +2119,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchor: {fileID: 990763961}
+--- !u!1001 &816501259
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -315
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.8172464
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.867155
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148470, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_Name
+      value: SelectionManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089702390722408593, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: selectionCanvas
+      value: 
+      objectReference: {fileID: 816501260}
+    m_RemovedComponents:
+    - {fileID: 6392247458441158125, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+--- !u!1 &816501260 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2104827438982040171, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+  m_PrefabInstance: {fileID: 816501259}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &885794531
 GameObject:
   m_ObjectHideFlags: 0
@@ -3965,8 +4032,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 100
   healthBar: {fileID: 1043528275}
+  currentHealth: 100
 --- !u!1 &1669975361
 GameObject:
   m_ObjectHideFlags: 0

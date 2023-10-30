@@ -7,14 +7,31 @@ public class SelectionManager : MonoBehaviour
 {
 	public GameObject selectionPanel;
 	public GameObject selectedPanel;
+	public GameObject selectionCanvas;
 	public Button spellButtonPrefab;
+	public static bool GameIsPaused = false;
 
 	private List<Button> spellButtons = new List<Button>();
 	private List<Button> selectedSpells = new List<Button>();
 
 	private void Start()
 	{
+		Pause();
 		PopulateSelectionPanel();
+	}
+
+	public void Resume()
+	{
+		selectionCanvas.SetActive(false);
+		Time.timeScale = 1f;
+		GameIsPaused = false;
+	}
+
+	void Pause()
+	{
+		selectionCanvas.SetActive(true);
+		Time.timeScale = 0f;
+		GameIsPaused = true;
 	}
 
 	private void PopulateSelectionPanel()
