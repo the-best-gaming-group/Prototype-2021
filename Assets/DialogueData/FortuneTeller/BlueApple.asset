@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bf74ce4b3c22e4c99a5a1ee59625c0, type: 3}
+  m_Name: BlueApple
+  m_EditorClassIdentifier: 
+  dialogue:
+  - '"A blue apple, a rare choice indeed."'
+  - '"Here, take this coin as a symbol of your wisdom and intuition." '
+  - '"May your pockets be heavy and your journey prosperous."'
+  - coin + 50
+  - '"And as a token of my mystical insight, here''s a piece of the past, captured
+    in the words of this newspaper."'
+  - '"Its secrets might aid you in your quest or deepen the mysteries you seek."'
+  responses:
+  - responseText: Check that newspaper fragment
+    dialogueObject: {fileID: 11400000, guid: a6a864358c803604e88706551b83e8fb, type: 2}

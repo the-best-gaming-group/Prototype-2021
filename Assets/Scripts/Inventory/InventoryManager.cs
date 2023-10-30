@@ -6,6 +6,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
     public InventoryData inventoryData;
 
+    private bool hasNews1;
     //public GridLayoutGroup gridLayoutGroup; // Reference to the GridLayoutGroup UI component
     //public GameObject inventorySlotPrefab; // Reference to the Inventory Slot prefab
 
@@ -33,12 +34,23 @@ public class InventoryManager : MonoBehaviour
         inventoryData.RemoveItem(item);
     }
 
-    /*
-    private void CreateInventorySlot(InventoryItem item)
+    public void CheckNewspaper()
     {
-        GameObject slot = Instantiate(inventorySlotPrefab, gridLayoutGroup.transform);
-        slot.GetComponent<Image>().sprite = item.itemIcon;
-        slot.SetActive(true);
+        hasNews1 = false;
+        for (int i = 0; i < inventoryData.items.Count; i++)
+        {
+            if (inventoryData.items[i].itemName == "News1")
+            {
+                hasNews1 = true;
+            }
+        }
+        if (hasNews1 == true)
+        {
+            Debug.Log("YES");
+        }
+        else
+        {
+            Debug.Log("NO");
+        }
     }
-    */
 }
