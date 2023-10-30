@@ -22,9 +22,12 @@ public class SelectionManager : MonoBehaviour
 
 	public void Resume()
 	{
-		selectionCanvas.SetActive(false);
-		Time.timeScale = 1f;
-		GameIsPaused = false;
+		if (selectedSpells.Count == 4)
+		{
+			selectionCanvas.SetActive(false);
+			Time.timeScale = 1f;
+			GameIsPaused = false;
+		}
 	}
 
 	void Pause()
