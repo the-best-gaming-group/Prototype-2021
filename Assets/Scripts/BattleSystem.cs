@@ -46,6 +46,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject knifeAsset;
     public GameObject enemyStunAsset;
     public GameObject stunObj;
+    public int remaningStunTurns = 0;
 
     TextMeshProUGUI battleDialog;
 
@@ -88,17 +89,17 @@ public class BattleSystem : MonoBehaviour
      */
     public void SetupSpells()
     {
-        var slamCost = new int[4];
-        slamCost[(int)FIRE] = 1;
-        slamCost[(int)EARTH] = 1;
+        var stunCost = new int[4];
+        stunCost[(int)FIRE] = 1;
+        stunCost[(int)EARTH] = 1;
         spells[0] = new Spell {
-            name = "Slam",
+            name = "Stun",
             effect = () =>
             {
-                OnSlamButton();
+                OnStunButton();
                 return "Pressed spell 1!";
             },
-            cost = slamCost
+            cost = stunCost
         };
         
         var fireBallCost = new int[4];
@@ -182,14 +183,13 @@ public class BattleSystem : MonoBehaviour
 
         foreach (var action in turnActions)
         {
-            //todo: maybe add code for enemy to randomly be able to dodge?
             battleDialog.text = "The enemy takes " + action.action.ToString();
             var gameObj = action.actionFunc(true);
             yield return new WaitForSeconds(action.waitTime);
             int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
             GameObject.Destroy(gameObj);
             yield return new WaitForSeconds(dialogWaitTime);
-            if (enemyNewHP == 0)
+            if (enemyNewHP <= 0)
             {
                 state = BattleState.WON;
                 break;
@@ -198,13 +198,19 @@ public class BattleSystem : MonoBehaviour
         }
         turnActions.Clear();
 
-        if (enemyHP.currentHealth > 0)
+        if (state == BattleState.WON)
+        {
+            StartCoroutine(EndBattle());
+        } else if (remaningStunTurns < 1)
         {
             state = BattleState.ENEMY_TURN;
+                Destroy(stunObj);
             StartCoroutine(EnemyTurn());
+        } else
+        {
+            remaningStunTurns--;
+            PlayerTurn();
         }
-        else
-            StartCoroutine(EndBattle());
     }
 
     IEnumerator EnemyTurn()
@@ -242,7 +248,7 @@ public class BattleSystem : MonoBehaviour
                 break;
         }
         if (!playerDodged || enemyAction is CombatOptions.Electrocute)
-            playerHP.TakeDamage((int)enemyAction, true);//todo: use other damage values?
+            playerHP.TakeDamage((int)enemyAction, true);//todo: use other damage values? maybe * 1.5?
 
         playerDodged = false;
 
@@ -316,19 +322,21 @@ public class BattleSystem : MonoBehaviour
     }
     GameObject sendStun(bool isFromPlayer = true)
     {
-        enemyStunAsset.gameObject.SetActive(true);
+        Destroy(stunObj);//remove prev stun effect if any
+        stunObj = Instantiate(enemyStunAsset, enemy.transform);
+        remaningStunTurns++;
 
         return null;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K)) {
-            stunObj = Instantiate(enemyStunAsset, enemy.transform);
-        }
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            Destroy(stunObj);
-        }
+        //if (Input.GetKeyDown(KeyCode.K)) {
+        //    stunObj = Instantiate(enemyStunAsset, enemy.transform);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Q)) {
+        //    Destroy(stunObj);
+        //}
     }
 
 
@@ -372,6 +380,13 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.PLAYER_TURN)
         {
             turnActions.Add(new(CombatOptions.ThrowKnife, 1f, sendKnife));
+        }
+    }
+    public void OnStunButton()
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.Stun, 1f, sendStun));
         }
     }
 
