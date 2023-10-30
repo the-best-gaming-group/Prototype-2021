@@ -39,32 +39,42 @@ public class DialogueUI : MonoBehaviour
         Debug.Log("show");
         IsOpen = true;
         dialogueBox.SetActive(true);
+        //Debug.Log(dialogueBox.activeSelf);
+        Debug.Log("0" + dialogueBox.activeSelf);
         StartCoroutine(StepThroughDialogue(dialogueObject));
+        Debug.Log("1" + dialogueBox.activeSelf);
     }
 
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
     {
+        Debug.Log("2"+ dialogueBox.activeSelf);
         for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
+            Debug.Log("3" + dialogueBox.activeSelf);
             string dialogue = dialogueObject.Dialogue[i];
 
             yield return RunTypingEffect(dialogue);
 
             textLabel.text = dialogue;
 
-            if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) break;
-
+            if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) {
+                Debug.Log("4" + dialogueBox.activeSelf);
+                break;
+            } 
             yield return null;
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            Debug.Log("5" + dialogueBox.activeSelf);
         }
 
         if (dialogueObject.HasResponses)
         {
             responseHandler.ShowResponses(dialogueObject.Responses);
+            Debug.Log("has response!");
         }
         else
         {
             CloseDialogueBox();
+            Debug.Log("don't have response: close!");
         }
     }
 

@@ -74,9 +74,9 @@ public class InventoryManager : MonoBehaviour
             dialogueObject = dialogueNo;
         }
     }
-    public void responseDialogue(GhostController player)
+    public void responseDialogue(DialogueUI dialogueUI)
     {
         Debug.Log("response: ");
-        player.DialogueUI.ShowDialogue(dialogueObject);
+        dialogueUI.ShowDialogue(dialogueObject);
     }
 }
