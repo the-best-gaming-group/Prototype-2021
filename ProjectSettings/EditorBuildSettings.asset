@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Room 1 Z_Chess.unity
     guid: 2daadc53343f8f54bb0978e4e8c6cbb5
+  - enabled: 1
+    path: Assets/Scenes/Room 2.unity
+    guid: 8bb66c0a5fcaa95449c084a20cb28b72
   m_configObjects: {}
