@@ -20525,7 +20525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 345182073}
-  sceneName: PrototypeRoomScene
+  sceneName: Room 2
   IsDoor: 1
 --- !u!114 &5682205331049368076
 MonoBehaviour:
