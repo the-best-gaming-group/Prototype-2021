@@ -3965,8 +3965,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 100
   healthBar: {fileID: 1043528275}
+  currentHealth: 100
 --- !u!1 &1669975361
 GameObject:
   m_ObjectHideFlags: 0
@@ -5572,7 +5572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3854815291972483086, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_text
-      value: Fire Ball
+      value: Throw Knife
       objectReference: {fileID: 0}
     - target: {fileID: 3854815292031824547, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -5656,7 +5656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3854815292705853467, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnFireButton
+      value: OnKnifeButton
       objectReference: {fileID: 0}
     - target: {fileID: 3854815292705853467, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
