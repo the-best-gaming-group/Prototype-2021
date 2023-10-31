@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,9 +17,16 @@ public class SelectionManager : MonoBehaviour
 
 	private void Start()
 	{
+		StartCoroutine(Waitforanimation());
 		Pause();
 		PopulateSelectionPanel();
 	}
+
+	IEnumerator Waitforanimation()
+	{
+		yield return new WaitForSeconds(0.5f);
+	}
+
 
 	public void Resume()
 	{
