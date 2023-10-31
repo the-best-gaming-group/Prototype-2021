@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1501087477
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 29c05054001532944a29474b741609d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -159,8 +159,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1501087477
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c18ca6b0a93fb0543bede55d63235f54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -248,8 +248,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1501087477
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: bc0432a8320e81e4a919410f92ad3d68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -456,8 +456,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Dodge
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d2fd5e4098262954daf7c9b2636c0501, type: 2}
-  m_sharedMaterial: {fileID: -8052701838975151138, guid: d2fd5e4098262954daf7c9b2636c0501, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bc946259c05e76a4e965ea136bd39803, type: 2}
+  m_sharedMaterial: {fileID: -8052701838975151138, guid: bc946259c05e76a4e965ea136bd39803, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -598,8 +598,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1501087477
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: bc0432a8320e81e4a919410f92ad3d68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
