@@ -99,7 +99,7 @@ public class ResponseHandler : MonoBehaviour
             tempResponseButtons.Add(responseButton);
 
             responseBoxWidth += responseButtonTemplate.sizeDelta.x;
-            Debug.Log("ShowResponses end");
+            //Debug.Log("ShowResponses end");
         }
 
         responseBox.sizeDelta = new Vector2(responseBoxWidth, responseBox.sizeDelta.y);
@@ -110,7 +110,6 @@ public class ResponseHandler : MonoBehaviour
     {
         if (needCondition)
         {
-            Debug.Log("response on click");
             responseBox.gameObject.SetActive(false);
             foreach (GameObject button in tempResponseButtons)
             {
@@ -118,19 +117,12 @@ public class ResponseHandler : MonoBehaviour
             }
             tempResponseButtons.Clear();
             dialogueUI.CloseDialogueBox();
-            Debug.Log("event detecked");
             responseEvents[responseIndex].OnPickedResponse?.Invoke();
-
             responseEvents = null;
-
-            //if (response.DialogueObject)
-            //{
-            //    dialogueUI.ShowDialogue(response.DialogueObject);
-            //}
         }
         else
         {
-            Debug.Log("response on click");
+            //Debug.Log("response on click");
             responseBox.gameObject.SetActive(false);
             foreach (GameObject button in tempResponseButtons)
             {
@@ -138,10 +130,10 @@ public class ResponseHandler : MonoBehaviour
             }
             tempResponseButtons.Clear();
 
-            Debug.Log("event check");
+            //Debug.Log("event check");
             if (responseEvents != null && responseIndex <= responseEvents.Length)
             {
-                Debug.Log("event detecked");
+                //Debug.Log("event detecked");
                 responseEvents[responseIndex].OnPickedResponse?.Invoke();
             }
 
@@ -153,7 +145,7 @@ public class ResponseHandler : MonoBehaviour
             }
             else
             {
-                Debug.Log("no following dialogue");
+                //Debug.Log("no following dialogue");
                 dialogueUI.CloseDialogueBox();
             }
         }

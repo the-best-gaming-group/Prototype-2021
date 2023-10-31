@@ -59,6 +59,9 @@ public class InventoryManager : MonoBehaviour
                 hasNews3 = true;
             }
         }
+        Debug.Log(hasNews1);
+        Debug.Log(hasNews2);
+        Debug.Log(hasNews3);
     }
 
     public void completeNews(DialogueObject dialogueYes)
@@ -77,7 +80,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void responseDialogue(DialogueUI dialogueUI)
     {
-        Debug.Log("response: ");
+        //Debug.Log("response: ");
         dialogueUI.ShowDialogue(dialogueObject);
     }
 }
