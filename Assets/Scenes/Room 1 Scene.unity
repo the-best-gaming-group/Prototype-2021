@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 4871a9855474de24db921eb920646791, type: 2}
+--- !u!1 &44600805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44600807}
+  - component: {fileID: 44600806}
+  m_Layer: 0
+  m_Name: Step collider (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &44600806
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44600805}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.724762, y: 3.7346911, z: 4.798867}
+  m_Center: {x: -0.048095703, y: 1.3673456, z: -0.11583567}
+--- !u!4 &44600807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44600805}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 41.36, y: -4.96, z: 14.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &497256428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -448,6 +493,51 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &686534116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 686534118}
+  - component: {fileID: 686534117}
+  m_Layer: 0
+  m_Name: Step collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &686534117
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686534116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.724762, y: 3.7346911, z: 4.8852396}
+  m_Center: {x: -0.048095703, y: 1.3673456, z: -0.07264948}
+--- !u!4 &686534118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686534116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 39.46, y: -3.82, z: 14.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &697652128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1166,6 +1256,51 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2551489439692984317, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
   m_PrefabInstance: {fileID: 1126523011}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1259833955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1259833957}
+  - component: {fileID: 1259833956}
+  m_Layer: 0
+  m_Name: Step collider (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1259833956
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259833955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.724762, y: 3.7346911, z: 4.5766106}
+  m_Center: {x: -0.048095703, y: 1.3673456, z: -0.7813082}
+--- !u!4 &1259833957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259833955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 43.53, y: -5.95, z: 14.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1340840800
 GameObject:
   m_ObjectHideFlags: 0
@@ -11628,7 +11763,6 @@ GameObject:
   - component: {fileID: 5354290683034528133}
   - component: {fileID: 3833297237404147208}
   - component: {fileID: 3418780381881703243}
-  - component: {fileID: 5354290683034528134}
   m_Layer: 0
   m_Name: Balcony step3
   m_TagString: Untagged
@@ -15352,20 +15486,6 @@ Transform:
   m_Father: {fileID: 543450652986356884}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &5354290683034528134
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2861891012207791085}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2041411995892706957, guid: b802b94bb931045449a54033d498f18f, type: 3}
 --- !u!1 &5361134164658483237
 GameObject:
   m_ObjectHideFlags: 0
@@ -17961,8 +18081,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.616197, y: 14.367183, z: 13.329687}
-  m_Center: {x: -0.0000036222475, y: -4.278608, z: -6.6646757}
+  m_Size: {x: 8.616197, y: 28.215826, z: 13.329687}
+  m_Center: {x: -0.0000036222477, y: 2.6457045, z: -6.6646757}
 --- !u!4 &6959821461131049627
 Transform:
   m_ObjectHideFlags: 0
@@ -18828,7 +18948,6 @@ GameObject:
   - component: {fileID: 4305988389539986856}
   - component: {fileID: 7134567040111040126}
   - component: {fileID: 397138816903145704}
-  - component: {fileID: 7740413533563865475}
   m_Layer: 0
   m_Name: Balcony step2
   m_TagString: Untagged
@@ -18836,20 +18955,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!64 &7740413533563865475
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7740413533563865474}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 990136252826471899, guid: b802b94bb931045449a54033d498f18f, type: 3}
 --- !u!33 &7744757034538270758
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20703,7 +20808,6 @@ GameObject:
   - component: {fileID: 3917771454734782591}
   - component: {fileID: 8299737732726323254}
   - component: {fileID: 717092134806914706}
-  - component: {fileID: 8922300192462412108}
   m_Layer: 0
   m_Name: Balcony step
   m_TagString: Untagged
@@ -20711,20 +20815,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!64 &8922300192462412108
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8922300192462412107}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6873439364486532691, guid: b802b94bb931045449a54033d498f18f, type: 3}
 --- !u!23 &8929733102574423945
 MeshRenderer:
   m_ObjectHideFlags: 0
