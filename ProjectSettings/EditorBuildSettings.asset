@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/CombatScene.unity
     guid: c1bf4176a41614e108780cd9d19e8c1b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SimpleCombat.unity
     guid: 89fccebaeb30e664c98ed85918bf6e87
   - enabled: 1
