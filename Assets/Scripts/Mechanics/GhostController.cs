@@ -18,7 +18,7 @@ namespace Platformer.Mechanics
         private readonly static Vector3 LEFT_TURN = new Vector3(0, -180, 0);
         private GameObject _ghost_model;
         private const float floatSpeed = 0.125f;
-        private const float moveSpeed = 4f;
+        private const float moveSpeed = 5f;
         public TurnDirection turn_dir = NOT_TURNING;
         public TurnDirection last_turn_dir = NOT_TURNING;
         public JumpState jump = InFlight;
