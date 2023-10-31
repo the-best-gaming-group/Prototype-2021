@@ -455,8 +455,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Freeze
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d2fd5e4098262954daf7c9b2636c0501, type: 2}
-  m_sharedMaterial: {fileID: -8052701838975151138, guid: d2fd5e4098262954daf7c9b2636c0501, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2b5d54a1a33509c4d92d2d0d9bf16dc0, type: 2}
+  m_sharedMaterial: {fileID: -2733330888630039257, guid: 2b5d54a1a33509c4d92d2d0d9bf16dc0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
