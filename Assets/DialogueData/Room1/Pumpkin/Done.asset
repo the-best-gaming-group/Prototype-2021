@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - '"I''ll let you know when I have works for you."'
+  - '"And HAPPY HALLOWEEN!"'
   responses: []
   needCondition: 0
