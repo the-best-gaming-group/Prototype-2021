@@ -36,8 +36,10 @@ public class Confirmation : MonoBehaviour
 
 		// Reduce the coins and hide the item (you can add the logic here)
 		int itemPrice = shopManager.shopItems[2, itemID];
-		shopManager.coins -= itemPrice;
-		shopManager.ConisTXT.text = "Coins: " + shopManager.coins.ToString();
+		GameManager.Instance.setCoins(GameManager.Instance.getCoins() - itemPrice);
+		shopManager.ConisTXT.text = "Coins: " + GameManager.Instance.getCoins().ToString();
+
+		// shopManager.ConisTXT.text = "Coins: " + shopManager.coins.ToString();
 		//GameManager.Instance.AddToInventory(itemID, 1);
 		shopManager.DisableItemButton(itemID);
 

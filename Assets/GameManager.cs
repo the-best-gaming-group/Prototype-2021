@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 	public Checkpoint.PlayDoorSoundDict PlayDoorSound = new();
 	public Checkpoint.PlayerPosDict PlayerPos = new();
 	public string SceneName => SceneManager.GetActiveScene().name;
+	public float coins;
 	private string prevScene;
 	private string enemyUID;
 	public Checkpoint Checkpoint = null;
@@ -65,29 +66,15 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private Dictionary<int, int> playerInventory = new Dictionary<int, int>();
-
-	public void AddToInventory(int itemID, int quantity)
+	public float getCoins()
 	{
-		if (playerInventory.ContainsKey(itemID))
-		{
-			playerInventory[itemID] += quantity;
-		}
-		else
-		{
-			playerInventory[itemID] = quantity;
-		}
+		return coins;
 	}
 
-	public int GetInventoryQuantity(int itemID)
+	public void setCoins(float value)
 	{
-		if (playerInventory.ContainsKey(itemID))
-		{
-			return playerInventory[itemID];
-		}
-		return 0;
+		coins = value;
 	}
-
 	public void SetPlayerHealth(int i)
 	{
 		playerHealth = i;

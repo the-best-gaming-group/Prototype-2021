@@ -9,15 +9,17 @@ public class ShopManager : MonoBehaviour
 {
 	public int[,] shopItems = new int[5, 5];
 	public string[] itemNames = new string[5];
-	public float coins;
 	public TextMeshProUGUI ConisTXT;
 	public Confirmation confirmationWindow;
 	public Button[] itemButtons;
+	//GameManager gameManager = GameManager.Instance;
 
 	void Start()
 	{
+		ConisTXT.text = "Coins: " + GameManager.Instance.getCoins().ToString();
+
 		//ID's
-		ConisTXT.text = "Coins:" + coins.ToString();
+		//ConisTXT.text = "Coins:" + coins.ToString();
 		shopItems[1, 1] = 1;
 		shopItems[1, 2] = 2;
 		shopItems[1, 3] = 3;
@@ -42,7 +44,7 @@ public class ShopManager : MonoBehaviour
 		int itemPrice = shopItems[2, itemID];
 
 		// Check if the player has enough coins
-		if (coins >= itemPrice)
+		if (GameManager.Instance.getCoins() >= itemPrice)
 		{
 			// Open the confirmation window with the item name and price
 			confirmationWindow.OpenConfirmationWindow("Are you sure you want to buy " + itemNames[itemID] + " for $" + itemPrice + "?", itemID);
