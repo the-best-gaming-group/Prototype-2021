@@ -36,7 +36,8 @@ public class DialogueUI : MonoBehaviour
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
-        Debug.Log("show");
+        Debug.Log("show dialogue");
+        Debug.Log("need condition: " + dialogueObject.needCondition);
         IsOpen = true;
         dialogueBox.SetActive(true);
         //Debug.Log(dialogueBox.activeSelf);
@@ -47,35 +48,75 @@ public class DialogueUI : MonoBehaviour
 
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
     {
-        Debug.Log("2"+ dialogueBox.activeSelf);
-        for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
+        if (dialogueObject.needCondition)
         {
-            Debug.Log("3" + dialogueBox.activeSelf);
-            string dialogue = dialogueObject.Dialogue[i];
+            Debug.Log("need condition!");
+            Debug.Log("2" + dialogueBox.activeSelf);
+            for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
+            {
+                Debug.Log("3" + dialogueBox.activeSelf);
+                string dialogue = dialogueObject.Dialogue[i];
 
-            yield return RunTypingEffect(dialogue);
+                yield return RunTypingEffect(dialogue);
 
-            textLabel.text = dialogue;
+                textLabel.text = dialogue;
 
-            if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) {
-                Debug.Log("4" + dialogueBox.activeSelf);
-                break;
-            } 
-            yield return null;
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-            Debug.Log("5" + dialogueBox.activeSelf);
-        }
+                if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses)
+                {
+                    Debug.Log("4" + dialogueBox.activeSelf);
+                    break;
+                }
+                //yield return null;
+                //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+                //Debug.Log("5" + dialogueBox.activeSelf);
+            }
 
-        if (dialogueObject.HasResponses)
-        {
-            responseHandler.ShowResponses(dialogueObject.Responses);
-            Debug.Log("has response!");
+            //if (dialogueObject.HasResponses)
+            //{
+                Debug.Log("has response");
+                responseHandler.ShowResponses(dialogueObject.Responses, dialogueObject.needCondition);
+            //}
+            //else
+            //{
+            //    Debug.Log("don't have response");
+            //    CloseDialogueBox();
+            //}
         }
         else
         {
-            CloseDialogueBox();
-            Debug.Log("don't have response: close!");
+            Debug.Log("don't need condition!");
+            Debug.Log("2" + dialogueBox.activeSelf);
+            for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
+            {
+                Debug.Log("3" + dialogueBox.activeSelf);
+                string dialogue = dialogueObject.Dialogue[i];
+
+                yield return RunTypingEffect(dialogue);
+
+                textLabel.text = dialogue;
+
+                if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses)
+                {
+                    Debug.Log("4" + dialogueBox.activeSelf);
+                    break;
+                }
+                yield return null;
+                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+                Debug.Log("5" + dialogueBox.activeSelf);
+            }
+
+            if (dialogueObject.HasResponses)
+            {
+                Debug.Log("has response");
+                responseHandler.ShowResponses(dialogueObject.Responses, dialogueObject);
+            }
+            else
+            {
+                Debug.Log("don't have response");
+                CloseDialogueBox();
+            }
         }
+        
     }
 
     private IEnumerator RunTypingEffect(string dialogue)
@@ -94,6 +135,7 @@ public class DialogueUI : MonoBehaviour
 
     public void CloseDialogueBox()
     {
+        Debug.Log("close dialogue");
         IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;

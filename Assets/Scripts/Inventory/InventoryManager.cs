@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
     private bool hasNews1;
     private bool hasNews2;
     private bool hasNews3;
+
     private DialogueObject dialogueObject;
     //public GridLayoutGroup gridLayoutGroup; // Reference to the GridLayoutGroup UI component
     //public GameObject inventorySlotPrefab; // Reference to the Inventory Slot prefab
