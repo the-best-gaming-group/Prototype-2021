@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpellController : Hoverable
+public class SpellController : MonoBehaviour
 {
     private readonly Color enableColor = new (0.7495804f, 0.9622642f, 0.8802516f);
     private readonly Color disableColor = Color.grey;
@@ -42,7 +42,7 @@ public class SpellController : Hoverable
     
     public void SetCost(Spell s)
     {
-        var rcm = RunePanelController.runeColorMap;
+        var rcm = RunePanelController.runeSpriteMap;
         int[] costLeft = new int[4];
         Array.Copy(s.cost, costLeft, 4);
         for (int i = 0; i < 6; i++)
@@ -52,7 +52,7 @@ public class SpellController : Hoverable
                 if (costLeft[j]-- > 0)
                 {
                     runes[i].enabled = true;
-                    runes[i].color = rcm[(Rune)j];
+                    /* TODO: runes[i].sprite = rcm[(Rune)j]; */
                     break;
                 }
             }

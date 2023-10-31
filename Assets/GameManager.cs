@@ -11,6 +11,8 @@ using System.IO;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance; // Singleton instance
+	public SpellManager Spellmanager;
+	public InputManager inputManager;
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
 	[SerializeField] private int playerHealth;

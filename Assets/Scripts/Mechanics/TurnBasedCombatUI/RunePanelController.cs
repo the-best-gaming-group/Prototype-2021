@@ -3,10 +3,10 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using static Rune;
-public class RunePanelController : Hoverable
+using static SpellManager;
+public class RunePanelController : MonoBehaviour
 {
     private const int numChildren = 7;
-    public Hoverable[] selects = new Hoverable[numChildren];
     public readonly bool[] rerolls = new bool[6];
     public RuneController[] runes = new RuneController[numChildren-1];
     private TextMeshProUGUI text;
@@ -17,20 +17,22 @@ public class RunePanelController : Hoverable
     private int rollsLeft = 2;
     private int currentlySelected = 0;
     public bool HasRollsLeft => rollsLeft > 0;
-    static public Dictionary<Rune, Color> runeColorMap = new()
-    {
-        {WATER, Color.blue},
-        {FIRE,  Color.red},
-        {EARTH, Color.green},
-        {AIR,   Color.yellow},
-        {USED, Color.black}
-    };
-    // Start is called before the first frame update
+    static public Dictionary<Rune, SpellSprites> runeSpriteMap;    // Start is called before the first frame update
     void Start()
     {
         rrc = transform.Find("Reroll").GetComponent<RerollController>();
         text = transform.Find("Text").GetComponent<TextMeshProUGUI>();
         text.text = twoRollsLeft;
+        SpellManager sm = GameManager.Instance.Spellmanager;
+        runeSpriteMap = new()
+        {
+            {WATER, sm.GetRuneSprites(WATER)},
+            {FIRE,  sm.GetRuneSprites(FIRE)},
+            {EARTH, sm.GetRuneSprites(EARTH)},
+            {AIR,   sm.GetRuneSprites(AIR)},
+            {USED, null}
+        };
+
     }
 
     // Update is called once per frame
@@ -38,22 +40,6 @@ public class RunePanelController : Hoverable
     {
     }
     
-    public void ChangeSelect(int i)
-    {
-        selects[currentlySelected].Hide();
-        currentlySelected = i;
-        selects[currentlySelected].Show();
-    }
-    
-    public void LoseFocus()
-    {
-        selects[currentlySelected].Hide();
-    }
-
-    public void GainFocus()
-    {
-        selects[currentlySelected].Show();
-    }
     
     public void DoReroll(ResourceHandler resourceHandler)
     {
@@ -112,7 +98,9 @@ public class RunePanelController : Hoverable
     {
         for (int i = 0; i < 6; i++)
         {
-            runes[i].ChangeColor(runeColorMap[resourceHandler.GetRuneTypes()[i]]);
+            runes[i].ChangeSprites(runeSpriteMap[resourceHandler.GetRuneTypes()[i]]);
         }
     }
+    
+
 }
