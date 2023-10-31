@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Newspaper
   m_EditorClassIdentifier: 
   dialogue:
-  - There is three pieces, which one do you want to pick up?
+  - There are three pieces, which one do you want to pick up?
   responses:
   - responseText: 1
     dialogueObject: {fileID: 11400000, guid: f29eb9af0f0b94a448b0778ccd0c9f73, type: 2}
@@ -21,3 +21,4 @@ MonoBehaviour:
     dialogueObject: {fileID: 11400000, guid: 91e7402d848a79043897799a335fbd38, type: 2}
   - responseText: 3
     dialogueObject: {fileID: 11400000, guid: 1e08cc44149cb114990d28ca1624c652, type: 2}
+  needCondition: 0
