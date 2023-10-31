@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: yes
   m_EditorClassIdentifier: 
   dialogue:
-  - thank you!
+  - Thank you!
   responses: []
   needCondition: 0

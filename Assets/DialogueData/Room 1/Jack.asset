@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bf74ce4b3c22e4c99a5a1ee59625c0, type: 3}
+  m_Name: Jack
+  m_EditorClassIdentifier: 
+  dialogue:
+  - I am the one hiding under your bed
+  - Teeth ground sharp and eyes glowing red
+  - I am the one hiding under your stairs
+  - Fingers like snakes and spiders in my hair
+  - This is Halloween, this is Halloween
+  - 'Halloween, Halloween
+
+    HALLOWEEN, HALLOWEEN !!! '
+  responses: []
+  needCondition: 0

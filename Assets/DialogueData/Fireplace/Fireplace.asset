@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Fireplace
   m_EditorClassIdentifier: 
   dialogue:
-  - It's a cold, lifeless fireplace, its once warm glow replaced by emptiness.
+  - It's a cold, lifeless fireplace, its once warm glow replaced by emptiness. Yet
+    it glows for some reason?
   - Residue in the fireplace seems to have been cold for a long time; no spark, no
     flicker of warmth. Just a void now...
   - ...
@@ -22,3 +23,4 @@ MonoBehaviour:
   responses:
   - responseText: Pick up the fragment.
     dialogueObject: {fileID: 11400000, guid: eb5ef2645c30e6541849d51db88e3801, type: 2}
+  needCondition: 0

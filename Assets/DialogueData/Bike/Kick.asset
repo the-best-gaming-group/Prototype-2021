@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Kick
   m_EditorClassIdentifier: 
   dialogue:
-  - The bicycle rushes towards you angrily, you lose 10 HP.
+  - The bike rushes towards you angrily, you lose 10 HP.
   responses: []
+  needCondition: 0

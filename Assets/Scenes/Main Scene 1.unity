@@ -867,7 +867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &206856027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22770,6 +22770,9 @@ GameObject:
   - component: {fileID: 4625822597286363293}
   - component: {fileID: 2427963931013161711}
   - component: {fileID: 4053115213290274512}
+  - component: {fileID: 7507607956134457334}
+  - component: {fileID: 7507607956134457333}
+  - component: {fileID: 7507607956134457332}
   m_Layer: 0
   m_Name: Door_4
   m_TagString: Untagged
@@ -22777,6 +22780,52 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
+--- !u!114 &7507607956134457332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7507607956134457331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueObject: {fileID: 11400000, guid: 4c4976ec5ad513d4ebaa339bf8e07961, type: 2}
+  events: []
+--- !u!114 &7507607956134457333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7507607956134457331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
+  dialogueObject: {fileID: 11400000, guid: 4c4976ec5ad513d4ebaa339bf8e07961, type: 2}
+  visualCue: {fileID: 1286762970}
+  diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags: []
+--- !u!65 &7507607956134457334
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7507607956134457331}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 74.56592, y: 138.11469, z: 159.39587}
+  m_Center: {x: -16.888836, y: -56.413277, z: 1.0358214}
 --- !u!23 &7524632338906071747
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23996,7 +24045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
   events:
-  - name: Thouch it.
+  - name: Touch it.
     onPickedResponse:
       m_PersistentCalls:
         m_Calls:

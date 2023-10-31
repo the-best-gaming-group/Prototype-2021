@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: no
   m_EditorClassIdentifier: 
   dialogue:
-  - you don't have 3 yet
+  - You don't have 3 yet.
   responses: []
   needCondition: 0
