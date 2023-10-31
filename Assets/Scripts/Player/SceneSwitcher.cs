@@ -39,7 +39,7 @@ public class SceneSwitcher : MonoBehaviour
 		// Debug.Log("EnemyToSpawn = " + GameManager.Instance.enemyToSpawn);
 		// Debug.Log("PlayerHealth = " + GameManager.Instance.playerHealth);
 
-		var newScene = "SimpleCombat";
+		var newScene = "Combat Arena";
 		// We need to save the scene we're using before switching so we know what to return to
 		GameManager.Instance.PrepareForCombatSceneEnter(transform.position, enemyToSpawn.GetComponent<Enemy>().uID);
 		// Load the combat scene. Make sure you have this scene created in your Unity project.
