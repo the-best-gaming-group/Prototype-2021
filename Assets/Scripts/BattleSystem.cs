@@ -210,7 +210,9 @@ public class BattleSystem : MonoBehaviour
         CombatOptions enemyAction = CombatOptions.Knife;
         String dialogText = "The enemy <harm> you";
 
-        if (playerDodged) animator.Play("PlayerDodge");
+        if (playerDodged)
+            animator.Play("PlayerDodge");
+     
         switch (randomInt)
         {
             case < 25:
@@ -223,7 +225,7 @@ public class BattleSystem : MonoBehaviour
                 enemyAction = CombatOptions.Firebolt;
                 battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
                 sendFirebolt(false);
-                yield return new WaitForSeconds(.1f);
+                yield return new WaitForSeconds(1f);
                 break;
             case < 75:
                 enemyAction = CombatOptions.Electrocute;
@@ -324,7 +326,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new (CombatOptions.Slam, 1, sendSlam)) ;
+            turnActions.Add(new (CombatOptions.Slam, 2f, sendSlam)) ;
         }
     }
 
@@ -332,7 +334,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new (CombatOptions.Firebolt, .1f, sendFirebolt));
+            turnActions.Add(new (CombatOptions.Firebolt, 2f, sendFirebolt));
         }
     }
 
@@ -348,7 +350,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new(CombatOptions.Electrocute, 1f, sendLightning));
+            turnActions.Add(new(CombatOptions.Electrocute, 2f, sendLightning));
         }
     }
 
