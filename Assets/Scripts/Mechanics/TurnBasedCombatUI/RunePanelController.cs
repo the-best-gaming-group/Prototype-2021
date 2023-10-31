@@ -15,7 +15,6 @@ public class RunePanelController : MonoBehaviour
     private readonly string oneRollLeft = "1 Reroll Left";
     private readonly string noRollseft = "No Rerolls Left";
     private int rollsLeft = 2;
-    private int currentlySelected = 0;
     public bool HasRollsLeft => rollsLeft > 0;
     static public Dictionary<Rune, SpellSprites> runeSpriteMap;    // Start is called before the first frame update
     void Start()

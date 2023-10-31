@@ -88,7 +88,10 @@ namespace Platformer.Mechanics
             {
                 EventSystem.current.SetSelectedGameObject(rerollButton.gameObject);
             }
-            rerollButton.EnableSelectImage();
+            if (rerollButton != null && rerollButton == currentSelected)
+            {
+                rerollButton.EnableSelectImage();
+            }
             resourceHandler.Initialize(null);
             rpc.DoReset(resourceHandler);
             ColorButtons();

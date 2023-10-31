@@ -7,7 +7,6 @@ using static SpellManager;
 
 public class RuneController : MonoBehaviour
 {
-    public SpriteState spriteState;
     public enum SpriteType {
         REGULAR,
         HOVER,
@@ -23,7 +22,6 @@ public class RuneController : MonoBehaviour
     public void Start()
     {
         button = GetComponentInChildren<Button>();
-        spriteState = button.spriteState;
         buttonImage = transform.Find("Button").GetComponent<Image>();
         selectImage = transform.Find("Select").GetComponent<Image>();
     }
@@ -52,7 +50,9 @@ public class RuneController : MonoBehaviour
         button.interactable = true;
         sprites = s;
         buttonImage.sprite = s.regular;
-        spriteState.disabledSprite = s.disabled;
-        selectImage.sprite = sprites.hover;
+        var ss = new SpriteState();
+        ss.disabledSprite = s.disabled;
+        button.spriteState = ss;
+        selectImage.sprite = s.hover;
     }
 }
