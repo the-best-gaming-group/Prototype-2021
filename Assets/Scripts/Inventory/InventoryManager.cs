@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
     private bool hasNews1;
     private bool hasNews2;
     private bool hasNews3;
+    private bool condition;
 
     private DialogueObject dialogueObject;
     //public GridLayoutGroup gridLayoutGroup; // Reference to the GridLayoutGroup UI component
@@ -54,26 +55,27 @@ public class InventoryManager : MonoBehaviour
             {
                 hasNews2 = true;
             }
-            else if (inventoryData.items[i].itemName == "News3")
-            {
-                hasNews3 = true;
-            }
         }
-        Debug.Log(hasNews1);
-        Debug.Log(hasNews2);
-        Debug.Log(hasNews3);
+        if (hasNews1 && hasNews2)
+        {
+            condition = true;
+        }
+        else
+        {
+            condition = false;
+        }
     }
 
     public void completeNews(DialogueObject dialogueYes)
     {
-        if (hasNews1 && hasNews2 && hasNews3)
+        if (condition)
         {
             dialogueObject = dialogueYes;
         }
     }
     public void notCompleteNews(DialogueObject dialogueNo)
     {
-        if (!hasNews1 || !hasNews2 || !hasNews3)
+        if (!condition)
         {
             dialogueObject = dialogueNo;
         }
@@ -81,5 +83,36 @@ public class InventoryManager : MonoBehaviour
     public void responseDialogue(DialogueUI dialogueUI)
     {
         dialogueUI.ShowDialogue(dialogueObject);
+    }
+
+    public void newspaperReward()
+    {
+        if (condition)
+        {
+            Debug.Log("get 50 coins");
+        }
+    }
+
+    public void newspaperRemove1(InventoryItem item)
+    {
+        if (condition)
+        {
+            RemoveItem(item);
+        }
+    }
+    public void newspaperRemove2(InventoryItem item)
+    {
+        if (condition)
+        {
+            RemoveItem(item);
+        }
+    }
+
+    public void finished(GameObject toDestroy)
+    {
+        if (condition)
+        {
+            Destroy(toDestroy);
+        }
     }
 }
