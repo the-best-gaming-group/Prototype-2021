@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - Woah! Everything's huge. How did I end up- YOU! WHAT BRINGS YOU HERE?!
-  responses: []
+  responses:
+  - responseText: ?!
+    dialogueObject: {fileID: 11400000, guid: 996c33f74e6b3a04db0ffeb0ec895ea5, type: 2}
   needCondition: 0

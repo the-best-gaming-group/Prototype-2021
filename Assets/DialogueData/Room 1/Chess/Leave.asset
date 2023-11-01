@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Leave
   m_EditorClassIdentifier: 
   dialogue:
-  - (that was close)
+  - You are not welcome here.
   responses: []
   needCondition: 0

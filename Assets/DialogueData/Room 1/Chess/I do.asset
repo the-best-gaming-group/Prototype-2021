@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: I do
   m_EditorClassIdentifier: 
   dialogue:
-  - Trouble is what you shall get.
+  - Very well. Trouble is what you shall get.
   responses: []
   needCondition: 0

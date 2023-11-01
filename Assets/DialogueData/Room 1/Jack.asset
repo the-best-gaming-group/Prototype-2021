@@ -21,5 +21,7 @@ MonoBehaviour:
   - 'Halloween, Halloween
 
     HALLOWEEN, HALLOWEEN !!! '
-  responses: []
+  responses:
+  - responseText: HAPPY HALLOWEEN!
+    dialogueObject: {fileID: 0}
   needCondition: 0

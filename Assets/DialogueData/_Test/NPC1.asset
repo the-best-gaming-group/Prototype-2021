@@ -21,5 +21,6 @@ MonoBehaviour:
   responses:
   - responseText: Leave to explore elsewhere.
     dialogueObject: {fileID: 11400000, guid: a2f13f88256eb994c929a2d593358f1d, type: 2}
-  - responseText: Tap its shoulder to try to wake it up
+  - responseText: Tap its shoulder to try to wake it up.
     dialogueObject: {fileID: 11400000, guid: 6ea935b71204e2e42b05ec77b8999830, type: 2}
+  needCondition: 0
