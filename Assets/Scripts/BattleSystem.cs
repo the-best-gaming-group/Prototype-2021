@@ -46,6 +46,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject knifeAsset;
     public GameObject enemyStunAsset;
     public GameObject stunObj;
+    public GameObject healAsset;
+    public GameObject healObj;
     public int remaningStunTurns = 0;
 
     TextMeshProUGUI battleDialog;
@@ -331,12 +333,22 @@ public class BattleSystem : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.K)) {
-        //    stunObj = Instantiate(enemyStunAsset, enemy.transform);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Q)) {
-        //    Destroy(stunObj);
-        //}
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            animator.Play("PlayerStun");
+            try
+            {
+                //healObj = GameObject.Instantiate(healAsset, player.transform);
+                stunObj = GameObject.Instantiate(enemyStunAsset, enemy.transform);
+            } catch (Exception e) { }
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //Destroy(healObj);
+            Destroy(stunObj);
+        }
+        GC.Collect();
+        Resources.UnloadUnusedAssets();
     }
 
 
