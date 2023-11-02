@@ -10,7 +10,7 @@ using static Rune;
 [Serializable]
 public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
-public enum CombatOptions//rename
+public enum CombatOptions
 {
     Slam = 20,
     Firebolt = 25,
@@ -325,7 +325,14 @@ public class BattleSystem : MonoBehaviour
     GameObject sendStun(bool isFromPlayer = true)
     {
         Destroy(stunObj);//remove prev stun effect if any
+
+        animator.Play("PlayerStun");
+        try
+        {
         stunObj = Instantiate(enemyStunAsset, enemy.transform);
+        }
+        catch (Exception ignored) { }
+
         remaningStunTurns++;
 
         return null;
@@ -339,16 +346,14 @@ public class BattleSystem : MonoBehaviour
             try
             {
                 //healObj = GameObject.Instantiate(healAsset, player.transform);
-                stunObj = GameObject.Instantiate(enemyStunAsset, enemy.transform);
-            } catch (Exception e) { }
+                healObj = GameObject.Instantiate(healAsset, player.transform);
+            } catch (Exception ignored) { }
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //Destroy(healObj);
-            Destroy(stunObj);
+            Destroy(healObj);
         }
-        GC.Collect();
-        Resources.UnloadUnusedAssets();
     }
 
 
