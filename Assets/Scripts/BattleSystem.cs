@@ -16,7 +16,8 @@ public enum CombatOptions
     Firebolt = 25,
     Electrocute = 40,
     ThrowKnife = 5,
-    Stun = 7
+    Stun = 7,
+    Heal = 10
 }
 
 public class TurnActions {
@@ -117,17 +118,17 @@ public class BattleSystem : MonoBehaviour
             cost = fireBallCost
         };
 
-        var dodgeCost = new int[4];
-        dodgeCost[(int)WATER] = 2;
-        dodgeCost[(int)AIR] = 1;
+        var healCost = new int[4];
+        healCost[(int)WATER] = 2;
+        healCost[(int)AIR] = 1;
         spells[2] = new Spell {
-            name = "Dodge",
+            name = "Heal",
             effect = () =>
             {
-                OnDodgeButton();
+                OnHealButton();
                 return "Pressed spell 3!";
             },
-            cost = dodgeCost
+            cost = healCost
         };
         
         var lightningCost = new int[4];
@@ -140,17 +141,6 @@ public class BattleSystem : MonoBehaviour
                 return "Pressed spell 4!";
             },
             cost = lightningCost
-        };
-        //following is extra
-        var healCost = new int[4];
-        healCost[(int)WATER] = 3;
-        spells[4] = new Spell {
-            name = "Heal",
-            effect = () =>
-            {
-                return "Pressed spell 5!";
-            },
-            cost = healCost
         };
     }
 
@@ -185,13 +175,21 @@ public class BattleSystem : MonoBehaviour
 
         foreach (var action in turnActions)
         {
-            battleDialog.text = "The enemy takes " + action.action.ToString();
-            var gameObj = action.actionFunc(true);
-            yield return new WaitForSeconds(action.waitTime);
-            int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
-            GameObject.Destroy(gameObj);
+            if (action.action == CombatOptions.Heal)
+            {
+                selfHeal();
+            }
+            else
+            {
+                battleDialog.text = "The enemy takes " + action.action.ToString();
+                var gameObj = action.actionFunc(true);
+                yield return new WaitForSeconds(action.waitTime);
+                int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
+                GameObject.Destroy(gameObj);
+            }
+
             yield return new WaitForSeconds(dialogWaitTime);
-            if (enemyNewHP <= 0)
+            if (enemyHP.currentHealth <= 0)
             {
                 state = BattleState.WON;
                 break;
@@ -322,6 +320,18 @@ public class BattleSystem : MonoBehaviour
 
         return null;
     }
+
+    GameObject selfHeal(bool isFromPlayer = true)
+    {
+        try
+        {
+            GameObject.Instantiate(healAsset, player.transform);
+        } catch (Exception ignored) { }
+        playerHP.TakeDamage(-(int)CombatOptions.Heal);
+        battleDialog.text = $"You gained {(int)CombatOptions.Heal}HP";
+
+        return null;
+    }
     GameObject sendStun(bool isFromPlayer = true)
     {
         Destroy(stunObj);//remove prev stun effect if any
@@ -329,7 +339,7 @@ public class BattleSystem : MonoBehaviour
         animator.Play("PlayerStun");
         try
         {
-        stunObj = Instantiate(enemyStunAsset, enemy.transform);
+            stunObj = Instantiate(enemyStunAsset, enemy.transform);
         }
         catch (Exception ignored) { }
 
@@ -404,6 +414,13 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.PLAYER_TURN)
         {
             turnActions.Add(new(CombatOptions.Stun, 1f, sendStun));
+        }
+    }
+    public void OnHealButton()
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.Heal, 0, selfHeal));
         }
     }
 
