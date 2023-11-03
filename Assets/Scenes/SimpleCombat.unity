@@ -2348,6 +2348,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchor: {fileID: 990763961}
+--- !u!1001 &816501259
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -315
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.8172464
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.867155
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148469, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148470, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_Name
+      value: SelectionManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
 --- !u!1 &885794531
 GameObject:
   m_ObjectHideFlags: 0
@@ -6059,7 +6116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3854815291972483086, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_text
-      value: Fire Ball
+      value: Throw Knife
       objectReference: {fileID: 0}
     - target: {fileID: 3854815292031824547, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -6143,7 +6200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3854815292705853467, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnFireButton
+      value: OnKnifeButton
       objectReference: {fileID: 0}
     - target: {fileID: 3854815292705853467, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

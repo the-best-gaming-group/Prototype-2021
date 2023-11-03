@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
 	private int playerHealth;
-	public Checkpoint.SpawnsDict Spawns = new ();
+	public Checkpoint.SpawnsDict Spawns = new();
 	public Checkpoint.PlayDoorSoundDict PlayDoorSound = new();
 	public Checkpoint.PlayerPosDict PlayerPos = new();
 	public string SceneName => SceneManager.GetActiveScene().name;
@@ -27,8 +27,31 @@ public class GameManager : MonoBehaviour
 	private const int CAN_SPAWN = -1;
 	private const int CANT_SPAWN = 0;
 
+	public class Spell
+	{
+		public string name;
+
+		public Spell(string name)
+		{
+			this.name = name;
+		}
+	}
+
+	public List<Spell> spells = new List<Spell>();
+
+	// Initialize the default spells
+	private void InitializeSpells()
+	{
+		Debug.Log("StartInitializeSpells");
+		spells.Add(new Spell("Throwing Knife"));
+		spells.Add(new Spell("Slam"));
+		spells.Add(new Spell("Dodge"));
+		spells.Add(new Spell("Electrocute"));
+	}
+
 	private void Awake()
 	{
+		InitializeSpells();
 		if (Instance == null)
 		{
 			Instance = this;
@@ -42,53 +65,76 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	private Dictionary<int, int> playerInventory = new Dictionary<int, int>();
+
+	public void AddToInventory(int itemID, int quantity)
+	{
+		if (playerInventory.ContainsKey(itemID))
+		{
+			playerInventory[itemID] += quantity;
+		}
+		else
+		{
+			playerInventory[itemID] = quantity;
+		}
+	}
+
+	public int GetInventoryQuantity(int itemID)
+	{
+		if (playerInventory.ContainsKey(itemID))
+		{
+			return playerInventory[itemID];
+		}
+		return 0;
+	}
+
 	public void SetPlayerHealth(int i)
 	{
 		playerHealth = i;
 	}
-	
+
 	public int GetPlayerHealth()
 	{
-		return playerHealth;		
+		return playerHealth;
 	}
-	
+
 	public void RegisterRoomSpawner(RoomSpawner res)
 	{
-		Spawns.TryAdd(SceneName, new ());
+		Spawns.TryAdd(SceneName, new());
 		Spawns[SceneName].TryAdd(res.uID, CAN_SPAWN);
 	}
-	
+
 	public void PrepareForCombatSceneEnter(Vector3 playerPos, string enemyUID)
 	{
 		if (Checkpoint.SceneName == "") SaveCheckpoint();
 		PlayerPos[SceneName] = playerPos;
 		this.enemyUID = enemyUID;
 		prevScene = SceneName;
-    }
+	}
 
 	public string PrepareForReturnFromCombat()
 	{
 		Spawns[prevScene][enemyUID] = CANT_SPAWN;
 		return prevScene;
 	}
-	
+
 	public bool CanSpawn(string uID)
 	{
 		return Spawns[SceneName][uID] == CAN_SPAWN;
 	}
-	
+
 	public int SavedDialogueIdx(string uID)
 	{
 		return Spawns[SceneName][uID];
 	}
-	
+
 	public void SaveDialogue(string uID, int idx, Vector3 pos)
 	{
 		PlayerPos[SceneName] = pos;
 		Spawns[SceneName][uID] = idx;
 		SaveCheckpoint();
 	}
-	
+
 	public void SaveCheckpoint()
 	{
 		Checkpoint = new Checkpoint(
@@ -98,10 +144,9 @@ public class GameManager : MonoBehaviour
 			PlayerPos,
 			SceneName
 		);
-		// Debug.Log("When saving checkpoint playerHP = " + playerHealth);
 		SaveFileManager.WriteToSaveFile(SaveFilePath, Checkpoint);
 	}
-	
+
 	public void LoadCheckpoint()
 	{
 		if (Checkpoint.SceneName == "")
@@ -109,21 +154,20 @@ public class GameManager : MonoBehaviour
 			return;
 		}
 		playerHealth = Checkpoint.playerHealth;
-		// Debug.Log("Hp when loading checkpoint" + playerHealth);
 		Spawns = Checkpoint.spawns;
 		PlayDoorSound = Checkpoint.playDoorSound;
-		PlayerPos  = Checkpoint.playerPos;
+		PlayerPos = Checkpoint.playerPos;
 		sceneChange.sceneName = Checkpoint.SceneName;
 		sceneChange.Invoke();
 	}
-	
+
 	public void NewGame()
 	{
 		const string scene = "Main Scene 1";
 		Checkpoint = new(100, new(), new(), new(), scene);
 		LoadCheckpoint();
 	}
-	
+
 	public void Continue()
 	{
 		if (!File.Exists(SaveFilePath))
@@ -142,7 +186,7 @@ public class GameManager : MonoBehaviour
 	{
 		Checkpoint = await SaveFileManager.ReadFromSaveFile(SaveFilePath);
 	}
-	
+
 	IEnumerator TryLoadCheckpoint()
 	{
 		tryingLoadingCheckpoint = true;

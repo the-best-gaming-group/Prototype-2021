@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bf74ce4b3c22e4c99a5a1ee59625c0, type: 3}
+  m_Name: Fireplace
+  m_EditorClassIdentifier: 
+  dialogue:
+  - This is a flickering old fireplace, its flames dancing with an ancient wisdom.
+  - '"Another weary soul seeking solace in my warmth. What brings you to my hearth,
+    traveler?"'
+  - I seek answers. Can you shed light on the mysteries of me and this house?
+  - '"Answers lie not only in questions but also in the corners often overlooked.
+    Look within, young one."'
+  - I investigate the fireplace and discovers a hidden corner where a piece of newspaper
+    is hiding in.
+  - Wait, what's this? A piece of newspaper?
+  responses:
+  - responseText: Pick up the fragment.
+    dialogueObject: {fileID: 11400000, guid: eb5ef2645c30e6541849d51db88e3801, type: 2}
+  needCondition: 0

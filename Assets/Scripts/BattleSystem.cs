@@ -16,7 +16,7 @@ public enum CombatOptions//rename
     Slam = 20,
     Firebolt = 25,
     Electrocute = 40,
-    ThrowKnife = 5
+    Knife = 5
 }
 
 public class TurnActions {
@@ -101,17 +101,17 @@ public class BattleSystem : MonoBehaviour
             cost = slamCost
         };
         
-        var fireBallCost = new int[4];
-        fireBallCost[(int)FIRE] = 2;
-        fireBallCost[(int)AIR] = 1;
+        var throwKnifeCost = new int[4];
+        throwKnifeCost[(int)FIRE] = 2;
+        throwKnifeCost[(int)AIR] = 1;
         spells[1] = new Spell {
-            name = "Fire Ball",
+            name = "Knife throwing",
             effect = () =>
             {
-                OnFireButton();
+                OnKnifeButton();
                 return "Pressed spell 2!";
             },
-            cost = fireBallCost
+            cost = throwKnifeCost
         };
 
         var dodgeCost = new int[4];
@@ -210,10 +210,12 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         int randomInt = Time.renderedFrameCount % 100;
-        CombatOptions enemyAction = CombatOptions.ThrowKnife;
+        CombatOptions enemyAction = CombatOptions.Knife;
         String dialogText = "The enemy <harm> you";
 
-        if (playerDodged) animator.Play("PlayerDodge");
+        if (playerDodged)
+            animator.Play("PlayerDodge");
+     
         switch (randomInt)
         {
             case < 25:
@@ -226,7 +228,7 @@ public class BattleSystem : MonoBehaviour
                 enemyAction = CombatOptions.Firebolt;
                 battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
                 sendFirebolt(false);
-                yield return new WaitForSeconds(.1f);
+                yield return new WaitForSeconds(1f);
                 break;
             case < 75:
                 enemyAction = CombatOptions.Electrocute;
@@ -329,7 +331,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new (CombatOptions.Slam, 1, sendSlam)) ;
+            turnActions.Add(new (CombatOptions.Slam, 2f, sendSlam)) ;
         }
     }
 
@@ -337,7 +339,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new (CombatOptions.Firebolt, .1f, sendFirebolt));
+            turnActions.Add(new (CombatOptions.Firebolt, 2f, sendFirebolt));
         }
     }
 
@@ -353,7 +355,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new(CombatOptions.Electrocute, 1f, sendLightning));
+            turnActions.Add(new(CombatOptions.Electrocute, 2f, sendLightning));
         }
     }
 
@@ -361,7 +363,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new(CombatOptions.ThrowKnife, 1f, sendKnife));
+            turnActions.Add(new(CombatOptions.Knife, 1f, sendKnife));
         }
     }
 

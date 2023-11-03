@@ -31,11 +31,12 @@ public class DialogueUI : MonoBehaviour
         responseHandler = GetComponent<ResponseHandler>();
 
         CloseDialogueBox();
-        //ShowDialogue(testDialogue);
     }
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
+        //Debug.Log("show dialogue");
+        //Debug.Log("need condition: " + dialogueObject.needCondition);
         IsOpen = true;
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
@@ -43,28 +44,56 @@ public class DialogueUI : MonoBehaviour
 
     private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
     {
-        for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
+        if (dialogueObject.needCondition)
         {
-            string dialogue = dialogueObject.Dialogue[i];
+            //Debug.Log("need condition!");
+            for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
+            {
+                string dialogue = dialogueObject.Dialogue[i];
 
-            yield return RunTypingEffect(dialogue);
+                yield return RunTypingEffect(dialogue);
 
-            textLabel.text = dialogue;
+                textLabel.text = dialogue;
 
-            if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) break;
-
-            yield return null;
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        }
-
-        if (dialogueObject.HasResponses)
-        {
-            responseHandler.ShowResponses(dialogueObject.Responses);
+                if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses)
+                {
+                    break;
+                }
+            }
+            //Debug.Log("has response");
+            responseHandler.ShowResponses(dialogueObject.Responses, dialogueObject.needCondition);
         }
         else
         {
-            CloseDialogueBox();
+            //Debug.Log("don't need condition!");
+            for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
+            {
+                string dialogue = dialogueObject.Dialogue[i];
+
+                yield return RunTypingEffect(dialogue);
+
+                textLabel.text = dialogue;
+
+                if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses)
+                {
+                    break;
+                }
+                yield return null;
+                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            }
+
+            if (dialogueObject.HasResponses)
+            {
+                //Debug.Log("has response");
+                responseHandler.ShowResponses(dialogueObject.Responses, dialogueObject.needCondition);
+            }
+            else
+            {
+                //Debug.Log("don't have response");
+                CloseDialogueBox();
+            }
         }
+
     }
 
     private IEnumerator RunTypingEffect(string dialogue)
@@ -83,6 +112,7 @@ public class DialogueUI : MonoBehaviour
 
     public void CloseDialogueBox()
     {
+        //Debug.Log("close dialogue");
         IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
@@ -91,7 +121,7 @@ public class DialogueUI : MonoBehaviour
             act();
         }
     }
-    
+
     public void RegisterCloseAction(Action act)
     {
         actionsOnClose.Add(act);
