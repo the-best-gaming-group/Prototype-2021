@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using static Rune;
 
 [Serializable]
+
 public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
 public enum CombatOptions//rename
@@ -43,6 +44,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject fireboltAsset;
     public GameObject lightningAsset;
     public GameObject knifeAsset;
+    [SerializeField] AudioSource winSound;
+    [SerializeField] AudioSource loseSound;
 
     TextMeshProUGUI battleDialog;
 
@@ -262,6 +265,7 @@ public class BattleSystem : MonoBehaviour
         player.GetComponentInChildren<Rigidbody>().constraints = playerRBConstraints;//restore ability to move/rotate
         if (state == BattleState.WON)
         {
+            winSound.Play();
             battleDialog.text = "You have prevailed!";
             // This can be replaced with a confirmation UI when we're ready
             yield return new WaitForSecondsRealtime(2f);
@@ -271,6 +275,7 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
+            loseSound.Play();
             battleDialog.text = "You were vanquished!";
             //move back to checkpoint
             yield return new WaitForSecondsRealtime(3f);
