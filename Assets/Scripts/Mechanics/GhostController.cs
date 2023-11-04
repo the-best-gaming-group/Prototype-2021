@@ -43,6 +43,7 @@ namespace Platformer.Mechanics
             var gm = GameManager.Instance;
             if (gm != null)
             {
+                Debug.Log("Player health before saving checking point " + gm.GetPlayerHealth());
                 if (SaveCheckpoint)
                 {
                     gm.SaveCheckpoint();
