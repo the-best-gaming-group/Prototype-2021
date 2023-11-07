@@ -15,6 +15,6 @@ MonoBehaviour:
   dialogue:
   - 3?
   responses:
-  - responseText: yes
+  - responseText: Yes
     dialogueObject: {fileID: 0}
   needCondition: 1
