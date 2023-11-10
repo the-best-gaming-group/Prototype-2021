@@ -38,7 +38,7 @@ public class MusicClass : MonoBehaviour
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
-		if (scene.name == "MainMenu")
+		if (scene.name == "MainMenu" || scene.name == "SimpleCombat" || scene.name == "CombatScene" || scene.name=="Combat Arena")
 		{
 			StopMusic();
 		}
