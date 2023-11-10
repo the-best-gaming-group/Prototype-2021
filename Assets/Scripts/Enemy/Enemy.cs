@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 		newPosition.z = player.transform.position.z;
 		transform.position = newPosition;
 
-		if (SceneManager.GetActiveScene().name != "CombatScene")
+		if (SceneManager.GetActiveScene().name != "Combat Arena")
 		{
 			playerInSight = Physics.CheckSphere(transform.position, sightRange, playerLayer);
 			playerInSight = Physics.CheckSphere(transform.position, attackRange, playerLayer);
@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
 
     void Chase()
     {
-		if (SceneManager.GetActiveScene().name != "CombatScene")
+		if (SceneManager.GetActiveScene().name != "Combat Arena")
         {
 			Debug.Log("Chase");
 			agent.SetDestination(player.transform.position);

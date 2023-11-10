@@ -10117,7 +10117,7 @@ GameObject:
   - component: {fileID: 11466612}
   - component: {fileID: 5471416}
   - component: {fileID: 10857032}
-  - component: {fileID: 4616862253178061609}
+  - component: {fileID: 357160136529518702}
   m_Layer: 0
   m_Name: FireboltCollider
   m_TagString: Untagged

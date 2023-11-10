@@ -18,7 +18,7 @@ namespace Platformer.Mechanics
         private readonly static Vector3 LEFT_TURN = new Vector3(0, -180, 0);
         private GameObject _ghost_model;
         private const float floatSpeed = 0.125f;
-        private const float moveSpeed = 4f;
+        private const float moveSpeed = 5f;
         public TurnDirection turn_dir = NOT_TURNING;
         public TurnDirection last_turn_dir = NOT_TURNING;
         public JumpState jump = InFlight;
@@ -41,9 +41,9 @@ namespace Platformer.Mechanics
             _ghost_model = GameObject.Find("ghost basic");
             _rigidbody = GetComponent<Rigidbody>();
             var gm = GameManager.Instance;
-            Debug.Log("Player health before saving checking point " + gm.GetPlayerHealth());
             if (gm != null)
             {
+                Debug.Log("Player health before saving checking point " + gm.GetPlayerHealth());
                 if (SaveCheckpoint)
                 {
                     gm.SaveCheckpoint();
