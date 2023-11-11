@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bf74ce4b3c22e4c99a5a1ee59625c0, type: 3}
+  m_Name: 5-1
+  m_EditorClassIdentifier: 
+  dialogue:
+  - There was a slight sound coming from the door, I put my ear close to it.
+  - It was a mix of faint whispers and eerie laughter, as if unseen specters were
+    conspiring in the darkness.
+  - "I put my ear close to it, feeling a cold breeze seeping through the crack, making\r
+    the hair on my neck stand on end."
+  - Finally, a wave of unease washed over me, and I decided to not check what's inside...
+  responses:
+  - responseText: Leave
+    dialogueObject: {fileID: 0}
+  needCondition: 0

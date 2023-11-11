@@ -82,7 +82,7 @@ public class ResponseHandler : MonoBehaviour
     }
 
 
-    public void ShowResponses(Response[] responses)
+    public void ShowResponses(Response[] responses, bool needCondition)
     {
         float responseBoxWidth = 0;
 
@@ -94,40 +94,60 @@ public class ResponseHandler : MonoBehaviour
             GameObject responseButton = Instantiate(responseButtonTemplate.gameObject, responseContainer);
             responseButton.gameObject.SetActive(true);
             responseButton.GetComponent<TMP_Text>().text = response.ResponseText;
-            responseButton.GetComponent<Button>().onClick.AddListener(() => OnPickedResponse(response, responseIndex));
+            responseButton.GetComponent<Button>().onClick.AddListener(() => OnPickedResponse(response, responseIndex, needCondition));
 
             tempResponseButtons.Add(responseButton);
 
             responseBoxWidth += responseButtonTemplate.sizeDelta.x;
+            //Debug.Log("ShowResponses end");
         }
 
         responseBox.sizeDelta = new Vector2(responseBoxWidth, responseBox.sizeDelta.y);
         responseBox.gameObject.SetActive(true);
     }
 
-    private void OnPickedResponse(Response response, int responseIndex)
+    private void OnPickedResponse(Response response, int responseIndex, bool needCondition)
     {
-        responseBox.gameObject.SetActive(false);
-        foreach (GameObject button in tempResponseButtons)
+        if (needCondition)
         {
-            Destroy(button);
-        }
-        tempResponseButtons.Clear();
-
-        if (responseEvents != null && responseIndex <= responseEvents.Length)
-        {
+            responseBox.gameObject.SetActive(false);
+            foreach (GameObject button in tempResponseButtons)
+            {
+                Destroy(button);
+            }
+            tempResponseButtons.Clear();
+            dialogueUI.CloseDialogueBox();
             responseEvents[responseIndex].OnPickedResponse?.Invoke();
-        }
-
-        responseEvents = null;
-        
-        if (response.DialogueObject)
-        {
-            dialogueUI.ShowDialogue(response.DialogueObject);
+            responseEvents = null;
         }
         else
         {
-            dialogueUI.CloseDialogueBox();
+            //Debug.Log("response on click");
+            responseBox.gameObject.SetActive(false);
+            foreach (GameObject button in tempResponseButtons)
+            {
+                Destroy(button);
+            }
+            tempResponseButtons.Clear();
+
+            //Debug.Log("event check");
+            if (responseEvents != null && responseIndex <= responseEvents.Length)
+            {
+                //Debug.Log("event detecked");
+                responseEvents[responseIndex].OnPickedResponse?.Invoke();
+            }
+
+            responseEvents = null;
+
+            if (response.DialogueObject)
+            {
+                dialogueUI.ShowDialogue(response.DialogueObject);
+            }
+            else
+            {
+                //Debug.Log("no following dialogue");
+                dialogueUI.CloseDialogueBox();
+            }
         }
     }
 }
