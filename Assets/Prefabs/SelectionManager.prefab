@@ -562,7 +562,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 60
+    m_Top: 40
     m_Bottom: 30
   m_ChildAlignment: 1
   m_Spacing: 0
@@ -777,7 +777,7 @@ MonoBehaviour:
   selectedPanel: {fileID: 6390346941955043143}
   selectionCanvas: {fileID: 2104827438982040171}
   spellButtonPrefabs:
-  - {fileID: 7313625124187144831, guid: 4dcc9b10551924e8c8b1cf2196b34f5f, type: 3}
+  - {fileID: 7313625124187144831, guid: 93c78d886e4da4cef997f5d82b6092c5, type: 3}
   - {fileID: 7313625124187144831, guid: 450f000e58d2241d08f966eaaa11d930, type: 3}
   - {fileID: 7313625124187144831, guid: e19c2675809564a30b2c2c9fbf908b4a, type: 3}
   - {fileID: 7313625124187144831, guid: 4caf6aa9b77374e069bd197302fea312, type: 3}
@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 60
+    m_Top: 40
     m_Bottom: 30
   m_ChildAlignment: 1
   m_Spacing: 0
