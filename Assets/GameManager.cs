@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 	private void InitializeSpells()
 	{
 		Debug.Log("StartInitializeSpells");
-		spells.Add(new Spell("Throwing Knife"));
+		spells.Add(new Spell("ThrowingKnife"));
 		spells.Add(new Spell("Slam"));
 		spells.Add(new Spell("Dodge"));
 		spells.Add(new Spell("Electrocute"));
