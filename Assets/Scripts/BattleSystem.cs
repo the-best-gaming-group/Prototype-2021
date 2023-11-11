@@ -2,6 +2,7 @@ using DigitalRuby.LightningBolt;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,11 +13,11 @@ public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
 public enum CombatOptions
 {
-    Slam = 20,
-    Firebolt = 25,
-    Electrocute = 40,
-    Knife = 5,
-    Stun = 7,
+    Slam = 11,
+    Firebolt = 16,
+    Electrocute = 12,
+    Knife = 14,
+    Stun = 8,
     Heal = 10
 }
 
@@ -63,7 +64,7 @@ public class BattleSystem : MonoBehaviour
     Animator animator;
     readonly List<TurnActions> turnActions = new ();
     public ResourceHandler resourceHandler = new();
-    public Spell[] spells = new Spell[5];
+    public Spell[] spells = new Spell[4];
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -80,7 +81,7 @@ public class BattleSystem : MonoBehaviour
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
         enemy.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;
 
-        SetupSpells();
+        //SetupSpells();
 
         StartCoroutine(SetupBattle());
     }
@@ -90,58 +91,67 @@ public class BattleSystem : MonoBehaviour
      *  or at least some of it. We need to know the spells the player has
      *  when we replace them.
      */
-    public void SetupSpells()
+    public void SetupSpells(String[] selectedSpells)
     {
-        var stunCost = new int[4];
-        stunCost[(int)FIRE] = 1;
-        stunCost[(int)EARTH] = 1;
-        spells[0] = new Spell {
-            name = "Stun",
-            effect = () =>
+        playerHP.TakeDamage(-100, true);//todo: remove
+        int spellsIndex = 0;
+        foreach(String spell in selectedSpells)
+        {
+            //todo: set text for spell button
+            String lowerCaseSpell = spell.ToLower();
+            var spellCost = new int[4];
+            Action effectFunc = null;
+            if (lowerCaseSpell.Contains("slam"))
             {
-                OnStunButton();
-                return "Pressed spell 1!";
-            },
-            cost = stunCost
-        };
-        
-        var throwKnifeCost = new int[4];
-        throwKnifeCost[(int)FIRE] = 2;
-        throwKnifeCost[(int)AIR] = 1;
-        spells[1] = new Spell {
-            name = "Knife throwing",
-            effect = () =>
+                spellCost[(int)AIR] = 2;
+                spellCost[(int)EARTH] = 1;
+                effectFunc = OnSlamButton;
+            } else if (lowerCaseSpell.Contains("firebolt"))
             {
-                OnKnifeButton();
-                return "Pressed spell 2!";
-            },
-            cost = throwKnifeCost
-        };
+                spellCost[(int)FIRE] = 2;
+                spellCost[(int)AIR] = 1;
+                effectFunc = OnFireButton;
+            } else if (lowerCaseSpell.Contains("dodge"))
+            {
+                spellCost[(int)EARTH] = 2;
+                spellCost[(int)AIR] = 1;
+                effectFunc = OnDodgeButton;
+            } else if (lowerCaseSpell.Contains("electrocute"))
+            {
+                spellCost[(int)WATER] = 1;
+                spellCost[(int)AIR] = 1;
+                spellCost[(int)FIRE] = 1;
+                effectFunc = OnElectrocuteButton;
+            } else if (lowerCaseSpell.Contains("stun"))
+            {
+               spellCost[(int)EARTH] = 1;
+               spellCost[(int)FIRE] = 1;
+               spellCost[(int)AIR] = 2;
+               effectFunc = OnStunButton;
+            } else if (lowerCaseSpell.Contains("heal"))
+            {
+               spellCost[(int)WATER] = 2;
+               effectFunc = OnHealButton;
+            } else if (lowerCaseSpell.Contains("knife"))
+            {
+                spellCost[(int)EARTH] = 1;
+                spellCost[(int)AIR] = 1;
+                effectFunc = OnKnifeButton;
+            }
 
-        var healCost = new int[4];
-        healCost[(int)WATER] = 2;
-        healCost[(int)AIR] = 1;
-        spells[2] = new Spell {
-            name = "Heal",
-            effect = () =>
+            spells[spellsIndex] = new Spell
             {
-                OnHealButton();
-                return "Pressed spell 3!";
-            },
-            cost = healCost
-        };
-        
-        var lightningCost = new int[4];
-        lightningCost[(int)FIRE] = 3;
-        spells[3] = new Spell {
-            name = "Electrocute",
-            effect = () =>
-            {
-                OnElectrocuteButton();
-                return "Pressed spell 4!";
-            },
-            cost = lightningCost
-        };
+                name = spell,
+                effect = () =>
+                {
+                    effectFunc();
+                    return $"Pressed spell {spellsIndex}!";
+                },
+                cost = spellCost
+            };
+            spellsIndex++;
+        }
+        Debug.Log(spells.ToList().Select(spell => spell.name));
     }
 
     IEnumerator SetupBattle()
@@ -250,7 +260,7 @@ public class BattleSystem : MonoBehaviour
                 break;
         }
         if (!playerDodged || enemyAction is CombatOptions.Electrocute)
-            playerHP.TakeDamage((int)enemyAction, true);//todo: use other damage values? maybe * 1.5?
+            playerHP.TakeDamage(3 / 2 *(int)enemyAction / (enemyAction is CombatOptions.Electrocute && playerDodged ? 2 : 1), true);
 
         playerDodged = false;
 
@@ -376,7 +386,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new (CombatOptions.Slam, 2f, sendSlam)) ;
+            turnActions.Add(new (CombatOptions.Slam, 1.5f, sendSlam)) ;
         }
     }
 
@@ -384,7 +394,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new (CombatOptions.Firebolt, 2f, sendFirebolt));
+            turnActions.Add(new (CombatOptions.Firebolt, 1f, sendFirebolt));
         }
     }
 

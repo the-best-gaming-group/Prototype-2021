@@ -922,6 +922,72 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.015227206, y: -0.11604651, z: -0.096827835}
     m_Extent: {x: 0.06663535, y: 0.3298969, z: 0.2571644}
   m_DirtyAABB: 0
+--- !u!1001 &363313397
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 377116116}
+    m_Modifications:
+    - target: {fileID: 3922635071493062912, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_Name
+      value: StunSpell
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922635071493062912, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.23000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.5786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.24745484
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.9685608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.024283437
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.008146241
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -151.331
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.2460022
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -2.8099976
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+--- !u!4 &363313398 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6990180982210033699, guid: 8564aed6ace2ce4478c3a733d21b27d4, type: 3}
+  m_PrefabInstance: {fileID: 363313397}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &377116114
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +1023,11 @@ MonoBehaviour:
   fireboltAsset: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
   lightningAsset: {fileID: 178460, guid: 2736bbc2f2c78a949957b0719c2992bd, type: 3}
   knifeAsset: {fileID: 1450812945882496, guid: 1533f2e2578f00d4c8ae061c9420478f, type: 3}
+  enemyStunAsset: {fileID: 5659291355382750488, guid: fd68c1a480a979e4a8e555d252d9b21c, type: 3}
+  stunObj: {fileID: 0}
+  healAsset: {fileID: 507161167258341227, guid: 09f07a6c68ea11c4bbd188b43f57fe49, type: 3}
+  healObj: {fileID: 0}
+  remaningStunTurns: 0
   state: 0
   isPlayerFirstTurn: 1
 --- !u!4 &377116116
@@ -976,6 +1047,7 @@ Transform:
   - {fileID: 1662389402}
   - {fileID: 119812896846750479}
   - {fileID: 1950617197}
+  - {fileID: 363313398}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1087,6 +1159,11 @@ MonoBehaviour:
   fireboltAsset: {fileID: 0}
   lightningAsset: {fileID: 0}
   knifeAsset: {fileID: 0}
+  enemyStunAsset: {fileID: 0}
+  stunObj: {fileID: 0}
+  healAsset: {fileID: 0}
+  healObj: {fileID: 0}
+  remaningStunTurns: 0
   state: 0
   isPlayerFirstTurn: 1
 --- !u!111 &414349560
@@ -9407,6 +9484,10 @@ PrefabInstance:
     - target: {fileID: 2104827438914148470, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
       propertyPath: m_Name
       value: SelectionManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104827438914148470, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ded989bb257944d4aa7cfcf89800bbf7, type: 3}

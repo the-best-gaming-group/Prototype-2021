@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class SelectionManager : MonoBehaviour
 			selectionCanvas.SetActive(false);
 			Time.timeScale = 1f;
 			GameIsPaused = false;
+			var battleSystem = GameObject.Find("BattleSystem").GetComponent<BattleSystem>();
+			var spellsAsStrings = selectedSpells.Select(spell => spell.GetComponentInChildren<TextMeshProUGUI>().text).ToArray();
+            battleSystem.SetupSpells(spellsAsStrings);
 		}
 	}
 
