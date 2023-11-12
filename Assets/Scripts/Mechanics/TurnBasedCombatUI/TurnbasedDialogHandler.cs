@@ -84,9 +84,10 @@ namespace Platformer.Mechanics
         
         public void SetupNewRound()
         {
-            if (currentSelected != null)
+            if (rerollButton != null)
             {
                 EventSystem.current.SetSelectedGameObject(rerollButton.gameObject);
+                rerollButton.OnSelect(null);
             }
             if (rerollButton != null && rerollButton == currentSelected)
             {

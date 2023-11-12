@@ -9,13 +9,16 @@ public class CameraAnchor : MonoBehaviour
     void Start()
     {
         if (anchor == null) {
-            Debug.LogError("Anchor needs an anchor point");
+            Debug.Log("Anchor needs an anchor point");
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = anchor.transform.position;
+        if (anchor != null)
+        {
+            transform.position = anchor.transform.position;
+        }
     }
 }
