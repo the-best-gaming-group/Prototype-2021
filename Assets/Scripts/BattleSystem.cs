@@ -2,6 +2,7 @@ using DigitalRuby.LightningBolt;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,12 +12,14 @@ using static Rune;
 
 public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
-public enum CombatOptions//rename
+public enum CombatOptions
 {
-    Slam = 20,
-    Firebolt = 25,
-    Electrocute = 40,
-    Knife = 5
+    Slam = 11,
+    Firebolt = 16,
+    Electrocute = 12,
+    Knife = 14,
+    Stun = 8,
+    Heal = 10
 }
 
 public class TurnActions {
@@ -44,8 +47,16 @@ public class BattleSystem : MonoBehaviour
     public GameObject fireboltAsset;
     public GameObject lightningAsset;
     public GameObject knifeAsset;
+<<<<<<< HEAD
     [SerializeField] AudioSource winSound;
     [SerializeField] AudioSource loseSound;
+=======
+    public GameObject enemyStunAsset;
+    public GameObject stunObj;
+    public GameObject healAsset;
+    public GameObject healObj;
+    public int remaningStunTurns = 0;
+>>>>>>> 54739f3a9e9864e507453b2332c1f76a588ae626
 
     TextMeshProUGUI battleDialog;
 
@@ -59,7 +70,7 @@ public class BattleSystem : MonoBehaviour
     Animator animator;
     readonly List<TurnActions> turnActions = new ();
     public ResourceHandler resourceHandler = new();
-    public Spell[] spells = new Spell[5];
+    public Spell[] spells = new Spell[4];
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -76,7 +87,7 @@ public class BattleSystem : MonoBehaviour
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
         enemy.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;
 
-        SetupSpells();
+        //SetupSpells();
 
         StartCoroutine(SetupBattle());
     }
@@ -86,69 +97,75 @@ public class BattleSystem : MonoBehaviour
      *  or at least some of it. We need to know the spells the player has
      *  when we replace them.
      */
-    public void SetupSpells()
+    public void SetupSpells(String[] selectedSpells)
     {
-        var slamCost = new int[4];
-        slamCost[(int)FIRE] = 1;
-        slamCost[(int)EARTH] = 1;
-        spells[0] = new Spell {
-            name = "Slam",
-            effect = () =>
+        playerHP.TakeDamage(-100, true);//todo: remove
+        int spellsIndex = 0;
+        foreach(String spell in selectedSpells)
+        {
+            //todo: set text for spell button
+            String lowerCaseSpell = spell.ToLower();
+            String spellName = null;
+            var spellCost = new int[4];
+            Action effectFunc = null;
+            if (lowerCaseSpell.Contains("slam"))
             {
-                OnSlamButton();
-                return "Pressed spell 1!";
-            },
-            cost = slamCost
-        };
-        
-        var throwKnifeCost = new int[4];
-        throwKnifeCost[(int)FIRE] = 2;
-        throwKnifeCost[(int)AIR] = 1;
-        spells[1] = new Spell {
-            name = "Knife throwing",
-            effect = () =>
+                spellCost[(int)AIR] = 2;
+                spellCost[(int)EARTH] = 1;
+                effectFunc = OnSlamButton;
+                spellName = "Slam";
+            } else if (lowerCaseSpell.Contains("fire"))
             {
-                OnKnifeButton();
-                return "Pressed spell 2!";
-            },
-            cost = throwKnifeCost
-        };
+                spellCost[(int)FIRE] = 2;
+                spellCost[(int)AIR] = 1;
+                effectFunc = OnFireButton;
+                spellName = "Fireball";
+            } else if (lowerCaseSpell.Contains("dodge"))
+            {
+                spellCost[(int)EARTH] = 2;
+                spellCost[(int)AIR] = 1;
+                effectFunc = OnDodgeButton;
+                spellName = "Dodge";
+            } else if (lowerCaseSpell.Contains("electrocute"))
+            {
+                spellCost[(int)WATER] = 1;
+                spellCost[(int)AIR] = 1;
+                spellCost[(int)FIRE] = 1;
+                effectFunc = OnElectrocuteButton;
+                spellName = "Electrocute";
+            } else if (lowerCaseSpell.Contains("stun"))
+            {
+               spellCost[(int)EARTH] = 1;
+               spellCost[(int)FIRE] = 1;
+               spellCost[(int)AIR] = 2;
+               effectFunc = OnStunButton;
+                spellName = "Stun";
+            } else if (lowerCaseSpell.Contains("heal"))
+            {
+               spellCost[(int)WATER] = 2;
+               effectFunc = OnHealButton;
+                spellName = "Heal";
+            } else if (lowerCaseSpell.Contains("knife"))
+            {
+                spellCost[(int)EARTH] = 1;
+                spellCost[(int)AIR] = 1;
+                effectFunc = OnKnifeButton;
+                spellName = "Knife";
+            }
 
-        var dodgeCost = new int[4];
-        dodgeCost[(int)WATER] = 2;
-        dodgeCost[(int)AIR] = 1;
-        spells[2] = new Spell {
-            name = "Dodge",
-            effect = () =>
+            spells[spellsIndex] = new Spell
             {
-                OnDodgeButton();
-                return "Pressed spell 3!";
-            },
-            cost = dodgeCost
-        };
-        
-        var lightningCost = new int[4];
-        lightningCost[(int)FIRE] = 3;
-        spells[3] = new Spell {
-            name = "Electrocute",
-            effect = () =>
-            {
-                OnElectrocuteButton();
-                return "Pressed spell 4!";
-            },
-            cost = lightningCost
-        };
-        //following is extra
-        var healCost = new int[4];
-        healCost[(int)WATER] = 3;
-        spells[4] = new Spell {
-            name = "Heal",
-            effect = () =>
-            {
-                return "Pressed spell 5!";
-            },
-            cost = healCost
-        };
+                name = spellName,
+                effect = () =>
+                {
+                    effectFunc();
+                    return $"Pressed spell {spellsIndex}!";
+                },
+                cost = spellCost
+            };
+            spellsIndex++;
+        }
+        Debug.Log(spells.ToList().Select(spell => spell.name));
     }
 
     IEnumerator SetupBattle()
@@ -182,14 +199,21 @@ public class BattleSystem : MonoBehaviour
 
         foreach (var action in turnActions)
         {
-            //todo: maybe add code for enemy to randomly be able to dodge?
-            battleDialog.text = "The enemy takes " + action.action.ToString();
-            var gameObj = action.actionFunc(true);
-            yield return new WaitForSeconds(action.waitTime);
-            int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
-            GameObject.Destroy(gameObj);
+            if (action.action == CombatOptions.Heal)
+            {
+                selfHeal();
+            }
+            else
+            {
+                battleDialog.text = "The enemy takes " + action.action.ToString();
+                var gameObj = action.actionFunc(true);
+                yield return new WaitForSeconds(action.waitTime);
+                int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
+                GameObject.Destroy(gameObj);
+            }
+
             yield return new WaitForSeconds(dialogWaitTime);
-            if (enemyNewHP == 0)
+            if (enemyHP.currentHealth <= 0)
             {
                 state = BattleState.WON;
                 break;
@@ -198,13 +222,19 @@ public class BattleSystem : MonoBehaviour
         }
         turnActions.Clear();
 
-        if (enemyHP.currentHealth > 0)
+        if (state == BattleState.WON)
+        {
+            StartCoroutine(EndBattle());
+        } else if (remaningStunTurns < 1)
         {
             state = BattleState.ENEMY_TURN;
+                Destroy(stunObj);
             StartCoroutine(EnemyTurn());
+        } else
+        {
+            remaningStunTurns--;
+            PlayerTurn();
         }
-        else
-            StartCoroutine(EndBattle());
     }
 
     IEnumerator EnemyTurn()
@@ -244,7 +274,7 @@ public class BattleSystem : MonoBehaviour
                 break;
         }
         if (!playerDodged || enemyAction is CombatOptions.Electrocute)
-            playerHP.TakeDamage((int)enemyAction, true);//todo: use other damage values?
+            playerHP.TakeDamage((int)enemyAction / (enemyAction is CombatOptions.Electrocute && playerDodged ? 2 : 1), true);
 
         playerDodged = false;
 
@@ -319,8 +349,49 @@ public class BattleSystem : MonoBehaviour
         return null;
     }
 
+    GameObject selfHeal(bool isFromPlayer = true)
+    {
+        try
+        {
+            GameObject.Instantiate(healAsset, player.transform);
+        } catch (Exception ignored) { }
+        playerHP.TakeDamage(-(int)CombatOptions.Heal);
+        battleDialog.text = $"You gained {(int)CombatOptions.Heal}HP";
+
+        return null;
+    }
+    GameObject sendStun(bool isFromPlayer = true)
+    {
+        Destroy(stunObj);//remove prev stun effect if any
+
+        animator.Play("PlayerStun");
+        try
+        {
+            stunObj = Instantiate(enemyStunAsset, enemy.transform);
+        }
+        catch (Exception ignored) { }
+
+        remaningStunTurns++;
+
+        return null;
+    }
+
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            animator.Play("PlayerStun");
+            try
+            {
+                //healObj = GameObject.Instantiate(healAsset, player.transform);
+                healObj = GameObject.Instantiate(healAsset, player.transform);
+            } catch (Exception ignored) { }
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //Destroy(healObj);
+            Destroy(healObj);
+        }
     }
 
 
@@ -331,7 +402,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new (CombatOptions.Slam, 2f, sendSlam)) ;
+            turnActions.Add(new (CombatOptions.Slam, 1.5f, sendSlam)) ;
         }
     }
 
@@ -339,7 +410,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new (CombatOptions.Firebolt, 2f, sendFirebolt));
+            turnActions.Add(new (CombatOptions.Firebolt, 1f, sendFirebolt));
         }
     }
 
@@ -364,6 +435,20 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.PLAYER_TURN)
         {
             turnActions.Add(new(CombatOptions.Knife, 1f, sendKnife));
+        }
+    }
+    public void OnStunButton()
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.Stun, 1f, sendStun));
+        }
+    }
+    public void OnHealButton()
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.Heal, 0, selfHeal));
         }
     }
 
