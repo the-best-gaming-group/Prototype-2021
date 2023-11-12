@@ -16,7 +16,7 @@ public class CameraAnchor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (anchor != null)
+        if (anchor != null) 
         {
             transform.position = anchor.transform.position;
         }
