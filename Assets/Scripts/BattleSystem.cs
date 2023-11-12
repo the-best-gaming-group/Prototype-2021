@@ -99,6 +99,7 @@ public class BattleSystem : MonoBehaviour
         {
             //todo: set text for spell button
             String lowerCaseSpell = spell.ToLower();
+            String spellName = null;
             var spellCost = new int[4];
             Action effectFunc = null;
             if (lowerCaseSpell.Contains("slam"))
@@ -106,42 +107,49 @@ public class BattleSystem : MonoBehaviour
                 spellCost[(int)AIR] = 2;
                 spellCost[(int)EARTH] = 1;
                 effectFunc = OnSlamButton;
-            } else if (lowerCaseSpell.Contains("firebolt"))
+                spellName = "Slam";
+            } else if (lowerCaseSpell.Contains("fire"))
             {
                 spellCost[(int)FIRE] = 2;
                 spellCost[(int)AIR] = 1;
                 effectFunc = OnFireButton;
+                spellName = "Fireball";
             } else if (lowerCaseSpell.Contains("dodge"))
             {
                 spellCost[(int)EARTH] = 2;
                 spellCost[(int)AIR] = 1;
                 effectFunc = OnDodgeButton;
+                spellName = "Dodge";
             } else if (lowerCaseSpell.Contains("electrocute"))
             {
                 spellCost[(int)WATER] = 1;
                 spellCost[(int)AIR] = 1;
                 spellCost[(int)FIRE] = 1;
                 effectFunc = OnElectrocuteButton;
+                spellName = "Electrocute";
             } else if (lowerCaseSpell.Contains("stun"))
             {
                spellCost[(int)EARTH] = 1;
                spellCost[(int)FIRE] = 1;
                spellCost[(int)AIR] = 2;
                effectFunc = OnStunButton;
+                spellName = "Stun";
             } else if (lowerCaseSpell.Contains("heal"))
             {
                spellCost[(int)WATER] = 2;
                effectFunc = OnHealButton;
+                spellName = "Heal";
             } else if (lowerCaseSpell.Contains("knife"))
             {
                 spellCost[(int)EARTH] = 1;
                 spellCost[(int)AIR] = 1;
                 effectFunc = OnKnifeButton;
+                spellName = "Knife";
             }
 
             spells[spellsIndex] = new Spell
             {
-                name = spell,
+                name = spellName,
                 effect = () =>
                 {
                     effectFunc();

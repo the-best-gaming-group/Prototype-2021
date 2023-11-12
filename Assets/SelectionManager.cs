@@ -205,6 +205,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -231,7 +232,7 @@ public class SelectionManager : MonoBehaviour
 			Time.timeScale = 1f;
 			GameIsPaused = false;
 			var battleSystem = GameObject.Find("BattleSystem").GetComponent<BattleSystem>();
-			var spellsAsStrings = selectedSpells.Select(spell => spell.GetComponentInChildren<TextMeshProUGUI>().text).ToArray();
+			var spellsAsStrings = selectedSpells.Select(spell => spell.name).ToArray();
             battleSystem.SetupSpells(spellsAsStrings);
 		}
 	}
@@ -249,7 +250,7 @@ public class SelectionManager : MonoBehaviour
 
 		foreach (GameManager.Spell spell in gameManager.spells)
 		{
-			Button spellButtonPrefab = spellButtonPrefabs.Find(prefab => prefab.name == spell.name + "Button");
+			Button spellButtonPrefab = spellButtonPrefabs.Find(prefab => prefab.name.ToLower().Contains(spell.name.Replace(" ", "").ToLower()));
 			if (spellButtonPrefab != null)
 			{
 				Button spellButton = Instantiate(spellButtonPrefab, selectionPanel.transform);
@@ -263,7 +264,7 @@ public class SelectionManager : MonoBehaviour
 	{
 		if (selectedSpells.Count < 4)
 		{
-			Button spellButtonPrefab = spellButtonPrefabs.Find(prefab => prefab.name + "(Clone)" == spellButton.name );
+			Button spellButtonPrefab = spellButtonPrefabs.Find(prefab => spellButton.name.Contains(prefab.name) );
 
 			if (spellButtonPrefab != null)
 			{
@@ -287,7 +288,7 @@ public class SelectionManager : MonoBehaviour
 
 		foreach (Button spellButton in spellButtons)
 		{
-			if (spellButton.name == selectedSpell.name)
+			if (spellButton.name.Equals(selectedSpell.name))
 			{
 				spellButton.gameObject.SetActive(true);
 				break;
