@@ -8,12 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: stained glass
-  m_Shader: {fileID: -6465566751694194690, guid: f41a29eeecaa9bb47b9152a4c57d052f, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: bfb13ebb5b8ff9b47a6854a9f9c242ef, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -78,6 +78,38 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Rough:
         m_Texture: {fileID: 2800000, guid: 0aaaf2fc8d44bca469702ac764cfb9ff, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_093f55e4d64f48b183a5b04523b2b987_Texture_1:
+        m_Texture: {fileID: 2800000, guid: c28435dece496a14cab6ee2660a89a52, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_189614a104b444e69c86226b888c6d27_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 3e1a9877a610be642846af5b9aaa707a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_48b0177d70ba407a89d913098a1888e1_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 0aaaf2fc8d44bca469702ac764cfb9ff, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_8b03f471514f442688f153112ced9693_Texture_1:
+        m_Texture: {fileID: 2800000, guid: dcb7427cb299f484c8dbef4ebfd135ce, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_c473f1c5ed564112b697465d4b9701cd_Texture_1:
+        m_Texture: {fileID: 2800000, guid: e23fc07d1f70cc8458532f4bdcaf0451, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_c83fbc57f6494c06981d53ead516cc0b_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 9b7c19ffdfe704c4e9e9654214b4acc9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_e8716be7865e45adbbb90de74304b194_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 0ef28e77adf3dd64cb81079710873183, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_f3050cbd5abf41a790b40ac6e168f705_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 7b2cb0e2030dfbd4eabb34074dfd76a5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
