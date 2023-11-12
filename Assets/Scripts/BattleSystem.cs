@@ -268,7 +268,7 @@ public class BattleSystem : MonoBehaviour
                 break;
         }
         if (!playerDodged || enemyAction is CombatOptions.Electrocute)
-            playerHP.TakeDamage(3 / 2 *(int)enemyAction / (enemyAction is CombatOptions.Electrocute && playerDodged ? 2 : 1), true);
+            playerHP.TakeDamage((int)enemyAction / (enemyAction is CombatOptions.Electrocute && playerDodged ? 2 : 1), true);
 
         playerDodged = false;
 
