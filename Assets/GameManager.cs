@@ -7,6 +7,7 @@ using Platformer.Mechanics;
 using Platformer.Core;
 using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,11 +44,21 @@ public class GameManager : MonoBehaviour
 	private void InitializeSpells()
 	{
 		Debug.Log("StartInitializeSpells");
-		spells.Add(new Spell("Throwing Knife"));
-		spells.Add(new Spell("Slam"));
-		spells.Add(new Spell("Dodge"));
-		spells.Add(new Spell("Electrocute"));
-	}
+		//todo: use CombatSystem.CombatOptions to avoid hard code
+		spells.AddRange(
+			new List<String>() { 
+   "Throwing Knife", 
+   "Slam", 
+   "Dodge", 
+   //"Stun", 
+   //"Heal", 
+   //"Fireball", 
+   "Electrocute"
+   }
+			.Select(ability => new Spell(ability))
+			);
+
+    }
 
 	private void Awake()
 	{
