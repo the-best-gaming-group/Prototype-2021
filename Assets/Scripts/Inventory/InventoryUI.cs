@@ -45,45 +45,6 @@ public class InventoryUI : MonoBehaviour
     }
 
 
-    /*
-    private void UpdateInventory(InventoryData data)
-    {
-        if (inventoryCount < data.items.Count)
-        {
-            // Add new items to the inventory UI
-            for (int i = inventoryCount; i < data.items.Count; i++)
-            {
-                GameObject inventorySlot = Instantiate(inventoryFrame.gameObject, panel);
-                inventorySlot.gameObject.SetActive(true);
-                inventorySlot.transform.GetChild(0).GetComponent<Image>().sprite = data.items[i].itemIcon;
-
-                // Add a button component to the inventory slot
-                Button button = inventorySlot.AddComponent<Button>();
-                button.onClick.AddListener(() => OnInventorySlotClick(data.items[i]));
-
-                panelHeight += inventoryFrame.sizeDelta.y;
-            }
-            panel.sizeDelta = new Vector2(panel.sizeDelta.x, panelHeight);
-        }
-        else if (inventoryCount > data.items.Count)
-        {
-            // Remove items from the inventory UI
-            int itemsToRemove = inventoryCount - data.items.Count;
-            for (int i = 0; i < itemsToRemove; i++)
-            {
-                Transform slotTransform = panel.GetChild(panel.childCount - 1); // Get the last child
-                Destroy(slotTransform.gameObject); // Remove the GameObject from the UI
-                panelHeight -= inventoryFrame.sizeDelta.y;
-            }
-            panel.sizeDelta = new Vector2(panel.sizeDelta.x, panelHeight);
-        }
-
-        panel.gameObject.SetActive(true);
-        inventoryCount = data.items.Count;
-    }
-    */
-
-
     private void ClearInventory()
     {
         for (int i = 1; i < panel.childCount; i++)

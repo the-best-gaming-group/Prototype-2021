@@ -15,4 +15,9 @@ public class InventoryData : ScriptableObject
     {
         items.Remove(item);
     }
+
+    public void ClearItem()
+    {
+        items.Clear();
+    }
 }

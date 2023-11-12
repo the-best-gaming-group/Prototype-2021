@@ -867,7 +867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &206856027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6753,14 +6753,12 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1.26
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1
@@ -7318,51 +7316,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5140712386346641024, guid: 3538b68fe47ca4d4ba3fc05f53d8980b, type: 3}
   m_PrefabInstance: {fileID: 1533577187}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &785907791
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 785907793}
-  - component: {fileID: 785907792}
-  m_Layer: 0
-  m_Name: InventoryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &785907792
+--- !u!114 &785907792 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4274689643213829329, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+  m_PrefabInstance: {fileID: 4274689643570869377}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785907791}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0569a8098b9a9004dbc8f9401c4a56e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryData: {fileID: 11400000, guid: e767939084d28454e8d6912b70986bb8, type: 2}
---- !u!4 &785907793
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785907791}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1851.0905, y: 782.59247, z: 6.380529}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &790693349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7543,14 +7507,12 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1.26
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1
@@ -19424,6 +19386,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &4274689643570869377
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4274689643213829326, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_Name
+      value: InventoryManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1851.0905
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 782.59247
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.380529
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
 --- !u!4 &4283938407808910747
 Transform:
   m_ObjectHideFlags: 0
@@ -22506,13 +22525,13 @@ MonoBehaviour:
     onPickedResponse:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6910779704598891797}
-          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
-          m_MethodName: UpdateDialogueObject
-          m_Mode: 2
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: ClearItem
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 15ce5fb60d6778f41a6a9e4f839794e1, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
