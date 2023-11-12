@@ -17,7 +17,6 @@ namespace Platformer.Mechanics
         public virtual void Start()
         {
             uID = string.Format("x: {0}, y: {1}, z: {2}", transform.position.x, transform.position.y, transform.position.z);
-            Debug.Log(uID);
             GameManager.Instance.RegisterRoomSpawner(this);
         }
 
