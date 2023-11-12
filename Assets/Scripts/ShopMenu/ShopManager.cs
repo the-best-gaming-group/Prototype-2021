@@ -30,7 +30,7 @@ public class ShopManager : MonoBehaviour
 		shopItems[2, 4] = 40;
 
 		//Names
-		itemNames[1] = "Fire Ball";
+		itemNames[1] = "FireBall";
 		itemNames[2] = "Freeze";
 		itemNames[3] = "Heal";
 		itemNames[4] = "Stun";
