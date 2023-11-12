@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
@@ -8,6 +9,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private RectTransform inventoryFrame;
     [SerializeField] private RectTransform inventoryIcon;
 
+    public static InventoryUI Instance;
     private int inventoryCount;
 
     private void Start()
@@ -15,11 +17,29 @@ public class InventoryUI : MonoBehaviour
         inventoryCount = 0;
     }
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Update()
     {
         if (data.items.Count != inventoryCount)
         {
             UpdateInventory(data);
+        }
+
+        if (SceneManager.GetActiveScene().name == "MainMenu" || SceneManager.GetActiveScene().name == "Combat Arena")
+        {
+            Destroy(gameObject);
         }
     }
 
