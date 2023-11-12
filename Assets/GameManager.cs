@@ -46,7 +46,15 @@ public class GameManager : MonoBehaviour
 		Debug.Log("StartInitializeSpells");
 		//todo: use CombatSystem.CombatOptions to avoid hard code
 		spells.AddRange(
-			new List<String>() { "Throwing Knife", "Slam", "Dodge", "Electrocute", "Stun", "Heal", "Fireball" }
+			new List<String>() { 
+   "Throwing Knife", 
+   "Slam", 
+   "Dodge", 
+   //"Stun", 
+   //"Heal", 
+   //"Fireball", 
+   "Electrocute"
+   }
 			.Select(ability => new Spell(ability))
 			);
 
