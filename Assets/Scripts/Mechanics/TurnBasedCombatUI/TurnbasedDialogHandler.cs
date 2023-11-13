@@ -68,6 +68,11 @@ namespace Platformer.Mechanics
             {
                 OnSpellButton(3);
             }
+
+            if (currentSelected != null)
+            {
+                EventSystem.current.SetSelectedGameObject(currentSelected.gameObject);
+            }
         }
         
         public void Enable()
@@ -149,6 +154,7 @@ namespace Platformer.Mechanics
         public void OnResetButton()
         {
             resourceHandler.UncommitRunes();
+            rpc.WipeRerolls();
             rpc.ColorRunes(resourceHandler);
             spellEffects.Clear();
             ColorButtons();
