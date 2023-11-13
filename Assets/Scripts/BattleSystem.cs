@@ -1,4 +1,5 @@
 using DigitalRuby.LightningBolt;
+using Platformer.Mechanics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -86,6 +87,7 @@ public class BattleSystem : MonoBehaviour
     
     public void Resume()
     {
+        GetComponentInChildren<TurnbasedDialogHandler>().Disable();
         StartCoroutine(SetupBattle());
     }
 

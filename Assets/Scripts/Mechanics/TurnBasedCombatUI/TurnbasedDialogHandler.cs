@@ -27,7 +27,6 @@ namespace Platformer.Mechanics
         private 
         void Start()
         {
-            Disable();
             resourceHandler = bs.resourceHandler;
             bs.RegisterStartBattleListener(() => {
                 spells = bs.spells;
@@ -37,11 +36,11 @@ namespace Platformer.Mechanics
                 }
                 return "Setting up the battle";
             });
+            bs.RegisterPlayerTurnBeginListener(() => {Enable(); return "Enabled player turn";});
             bs.RegisterPlayerTurnBeginListener(() => {
                 SetupNewRound();
                 return "Setting up new round";
             });
-            bs.RegisterPlayerTurnBeginListener(() => {Enable(); return "Enabled player turn";});
             bs.RegisterPlayerTurnEndListener(() => {Disable(); return "Disabled player turn";});
         }
 
