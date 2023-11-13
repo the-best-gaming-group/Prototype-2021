@@ -7331,51 +7331,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5140712386346641024, guid: 3538b68fe47ca4d4ba3fc05f53d8980b, type: 3}
   m_PrefabInstance: {fileID: 1533577187}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &785907791
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 785907793}
-  - component: {fileID: 785907792}
-  m_Layer: 0
-  m_Name: InventoryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &785907792
+--- !u!114 &785907792 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4274689643213829329, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+  m_PrefabInstance: {fileID: 4274689643570869377}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785907791}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0569a8098b9a9004dbc8f9401c4a56e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryData: {fileID: 11400000, guid: e767939084d28454e8d6912b70986bb8, type: 2}
---- !u!4 &785907793
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785907791}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1851.0905, y: 782.59247, z: 6.380529}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &790693349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10063,108 +10029,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 11400000, guid: f5389325052b9b245a4f86ef0d9a3a3e, type: 2}
-  events:
-  - name: Check the pieces I've got.
-    onPickedResponse:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 785907792}
-          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-          m_MethodName: CheckNewspaper
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 785907792}
-          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-          m_MethodName: completeNews
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 120032da19a5e7d4ba0fb82543f8df76, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 785907792}
-          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-          m_MethodName: notCompleteNews
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 8b07c7c838de28f4b80699434cc4dd77, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 785907792}
-          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-          m_MethodName: responseDialogue
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 909992398}
-            m_ObjectArgumentAssemblyTypeName: DialogueUI, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 785907792}
-          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-          m_MethodName: newspaperReward
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 785907792}
-          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-          m_MethodName: newspaperRemove1
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: c0b6619f515fc4041a8f80435d7a3c7e, type: 2}
-            m_ObjectArgumentAssemblyTypeName: InventoryItem, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 785907792}
-          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-          m_MethodName: newspaperRemove2
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 89dff3c1294c6b647a8f7c066c35bbd9, type: 2}
-            m_ObjectArgumentAssemblyTypeName: InventoryItem, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 785907792}
-          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-          m_MethodName: finished
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 7202274394416992502}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueObject: {fileID: 11400000, guid: 8f53deca2e85a1744a9c36280fadca79, type: 2}
+  events: []
 --- !u!114 &1855196184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10179,12 +10045,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WillSpawn: 1
   uID: 
-  dialogueObject: {fileID: 11400000, guid: f5389325052b9b245a4f86ef0d9a3a3e, type: 2}
+  dialogueObject: {fileID: 11400000, guid: 8f53deca2e85a1744a9c36280fadca79, type: 2}
   visualCue: {fileID: 1286762970}
   diaSound: {fileID: 0}
   savedDiagIdx: -1
-  finalDiags:
-  - {fileID: 11400000, guid: 8b07c7c838de28f4b80699434cc4dd77, type: 2}
+  finalDiags: []
 --- !u!65 &1855196185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10689,17 +10554,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1915072591730145693, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
   m_PrefabInstance: {fileID: 1385220580}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2140386448 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7486674368554127779, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
-  m_PrefabInstance: {fileID: 1385220580}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2140386447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d1754b75e68419596ac939426ce0df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &2140386456 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 4026064590475308162, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
@@ -19464,6 +19318,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &4274689643570869377
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4274689643213829326, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_Name
+      value: InventoryManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1851.0905
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 782.59247
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.380529
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829328, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
 --- !u!4 &4283938407808910747
 Transform:
   m_ObjectHideFlags: 0
@@ -20686,8 +20597,9 @@ GameObject:
   - component: {fileID: 3965714819705381030}
   - component: {fileID: 7399455437859143712}
   - component: {fileID: 7399455437859143715}
-  - component: {fileID: 7399455437859143714}
-  - component: {fileID: 7399455437859143713}
+  - component: {fileID: 7399455437859143718}
+  - component: {fileID: 7399455437859143717}
+  - component: {fileID: 7399455437859143716}
   m_Layer: 0
   m_Name: Door_3
   m_TagString: Untagged
@@ -22741,12 +22653,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WillSpawn: 1
   uID: 
-  dialogueObject: {fileID: 11400000, guid: 4a0e0806ea2ac74488c76c70664ead8c, type: 2}
+  dialogueObject: {fileID: 11400000, guid: c2ee4e9a63f81784e8efd571d8964773, type: 2}
   visualCue: {fileID: 1543957784}
   diaSound: {fileID: 0}
   savedDiagIdx: -1
   finalDiags:
-  - {fileID: 11400000, guid: 42d9b6e859d6d0847999a05004313d9b, type: 2}
+  - {fileID: 11400000, guid: 5e03c2b3431e08d4d9d2c768fbd7945d, type: 2}
 --- !u!114 &7083286782933293395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22759,36 +22671,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 11400000, guid: 4a0e0806ea2ac74488c76c70664ead8c, type: 2}
-  events:
-  - name: Pick up the fragment.
-    onPickedResponse:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7083286782933293394}
-          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
-          m_MethodName: UpdateDialogueObject
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 42d9b6e859d6d0847999a05004313d9b, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 785907792}
-          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-          m_MethodName: AddItem
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: c0b6619f515fc4041a8f80435d7a3c7e, type: 2}
-            m_ObjectArgumentAssemblyTypeName: InventoryItem, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueObject: {fileID: 11400000, guid: c2ee4e9a63f81784e8efd571d8964773, type: 2}
+  events: []
 --- !u!65 &7083286782933293396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23090,39 +22974,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7399455437859143713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5475823192546782723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 11400000, guid: 4c4976ec5ad513d4ebaa339bf8e07961, type: 2}
-  events: []
---- !u!114 &7399455437859143714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5475823192546782723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WillSpawn: 1
-  uID: 
-  dialogueObject: {fileID: 11400000, guid: 4c4976ec5ad513d4ebaa339bf8e07961, type: 2}
-  visualCue: {fileID: 1393086271}
-  diaSound: {fileID: 0}
-  savedDiagIdx: -1
-  finalDiags: []
 --- !u!65 &7399455437859143715
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23136,6 +22987,130 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 103.85387, y: 166.67723, z: 159.39587}
   m_Center: {x: -2.244852, y: -70.69452, z: 1.0358214}
+--- !u!114 &7399455437859143716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5475823192546782723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75c1f89380ea724d8e1a7d9e19a2367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionAnim: {fileID: 345182073}
+  sceneName: Room 3
+  IsDoor: 1
+--- !u!114 &7399455437859143717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5475823192546782723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da6417bd6398d84ea3fa6a8865f508a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isReady: 0
+--- !u!82 &7399455437859143718
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5475823192546782723}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 77313667a3df4794399316a9565b3b84, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7404773784466306188
 GameObject:
   m_ObjectHideFlags: 0
@@ -23295,18 +23270,6 @@ MonoBehaviour:
     onPickedResponse:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 785907792}
-          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-          m_MethodName: AddItem
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 89dff3c1294c6b647a8f7c066c35bbd9, type: 2}
-            m_ObjectArgumentAssemblyTypeName: InventoryItem, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 7507607956134457333}
           m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
           m_MethodName: UpdateDialogueObject
@@ -24647,12 +24610,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WillSpawn: 1
   uID: 
-  dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
+  dialogueObject: {fileID: 11400000, guid: 40b3e9251b593d648949221a31bc62b1, type: 2}
   visualCue: {fileID: 1452735063}
   diaSound: {fileID: 8624485246491585287}
   savedDiagIdx: -1
   finalDiags:
-  - {fileID: 11400000, guid: d752b21f5a7db5642a91a871bd242bd6, type: 2}
+  - {fileID: 11400000, guid: 831831ad4380bef43ad7b4266d8d6995, type: 2}
 --- !u!114 &8624485246491585286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24665,58 +24628,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
+  dialogueObject: {fileID: 11400000, guid: 40b3e9251b593d648949221a31bc62b1, type: 2}
   events:
-  - name: Touch it.
+  - name: Pike it up.
     onPickedResponse:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2140386448}
-          m_TargetAssemblyTypeName: PlayerHealthBar, Assembly-CSharp
-          m_MethodName: HPManager
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: -10
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8624485246491585285}
-          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
-          m_MethodName: UpdateDialogueObject
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: AddItem
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: d752b21f5a7db5642a91a871bd242bd6, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_ObjectArgument: {fileID: 11400000, guid: c0b6619f515fc4041a8f80435d7a3c7e, type: 2}
+            m_ObjectArgumentAssemblyTypeName: InventoryItem, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - name: Kick it.
-    onPickedResponse:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2140386448}
-          m_TargetAssemblyTypeName: PlayerHealthBar, Assembly-CSharp
-          m_MethodName: HPManager
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 10
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 8624485246491585285}
           m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
           m_MethodName: UpdateDialogueObject
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: d752b21f5a7db5642a91a871bd242bd6, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 831831ad4380bef43ad7b4266d8d6995, type: 2}
             m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -25130,18 +25065,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 9035611016643065504}
-          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
-          m_MethodName: UpdateDialogueObject
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: b04e93e69062e9048bb61709875eb003, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
 --- !u!114 &9035611016643065504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25160,8 +25083,7 @@ MonoBehaviour:
   visualCue: {fileID: 1395438774}
   diaSound: {fileID: 0}
   savedDiagIdx: -1
-  finalDiags:
-  - {fileID: 11400000, guid: b04e93e69062e9048bb61709875eb003, type: 2}
+  finalDiags: []
 --- !u!65 &9035611016643065505
 BoxCollider:
   m_ObjectHideFlags: 0
