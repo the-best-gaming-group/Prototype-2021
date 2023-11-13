@@ -74,7 +74,7 @@ Material:
     - _QueueOffset: 0
     - _Roughness_strength: 1
     m_Colors:
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Tiling: {r: 1.75, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1434936510413317678
 MonoBehaviour:
