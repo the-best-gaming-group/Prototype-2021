@@ -18,9 +18,9 @@ namespace Platformer.Mechanics
         public SubmitController sc;
         public ResourceHandler resourceHandler;
         public bool isEnabled = true;
-        private List<Func<string>> spellEffects = new();
+        private List<Action> spellEffects = new();
         private RuneController[] rcs = new RuneController[6];
-        private Spell[] spells;
+        private GameManager.Spell[] spells;
         private SelectableButton currentSelected;
         private SelectableButton rerollButton;
         private SelectableButton submitButton;
@@ -29,19 +29,20 @@ namespace Platformer.Mechanics
         {
             Disable();
             resourceHandler = bs.resourceHandler;
-            bs.RegisterPlayerTurnBeginListener(() => {
+            bs.RegisterStartBattleListener(() => {
                 spells = bs.spells;
                 for (int i = 0; i < 4; i++)
                 {
-                    scs[i].SetCost(spells[i]);
-                    scs[i].text.text = spells[i].name;
+                    scs[i].SetSpell(spells[i], i, OnSpellButton);
                 }
+                return "Setting up the battle";
+            });
+            bs.RegisterPlayerTurnBeginListener(() => {
                 SetupNewRound();
                 return "Setting up new round";
             });
             bs.RegisterPlayerTurnBeginListener(() => {Enable(); return "Enabled player turn";});
             bs.RegisterPlayerTurnEndListener(() => {Disable(); return "Disabled player turn";});
-            /* All of these return a string because c# doesn't have function pointers */
         }
 
         // Update is called once per frame
@@ -93,9 +94,14 @@ namespace Platformer.Mechanics
             {
                 rerollButton.EnableSelectImage();
             }
+            if (submitButton != null)
+            {
+                submitButton.DisableSelectImage();
+            }
             resourceHandler.Initialize(null);
             rpc.DoReset(resourceHandler);
             ColorButtons();
+            rpc.ColorRunes(resourceHandler); // fixes a bug in build
         }
 
         /* All of these return a string because c# doesn't have function pointers */
@@ -149,9 +155,10 @@ namespace Platformer.Mechanics
             if (resourceHandler.CanCastSpell(spells[i]))
             {
                 resourceHandler.CommitRunesForSpell(spells[i]);
-                spellEffects.Add(spells[i].effect);
+                spellEffects.Add(spells[i].eventFunc);
                 rpc.ColorRunes(resourceHandler);
                 ColorButtons();
+                EventSystem.current.SetSelectedGameObject(currentSelected.gameObject);
             }
             return string.Format("Pressed spell {0}!", i+1);
         }

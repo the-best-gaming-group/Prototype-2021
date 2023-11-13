@@ -74,4 +74,11 @@ public class SelectableButton : MonoBehaviour, IPointerEnterHandler, ISelectHand
             selectImage.enabled = true;
         }
     }
+    public void DisableSelectImage()
+    {
+        if (selectImage != null)
+        {
+            selectImage.enabled = false;
+        }
+    }
 }

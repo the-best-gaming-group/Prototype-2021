@@ -61,6 +61,9 @@ MonoBehaviour:
   PlayerPos:
     m_Keys: []
     m_Values: []
+  AvailableSpells:
+    m_Keys: []
+    m_Values: 
   Checkpoint:
     playerHealth: 0
     spawns:
@@ -72,9 +75,39 @@ MonoBehaviour:
     playerPos:
       m_Keys: []
       m_Values: []
+    spells:
+      m_Keys: []
+      m_Values: 
     SceneName: 
   sceneChange: {fileID: 6013862213860267869}
   SaveFilePath: 
+  DefaultSpells:
+  - Slam
+  - Dodge
+  - Fireball
+  - Electrocute
+  spells:
+  - name: Dodge
+    prefabButton: {fileID: 7313625124187144831, guid: 93c78d886e4da4cef997f5d82b6092c5, type: 3}
+    cost: 00000000000000000200000001000000
+  - name: Electrocute
+    prefabButton: {fileID: 7313625124187144831, guid: 450f000e58d2241d08f966eaaa11d930, type: 3}
+    cost: 01000000010000000000000001000000
+  - name: Fireball
+    prefabButton: {fileID: 7313625124187144831, guid: e19c2675809564a30b2c2c9fbf908b4a, type: 3}
+    cost: 00000000020000000000000001000000
+  - name: Heal
+    prefabButton: {fileID: 7313625124187144831, guid: c0586a6f781804850932d5d6b0e70876, type: 3}
+    cost: 02000000000000000000000000000000
+  - name: Slam
+    prefabButton: {fileID: 7313625124187144831, guid: 0c3ab464326ec4633b9552892ceeb4f8, type: 3}
+    cost: 00000000000000000100000002000000
+  - name: Stun
+    prefabButton: {fileID: 7313625124187144831, guid: 9d62408400cb24a8dbaaba553797282a, type: 3}
+    cost: 00000000010000000100000002000000
+  - name: Knife Throw
+    prefabButton: {fileID: 7313625124187144831, guid: e1eb69a7264a44ad8bb484cebc52a106, type: 3}
+    cost: 00000000000000000100000001000000
 --- !u!114 &6013862213860267869
 MonoBehaviour:
   m_ObjectHideFlags: 0
