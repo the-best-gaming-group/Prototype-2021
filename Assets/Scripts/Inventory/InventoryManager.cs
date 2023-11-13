@@ -9,12 +9,9 @@ public class InventoryManager : MonoBehaviour
 
     private bool hasNews1;
     private bool hasNews2;
-    private bool hasNews3;
     private bool condition;
 
     private DialogueObject dialogueObject;
-    //public GridLayoutGroup gridLayoutGroup; // Reference to the GridLayoutGroup UI component
-    //public GameObject inventorySlotPrefab; // Reference to the Inventory Slot prefab
 
     private void Awake()
     {
@@ -32,7 +29,6 @@ public class InventoryManager : MonoBehaviour
     public void AddItem(InventoryItem item)
     {
         inventoryData.AddItem(item);
-        //CreateInventorySlot(item);
     }
 
     public void RemoveItem(InventoryItem item)
@@ -40,11 +36,13 @@ public class InventoryManager : MonoBehaviour
         inventoryData.RemoveItem(item);
     }
 
+
+
     public void CheckNewspaper()
     {
+        Debug.Log("checking...");
         hasNews1 = false;
         hasNews2 = false;
-        hasNews3 = false;
         for (int i = 0; i < inventoryData.items.Count; i++)
         {
             if (inventoryData.items[i].itemName == "News1")
