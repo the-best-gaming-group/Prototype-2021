@@ -11036,11 +11036,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8683487254858230622, guid: c5338d9a8f3fffe45bc1a96f3cc70b3d, type: 3}
   m_PrefabInstance: {fileID: 1890546345}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1890546347 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7473072417526752616, guid: c5338d9a8f3fffe45bc1a96f3cc70b3d, type: 3}
-  m_PrefabInstance: {fileID: 1890546345}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1904074573
 GameObject:
   m_ObjectHideFlags: 0
@@ -11387,17 +11382,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1915072591730145693, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
   m_PrefabInstance: {fileID: 1385220580}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2140386448 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7486674368554127779, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
-  m_PrefabInstance: {fileID: 1385220580}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2140386447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d1754b75e68419596ac939426ce0df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &2140386456 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 4026064590475308162, guid: cc80d7079545d624b9ae87fdb0d843e5, type: 3}
@@ -23846,8 +23830,6 @@ GameObject:
   - component: {fileID: 8318921190733100485}
   - component: {fileID: 8318921190733100489}
   - component: {fileID: 8318921190733100488}
-  - component: {fileID: 8318921190733100487}
-  - component: {fileID: 8318921190733100486}
   m_Layer: 0
   m_Name: Bike
   m_TagString: Untagged
@@ -24605,96 +24587,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8318921190733100486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7526151385972347920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WillSpawn: 1
-  uID: 
-  dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
-  visualCue: {fileID: 1890546347}
-  diaSound: {fileID: 8318921190733100488}
-  savedDiagIdx: -1
-  finalDiags:
-  - {fileID: 11400000, guid: d752b21f5a7db5642a91a871bd242bd6, type: 2}
---- !u!114 &8318921190733100487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7526151385972347920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
-  events:
-  - name: Touch it.
-    onPickedResponse:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2140386448}
-          m_TargetAssemblyTypeName: PlayerHealthBar, Assembly-CSharp
-          m_MethodName: HPManager
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: -10
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8318921190733100486}
-          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
-          m_MethodName: UpdateDialogueObject
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: d752b21f5a7db5642a91a871bd242bd6, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - name: Kick it.
-    onPickedResponse:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2140386448}
-          m_TargetAssemblyTypeName: PlayerHealthBar, Assembly-CSharp
-          m_MethodName: HPManager
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 10
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8318921190733100486}
-          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
-          m_MethodName: UpdateDialogueObject
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: d752b21f5a7db5642a91a871bd242bd6, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!82 &8318921190733100488
 AudioSource:
   m_ObjectHideFlags: 0
