@@ -166,7 +166,7 @@ public class BattleSystem : MonoBehaviour
                 battleDialog.text = "The enemy takes " + action.action.ToString();
                 var gameObj = action.actionFunc(true);
                 yield return new WaitForSeconds(action.waitTime);
-                int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
+                int enemyNewHP = enemyHP.TakeDamage(2*(int)action.action, false);
                 GameObject.Destroy(gameObj);
             }
 

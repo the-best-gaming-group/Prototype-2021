@@ -10807,6 +10807,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3358644962887818959, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3736514195767739697, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -11115,6 +11119,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4987192844672163895, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6192994179468416357, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_TagString
       value: BattleDialog
@@ -11173,7 +11181,7 @@ PrefabInstance:
       objectReference: {fileID: 377116115}
     - target: {fileID: 7399683829349328716, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 175
+      value: -82
       objectReference: {fileID: 0}
     - target: {fileID: 7411097256229633193, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_AnchorMax.y

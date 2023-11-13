@@ -75,6 +75,11 @@ namespace Platformer.Mechanics
         {
             isEnabled = true;
             transform.gameObject.SetActive(true);            
+            if (rerollButton != null)
+            {
+                EventSystem.current.SetSelectedGameObject(rerollButton.gameObject);
+                rerollButton.OnSelect(null);
+            }
         }
 
         public void Disable()
