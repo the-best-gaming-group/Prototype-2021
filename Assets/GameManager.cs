@@ -8,16 +8,22 @@ using Platformer.Core;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
+using Ink.Runtime;
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance; // Singleton instance
+	public SpellManager Spellmanager;
+	public InputManager inputManager;
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
-	private int playerHealth;
+	[SerializeField] private int playerHealth;
 	public Checkpoint.SpawnsDict Spawns = new();
 	public Checkpoint.PlayDoorSoundDict PlayDoorSound = new();
 	public Checkpoint.PlayerPosDict PlayerPos = new();
+	public Checkpoint.AvailableSpellsDict AvailableSpells = new();
 	public string SceneName => SceneManager.GetActiveScene().name;
 	private string prevScene;
 	private string enemyUID;
@@ -27,42 +33,21 @@ public class GameManager : MonoBehaviour
 	private bool tryingLoadingCheckpoint = false;
 	private const int CAN_SPAWN = -1;
 	private const int CANT_SPAWN = 0;
+	public string[] DefaultSpells;
 
+	[Serializable]
 	public class Spell
 	{
 		public string name;
-
-		public Spell(string name)
-		{
-			this.name = name;
-		}
+		public Button prefabButton;
+		public int[] cost;
+		public Action eventFunc;
 	}
 
 	public List<Spell> spells = new List<Spell>();
 
-	// Initialize the default spells
-	private void InitializeSpells()
-	{
-		Debug.Log("StartInitializeSpells");
-		//todo: use CombatSystem.CombatOptions to avoid hard code
-		spells.AddRange(
-			new List<String>() { 
-   "Throwing Knife", 
-   "Slam", 
-   "Dodge", 
-   //"Stun", 
-   //"Heal", 
-   //"Fireball", 
-   "Electrocute"
-   }
-			.Select(ability => new Spell(ability))
-			);
-
-    }
-
 	private void Awake()
 	{
-		InitializeSpells();
 		if (Instance == null)
 		{
 			Instance = this;
@@ -153,6 +138,7 @@ public class GameManager : MonoBehaviour
 			Spawns,
 			PlayDoorSound,
 			PlayerPos,
+			AvailableSpells,
 			SceneName
 		);
 		SaveFileManager.WriteToSaveFile(SaveFilePath, Checkpoint);
@@ -168,6 +154,7 @@ public class GameManager : MonoBehaviour
 		Spawns = Checkpoint.spawns;
 		PlayDoorSound = Checkpoint.playDoorSound;
 		PlayerPos = Checkpoint.playerPos;
+		AvailableSpells = Checkpoint.spells;
 		sceneChange.sceneName = Checkpoint.SceneName;
 		sceneChange.Invoke();
 	}
@@ -175,7 +162,7 @@ public class GameManager : MonoBehaviour
 	public void NewGame()
 	{
 		const string scene = "Main Scene 1";
-		Checkpoint = new(100, new(), new(), new(), scene);
+		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene);
 		LoadCheckpoint();
 	}
 
@@ -211,5 +198,25 @@ public class GameManager : MonoBehaviour
 			yield return new WaitForSeconds(1f);
 		}
 		tryingLoadingCheckpoint = false;
+	}
+	
+	public void RegisterSpellEventFunc(string spellName, Action eventFunc)
+	{
+		var spell = spells.Find(s => s.name.Equals(spellName));
+		if (spell != null)
+		{
+			spell.eventFunc = eventFunc;
+		}
+	}
+	
+	public Checkpoint.AvailableSpellsDict CreateDefaultAvailableSpells()
+	{
+		Checkpoint.AvailableSpellsDict availSpells = new();
+		// Set default spells
+		foreach (var spellName in DefaultSpells)
+		{
+			availSpells[spellName] = true;
+		}
+		return availSpells;
 	}
 }

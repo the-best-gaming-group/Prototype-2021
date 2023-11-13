@@ -6,9 +6,4 @@ public class InventoryItem : ScriptableObject
 {
     public string itemName;
     public Sprite itemIcon;
-
-    public static implicit operator InventoryItem(InventoryData v)
-    {
-        throw new NotImplementedException();
-    }
 }

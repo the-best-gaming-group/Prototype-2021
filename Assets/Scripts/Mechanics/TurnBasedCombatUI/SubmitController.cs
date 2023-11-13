@@ -1,23 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SubmitController : Selectable
+public class SubmitController : MonoBehaviour
 {
-    public Image button;
-    private readonly Color enableColor = new (.4f, .4f, 0.9568628f);
-    private readonly Color disableColor = Color.grey;
-    public bool IsEnabled => button.color == enableColor;
+    [SerializeField] Button button;
     public void Awake()
     {
-        button = transform.Find("Button").GetComponent<Image>();
+        button = transform.Find("Button").GetComponent<Button>();
     }
     public void DoDisable()
     {
-        button.color = disableColor;
+        button.interactable = false;
     }
     
     public void DoEnable()
     {
-        button.color = enableColor;
+        button.interactable = true;
     }
 }

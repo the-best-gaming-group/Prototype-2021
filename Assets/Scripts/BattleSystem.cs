@@ -1,4 +1,5 @@
 using DigitalRuby.LightningBolt;
+using Platformer.Mechanics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,20 +43,25 @@ public class BattleSystem : MonoBehaviour
     RigidbodyConstraints playerRBConstraints;
     GameObject enemy;
     PlayerHealthBar enemyHP;
-
+    [SerializeField] AudioSource winSound;
+    [SerializeField] AudioSource loseSound;
     public GameObject fireboltAsset;
     public GameObject lightningAsset;
     public GameObject knifeAsset;
+
+  
     public GameObject enemyStunAsset;
     public GameObject stunObj;
     public GameObject healAsset;
     public GameObject healObj;
     public int remaningStunTurns = 0;
 
+
     TextMeshProUGUI battleDialog;
 
     public BattleState state;
     public bool isPlayerFirstTurn;
+    private readonly List<Func<string>> battleStartListeners = new();
     private readonly List<Func<string>> playerTurnBeginListeners = new();
     private readonly List<Func<string>> playerTurnEndListeners = new();
 
@@ -64,7 +70,7 @@ public class BattleSystem : MonoBehaviour
     Animator animator;
     readonly List<TurnActions> turnActions = new ();
     public ResourceHandler resourceHandler = new();
-    public Spell[] spells = new Spell[4];
+    public GameManager.Spell[] spells = new GameManager.Spell[4];
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -81,90 +87,54 @@ public class BattleSystem : MonoBehaviour
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
         enemy.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;
 
-        //SetupSpells();
-
-        StartCoroutine(SetupBattle());
     }
     
+    public void Resume()
+    {
+        GetComponentInChildren<TurnbasedDialogHandler>().Disable();
+        StartCoroutine(SetupBattle());
+    }
+
     /** 
      *  Going to need to move all of the spell creation to the GameManager,
      *  or at least some of it. We need to know the spells the player has
      *  when we replace them.
      */
-    public void SetupSpells(String[] selectedSpells)
+    public void SetupSpells(string[] selectedSpells)
     {
-        playerHP.TakeDamage(-100, true);//todo: remove
-        int spellsIndex = 0;
-        foreach(String spell in selectedSpells)
+        for (int i = 0; i < 4; i++)
         {
-            //todo: set text for spell button
-            String lowerCaseSpell = spell.ToLower();
-            String spellName = null;
-            var spellCost = new int[4];
-            Action effectFunc = null;
-            if (lowerCaseSpell.Contains("slam"))
+            Action eventFunc = selectedSpells[i] switch
             {
-                spellCost[(int)AIR] = 2;
-                spellCost[(int)EARTH] = 1;
-                effectFunc = OnSlamButton;
-                spellName = "Slam";
-            } else if (lowerCaseSpell.Contains("fire"))
-            {
-                spellCost[(int)FIRE] = 2;
-                spellCost[(int)AIR] = 1;
-                effectFunc = OnFireButton;
-                spellName = "Fireball";
-            } else if (lowerCaseSpell.Contains("dodge"))
-            {
-                spellCost[(int)EARTH] = 2;
-                spellCost[(int)AIR] = 1;
-                effectFunc = OnDodgeButton;
-                spellName = "Dodge";
-            } else if (lowerCaseSpell.Contains("electrocute"))
-            {
-                spellCost[(int)WATER] = 1;
-                spellCost[(int)AIR] = 1;
-                spellCost[(int)FIRE] = 1;
-                effectFunc = OnElectrocuteButton;
-                spellName = "Electrocute";
-            } else if (lowerCaseSpell.Contains("stun"))
-            {
-               spellCost[(int)EARTH] = 1;
-               spellCost[(int)FIRE] = 1;
-               spellCost[(int)AIR] = 2;
-               effectFunc = OnStunButton;
-                spellName = "Stun";
-            } else if (lowerCaseSpell.Contains("heal"))
-            {
-               spellCost[(int)WATER] = 2;
-               effectFunc = OnHealButton;
-                spellName = "Heal";
-            } else if (lowerCaseSpell.Contains("knife"))
-            {
-                spellCost[(int)EARTH] = 1;
-                spellCost[(int)AIR] = 1;
-                effectFunc = OnKnifeButton;
-                spellName = "Knife";
-            }
-
-            spells[spellsIndex] = new Spell
-            {
-                name = spellName,
-                effect = () =>
-                {
-                    effectFunc();
-                    return $"Pressed spell {spellsIndex}!";
-                },
-                cost = spellCost
+                "Dodge"       => OnDodgeButton,
+                "Electrocute" => OnElectrocuteButton,
+                "Fireball"    => OnFireButton,
+                "Heal"        => OnHealButton,
+                "Slam"        => OnSlamButton,
+                "Stun"        => OnStunButton,
+                "Knife Throw" => OnKnifeButton,
+                _             => null
             };
-            spellsIndex++;
+            
+            if (eventFunc != null)
+            {
+                GameManager.Instance.RegisterSpellEventFunc(selectedSpells[i], eventFunc);
+            }
+            else {
+                Debug.Log("Error: Could not find spell named " + selectedSpells[i]);
+            }
+            spells[i] = GameManager.Instance.spells.Find(s => s.name.Equals(selectedSpells[i]));
         }
-        Debug.Log(spells.ToList().Select(spell => spell.name));
     }
 
     IEnumerator SetupBattle()
     {
         battleDialog.text = "Fighting the enemy!";
+        
+        foreach (var fun in battleStartListeners)
+        {
+            fun();
+        }
 
         yield return new WaitForSeconds(dialogWaitTime);
 
@@ -202,7 +172,7 @@ public class BattleSystem : MonoBehaviour
                 battleDialog.text = "The enemy takes " + action.action.ToString();
                 var gameObj = action.actionFunc(true);
                 yield return new WaitForSeconds(action.waitTime);
-                int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
+                int enemyNewHP = enemyHP.TakeDamage(2*(int)action.action, false);
                 GameObject.Destroy(gameObj);
             }
 
@@ -235,7 +205,7 @@ public class BattleSystem : MonoBehaviour
     {
         int randomInt = Time.renderedFrameCount % 100;
         CombatOptions enemyAction = CombatOptions.Knife;
-        String dialogText = "The enemy <harm> you";
+        string dialogText = "The enemy <harm> you";
 
         if (playerDodged)
             animator.Play("PlayerDodge");
@@ -291,6 +261,7 @@ public class BattleSystem : MonoBehaviour
         player.GetComponentInChildren<Rigidbody>().constraints = playerRBConstraints;//restore ability to move/rotate
         if (state == BattleState.WON)
         {
+              winSound.Play();
             battleDialog.text = "You have prevailed!";
             // This can be replaced with a confirmation UI when we're ready
             yield return new WaitForSecondsRealtime(2f);
@@ -300,6 +271,7 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
+             loseSound.Play();
             battleDialog.text = "You were vanquished!";
             //move back to checkpoint
             yield return new WaitForSecondsRealtime(3f);
@@ -346,7 +318,7 @@ public class BattleSystem : MonoBehaviour
         try
         {
             GameObject.Instantiate(healAsset, player.transform);
-        } catch (Exception ignored) { }
+        } catch (Exception) { }
         playerHP.TakeDamage(-(int)CombatOptions.Heal);
         battleDialog.text = $"You gained {(int)CombatOptions.Heal}HP";
 
@@ -361,7 +333,7 @@ public class BattleSystem : MonoBehaviour
         {
             stunObj = Instantiate(enemyStunAsset, enemy.transform);
         }
-        catch (Exception ignored) { }
+        catch (Exception) { }
 
         remaningStunTurns++;
 
@@ -377,7 +349,7 @@ public class BattleSystem : MonoBehaviour
             {
                 //healObj = GameObject.Instantiate(healAsset, player.transform);
                 healObj = GameObject.Instantiate(healAsset, player.transform);
-            } catch (Exception ignored) { }
+            } catch (Exception) { }
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -461,5 +433,10 @@ public class BattleSystem : MonoBehaviour
     public void RegisterPlayerTurnEndListener(Func<string> fun)
     {
         playerTurnEndListeners.Add(fun);
+    }
+
+    public void RegisterStartBattleListener(Func<string> fun)
+    {
+        battleStartListeners.Add(fun);
     }
 }

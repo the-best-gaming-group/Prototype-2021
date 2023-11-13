@@ -1,28 +1,58 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static SpellManager;
 
-public class RuneController : Selectable
+public class RuneController : MonoBehaviour
 {
-    public Image i;
-    public TextMeshProUGUI x;
-
-    public void Awake() {
-        i = transform.Find("Rune").gameObject.GetComponent<Image>();
-        x = transform.Find("Rolling").gameObject.GetComponent<TextMeshProUGUI>();
-        x.enabled = false;
+    public enum SpriteType {
+        REGULAR,
+        HOVER,
+        SELECTED,
+        DISABLED
     }
+    [SerializeField] Button button;
+    [SerializeField] Image buttonImage;
+    [SerializeField] Image selectImage;
+    [SerializeField] SpellSprites sprites;
+    private bool isSelected;
     
-    void Update() {
-    }
-    
-    public void ChangeColor(Color c)
+    public void Start()
     {
-        i.color = c;
+        button = GetComponentInChildren<Button>();
+        buttonImage = transform.Find("Button").GetComponent<Image>();
+        selectImage = transform.Find("Select").GetComponent<Image>();
     }
+
     
     public void Toggle()
     {
-        x.enabled ^= true;
+        isSelected ^= true;
+        if (isSelected)
+        {
+            buttonImage.sprite = sprites.selected;
+        }
+        else
+        {
+            buttonImage.sprite = sprites.regular;
+        }
+    }
+    
+    public void ChangeSprites(SpellSprites s)
+    {
+        if (s == null)
+        {
+            button.interactable = false;
+            return;
+        }
+        button.interactable = true;
+        sprites = s;
+        buttonImage.sprite = s.regular;
+        var ss = new SpriteState();
+        ss.disabledSprite = s.disabled;
+        button.spriteState = ss;
+        selectImage.sprite = s.hover;
     }
 }
