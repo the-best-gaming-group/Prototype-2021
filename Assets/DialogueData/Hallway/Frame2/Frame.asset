@@ -18,4 +18,4 @@ MonoBehaviour:
   - The expressions on their faces are no longer visible, but I can tell from their
     interaction in the photo that they were very close.
   responses: []
-  needCondition: 1
+  needCondition: 0
