@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6013862213860267868}
   - component: {fileID: 6013862213860267869}
   - component: {fileID: 2551489439692984317}
+  - component: {fileID: 2767644550855343835}
+  - component: {fileID: 8654621077096372546}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,7 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebd6b4f37da249d7b0811beec708f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Spellmanager: {fileID: 2767644550855343835}
+  inputManager: {fileID: 8654621077096372546}
   enemyToSpawn: {fileID: 0}
+  playerHealth: 0
   Spawns:
     m_Keys: []
     m_Values: []
@@ -56,6 +61,9 @@ MonoBehaviour:
   PlayerPos:
     m_Keys: []
     m_Values: []
+  AvailableSpells:
+    m_Keys: []
+    m_Values: 
   Checkpoint:
     playerHealth: 0
     spawns:
@@ -67,9 +75,39 @@ MonoBehaviour:
     playerPos:
       m_Keys: []
       m_Values: []
+    spells:
+      m_Keys: []
+      m_Values: 
     SceneName: 
   sceneChange: {fileID: 6013862213860267869}
   SaveFilePath: 
+  DefaultSpells:
+  - Slam
+  - Dodge
+  - Fireball
+  - Electrocute
+  spells:
+  - name: Dodge
+    prefabButton: {fileID: 7313625124187144831, guid: 93c78d886e4da4cef997f5d82b6092c5, type: 3}
+    cost: 00000000000000000200000001000000
+  - name: Electrocute
+    prefabButton: {fileID: 7313625124187144831, guid: 450f000e58d2241d08f966eaaa11d930, type: 3}
+    cost: 01000000010000000000000001000000
+  - name: Fireball
+    prefabButton: {fileID: 7313625124187144831, guid: e19c2675809564a30b2c2c9fbf908b4a, type: 3}
+    cost: 00000000020000000000000001000000
+  - name: Heal
+    prefabButton: {fileID: 7313625124187144831, guid: c0586a6f781804850932d5d6b0e70876, type: 3}
+    cost: 02000000000000000000000000000000
+  - name: Slam
+    prefabButton: {fileID: 7313625124187144831, guid: 0c3ab464326ec4633b9552892ceeb4f8, type: 3}
+    cost: 00000000000000000100000002000000
+  - name: Stun
+    prefabButton: {fileID: 7313625124187144831, guid: 9d62408400cb24a8dbaaba553797282a, type: 3}
+    cost: 00000000010000000100000002000000
+  - name: Knife Throw
+    prefabButton: {fileID: 7313625124187144831, guid: e1eb69a7264a44ad8bb484cebc52a106, type: 3}
+    cost: 00000000000000000100000001000000
 --- !u!114 &6013862213860267869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,3 +143,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &2767644550855343835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6013862213860267870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431f894b08a97e14189a01bc768658e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellIcons: []
+  sprites:
+  - regular: {fileID: 21300000, guid: 1f50ebc9b5e7c4143a492901cc5ac129, type: 3}
+    hover: {fileID: 21300000, guid: 5756ac67abe36894a88db8b66d33862e, type: 3}
+    selected: {fileID: 21300000, guid: ba956f91a3d7e9342ab8b4167d756223, type: 3}
+    disabled: {fileID: 21300000, guid: 78a18f85b63642541bcabf7e0a9fdf02, type: 3}
+  - regular: {fileID: 21300000, guid: 230e6e9c27f18fa41ad7379b8f068145, type: 3}
+    hover: {fileID: 21300000, guid: 006112ca23affba4fbb03740cdd6a8b3, type: 3}
+    selected: {fileID: 21300000, guid: 4fea549e61faa1d4cbc041b05b1350be, type: 3}
+    disabled: {fileID: 21300000, guid: 85011bcd4992ba245bf71a8320447882, type: 3}
+  - regular: {fileID: 21300000, guid: 11ed76efe16a4084db978956a7ede037, type: 3}
+    hover: {fileID: 21300000, guid: 99cdf3c4e66926e4c833db13f611eff8, type: 3}
+    selected: {fileID: 21300000, guid: 8bf7b5d2f71f24c4c8d337d5dbda3b6d, type: 3}
+    disabled: {fileID: 21300000, guid: b0dec161f4f5b454b9b56626c10a9204, type: 3}
+  - regular: {fileID: 21300000, guid: 825a4340b06e77d44a70a04bc9b7dfb6, type: 3}
+    hover: {fileID: 21300000, guid: b9332c93936fa49458aaf0e9d1433589, type: 3}
+    selected: {fileID: 21300000, guid: 0ad05597d3f8680439f0b6faaed14d40, type: 3}
+    disabled: {fileID: 21300000, guid: 5b242ed952310484bb7d356c19f5be3f, type: 3}
+--- !u!114 &8654621077096372546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6013862213860267870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd87764537703944ca69dc79cdc6951b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

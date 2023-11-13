@@ -41,7 +41,7 @@ public class Confirmation : MonoBehaviour
 		//GameManager.Instance.AddToInventory(itemID, 1);
 		shopManager.DisableItemButton(itemID);
 
-		GameManager.Instance.spells.Add(new GameManager.Spell(shopManager.itemNames[itemID]));
+		GameManager.Instance.AvailableSpells[shopManager.itemNames[itemID]] = true;
 	}
 
 	private void NoClicked()

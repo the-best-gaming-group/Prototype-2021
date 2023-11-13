@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combat Arena.unity
     guid: ac82fbbbcf730f54bbcc4a07d10b30ac
+  - enabled: 1
+    path: Assets/Scenes/Room 3.unity
+    guid: 7212d21dc240d454aa6019fd55dffe87
   m_configObjects: {}

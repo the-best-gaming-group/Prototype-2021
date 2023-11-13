@@ -1,204 +1,3 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-// using UnityEngine.UI;
-// using TMPro;
-// using System.Linq;
-
-// public class SelectionManager : MonoBehaviour
-// {
-// 	public GameObject selectionPanel;
-// 	public GameObject selectedPanel;
-// 	public GameObject selectionCanvas;
-// 	public Button spellButtonPrefab;
-// 	public static bool GameIsPaused = false;
-
-// 	private List<Button> spellButtons = new List<Button>();
-// 	private List<Button> selectedSpells = new List<Button>();
-
-// 	private void Start()
-// 	{
-// 		StartCoroutine(Waitforanimation());
-// 		Pause();
-// 		PopulateSelectionPanel();
-// 	}
-
-// 	IEnumerator Waitforanimation()
-// 	{
-// 		yield return new WaitForSeconds(0.5f);
-// 	}
-
-
-// 	public void Resume()
-// 	{
-// 		if (selectedSpells.Count == 4)
-// 		{
-// 			selectionCanvas.SetActive(false);
-// 			Time.timeScale = 1f;
-// 			GameIsPaused = false;
-// 			var battleSystem = GameObject.Find("BattleSystem").GetComponent<BattleSystem>();
-// 			var spellsAsStrings = selectedSpells.Select(spell => spell.GetComponentInChildren<TextMeshProUGUI>().text).ToArray();
-//             battleSystem.SetupSpells(spellsAsStrings);
-// 		}
-// 	}
-
-// 	void Pause()
-// 	{
-// 		selectionCanvas.SetActive(true);
-// 		Time.timeScale = 0f;
-// 		GameIsPaused = true;
-// 	}
-
-// 	private void PopulateSelectionPanel()
-// 	{
-// 		// Access GameManager.Instance to get the list of spells
-// 		GameManager gameManager = GameManager.Instance;
-
-// 		// Loop through the spells and create UI elements for each spell in the selection panel
-// 		foreach (GameManager.Spell spell in gameManager.spells)
-// 		{
-// 			Button spellButton = Instantiate(spellButtonPrefab, selectionPanel.transform);
-// 			spellButton.GetComponentInChildren<TextMeshProUGUI>().text = spell.name;
-// 			spellButton.onClick.AddListener(() => MoveToSelectedPanel(spellButton));
-// 			spellButtons.Add(spellButton);
-// 		}
-// 	}
-
-// 	public void MoveToSelectedPanel(Button spellButton)
-// 	{
-// 		if (selectedSpells.Count < 4)
-// 		{
-// 			spellButton.gameObject.SetActive(false);
-
-// 			// Add the selected spell to the selectedPanel
-// 			Button selectedSpellClone = Instantiate(spellButtonPrefab, selectedPanel.transform);
-// 			TextMeshProUGUI cloneText = selectedSpellClone.GetComponentInChildren<TextMeshProUGUI>();
-// 			cloneText.text = spellButton.GetComponentInChildren<TextMeshProUGUI>().text;
-// 			selectedSpells.Add(selectedSpellClone);
-// 			selectedSpellClone.onClick.AddListener(() => MoveToSelectionPanel(selectedSpellClone));
-// 		}
-// 	}
-
-// 	public void MoveToSelectionPanel(Button selectedSpell)
-// 	{
-// 		// Remove the selected spell from the selectedPanel
-// 		selectedSpells.Remove(selectedSpell);
-// 		Destroy(selectedSpell.gameObject);
-
-// 		// Find the corresponding spell in the selectionPanel and make it visible
-// 		foreach (Button spellButton in spellButtons)
-// 		{
-// 			Debug.Log("spellButton.GetComponentInChildren<TextMeshProUGUI>().text" + spellButton.GetComponentInChildren<TextMeshProUGUI>().text);
-// 			Debug.Log("selectedSpell.GetComponentInChildren<TextMeshProUGUI>().text" + selectedSpell.GetComponentInChildren<TextMeshProUGUI>().text);
-// 			if (spellButton.GetComponentInChildren<TextMeshProUGUI>().text == selectedSpell.GetComponentInChildren<TextMeshProUGUI>().text)
-// 			{
-// 				Debug.Log(spellButton.GetComponentInChildren<TextMeshProUGUI>().text);
-// 				spellButton.gameObject.SetActive(true);
-// 				break;
-// 			}
-// 		}
-// 	}
-// }
-
-
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-//using UnityEngine.UI;
-//using TMPro;
-
-//public class SelectionManager : MonoBehaviour
-//{
-//	public GameObject selectionPanel;
-//	public GameObject selectedPanel;
-//	public GameObject selectionCanvas;
-//	public Button spellButtonPrefab;
-//	public static bool GameIsPaused = false;
-
-//	private List<Button> spellButtons = new List<Button>();
-//	private List<Button> selectedSpells = new List<Button>();
-
-//	private void Start()
-//	{
-//		StartCoroutine(Waitforanimation());
-//		Pause();
-//		PopulateSelectionPanel();
-//	}
-
-//	IEnumerator Waitforanimation()
-//	{
-//		yield return new WaitForSeconds(0.5f);
-//	}
-
-
-//	public void Resume()
-//	{
-//		if (selectedSpells.Count == 4)
-//		{
-//			selectionCanvas.SetActive(false);
-//			Time.timeScale = 1f;
-//			GameIsPaused = false;
-//		}
-//	}
-
-//	void Pause()
-//	{
-//		selectionCanvas.SetActive(true);
-//		Time.timeScale = 0f;
-//		GameIsPaused = true;
-//	}
-
-//	private void PopulateSelectionPanel()
-//	{
-//		// Access GameManager.Instance to get the list of spells
-//		GameManager gameManager = GameManager.Instance;
-
-//		// Loop through the spells and create UI elements for each spell in the selection panel
-//		foreach (GameManager.Spell spell in gameManager.spells)
-//		{
-//			Button spellButton = Instantiate(spellButtonPrefab, selectionPanel.transform);
-//			spellButton.GetComponentInChildren<TextMeshProUGUI>().text = spell.name;
-//			spellButton.onClick.AddListener(() => MoveToSelectedPanel(spellButton));
-//			spellButtons.Add(spellButton);
-//		}
-//	}
-
-//	public void MoveToSelectedPanel(Button spellButton)
-//	{
-//		if (selectedSpells.Count < 4)
-//		{
-//			spellButton.gameObject.SetActive(false);
-
-//			// Add the selected spell to the selectedPanel
-//			Button selectedSpellClone = Instantiate(spellButtonPrefab, selectedPanel.transform);
-//			TextMeshProUGUI cloneText = selectedSpellClone.GetComponentInChildren<TextMeshProUGUI>();
-//			cloneText.text = spellButton.GetComponentInChildren<TextMeshProUGUI>().text;
-//			selectedSpells.Add(selectedSpellClone);
-//			selectedSpellClone.onClick.AddListener(() => MoveToSelectionPanel(selectedSpellClone));
-//		}
-//	}
-
-//	public void MoveToSelectionPanel(Button selectedSpell)
-//	{
-//		// Remove the selected spell from the selectedPanel
-//		selectedSpells.Remove(selectedSpell);
-//		Destroy(selectedSpell.gameObject);
-
-//		// Find the corresponding spell in the selectionPanel and make it visible
-//		foreach (Button spellButton in spellButtons)
-//		{
-//			Debug.Log("spellButton.GetComponentInChildren<TextMeshProUGUI>().text" + spellButton.GetComponentInChildren<TextMeshProUGUI>().text);
-//			Debug.Log("selectedSpell.GetComponentInChildren<TextMeshProUGUI>().text" + selectedSpell.GetComponentInChildren<TextMeshProUGUI>().text);
-//			if (spellButton.GetComponentInChildren<TextMeshProUGUI>().text == selectedSpell.GetComponentInChildren<TextMeshProUGUI>().text)
-//			{
-//				Debug.Log(spellButton.GetComponentInChildren<TextMeshProUGUI>().text);
-//				spellButton.gameObject.SetActive(true);
-//				break;
-//			}
-//		}
-//	}
-//}
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -212,11 +11,11 @@ public class SelectionManager : MonoBehaviour
 	public GameObject selectionPanel;
 	public GameObject selectedPanel;
 	public GameObject selectionCanvas;
-	public List<Button> spellButtonPrefabs; // List of spell button prefabs
+	public GameObject selectedCanvas;
 	public static bool GameIsPaused = false;
 
 	private List<Button> spellButtons = new List<Button>();
-	private List<Button> selectedSpells = new List<Button>();
+	private List<GameManager.Spell> selectedSpells = new();
 
 	private void Start()
 	{
@@ -228,18 +27,19 @@ public class SelectionManager : MonoBehaviour
 	{
 		if (selectedSpells.Count == 4)
 		{
+			selectedCanvas.SetActive(false);
 			selectionCanvas.SetActive(false);
 			Time.timeScale = 1f;
 			GameIsPaused = false;
 			var battleSystem = GameObject.Find("BattleSystem").GetComponent<BattleSystem>();
 			var spellsAsStrings = selectedSpells.Select(spell => spell.name).ToArray();
             battleSystem.SetupSpells(spellsAsStrings);
+			battleSystem.Resume();
 		}
 	}
 
 	void Pause()
 	{
-		selectionCanvas.SetActive(true);
 		Time.timeScale = 0f;
 		GameIsPaused = true;
 	}
@@ -250,45 +50,36 @@ public class SelectionManager : MonoBehaviour
 
 		foreach (GameManager.Spell spell in gameManager.spells)
 		{
-			Button spellButtonPrefab = spellButtonPrefabs.Find(prefab => prefab.name.ToLower().Contains(spell.name.Replace(" ", "").ToLower()));
-			if (spellButtonPrefab != null)
+			if (gameManager.AvailableSpells.TryGetValue(spell.name, out bool available) && available)
 			{
-				Button spellButton = Instantiate(spellButtonPrefab, selectionPanel.transform);
-				spellButton.onClick.AddListener(() => MoveToSelectedPanel(spellButton));
+				Button spellButton = Instantiate(spell.prefabButton, selectionPanel.transform);
+				spellButton.onClick.AddListener(() => MoveToSelectedPanel(spell, spellButton));
 				spellButtons.Add(spellButton);
 			}
 		}
 	}
 
-	public void MoveToSelectedPanel(Button spellButton)
+	public void MoveToSelectedPanel(GameManager.Spell spell, Button pressedButton)
 	{
 		if (selectedSpells.Count < 4)
 		{
-			Button spellButtonPrefab = spellButtonPrefabs.Find(prefab => spellButton.name.Contains(prefab.name) );
+			Button spellButtonPrefab = spell.prefabButton;
+			pressedButton.gameObject.SetActive(false);
 
-			if (spellButtonPrefab != null)
-			{
-				spellButton.gameObject.SetActive(false);
-
-				Button selectedSpellClone = Instantiate(spellButtonPrefab, selectedPanel.transform);
-				selectedSpells.Add(selectedSpellClone);
-				selectedSpellClone.onClick.AddListener(() => MoveToSelectionPanel(selectedSpellClone));
-			}
-			else
-			{
-				Debug.LogError("Spell button prefab not found for: " + spellButton.name);
-			}
+			Button selectedSpellClone = Instantiate(spellButtonPrefab, selectedPanel.transform);
+			selectedSpells.Add(spell);
+			selectedSpellClone.onClick.AddListener(() => MoveToSelectionPanel(spell, selectedSpellClone));
 		}
 	}
 
-	public void MoveToSelectionPanel(Button selectedSpell)
+	public void MoveToSelectionPanel(GameManager.Spell spell, Button pressedButton)
 	{
-		selectedSpells.Remove(selectedSpell);
-		Destroy(selectedSpell.gameObject);
+		selectedSpells.Remove(spell);
+		Destroy(pressedButton.gameObject);
 
 		foreach (Button spellButton in spellButtons)
 		{
-			if (spellButton.name.Equals(selectedSpell.name))
+			if (spellButton.name.Equals(pressedButton.name))
 			{
 				spellButton.gameObject.SetActive(true);
 				break;
