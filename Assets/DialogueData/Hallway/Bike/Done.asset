@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Done
   m_EditorClassIdentifier: 
   dialogue:
-  - You have already interacted with the bike.
+  - There's nothing on the bicycle.
   responses: []
+  needCondition: 0

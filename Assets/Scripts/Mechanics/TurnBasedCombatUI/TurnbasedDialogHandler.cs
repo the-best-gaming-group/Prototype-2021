@@ -1,150 +1,84 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Platformer.Mechanics
 {
     using static Rune;
-    using static LASTSELECTED;
     public class TurnbasedDialogHandler : MonoBehaviour
     {
         // Start is called before the first frame update
         public BattleSystem bs;
-        public DialogStateMachine dsm = new();
-        public S currentState = S.DSM;
         public RunePanelController rpc;
         public SpellController[] scs = new SpellController[4];
         public SubmitController sc;
-        public SubmitController rc;
-        private Selectable previousSelect;
         public ResourceHandler resourceHandler;
-        public readonly float buttonDelay = 0.35f;
-        public float delayRemaining = 0f;
         public bool isEnabled = true;
-        private LASTSELECTED lastSelected = BUTTONUP;
-        private List<Func<string>> spellEffects = new();
-        
-        private Spell[] spells;
+        private List<Action> spellEffects = new();
+        private RuneController[] rcs = new RuneController[6];
+        private GameManager.Spell[] spells;
+        private SelectableButton currentSelected;
+        private SelectableButton rerollButton;
+        private SelectableButton submitButton;
+        private 
         void Start()
         {
-            previousSelect = rpc;
-            rpc.Show();
-            Disable();
             resourceHandler = bs.resourceHandler;
-            bs.RegisterPlayerTurnBeginListener(() => {
+            bs.RegisterStartBattleListener(() => {
                 spells = bs.spells;
                 for (int i = 0; i < 4; i++)
                 {
-                    scs[i].SetCost(spells[i]);
-                    scs[i].text.text = spells[i].name;
+                    scs[i].SetSpell(spells[i], i, OnSpellButton);
                 }
+                return "Setting up the battle";
+            });
+            bs.RegisterPlayerTurnBeginListener(() => {Enable(); return "Enabled player turn";});
+            bs.RegisterPlayerTurnBeginListener(() => {
                 SetupNewRound();
                 return "Setting up new round";
             });
-            bs.RegisterPlayerTurnBeginListener(() => {Enable(); return "Enabled player turn";});
             bs.RegisterPlayerTurnEndListener(() => {Disable(); return "Disabled player turn";});
-            /* All of these return a string because c# doesn't have function pointers */
-        }
-
-        void Awake()
-        {
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (!isEnabled)
+            var keyPresses = GameManager.Instance.inputManager.GetInputs();
+            if (keyPresses.Contains(InputManager.InputType.SELECT))
             {
-                return;
+                currentSelected.DoClick();                
             }
-            if (Input.GetButtonUp("Jump"))
+            else if (keyPresses.Contains(InputManager.InputType.ONE))
             {
-                DoButtonClick();
+                OnSpellButton(0);
             }
-
-            if (delayRemaining > 0f)
+            else if (keyPresses.Contains(InputManager.InputType.TWO))
             {
-                delayRemaining -= Time.deltaTime;
-                return;
+                OnSpellButton(1);
             }
-            else
+            else if (keyPresses.Contains(InputManager.InputType.THREE))
             {
-                lastSelected = BUTTONUP;
+                OnSpellButton(2);
             }
-
-            if (Input.GetKeyUp(KeyCode.Escape)
-                || (Input.GetAxis("Horizontal") > 0
-                    && dsm.state == S.RSM
-                    && dsm.runeState == RS.REROLL)
-                || (Input.GetAxis("Vertical") < 0)
-                    && dsm.state == S.RSM
-                    && (dsm.runeState == RS.RUNE_FOUR
-                        || dsm.runeState == RS.RUNE_FIVE
-                        || dsm.runeState == RS.RUNE_SIX
-                        || dsm.runeState == RS.REROLL
-                ))
+            else if (keyPresses.Contains(InputManager.InputType.FOUR))
             {
-                dsm.state = S.DSM;
+                OnSpellButton(3);
             }
-            else if ((Input.GetAxis("Horizontal") < 0
-                    || Input.GetAxis("Vertical") > 0)
-                        && dsm.state == S.DSM
-                        && dsm.dialogState == DS.RUNES
-                    )
-            {
-                dsm.state = S.RSM;
-            }
-            else if (Input.GetAxis("Horizontal") > 0)
-            {
-                if (lastSelected == RIGHT)
-                {
-                    return;
-                }
-                dsm.RunStateMachine(BUTTON.RIGHT);
-                lastSelected = RIGHT;
-            }
-            else if (Input.GetAxis("Horizontal") < 0)
-            {
-                if (lastSelected == LEFT)
-                {
-                    return;
-                }
-                dsm.RunStateMachine(BUTTON.LEFT);
-                lastSelected = LEFT;
-            }
-            else if (Input.GetAxis("Vertical") > 0)
-            {
-                if (lastSelected == UP)
-                {
-                    return;
-                }
-                dsm.RunStateMachine(BUTTON.UP);
-                lastSelected = UP;
-            }
-            else if (Input.GetAxis("Vertical") < 0)
-            {
-                if (lastSelected == DOWN)
-                {
-                    return;
-                }
-                dsm.RunStateMachine(BUTTON.DOWN);
-                lastSelected = DOWN;
-            }
-            else
-            {
-                lastSelected = BUTTONUP;
-                DoHighlightChange();
-                return;
-            }
-
-            delayRemaining = buttonDelay;
-            DoHighlightChange();
         }
         
         public void Enable()
         {
             isEnabled = true;
             transform.gameObject.SetActive(true);            
+            if (rerollButton != null)
+            {
+                EventSystem.current.SetSelectedGameObject(rerollButton.gameObject);
+                rerollButton.OnSelect(null);
+            }
         }
 
         public void Disable()
@@ -155,89 +89,27 @@ namespace Platformer.Mechanics
         
         public void SetupNewRound()
         {
+            if (rerollButton != null)
+            {
+                EventSystem.current.SetSelectedGameObject(rerollButton.gameObject);
+                rerollButton.OnSelect(null);
+            }
+            if (rerollButton != null && rerollButton == currentSelected)
+            {
+                rerollButton.EnableSelectImage();
+            }
+            if (submitButton != null)
+            {
+                submitButton.DisableSelectImage();
+            }
             resourceHandler.Initialize(null);
             rpc.DoReset(resourceHandler);
             ColorButtons();
-        }
-
-        private void DoButtonClick()
-        {
-            string result;
-            if (dsm.state == S.DSM)
-            {
-                result = dsm.dialogState switch
-                {
-                    DS.RUNES       => RunePanelSelected(),
-                    DS.SPELL_ONE   => OnSpellButton(0),
-                    DS.SPELL_TWO   => OnSpellButton(1),
-                    DS.SPELL_THREE => OnSpellButton(2),
-                    DS.SPELL_FOUR  => OnSpellButton(3),
-                    DS.SUBMIT      => SubmitSelected(),
-                    DS.RESET       => ResetSelected(),
-                    _              => null
-                };
-            }
-            else
-            {
-                result = dsm.runeState switch
-                {
-                    RS.RUNE_ONE   => RuneSelected(0),
-                    RS.RUNE_TWO   => RuneSelected(1),
-                    RS.RUNE_THREE => RuneSelected(2),
-                    RS.RUNE_FOUR  => RuneSelected(3),
-                    RS.RUNE_FIVE  => RuneSelected(4),
-                    RS.RUNE_SIX   => RuneSelected(5),
-                    RS.REROLL     => RuneRerollSelected(),
-                    _             => null
-                };                    
-            }
-            if (result != null)
-            {
-                Debug.Log(Time.time + " " + result);
-            }
-        }
-
-        private void DoHighlightChange() {
-            if (dsm.state != currentState)
-            {
-                if (currentState == S.RSM)
-                {
-                    rpc.LoseFocus();
-                    rpc.Show();
-                }
-                else
-                {
-                    rpc.GainFocus();
-                    rpc.Hide();
-                }
-            }
-
-            currentState = dsm.state;
-            if (currentState == S.RSM)
-            {
-                rpc.ChangeSelect((int)dsm.runeState);
-            }
-            else
-            {
-                Selectable sel = dsm.dialogState switch
-                {
-                    DS.RUNES       => rpc,
-                    DS.SPELL_ONE   => scs[0],
-                    DS.SPELL_TWO   => scs[1],
-                    DS.SPELL_THREE => scs[2],
-                    DS.SPELL_FOUR  => scs[3],
-                    DS.SUBMIT      => sc,
-                    DS.RESET       => rc,
-                    _              => rpc
-                };
-                previousSelect.Hide();
-                sel.Show();
-                previousSelect = sel;
-            }
+            rpc.ColorRunes(resourceHandler); // fixes a bug in build
         }
 
         /* All of these return a string because c# doesn't have function pointers */
-        public string SubmitSelected()
+        public void SubmitSelected()
         {
             if (sc.enabled)
             {
@@ -248,36 +120,30 @@ namespace Platformer.Mechanics
                 spellEffects.Clear();
                 bs.OnEndTurnButton();
             }
-            return "Pressed SUBMIT!";
         }
         
-        public string ResetSelected()
+        public void RuneSelected()
         {
-            OnResetButton();
-            return "Pressed RESET!";
-        }
-
-        public string RunePanelSelected()
-        {
-            dsm.state = S.RSM;
-            return "Pressed RUNE PANEL!";
-        }
-
-        public string RuneSelected(int i)
-        {
+            var i = currentSelected.buttonType switch {
+                ButtonType.RUNE1 => 0,
+                ButtonType.RUNE2 => 1,
+                ButtonType.RUNE3 => 2,
+                ButtonType.RUNE4 => 3,
+                ButtonType.RUNE5 => 4,
+                ButtonType.RUNE6 => 5,
+                _                => throw new Exception("Error: Rune clicked for non-rune button")
+            };
             if (resourceHandler.GetRuneTypes()[i] != USED)
             {
                 rpc.ToggleRune(i);
             }
-            return string.Format("Pressed RUNE {0}!", i+1);
         }
 
-        public string RuneRerollSelected()
+        public void RuneRerollSelected()
         {
             resourceHandler.Reroll(rpc.rerolls);
             rpc.DoReroll(resourceHandler);
             ColorButtons();
-            return "Pressed REROLL";
         }
         
         public void OnResetButton()
@@ -293,9 +159,10 @@ namespace Platformer.Mechanics
             if (resourceHandler.CanCastSpell(spells[i]))
             {
                 resourceHandler.CommitRunesForSpell(spells[i]);
-                spellEffects.Add(spells[i].effect);
+                spellEffects.Add(spells[i].eventFunc);
                 rpc.ColorRunes(resourceHandler);
                 ColorButtons();
+                EventSystem.current.SetSelectedGameObject(currentSelected.gameObject);
             }
             return string.Format("Pressed spell {0}!", i+1);
         }
@@ -321,15 +188,83 @@ namespace Platformer.Mechanics
             {
                 sc.DoEnable();
             }
-
+            if (currentSelected != null && !currentSelected.IsInteractable)
+            {
+                EventSystem.current.SetSelectedGameObject(submitButton.gameObject);
+            }
+        }
+        
+        public void RegisterSelectableButton(SelectableButton b)
+        {
+            switch (b.buttonType) {
+                case ButtonType.RUNE1:
+                    rcs[0] = b.GetComponentInParent<RuneController>();
+                    b.SetAction(RuneSelected);
+                    break;
+                case ButtonType.RUNE2:
+                    rcs[1] = b.GetComponentInParent<RuneController>();
+                    b.SetAction(RuneSelected);
+                    break;
+                case ButtonType.RUNE3:
+                    rcs[2] = b.GetComponentInParent<RuneController>();
+                    b.SetAction(RuneSelected);
+                    break;
+                case ButtonType.RUNE4:
+                    rcs[3] = b.GetComponentInParent<RuneController>();
+                    b.SetAction(RuneSelected);
+                    break;
+                case ButtonType.RUNE5:
+                    rcs[4] = b.GetComponentInParent<RuneController>();
+                    b.SetAction(RuneSelected);
+                    break;
+                case ButtonType.RUNE6:
+                    rcs[5] = b.GetComponentInParent<RuneController>();
+                    b.SetAction(RuneSelected);
+                    break;
+                case ButtonType.REROLL:
+                    b.SetAction(RuneRerollSelected);
+                    rerollButton = b;
+                    break;
+                case ButtonType.RESET:
+                    b.SetAction(OnResetButton);
+                    break;
+                case ButtonType.SUBMIT:
+                    b.SetAction(SubmitSelected);
+                    submitButton = b;
+                    break;
+                case ButtonType.SPELL1:
+                    break;
+                case ButtonType.SPELL2:
+                    break;
+                case ButtonType.SPELL3:
+                    break;
+                case ButtonType.SPELL4:
+                    break;
+            }
+        }
+        
+        public void SetSelectedButton(SelectableButton b)
+        {
+            currentSelected = b;
+        }
+        
+        [Serializable]
+        public enum ButtonType
+        {
+            RUNE1,
+            RUNE2,
+            RUNE3,
+            RUNE4,
+            RUNE5,
+            RUNE6,
+            REROLL,
+            RESET,
+            SUBMIT,
+            SPELL1,
+            SPELL2,
+            SPELL3,
+            SPELL4
         }
     }
     
-    enum LASTSELECTED {
-        UP = 0,
-        LEFT = 1,
-        RIGHT = 2,
-        DOWN = 3,
-        BUTTONUP = 4
-    }
 }

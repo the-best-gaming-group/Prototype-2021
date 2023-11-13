@@ -35,35 +35,44 @@ namespace Platformer.Core
                     byte[] jsonBytes = new UTF8Encoding(true).GetBytes(json);
                     fs.Write(jsonBytes, 0, jsonBytes.Length);
                     fs.Close();
+                    jsonBytes = null;
                 }
                 return true;
             }
             catch (Exception)
             {
                 Debug.LogError("Failed to write new save file: " + fp);
+                json = null;
                 return false;
             }
         }
         public static async Task<Checkpoint> ReadFromSaveFile(string fp)
         {
+            byte[] bytes = new byte[int.MaxValue];
+            string json;
             try
             {
                 Debug.Log("Opening File");
-                using FileStream fs = File.OpenRead(fp);
-                byte[] bytes = new byte[int.MaxValue];
-                Debug.Log("Reading File");
-                await fs.ReadAsync(bytes);
+                using (FileStream fs = File.OpenRead(fp))
+                {
+                    Debug.Log("Reading File");
+                    await fs.ReadAsync(bytes);
+                    fs.Close();
+                }
                 Debug.Log("Encoding File");
-                var json = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
-                fs.Close();
+                json = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+                bytes = null;
                 Debug.Log("Converting File");
                 var checkpoint = JsonUtility.FromJson<Checkpoint>(json);
+                json = null;
                 Debug.Log("Returning Checkpoint");
                 return checkpoint;
             }
             catch (Exception)
             {
                 Debug.LogError("Failed to load save file: " + fp);
+                bytes = null;
+                json = null;
                 return null;
             }
             

@@ -13,6 +13,7 @@ namespace Platformer.Mechanics
         public SpawnsDict spawns = new ();
         public PlayDoorSoundDict playDoorSound = new();
         public PlayerPosDict playerPos = new();
+        public AvailableSpellsDict spells = new();
         public string SceneName;
         
         public Checkpoint(
@@ -20,14 +21,15 @@ namespace Platformer.Mechanics
             SpawnsDict Spawns,
             PlayDoorSoundDict PlayDoorSound,
             PlayerPosDict PlayerPos,
-            string SceneName
-            )
+            AvailableSpellsDict spells,
+            string SceneName)
         {
 			//this.playerHealth = Math.Min(100, playerHealth + 30);        
 			this.playerHealth = playerHealth;
 			spawns = Spawns.GetCopy();
             playDoorSound = PlayDoorSound.GetCopy();
             playerPos = PlayerPos.GetCopy();
+            this.spells = spells.GetCopy();
             this.SceneName = SceneName;
         }
 
@@ -74,6 +76,18 @@ namespace Platformer.Mechanics
             public PlayerPosDict GetCopy()
             {
                 var ret = new PlayerPosDict();
+                foreach (var (key, val) in this)
+                {
+                    ret[key] = val;
+                }
+                return ret;
+            }
+        }
+        [Serializable]
+        public class AvailableSpellsDict : SerializedDictionary<string, bool>{
+            public AvailableSpellsDict GetCopy()
+            {
+                var ret = new AvailableSpellsDict();
                 foreach (var (key, val) in this)
                 {
                     ret[key] = val;

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+using static GameManager;
 using static Rune;
 public enum Rune
 {
@@ -10,13 +10,6 @@ public enum Rune
     EARTH = 2,
     AIR   = 3,
     USED = 4
-}
-
-public class Spell
-{
-    public string name;    
-    public int[] cost = {0, 0, 0, 0};
-    public Func<string> effect;
 }
 
 public class ResourceHandler
