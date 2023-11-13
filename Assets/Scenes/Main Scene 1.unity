@@ -21083,7 +21083,7 @@ GameObject:
   - component: {fileID: 8095525984225182205}
   - component: {fileID: 8095525984225182204}
   m_Layer: 0
-  m_Name: Stairs
+  m_Name: Stairs adj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23831,7 +23831,7 @@ GameObject:
   - component: {fileID: 8318921190733100489}
   - component: {fileID: 8318921190733100488}
   m_Layer: 0
-  m_Name: Bike
+  m_Name: Bike adj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
