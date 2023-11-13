@@ -5661,6 +5661,8 @@ GameObject:
   - component: {fileID: 1581175940939102991}
   - component: {fileID: 7251870524922605542}
   - component: {fileID: 4584329036176865318}
+  - component: {fileID: 7251870524922605544}
+  - component: {fileID: 7251870524922605543}
   m_Layer: 0
   m_Name: Antique mirror
   m_TagString: Untagged
@@ -7122,6 +7124,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4198916338039970805}
   m_Mesh: {fileID: 2017180812818994181, guid: 1937b5b166acfa24a8a8a653afc08057, type: 3}
+--- !u!114 &7251870524922605543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4198916338039970805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueObject: {fileID: 0}
+  events: []
+--- !u!114 &7251870524922605544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4198916338039970805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
+  dialogueObject: {fileID: 0}
+  visualCue: {fileID: 0}
+  diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags: []
 --- !u!1 &7262311540352623274
 GameObject:
   m_ObjectHideFlags: 0
