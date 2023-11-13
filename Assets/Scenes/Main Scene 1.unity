@@ -11036,6 +11036,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8683487254858230622, guid: c5338d9a8f3fffe45bc1a96f3cc70b3d, type: 3}
   m_PrefabInstance: {fileID: 1890546345}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1890546347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7473072417526752616, guid: c5338d9a8f3fffe45bc1a96f3cc70b3d, type: 3}
+  m_PrefabInstance: {fileID: 1890546345}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1904074573
 GameObject:
   m_ObjectHideFlags: 0
@@ -21083,7 +21088,7 @@ GameObject:
   - component: {fileID: 8095525984225182205}
   - component: {fileID: 8095525984225182204}
   m_Layer: 0
-  m_Name: Stairs adj
+  m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23830,8 +23835,10 @@ GameObject:
   - component: {fileID: 8318921190733100485}
   - component: {fileID: 8318921190733100489}
   - component: {fileID: 8318921190733100488}
+  - component: {fileID: 8318921190733100491}
+  - component: {fileID: 8318921190733100490}
   m_Layer: 0
-  m_Name: Bike adj
+  m_Name: Bike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24696,6 +24703,68 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.010027779, y: 0.016094772, z: 0.012749093}
   m_Center: {x: -0.0044652373, y: -0.0048254784, z: -0.0030680993}
+--- !u!114 &8318921190733100490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7526151385972347920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
+  dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
+  visualCue: {fileID: 1890546347}
+  diaSound: {fileID: 8318921190733100488}
+  savedDiagIdx: -1
+  finalDiags:
+  - {fileID: 11400000, guid: 42d9b6e859d6d0847999a05004313d9b, type: 2}
+--- !u!114 &8318921190733100491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7526151385972347920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
+  events:
+  - name: Touch it.
+    onPickedResponse:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: AddItem
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: c0b6619f515fc4041a8f80435d7a3c7e, type: 2}
+            m_ObjectArgumentAssemblyTypeName: InventoryItem, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8318921190733100490}
+          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
+          m_MethodName: UpdateDialogueObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: d752b21f5a7db5642a91a871bd242bd6, type: 2}
+            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8331053046325523740
 GameObject:
   m_ObjectHideFlags: 0
