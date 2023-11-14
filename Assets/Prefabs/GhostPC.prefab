@@ -58,6 +58,7 @@ MonoBehaviour:
   _collider: {fileID: 4610735470543699888}
   _rigidbody: {fileID: 4610735470543699891}
   jumpSound: {fileID: -7876690802889807187}
+  SaveCheckpoint: 1
 --- !u!136 &4610735470543699888
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -113,8 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
   healthBar: {fileID: 0}
+  currentHealth: 0
 --- !u!82 &-7876690802889807187
 AudioSource:
   m_ObjectHideFlags: 0
@@ -125,10 +126,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 79ee7169ed54c6644a57ef18dbf302ea, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3a89dd3cca25abc439ffabcbe216e5ba, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.64
-  m_Pitch: 2.44
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0

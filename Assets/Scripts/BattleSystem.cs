@@ -43,15 +43,19 @@ public class BattleSystem : MonoBehaviour
     RigidbodyConstraints playerRBConstraints;
     GameObject enemy;
     PlayerHealthBar enemyHP;
-
+    [SerializeField] AudioSource winSound;
+    [SerializeField] AudioSource loseSound;
     public GameObject fireboltAsset;
     public GameObject lightningAsset;
     public GameObject knifeAsset;
+
+  
     public GameObject enemyStunAsset;
     public GameObject stunObj;
     public GameObject healAsset;
     public GameObject healObj;
     public int remaningStunTurns = 0;
+
 
     TextMeshProUGUI battleDialog;
 
@@ -257,6 +261,7 @@ public class BattleSystem : MonoBehaviour
         player.GetComponentInChildren<Rigidbody>().constraints = playerRBConstraints;//restore ability to move/rotate
         if (state == BattleState.WON)
         {
+              winSound.Play();
             battleDialog.text = "You have prevailed!";
             // This can be replaced with a confirmation UI when we're ready
             yield return new WaitForSecondsRealtime(2f);
@@ -266,6 +271,7 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
+             loseSound.Play();
             battleDialog.text = "You were vanquished!";
             //move back to checkpoint
             yield return new WaitForSecondsRealtime(3f);

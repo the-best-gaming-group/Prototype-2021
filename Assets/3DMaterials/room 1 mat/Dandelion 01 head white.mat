@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dandelion 01 head white
-  m_Shader: {fileID: -6465566751694194690, guid: e9fd6e6545ba3664d85a2190a41abdd3, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: f41a29eeecaa9bb47b9152a4c57d052f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 6
@@ -146,6 +146,7 @@ Material:
     - _Height_offset: 0
     - _Height_strength: 0
     - _Metallic: 0
+    - _Metallic_strength: 0
     - _Mode: 3
     - _Normal_strength: 5.03
     - _OcclusionStrength: 1
@@ -154,6 +155,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Roughness_strength: 0.8
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

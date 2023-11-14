@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: grass medium 01
-  m_Shader: {fileID: -6465566751694194690, guid: e9fd6e6545ba3664d85a2190a41abdd3, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: f41a29eeecaa9bb47b9152a4c57d052f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -81,9 +81,11 @@ Material:
     m_Floats:
     - _Height_offset: 0.17
     - _Height_strength: 10
+    - _Metallic_strength: 0
     - _Normal_strength: 1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Roughness_strength: 0.759
     m_Colors:
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
