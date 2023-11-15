@@ -38,13 +38,10 @@ public class ShopManager : MonoBehaviour
 
 	public void Buy(int itemID)
 	{
-		// Retrieve the price for the item
 		int itemPrice = shopItems[2, itemID];
 
-		// Check if the player has enough coins
 		if (coins >= itemPrice)
 		{
-			// Open the confirmation window with the item name and price
 			confirmationWindow.OpenConfirmationWindow("Are you sure you want to buy " + itemNames[itemID] + " for $" + itemPrice + "?", itemID);
 		}
 		else
@@ -53,11 +50,21 @@ public class ShopManager : MonoBehaviour
 		}
 
 	}
-	public void DisableItemButton(int itemID)
+
+	/* not interactable version
+    public void DisableItemButton(int itemID)
+    {
+        if (itemID < itemButtons.Length)
+        {
+            itemButtons[itemID - 1].interactable = false;
+        }
+    }
+	*/
+    public void DisableItemButton(int itemID)
 	{
 		if (itemID < itemButtons.Length)
 		{
-			itemButtons[itemID-1].interactable = false; // Disable the button
+			itemButtons[itemID - 1].gameObject.SetActive(false);
 		}
 	}
 }
