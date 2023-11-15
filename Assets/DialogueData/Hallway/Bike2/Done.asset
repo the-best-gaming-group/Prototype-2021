@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Done
   m_EditorClassIdentifier: 
   dialogue:
-  - There's nothing on the bicycle.
+  - '"secret experiment... gone crazy... exploded... trapped"'
   responses: []
   needCondition: 0

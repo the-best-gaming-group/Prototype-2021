@@ -20,5 +20,7 @@ MonoBehaviour:
   - The burning flame suddenly flickered for a few moments.
   - '"Well... he who originally brought convenience and progress to people was swallowed
     up by obsession."'
-  responses: []
+  responses:
+  - responseText: Who is he?
+    dialogueObject: {fileID: 0}
   needCondition: 0

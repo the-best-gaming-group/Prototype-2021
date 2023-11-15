@@ -23076,7 +23076,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: c2ee4e9a63f81784e8efd571d8964773, type: 2}
-  events: []
+  events:
+  - name: Who is he?
+    onPickedResponse:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7083286782933293394}
+          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
+          m_MethodName: UpdateDialogueObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 5e03c2b3431e08d4d9d2c768fbd7945d, type: 2}
+            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!65 &7083286782933293396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24280,8 +24296,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 33.751205, y: 34.490894, z: 13.701035}
-  m_Center: {x: -6.054027, y: -1.0405775, z: 3.4583192}
+  m_Size: {x: 33.751205, y: 34.490894, z: 30.011217}
+  m_Center: {x: -6.0540266, y: -1.0405775, z: -4.696754}
 --- !u!1 &8097640994592834700
 GameObject:
   m_ObjectHideFlags: 0
@@ -24731,7 +24747,7 @@ MonoBehaviour:
   diaSound: {fileID: 8318921190733100488}
   savedDiagIdx: -1
   finalDiags:
-  - {fileID: 11400000, guid: 42d9b6e859d6d0847999a05004313d9b, type: 2}
+  - {fileID: 11400000, guid: 5e03c2b3431e08d4d9d2c768fbd7945d, type: 2}
 --- !u!114 &8318921190733100491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24767,7 +24783,7 @@ MonoBehaviour:
           m_MethodName: UpdateDialogueObject
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: d752b21f5a7db5642a91a871bd242bd6, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 5e03c2b3431e08d4d9d2c768fbd7945d, type: 2}
             m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0

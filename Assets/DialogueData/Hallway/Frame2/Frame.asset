@@ -17,5 +17,7 @@ MonoBehaviour:
   - It can be vaguely seen that this is a photo of an old woman and a young man.
   - The expressions on their faces are no longer visible, but I can tell from their
     interaction in the photo that they were very close.
-  responses: []
+  responses:
+  - responseText: 
+    dialogueObject: {fileID: 0}
   needCondition: 0
