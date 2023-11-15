@@ -13,9 +13,15 @@ public class ShopManager : MonoBehaviour
 	public TextMeshProUGUI ConisTXT;
 	public Confirmation confirmationWindow;
 	public Button[] itemButtons;
+	public static bool GameIsPaused = false;
+
+	void OnEnable()
+	{
+		Pause();
+	}
 
 	void Start()
-	{
+	{	
 		//ID's
 		ConisTXT.text = "Coins:" + coins.ToString();
 		shopItems[1, 1] = 1;
@@ -34,6 +40,18 @@ public class ShopManager : MonoBehaviour
 		itemNames[2] = "Freeze";
 		itemNames[3] = "Heal";
 		itemNames[4] = "Stun";
+	}
+
+	void Pause()
+	{
+		Time.timeScale = 0f;
+		GameIsPaused = true;
+	}
+
+	public void Resume()
+	{
+		Time.timeScale = 1f;
+		GameIsPaused = false;
 	}
 
 	public void Buy(int itemID)
