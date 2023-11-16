@@ -10592,7 +10592,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: 8f53deca2e85a1744a9c36280fadca79, type: 2}
-  events: []
+  events:
+  - name: 
+    onPickedResponse:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &1855196184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22158,7 +22162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 345182073}
-  sceneName: Room 1 Scene
+  sceneName: Room 3
   IsDoor: 1
 --- !u!114 &6102692636947437204
 MonoBehaviour:
@@ -23436,7 +23440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 345182073}
-  sceneName: Room 3
+  sceneName: Room 1 Scene
   IsDoor: 1
 --- !u!114 &7399455437859143717
 MonoBehaviour:
@@ -24747,7 +24751,7 @@ MonoBehaviour:
   diaSound: {fileID: 8318921190733100488}
   savedDiagIdx: -1
   finalDiags:
-  - {fileID: 11400000, guid: 5e03c2b3431e08d4d9d2c768fbd7945d, type: 2}
+  - {fileID: 11400000, guid: 690d91698cd0a6142a0481abd2cd450d, type: 2}
 --- !u!114 &8318921190733100491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24762,10 +24766,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueObject: {fileID: 11400000, guid: aa33249b081b88048bb282169f441827, type: 2}
   events:
-  - name: Touch it.
+  - name: 'Pike it up. '
     onPickedResponse:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 8318921190733100490}
+          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
+          m_MethodName: UpdateDialogueObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 690d91698cd0a6142a0481abd2cd450d, type: 2}
+            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 785907792}
           m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
           m_MethodName: AddItem
@@ -24773,18 +24789,6 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: c0b6619f515fc4041a8f80435d7a3c7e, type: 2}
             m_ObjectArgumentAssemblyTypeName: InventoryItem, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8318921190733100490}
-          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
-          m_MethodName: UpdateDialogueObject
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 5e03c2b3431e08d4d9d2c768fbd7945d, type: 2}
-            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

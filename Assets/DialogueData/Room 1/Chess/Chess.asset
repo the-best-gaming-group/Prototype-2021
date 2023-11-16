@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Chess
   m_EditorClassIdentifier: 
   dialogue:
-  - Woah! Everything's huge. How did I end up- YOU! WHAT BRINGS YOU HERE?!
+  - Woah! Everything's huge. How did I end up...
+  - '"Ah, the meddling scientist himself returns."'
+  - '"Have you successfully resurrected your dear grandmother?"'
   responses:
-  - responseText: ?!
+  - responseText: What...?
     dialogueObject: {fileID: 11400000, guid: 996c33f74e6b3a04db0ffeb0ec895ea5, type: 2}
   needCondition: 0
