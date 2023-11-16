@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Columns
   m_EditorClassIdentifier: 
   dialogue:
-  - (I wonder the story behind these broken columns.)
-  - (Something really strong must have happened here. I should be careful.)
+  - I wonder the story behind these broken columns.
+  - Something really strong must have happened here. I should be careful.
   responses: []
   needCondition: 0
