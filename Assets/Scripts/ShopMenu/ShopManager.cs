@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using Platformer.Mechanics;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
@@ -14,7 +12,7 @@ public class ShopManager : MonoBehaviour
 	public Confirmation confirmationWindow;
 	public Button[] itemButtons;
 	public static bool GameIsPaused = false;
-
+	
 	void OnEnable()
 	{
 		Pause();

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Platformer.Mechanics;
 using UnityEngine;
 
 public class Close : MonoBehaviour
