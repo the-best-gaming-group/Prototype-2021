@@ -192,11 +192,11 @@ public class BattleSystem : MonoBehaviour
         } else if (remaningStunTurns < 1)
         {
             state = BattleState.ENEMY_TURN;
-                Destroy(stunObj);
             StartCoroutine(EnemyTurn());
         } else
         {
-            remaningStunTurns--;
+            if (--remaningStunTurns == 0)
+                Destroy(stunObj);
             PlayerTurn();
         }
     }
@@ -335,27 +335,27 @@ public class BattleSystem : MonoBehaviour
         }
         catch (Exception) { }
 
-        remaningStunTurns++;
+        remaningStunTurns += 2;
 
         return null;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            animator.Play("PlayerStun");
-            try
-            {
-                //healObj = GameObject.Instantiate(healAsset, player.transform);
-                healObj = GameObject.Instantiate(healAsset, player.transform);
-            } catch (Exception) { }
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //Destroy(healObj);
-            Destroy(healObj);
-        }
+        // if (Input.GetKeyDown(KeyCode.K))
+        // {
+        //     animator.Play("PlayerStun");
+        //     try
+        //     {
+        //         //healObj = GameObject.Instantiate(healAsset, player.transform);
+        //         healObj = GameObject.Instantiate(healAsset, player.transform);
+        //     } catch (Exception) { }
+        // }
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     //Destroy(healObj);
+        //     Destroy(healObj);
+        // }
     }
 
 
