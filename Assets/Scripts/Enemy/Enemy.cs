@@ -22,12 +22,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] float sightRange, attackRange;
     bool playerInSight, playerInAttackRange;
 
+    Animator animator;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-		agent.updateRotation = false;
+		//agent.updateRotation = false;
         agent.speed = 2;
 		player = GameObject.Find("GhostPC");
+        animator = GetComponent<Animator>();
 	}
 
 	void Update()
@@ -42,7 +45,12 @@ public class Enemy : MonoBehaviour
 			playerInSight = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 			if (!playerInSight && !playerInAttackRange) Patrol();
 			if (playerInSight && !playerInAttackRange) Chase();
-			if (playerInSight && playerInAttackRange) Attack();
+            else
+            {
+                animator.SetBool("isChasing", false);
+            }
+            if (playerInSight && playerInAttackRange) Attack();
+            
 
 		}
     }
@@ -51,15 +59,22 @@ public class Enemy : MonoBehaviour
     {
 		if (SceneManager.GetActiveScene().name != "Combat Arena")
         {
-			Debug.Log("Chase");
+
+            animator.SetBool("isChasing", true);
+            Debug.Log("Chase");
 			agent.SetDestination(player.transform.position);
 			agent.speed = 3.5f;
 		}
     }
+
+    // function does not seem to be executing ? 
     void Attack()
     {
 		Debug.Log("Attack");
+        transform.LookAt(player.transform);
+   
 	}
+
 
     void Patrol()
     {
@@ -84,5 +99,11 @@ public class Enemy : MonoBehaviour
         {
             walkpointSet = true;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
