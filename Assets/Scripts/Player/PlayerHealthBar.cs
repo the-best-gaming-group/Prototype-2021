@@ -95,7 +95,7 @@ public class PlayerHealthBar : MonoBehaviour
 	public int TakeDamage(int damage, bool isPlayer = true)
 	{
 		Debug.Log("Taking damage: " + damage);
-		currentHealth = Mathf.Max(0, currentHealth - damage);
+		currentHealth = Mathf.Min(Mathf.Max(0, currentHealth - damage), 100);
 
 		if (isPlayer)
 		{
