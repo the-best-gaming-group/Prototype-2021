@@ -18,6 +18,6 @@ MonoBehaviour:
   - The expressions on their faces are no longer visible, but I can tell from their
     interaction in the photo that they were very close.
   responses:
-  - responseText: 
+  - responseText: This old woman...
     dialogueObject: {fileID: 0}
   needCondition: 0
