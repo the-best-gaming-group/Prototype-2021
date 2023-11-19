@@ -44,7 +44,11 @@ public class Enemy : MonoBehaviour
 			playerInSight = Physics.CheckSphere(transform.position, sightRange, playerLayer);
 			playerInSight = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 			if (!playerInSight && !playerInAttackRange) Patrol();
-			if (playerInSight && !playerInAttackRange) Chase();
+            else
+            {
+                animator.SetBool("isPatroling", false);
+            }
+            if (playerInSight && !playerInAttackRange) Chase();
             else
             {
                 animator.SetBool("isChasing", false);
@@ -78,6 +82,7 @@ public class Enemy : MonoBehaviour
 
     void Patrol()
     {
+        animator.SetBool("isPatroling", true);
         if (!walkpointSet) SearchForDest();
         if (walkpointSet) agent.SetDestination(destPoint);
 		// If the distance between the enemy's current position and the destPoint is less than 10 units
