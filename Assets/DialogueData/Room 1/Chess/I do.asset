@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - Very well. Trouble is what you shall get.
+  - (start fighting)
   responses: []
   needCondition: 0

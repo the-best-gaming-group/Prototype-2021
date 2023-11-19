@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Forest
   m_EditorClassIdentifier: 
   dialogue:
-  - (What happened to the trees? It's dark in here...)
-  - (Oh, what's glowing over there?)
+  - What happened to the trees? It's dark in here...
+  - Oh, what's glowing over there?
   responses: []
   needCondition: 0
