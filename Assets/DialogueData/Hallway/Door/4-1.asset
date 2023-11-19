@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 4-1
   m_EditorClassIdentifier: 
   dialogue:
-  - As I pass the door, a fragment of newspaper floats out from the crack.
-  - I tried turning the doorknob but it was locked.
+  - When I walk pass the door, a fragment of newspaper floats out from the crack.
+  - I try to turn the doorknob but it is locked.
   responses:
   - responseText: Pick it up.
     dialogueObject: {fileID: 11400000, guid: 42a0b39f92ec0654c8d398c9a6e7e8ff, type: 2}
