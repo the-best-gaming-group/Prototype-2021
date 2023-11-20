@@ -17,8 +17,9 @@ namespace Platformer.Mechanics
         public string SceneName;
 		public float coins;
 		public int[,] shopItems = new int[5, 5];
+        public string[] itemNames = new string[5];
 
-		public Checkpoint(
+        public Checkpoint(
             int playerHealth,
             SpawnsDict Spawns,
             PlayDoorSoundDict PlayDoorSound,
@@ -26,8 +27,9 @@ namespace Platformer.Mechanics
             AvailableSpellsDict spells,
             string SceneName,
             float coins,
-		    int[,] shopItems
-			)
+		    int[,] shopItems,
+            string[] itemNames
+            )
         {
 			//this.playerHealth = Math.Min(100, playerHealth + 30);        
 			this.playerHealth = playerHealth;
@@ -38,6 +40,7 @@ namespace Platformer.Mechanics
             this.SceneName = SceneName;
 			this.coins = coins;
 			this.shopItems = shopItems;
+            this.itemNames = itemNames;
 		}
 
         [Serializable]
