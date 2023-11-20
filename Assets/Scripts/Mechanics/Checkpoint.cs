@@ -15,14 +15,19 @@ namespace Platformer.Mechanics
         public PlayerPosDict playerPos = new();
         public AvailableSpellsDict spells = new();
         public string SceneName;
-        
-        public Checkpoint(
+		public float coins;
+		public int[,] shopItems = new int[5, 5];
+
+		public Checkpoint(
             int playerHealth,
             SpawnsDict Spawns,
             PlayDoorSoundDict PlayDoorSound,
             PlayerPosDict PlayerPos,
             AvailableSpellsDict spells,
-            string SceneName)
+            string SceneName,
+            float coins,
+		    int[,] shopItems
+			)
         {
 			//this.playerHealth = Math.Min(100, playerHealth + 30);        
 			this.playerHealth = playerHealth;
@@ -31,7 +36,9 @@ namespace Platformer.Mechanics
             playerPos = PlayerPos.GetCopy();
             this.spells = spells.GetCopy();
             this.SceneName = SceneName;
-        }
+			this.coins = coins;
+			this.shopItems = shopItems;
+		}
 
         [Serializable]
         public class SceneSpawnsDict : SerializedDictionary<string,int> {

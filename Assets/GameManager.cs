@@ -15,6 +15,7 @@ using Ink.Runtime;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance; // Singleton instance
+	public static ShopManager ShopManager;
 	public SpellManager Spellmanager;
 	public InputManager inputManager;
 
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+		ShopManager = FindObjectOfType<ShopManager>();
 	}
 
 	private Dictionary<int, int> playerInventory = new Dictionary<int, int>();
@@ -139,7 +141,9 @@ public class GameManager : MonoBehaviour
 			PlayDoorSound,
 			PlayerPos,
 			AvailableSpells,
-			SceneName
+			SceneName,
+			ShopManager.coins,
+			ShopManager.shopItems
 		);
 		SaveFileManager.WriteToSaveFile(SaveFilePath, Checkpoint);
 	}
@@ -156,13 +160,17 @@ public class GameManager : MonoBehaviour
 		PlayerPos = Checkpoint.playerPos;
 		AvailableSpells = Checkpoint.spells;
 		sceneChange.sceneName = Checkpoint.SceneName;
+
+		// Load shop information
+		ShopManager.coins = Checkpoint.coins;
+		ShopManager.shopItems = Checkpoint.shopItems;
 		sceneChange.Invoke();
 	}
 
 	public void NewGame()
 	{
 		const string scene = "Main Scene 1";
-		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene);
+		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, ShopManager.coins, ShopManager.shopItems);
 		LoadCheckpoint();
 	}
 
