@@ -70,7 +70,7 @@ public class BattleSystem : MonoBehaviour
     Animator animator;
 
     Animator enemyAnimator;
-    WaitForSeconds jumpWait = new WaitForSeconds(5.6f);
+    WaitForSeconds jumpWait = new WaitForSeconds(5.6f); // use to wait for anim to finish
     WaitForSeconds wait3sec = new WaitForSeconds(3f);
     WaitForSeconds wait2sec = new WaitForSeconds(2f);
     WaitForSeconds wait1sec = new WaitForSeconds(1f);
@@ -94,7 +94,7 @@ public class BattleSystem : MonoBehaviour
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
         enemy.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;
 
-        enemyAnimator = enemy.GetComponentInChildren<Animator>();
+        enemyAnimator = enemy.GetComponentInChildren<Animator>(); // enemy animation controller
 
     }
     
@@ -292,10 +292,22 @@ public class BattleSystem : MonoBehaviour
 
     GameObject sendFirebolt(bool isFromPlayer = true)//todo: change for enemy
     {
-        var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
-        int fireSrcOffset = isFromPlayer ? 1 : -1;
-        currentPrefabObject.transform.position = (isFromPlayer ? player : enemy).transform.position + new Vector3(fireSrcOffset, .5f, 0);
-        currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f * fireSrcOffset, 0, 0.70711f);
+        if (isFromPlayer)
+        {
+            GameObject fire = GameObject.Instantiate(fireboltAsset);
+            fire.transform.position = player.transform.position + new Vector3(1, .5f, 1);
+            fire.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);
+        }
+        else
+        {
+            GameObject fire = GameObject.Instantiate(fireboltAsset);
+            fire.transform.position = enemy.transform.position + new Vector3(-1, .5f, -1);
+            fire.transform.rotation = new Quaternion(0, 0.70711f, 0, -0.70711f);
+        }
+        //var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
+        //int fireSrcOffset = isFromPlayer ? 1 : -1;
+        //currentPrefabObject.transform.position = (isFromPlayer ? player : enemy).transform.position + new Vector3(fireSrcOffset, .5f, 0);
+        //currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f * fireSrcOffset, 0, 0.70711f);
 
         return null;
     }
