@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     bool playerInSight, playerInAttackRange;
 
     Animator animator;
+    float timer;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour
         agent.speed = 2;
 		player = GameObject.Find("GhostPC");
         animator = GetComponent<Animator>();
+        timer = 0; // TIMING FOR IDLE
 	}
 
 	void Update()
@@ -43,51 +45,76 @@ public class Enemy : MonoBehaviour
 		{
 			playerInSight = Physics.CheckSphere(transform.position, sightRange, playerLayer);
 			playerInSight = Physics.CheckSphere(transform.position, attackRange, playerLayer);
-			if (!playerInSight && !playerInAttackRange) Patrol();
-            else
-            {
-                animator.SetBool("isPatroling", false);
-            }
-            if (playerInSight && !playerInAttackRange) Chase();
-            else
-            {
-                animator.SetBool("isChasing", false);
-            }
-            if (playerInSight && playerInAttackRange) Attack();
-            
 
-		}
+            timer += Time.deltaTime;
+            agent.isStopped = false; // MOVE BY DEFAULT
+            if (timer < 5){
+                if (animator.GetBool("isChasing") == false) // if not chasing, prevent movement
+                    agent.isStopped = true;
+                else
+                    agent.isStopped = false; // otherwise MOVE
+            }
+
+            if (!playerInSight && !playerInAttackRange && timer > 5)
+                    Patrol(); // IF IDLE FOR A WHILE PLAY PATROL
+            else {
+                    animator.SetBool("isPatroling", false); // NOT PATROL
+                 }
+
+            if (playerInSight && !playerInAttackRange)
+                    Chase(); 
+            else {
+                    animator.SetBool("isChasing", false); // NOT CHASING
+                 }
+
+            if (playerInSight && playerInAttackRange) Attack();
+
+        }
     }
 
     void Chase()
     {
 		if (SceneManager.GetActiveScene().name != "Combat Arena")
         {
+            // ROTATION ADJUSTMENT
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            Quaternion lookRot = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 10f);
 
-            animator.SetBool("isChasing", true);
+            animator.SetBool("isChasing", true); // CHASE ANIM
+
             Debug.Log("Chase");
 			agent.SetDestination(player.transform.position);
 			agent.speed = 3.5f;
-		}
+
+            if (timer > 10 && animator.GetBool("isChasing") == false) // RESET TIMER WHEN DONE
+                timer = 0;
+        }
     }
 
     // function does not seem to be executing ? 
     void Attack()
     {
 		Debug.Log("Attack");
-        transform.LookAt(player.transform);
    
 	}
 
 
     void Patrol()
     {
-        animator.SetBool("isPatroling", true);
+        animator.SetBool("isPatroling", true); // PATROL ANIM
+
         if (!walkpointSet) SearchForDest();
         if (walkpointSet) agent.SetDestination(destPoint);
 		// If the distance between the enemy's current position and the destPoint is less than 10 units
         // Sets walkpointSet to false, indicating that a new destination needs to be found
 		if (Vector3.Distance(transform.position, destPoint) < 10) walkpointSet = false;
+
+        if (timer > 10) // SWITCH TO IDLE AFTER A WHILE 
+        {
+            animator.SetBool("isPatroling", false);
+            timer = 0;
+        }
     }
 
     void SearchForDest()
