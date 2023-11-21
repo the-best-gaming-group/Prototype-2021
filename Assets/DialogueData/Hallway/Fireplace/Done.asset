@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Done
   m_EditorClassIdentifier: 
   dialogue:
-  - '"secret experiment... gone crazy... exploded... trapped"'
+  - '"Well... he who originally brought convenience and progress to people was swallowed
+    up by obsession."'
   responses: []
   needCondition: 0

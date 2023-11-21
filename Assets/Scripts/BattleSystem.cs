@@ -78,7 +78,7 @@ public class BattleSystem : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         enemy = GameObject.FindWithTag("Enemy");
         playerHP = player.GetComponent<PlayerHealthBar>();
-        // playerHP.TakeDamage(100 - GameManager.Instance.GetPlayerHealth());
+// playerHP.TakeDamage(-100);//todo: for testing, comment or rm        
         enemyHP = enemy.GetComponentInChildren<PlayerHealthBar>();
         battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
         
@@ -192,11 +192,11 @@ public class BattleSystem : MonoBehaviour
         } else if (remaningStunTurns < 1)
         {
             state = BattleState.ENEMY_TURN;
-                Destroy(stunObj);
             StartCoroutine(EnemyTurn());
         } else
         {
-            remaningStunTurns--;
+            if (--remaningStunTurns == 0)
+                Destroy(stunObj);
             PlayerTurn();
         }
     }
@@ -218,12 +218,12 @@ public class BattleSystem : MonoBehaviour
                 if (!playerDodged) sendSlam(false);
                 yield return new WaitForSeconds(1f);
                 break;
-            //case < 50: //fire looks good from player, not so much from enemy - likely due to position
-                //enemyAction = CombatOptions.Firebolt;
-                //battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
-                //sendFirebolt(false);
-                //yield return new WaitForSeconds(1f);
-                //break;
+            case < 50:
+                enemyAction = CombatOptions.Firebolt;
+                battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
+                sendFirebolt(false);
+                yield return new WaitForSeconds(1f);
+                break;
             case < 75:
                 enemyAction = CombatOptions.Electrocute;
                 battleDialog.text = dialogText.Replace("<harm>", "electrocutes");
@@ -335,27 +335,27 @@ public class BattleSystem : MonoBehaviour
         }
         catch (Exception) { }
 
-        remaningStunTurns++;
+        remaningStunTurns += 2;
 
         return null;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            animator.Play("PlayerStun");
-            try
-            {
-                //healObj = GameObject.Instantiate(healAsset, player.transform);
-                healObj = GameObject.Instantiate(healAsset, player.transform);
-            } catch (Exception) { }
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //Destroy(healObj);
-            Destroy(healObj);
-        }
+        // if (Input.GetKeyDown(KeyCode.K))
+        // {
+        //     animator.Play("PlayerStun");
+        //     try
+        //     {
+        //         //healObj = GameObject.Instantiate(healAsset, player.transform);
+        //         healObj = GameObject.Instantiate(healAsset, player.transform);
+        //     } catch (Exception) { }
+        // }
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     //Destroy(healObj);
+        //     Destroy(healObj);
+        // }
     }
 
 
