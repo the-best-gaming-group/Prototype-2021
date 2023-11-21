@@ -28,21 +28,34 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-		//agent.updateRotation = false;
-        agent.speed = 2;
-		player = GameObject.Find("GhostPC");
-        animator = GetComponent<Animator>();
-        timer = 0; // TIMING FOR IDLE
+
+        if (SceneManager.GetActiveScene().name != "Combat Arena")
+        {
+            //agent.updateRotation = false;
+            agent.speed = 2;
+            player = GameObject.Find("GhostPC");
+            animator = GetComponent<Animator>();
+            timer = 0; // TIMING FOR IDLE
+            agent.isStopped = false;
+            agent.updatePosition = true;
+        }
+        else
+        {
+            // DON'T DO A THING IN COMBAT
+            agent.updatePosition = false;
+            agent.nextPosition = transform.position;
+            agent.isStopped = true; 
+        }
 	}
 
 	void Update()
     {
-		Vector3 newPosition = transform.position;
-		newPosition.z = player.transform.position.z;
-		transform.position = newPosition;
-
-		if (SceneManager.GetActiveScene().name != "Combat Arena")
-		{
+        if (SceneManager.GetActiveScene().name != "Combat Arena")
+        {
+            Vector3 newPosition = transform.position;
+		    newPosition.z = player.transform.position.z;
+		    transform.position = newPosition;
+		
 			playerInSight = Physics.CheckSphere(transform.position, sightRange, playerLayer);
 			playerInSight = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 

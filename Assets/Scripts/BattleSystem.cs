@@ -68,6 +68,13 @@ public class BattleSystem : MonoBehaviour
     bool playerDodged = false;
 
     Animator animator;
+
+    Animator enemyAnimator;
+    WaitForSeconds jumpWait = new WaitForSeconds(5.6f);
+    WaitForSeconds wait3sec = new WaitForSeconds(3f);
+    WaitForSeconds wait2sec = new WaitForSeconds(2f);
+    WaitForSeconds wait1sec = new WaitForSeconds(1f);
+
     readonly List<TurnActions> turnActions = new ();
     public ResourceHandler resourceHandler = new();
     public GameManager.Spell[] spells = new GameManager.Spell[4];
@@ -86,6 +93,8 @@ public class BattleSystem : MonoBehaviour
         playerRBConstraints = player.GetComponentInChildren<Rigidbody>().constraints;
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
         enemy.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;
+
+        enemyAnimator = enemy.GetComponentInChildren<Animator>();
 
     }
     
@@ -209,6 +218,7 @@ public class BattleSystem : MonoBehaviour
 
         if (playerDodged)
             animator.Play("PlayerDodge");
+         
      
         switch (randomInt)
         {
@@ -216,25 +226,25 @@ public class BattleSystem : MonoBehaviour
                 enemyAction = CombatOptions.Slam;
                 battleDialog.text = playerDodged ? "You dodged enemy's slam!" : dialogText.Replace("<harm>", "slammed");
                 if (!playerDodged) sendSlam(false);
-                yield return new WaitForSeconds(1f);
+                yield return wait3sec; // important for animation to finish
                 break;
             case < 50:
                 enemyAction = CombatOptions.Firebolt;
                 battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
                 sendFirebolt(false);
-                yield return new WaitForSeconds(1f);
+                yield return wait1sec; //new WaitForSeconds(1f);
                 break;
             case < 75:
                 enemyAction = CombatOptions.Electrocute;
                 battleDialog.text = dialogText.Replace("<harm>", "electrocutes");
                 var lightning = sendLightning();
-                yield return new WaitForSeconds(1f);
+                yield return wait1sec; //new WaitForSeconds(1f);
                 Destroy(lightning);
                 break;
             default:
                 sendKnife(false);
                 battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
-                yield return new WaitForSeconds(1f);
+                yield return wait1sec; //new WaitForSeconds(1f);
                 break;
         }
         if (!playerDodged || enemyAction is CombatOptions.Electrocute)
@@ -289,9 +299,25 @@ public class BattleSystem : MonoBehaviour
 
         return null;
     }
+    
+    private IEnumerator animateAndWaitThenDeactivate(string anim)
+    {
+        enemyAnimator.SetBool(anim, true);
+        yield return jumpWait; //new WaitForSeconds(5.6f);
+        enemyAnimator.SetBool(anim, false);
+    }
+
     GameObject sendSlam(bool isFromPlayer = true)
     {
-        animator.Play((isFromPlayer ? "Enemy" : "Player") + "Slammed");
+        if(isFromPlayer)
+        {
+            animator.Play("EnemySlammed");
+        }
+        else
+        {
+            StartCoroutine(animateAndWaitThenDeactivate("isCombat"));
+        }
+        //animator.Play((isFromPlayer ? "Enemy" : "Player") + "Slammed");
 
         return null;
     }
