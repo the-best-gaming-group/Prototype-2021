@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
 	[SerializeField] private int playerHealth;
 	[SerializeField] private float coins;
-	[SerializeField] private int[,] shopItems = new int[5, 5];
-	[SerializeField] private string[] itemNames = new string[5];
+	[SerializeField] public int[,] shopItems = new int[5, 5];
+	[SerializeField] public string[] itemNames = new string[5];
 	public Checkpoint.SpawnsDict Spawns = new();
 	public Checkpoint.PlayDoorSoundDict PlayDoorSound = new();
 	public Checkpoint.PlayerPosDict PlayerPos = new();
@@ -97,33 +97,6 @@ public class GameManager : MonoBehaviour
 		return playerHealth;
 	}
 
-	public int[,] InitializeShopItems()
-	{
-		int[,] items = new int[5, 5];
-
-		// ID's
-		items[1, 1] = 1;
-		items[1, 3] = 3;
-		items[1, 4] = 4;
-
-		// Price
-		items[2, 1] = 10;
-		items[2, 3] = 30;
-		items[2, 4] = 40;
-
-		return items;
-	}
-
-	public string[] InitializeItemNames()
-    {
-		string[] names = new string[5];
-		names[1] = "FireBall";
-		names[3] = "Heal";
-		names[4] = "Stun";
-
-		return names;
-	}
-
 	public void SetCoins(float i)
 	{
 		coins = i;
@@ -132,16 +105,6 @@ public class GameManager : MonoBehaviour
 	public float GetCoins()
 	{
 		return coins;
-	}
-
-	public void setItemNames(float i)
-	{
-		coins = i;
-	}
-
-	public int[,] GetShopItems()
-	{
-		return shopItems;
 	}
 
 	public void RegisterRoomSpawner(RoomSpawner res)
@@ -190,9 +153,7 @@ public class GameManager : MonoBehaviour
 			PlayerPos,
 			AvailableSpells,
 			SceneName,
-			coins,
-			shopItems,
-			itemNames
+			coins
 		);
 		SaveFileManager.WriteToSaveFile(SaveFilePath, Checkpoint);
 	}
@@ -210,16 +171,13 @@ public class GameManager : MonoBehaviour
 		AvailableSpells = Checkpoint.spells;
 		sceneChange.sceneName = Checkpoint.SceneName;
 		coins = Checkpoint.coins;
-		shopItems = Checkpoint.shopItems;
-		itemNames = Checkpoint.itemNames;
 		sceneChange.Invoke();
 	}
 
 	public void NewGame()
 	{
 		const string scene = "Main Scene 1";
-		//Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, ShopManager.coins, ShopManager.shopItems);
-		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, 40, InitializeShopItems(), InitializeItemNames());
+		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, 40);
 		LoadCheckpoint();
 	}
 
@@ -276,4 +234,5 @@ public class GameManager : MonoBehaviour
 		}
 		return availSpells;
 	}
+
 }

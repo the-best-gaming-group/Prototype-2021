@@ -7,13 +7,13 @@ public class Confirmation : MonoBehaviour
 	public Button yesButton;
 	public Button noButton;
 	public TextMeshProUGUI messageText;
-
-	private ShopManager shopManager; // Reference to the ShopManager
-
-	private int itemID; // Item ID for the confirmation
+	private ShopManager shopManager;
+	private GameManager gameManager;
+	private int itemID;
 
 	void Start()
 	{
+		gameManager = GameManager.Instance;
 		shopManager = FindObjectOfType<ShopManager>();
 		yesButton.onClick.AddListener(YesClicked);
 		noButton.onClick.AddListener(NoClicked);
@@ -29,23 +29,17 @@ public class Confirmation : MonoBehaviour
 
 	private void YesClicked()
 	{
-		// Close the confirmation window
 		gameObject.SetActive(false);
-
-		// Reduce the coins and hide the item (you can add the logic here)
 		int itemPrice = shopManager.shopItems[2, itemID];
-		shopManager.coins -= itemPrice;
-		shopManager.ConisTXT.text = "Coins: " + shopManager.coins.ToString();
-		//GameManager.Instance.AddToInventory(itemID, 1);
+		gameManager.SetCoins(gameManager.GetCoins() - itemPrice);
+		shopManager.ConisTXT.text = "Coins: " + gameManager.GetCoins().ToString();
 		shopManager.DisableItemButton(itemID);
-
 		GameManager.Instance.AvailableSpells[shopManager.itemNames[itemID]] = true;
+		gameManager.SaveCheckpoint();
 	}
 
 	private void NoClicked()
 	{
-		// Close the confirmation window
 		gameObject.SetActive(false);
 	}
 }
-
