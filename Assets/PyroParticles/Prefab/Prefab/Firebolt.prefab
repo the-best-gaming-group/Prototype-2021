@@ -4932,8 +4932,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 304210531
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -5341,7 +5341,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150962}
   serializedVersion: 8
-  lengthInSec: 0.5
+  lengthInSec: 1.04
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -10071,8 +10071,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 304210531
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -10117,7 +10117,7 @@ GameObject:
   - component: {fileID: 11466612}
   - component: {fileID: 5471416}
   - component: {fileID: 10857032}
-  - component: {fileID: 357160136529518702}
+  - component: {fileID: 4616862253178061609}
   m_Layer: 0
   m_Name: FireboltCollider
   m_TagString: Untagged

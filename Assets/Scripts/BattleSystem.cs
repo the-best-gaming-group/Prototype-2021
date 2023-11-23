@@ -68,6 +68,13 @@ public class BattleSystem : MonoBehaviour
     bool playerDodged = false;
 
     Animator animator;
+
+    Animator enemyAnimator;
+    WaitForSeconds jumpWait = new WaitForSeconds(5.6f); // use to wait for anim to finish
+    WaitForSeconds wait3sec = new WaitForSeconds(3f);
+    WaitForSeconds wait2sec = new WaitForSeconds(2f);
+    WaitForSeconds wait1sec = new WaitForSeconds(1f);
+
     readonly List<TurnActions> turnActions = new ();
     public ResourceHandler resourceHandler = new();
     public GameManager.Spell[] spells = new GameManager.Spell[4];
@@ -86,6 +93,8 @@ public class BattleSystem : MonoBehaviour
         playerRBConstraints = player.GetComponentInChildren<Rigidbody>().constraints;
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
         enemy.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;
+
+        enemyAnimator = enemy.GetComponentInChildren<Animator>(); // enemy animation controller
 
     }
     
@@ -192,11 +201,11 @@ public class BattleSystem : MonoBehaviour
         } else if (remaningStunTurns < 1)
         {
             state = BattleState.ENEMY_TURN;
-                Destroy(stunObj);
             StartCoroutine(EnemyTurn());
         } else
         {
-            remaningStunTurns--;
+            if (--remaningStunTurns == 0)
+                Destroy(stunObj);
             PlayerTurn();
         }
     }
@@ -209,6 +218,7 @@ public class BattleSystem : MonoBehaviour
 
         if (playerDodged)
             animator.Play("PlayerDodge");
+         
      
         switch (randomInt)
         {
@@ -216,25 +226,25 @@ public class BattleSystem : MonoBehaviour
                 enemyAction = CombatOptions.Slam;
                 battleDialog.text = playerDodged ? "You dodged enemy's slam!" : dialogText.Replace("<harm>", "slammed");
                 if (!playerDodged) sendSlam(false);
-                yield return new WaitForSeconds(1f);
+                yield return wait3sec; // important for animation to finish
                 break;
             case < 50:
                 enemyAction = CombatOptions.Firebolt;
                 battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
                 sendFirebolt(false);
-                yield return new WaitForSeconds(1f);
+                yield return wait1sec; //new WaitForSeconds(1f);
                 break;
             case < 75:
                 enemyAction = CombatOptions.Electrocute;
                 battleDialog.text = dialogText.Replace("<harm>", "electrocutes");
                 var lightning = sendLightning();
-                yield return new WaitForSeconds(1f);
+                yield return wait1sec; //new WaitForSeconds(1f);
                 Destroy(lightning);
                 break;
             default:
                 sendKnife(false);
                 battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
-                yield return new WaitForSeconds(1f);
+                yield return wait1sec; //new WaitForSeconds(1f);
                 break;
         }
         if (!playerDodged || enemyAction is CombatOptions.Electrocute)
@@ -282,16 +292,44 @@ public class BattleSystem : MonoBehaviour
 
     GameObject sendFirebolt(bool isFromPlayer = true)//todo: change for enemy
     {
-        var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
-        int fireSrcOffset = isFromPlayer ? 1 : -1;
-        currentPrefabObject.transform.position = (isFromPlayer ? player : enemy).transform.position + new Vector3(fireSrcOffset, .5f, 0);
-        currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f * fireSrcOffset, 0, 0.70711f);
+        if (isFromPlayer)
+        {
+            GameObject fire = GameObject.Instantiate(fireboltAsset);
+            fire.transform.position = player.transform.position + new Vector3(1, .5f, 1);
+            fire.transform.rotation = new Quaternion(0, 0.70711f, 0, 0.70711f);
+        }
+        else
+        {
+            GameObject fire = GameObject.Instantiate(fireboltAsset);
+            fire.transform.position = enemy.transform.position + new Vector3(-1, .5f, -1);
+            fire.transform.rotation = new Quaternion(0, 0.70711f, 0, -0.70711f);
+        }
+        //var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
+        //int fireSrcOffset = isFromPlayer ? 1 : -1;
+        //currentPrefabObject.transform.position = (isFromPlayer ? player : enemy).transform.position + new Vector3(fireSrcOffset, .5f, 0);
+        //currentPrefabObject.transform.rotation = new Quaternion(0, 0.70711f * fireSrcOffset, 0, 0.70711f);
 
         return null;
     }
+    
+    private IEnumerator animateAndWaitThenDeactivate(string anim)
+    {
+        enemyAnimator.SetBool(anim, true);
+        yield return jumpWait; //new WaitForSeconds(5.6f);
+        enemyAnimator.SetBool(anim, false);
+    }
+
     GameObject sendSlam(bool isFromPlayer = true)
     {
-        animator.Play((isFromPlayer ? "Enemy" : "Player") + "Slammed");
+        if(isFromPlayer)
+        {
+            animator.Play("EnemySlammed");
+        }
+        else
+        {
+            StartCoroutine(animateAndWaitThenDeactivate("isCombat"));
+        }
+        //animator.Play((isFromPlayer ? "Enemy" : "Player") + "Slammed");
 
         return null;
     }
@@ -335,27 +373,27 @@ public class BattleSystem : MonoBehaviour
         }
         catch (Exception) { }
 
-        remaningStunTurns++;
+        remaningStunTurns += 2;
 
         return null;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            animator.Play("PlayerStun");
-            try
-            {
-                //healObj = GameObject.Instantiate(healAsset, player.transform);
-                healObj = GameObject.Instantiate(healAsset, player.transform);
-            } catch (Exception) { }
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //Destroy(healObj);
-            Destroy(healObj);
-        }
+        // if (Input.GetKeyDown(KeyCode.K))
+        // {
+        //     animator.Play("PlayerStun");
+        //     try
+        //     {
+        //         //healObj = GameObject.Instantiate(healAsset, player.transform);
+        //         healObj = GameObject.Instantiate(healAsset, player.transform);
+        //     } catch (Exception) { }
+        // }
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     //Destroy(healObj);
+        //     Destroy(healObj);
+        // }
     }
 
 
