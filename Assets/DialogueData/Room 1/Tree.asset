@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Tree
   m_EditorClassIdentifier: 
   dialogue:
-  - (Huh? What is this place?)
-  - (Something about the air in here seems different.)
-  - (Is it a good idea to continue this way? It doesn't look so inviting...)
+  - Huh? What is this place?
+  - Something about the air in here seems different.
+  - Is it a good idea to continue this way? It doesn't look so inviting...
   responses: []
   needCondition: 0

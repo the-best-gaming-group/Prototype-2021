@@ -775,15 +775,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionPanel: {fileID: 1407704283989001182}
   selectedPanel: {fileID: 6390346941955043143}
-  selectionCanvas: {fileID: 2104827438982040171}
-  spellButtonPrefabs:
-  - {fileID: 7313625124187144831, guid: 93c78d886e4da4cef997f5d82b6092c5, type: 3}
-  - {fileID: 7313625124187144831, guid: 450f000e58d2241d08f966eaaa11d930, type: 3}
-  - {fileID: 7313625124187144831, guid: e19c2675809564a30b2c2c9fbf908b4a, type: 3}
-  - {fileID: 7313625124187144831, guid: c0586a6f781804850932d5d6b0e70876, type: 3}
-  - {fileID: 7313625124187144831, guid: 0c3ab464326ec4633b9552892ceeb4f8, type: 3}
-  - {fileID: 7313625124187144831, guid: 9d62408400cb24a8dbaaba553797282a, type: 3}
-  - {fileID: 7313625124187144831, guid: e1eb69a7264a44ad8bb484cebc52a106, type: 3}
+  selectionCanvas: {fileID: 2104827437942470153}
+  selectedCanvas: {fileID: 2104827439406820319}
 --- !u!1 &2104827438982040171
 GameObject:
   m_ObjectHideFlags: 0
