@@ -57,6 +57,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 6957958040399178565}
   jumpSound: {fileID: 6957958040399178584}
   SaveCheckpoint: 1
+  shopManager: {fileID: 0}
 --- !u!136 &6957958040399178564
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -236,7 +237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6957958041533547514}
   m_LocalRotation: {x: 0.19149812, y: -0.68496823, z: 0.6810273, w: 0.17420939}
-  m_LocalPosition: {x: 1.8, y: 158.7, z: -14.6}
+  m_LocalPosition: {x: 7, y: 177, z: 0}
   m_LocalScale: {x: 287.08594, y: 287.08588, z: 287.08594}
   m_ConstrainProportionsScale: 0
   m_Children: []
