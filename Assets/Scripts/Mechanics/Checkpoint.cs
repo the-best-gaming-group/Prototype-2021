@@ -16,6 +16,7 @@ namespace Platformer.Mechanics
         public AvailableSpellsDict spells = new();
         public string SceneName;
         public float coins;
+        //public List<InventoryItem> items;
 
         public Checkpoint(
             int playerHealth,
@@ -25,6 +26,7 @@ namespace Platformer.Mechanics
             AvailableSpellsDict spells,
             string SceneName,
             float coins
+            //List<InventoryItem> items
             )
         {
             //this.playerHealth = Math.Min(100, playerHealth + 30);        
@@ -35,6 +37,7 @@ namespace Platformer.Mechanics
             this.spells = spells.GetCopy();
             this.SceneName = SceneName;
             this.coins = coins;
+            //this.items = items;
         }
 
         [Serializable]

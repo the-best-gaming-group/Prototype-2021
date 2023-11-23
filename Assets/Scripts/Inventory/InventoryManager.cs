@@ -7,7 +7,8 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
     public InventoryData inventoryData;
-    public GameObject inventoryUI;
+    //public GameObject inventoryUI;
+    //private GameManager gameManager;
 
     private bool hasNews1;
     private bool hasNews2;
@@ -15,35 +16,41 @@ public class InventoryManager : MonoBehaviour
 
     private DialogueObject dialogueObject;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    //private void Start()
+    //{
+    //    gameManager = GameManager.Instance;
+    //}
 
-    private void Update()
-    {
-        string sceneName = SceneManager.GetActiveScene().name;
+    //private void Awake()
+    //{
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
-        if (sceneName == "MainMenu" || sceneName == "Combat Arena")
-        {
-            inventoryUI.SetActive(false);
-        }
-        else
-        {
-            inventoryUI.SetActive(true);
-        }
-    }
+    //private void Update()
+    //{
+    //    string sceneName = SceneManager.GetActiveScene().name;
+
+    //    if (sceneName == "MainMenu" || sceneName == "Combat Arena")
+    //    {
+    //        inventoryUI.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        inventoryUI.SetActive(true);
+    //    }
+    //}
 
     public void AddItem(InventoryItem item)
     {
+        Debug.Log("InventoryManager: AddItem");
         inventoryData.AddItem(item);
     }
 
@@ -51,8 +58,6 @@ public class InventoryManager : MonoBehaviour
     {
         inventoryData.RemoveItem(item);
     }
-
-
 
     public void CheckNewspaper()
     {
