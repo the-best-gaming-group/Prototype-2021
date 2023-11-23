@@ -48,3 +48,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Bring fire effect in front
+    uniqueID: 304210531
+    locked: 0
