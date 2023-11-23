@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
@@ -36,12 +35,8 @@ public class InventoryUI : MonoBehaviour
         {
             UpdateInventory(data);
         }
-
-        if (SceneManager.GetActiveScene().name == "MainMenu" || SceneManager.GetActiveScene().name == "Combat Arena")
-        {
-            Destroy(gameObject);
-        }
     }
+
 
     private void UpdateInventory(InventoryData data)
     {

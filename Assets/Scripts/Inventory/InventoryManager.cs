@@ -1,11 +1,13 @@
 using Platformer.Mechanics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
     public InventoryData inventoryData;
+    public GameObject inventoryUI;
 
     private bool hasNews1;
     private bool hasNews2;
@@ -23,6 +25,20 @@ public class InventoryManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName == "MainMenu" || sceneName == "Combat Arena")
+        {
+            inventoryUI.SetActive(false);
+        }
+        else
+        {
+            inventoryUI.SetActive(true);
         }
     }
 
