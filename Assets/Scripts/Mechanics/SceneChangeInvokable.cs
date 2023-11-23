@@ -20,7 +20,8 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 		transitionAnim.SetTrigger("Start");
 		yield return new WaitForSeconds(1);
 		SceneManager.LoadScene(sceneName);
-		transitionAnim.SetTrigger("End");
+		Resources.UnloadUnusedAssets();
+        transitionAnim.SetTrigger("End");
 	}
 	public void Exit()
 	{

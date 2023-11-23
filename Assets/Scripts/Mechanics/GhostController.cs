@@ -31,6 +31,7 @@ namespace Platformer.Mechanics
         [SerializeField] AudioSource jumpSound;
         public Bounds Bounds => _collider.bounds;
         public bool SaveCheckpoint = true;
+        public ShopManager shopManager;
 
         Animator anim; //
         int horizontal; //
@@ -61,15 +62,65 @@ namespace Platformer.Mechanics
                     transform.position = pos;
                 }
             }
+
+            if (shopManager == null)
+            {
+                Debug.LogWarning("ShopManager not found in the scene.");
+            }
         }
+
+        //void Update()
+        //{
+        //    // Dialogue part
+        //    if (dialogueUI != null && (shopManager.gameObject.activeSelf || dialogueUI.IsOpen))
+        //    {
+        //        DisableControl();
+        //        return;
+        //    }
+
+        //    keyHoriz = Input.GetAxis("Horizontal");
+        //    keyVert = Input.GetAxis("Vertical");
+        //    jumpPending = jumpPending || keyVert > 0;
+
+        //    // Dialogue part
+        //    if (Input.GetButtonDown("Jump") && !upPressed && !shopManager.gameObject.activeSelf)
+        //    {
+        //        upPressed = true;
+        //        Interactable?.Interact(this);
+        //        dialogueUI?.RegisterCloseAction(EnableControl);
+        //        /*
+        //        meaning:
+        //        if (Interactable != null)
+        //        {
+        //            Interactable.Interact(this);
+        //        }
+        //        */
+        //    }
+        //    else
+        //    {
+        //        upPressed = false;
+        //    }
+        //}
+
 
         void Update()
         {
             // Dialogue part
-            if (dialogueUI != null && dialogueUI.IsOpen)
+            if (shopManager != null)
             {
-                DisableControl();
-                return;
+                if (dialogueUI != null && (shopManager.gameObject.activeSelf || dialogueUI.IsOpen))
+                {
+                    DisableControl();
+                    return;
+                }
+            }
+            else
+            {
+                if (dialogueUI != null && dialogueUI.IsOpen)
+                {
+                    DisableControl();
+                    return;
+                }
             }
 
             keyHoriz = Input.GetAxis("Horizontal");
@@ -80,22 +131,45 @@ namespace Platformer.Mechanics
             jumpPending = jumpPending || keyVert > 0;
 
             // Dialogue part
-            if (Input.GetButtonDown("Jump") && !upPressed)
+            if (shopManager != null)
             {
-                upPressed = true;
-                Interactable?.Interact(this);
-                dialogueUI?.RegisterCloseAction(EnableControl);
-                /*
-                meaning:
-                if (Interactable != null)
+                if (Input.GetButtonDown("Jump") && !upPressed && !shopManager.gameObject.activeSelf)
                 {
-                    Interactable.Interact(this);
+                    upPressed = true;
+                    Interactable?.Interact(this);
+                    dialogueUI?.RegisterCloseAction(EnableControl);
+                    /*
+                    meaning:
+                    if (Interactable != null)
+                    {
+                        Interactable.Interact(this);
+                    }
+                    */
                 }
-                */
+                else
+                {
+                    upPressed = false;
+                }
             }
             else
             {
-                upPressed = false;
+                if (Input.GetButtonDown("Jump") && !upPressed)
+                {
+                    upPressed = true;
+                    Interactable?.Interact(this);
+                    dialogueUI?.RegisterCloseAction(EnableControl);
+                    /*
+                    meaning:
+                    if (Interactable != null)
+                    {
+                        Interactable.Interact(this);
+                    }
+                    */
+                }
+                else
+                {
+                    upPressed = false;
+                }
             }
         }
 

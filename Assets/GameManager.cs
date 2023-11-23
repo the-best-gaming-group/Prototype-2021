@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
 	[SerializeField] private int playerHealth;
+	[SerializeField] private float coins;
+	[SerializeField] public int[,] shopItems = new int[5, 5];
+	[SerializeField] public string[] itemNames = new string[5];
 	public Checkpoint.SpawnsDict Spawns = new();
 	public Checkpoint.PlayDoorSoundDict PlayDoorSound = new();
 	public Checkpoint.PlayerPosDict PlayerPos = new();
@@ -94,6 +97,16 @@ public class GameManager : MonoBehaviour
 		return playerHealth;
 	}
 
+	public void SetCoins(float i)
+	{
+		coins = i;
+	}
+
+	public float GetCoins()
+	{
+		return coins;
+	}
+
 	public void RegisterRoomSpawner(RoomSpawner res)
 	{
 		Spawns.TryAdd(SceneName, new());
@@ -139,7 +152,8 @@ public class GameManager : MonoBehaviour
 			PlayDoorSound,
 			PlayerPos,
 			AvailableSpells,
-			SceneName
+			SceneName,
+			coins
 		);
 		SaveFileManager.WriteToSaveFile(SaveFilePath, Checkpoint);
 	}
@@ -156,13 +170,14 @@ public class GameManager : MonoBehaviour
 		PlayerPos = Checkpoint.playerPos;
 		AvailableSpells = Checkpoint.spells;
 		sceneChange.sceneName = Checkpoint.SceneName;
+		coins = Checkpoint.coins;
 		sceneChange.Invoke();
 	}
 
 	public void NewGame()
 	{
 		const string scene = "Main Scene 1";
-		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene);
+		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, 40);
 		LoadCheckpoint();
 	}
 
@@ -219,4 +234,5 @@ public class GameManager : MonoBehaviour
 		}
 		return availSpells;
 	}
+
 }

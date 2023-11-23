@@ -7,34 +7,39 @@ using UnityEngine.Rendering;
 namespace Platformer.Mechanics
 {
     [Serializable]
-    public class Checkpoint 
+    public class Checkpoint
     {
         public int playerHealth;
-        public SpawnsDict spawns = new ();
+        public SpawnsDict spawns = new();
         public PlayDoorSoundDict playDoorSound = new();
         public PlayerPosDict playerPos = new();
         public AvailableSpellsDict spells = new();
         public string SceneName;
-        
+        public float coins;
+
         public Checkpoint(
             int playerHealth,
             SpawnsDict Spawns,
             PlayDoorSoundDict PlayDoorSound,
             PlayerPosDict PlayerPos,
             AvailableSpellsDict spells,
-            string SceneName)
+            string SceneName,
+            float coins
+            )
         {
-			//this.playerHealth = Math.Min(100, playerHealth + 30);        
-			this.playerHealth = playerHealth;
-			spawns = Spawns.GetCopy();
+            //this.playerHealth = Math.Min(100, playerHealth + 30);        
+            this.playerHealth = playerHealth;
+            spawns = Spawns.GetCopy();
             playDoorSound = PlayDoorSound.GetCopy();
             playerPos = PlayerPos.GetCopy();
             this.spells = spells.GetCopy();
             this.SceneName = SceneName;
+            this.coins = coins;
         }
 
         [Serializable]
-        public class SceneSpawnsDict : SerializedDictionary<string,int> {
+        public class SceneSpawnsDict : SerializedDictionary<string, int>
+        {
             public SceneSpawnsDict GetCopy()
             {
                 var ret = new SceneSpawnsDict();
@@ -46,7 +51,7 @@ namespace Platformer.Mechanics
             }
         }
         [Serializable]
-        public class SpawnsDict : SerializedDictionary<string,SceneSpawnsDict>
+        public class SpawnsDict : SerializedDictionary<string, SceneSpawnsDict>
         {
             public SpawnsDict GetCopy()
             {
@@ -59,7 +64,8 @@ namespace Platformer.Mechanics
             }
         }
         [Serializable]
-        public class PlayDoorSoundDict : SerializedDictionary<string,bool>{
+        public class PlayDoorSoundDict : SerializedDictionary<string, bool>
+        {
             public PlayDoorSoundDict GetCopy()
             {
                 var ret = new PlayDoorSoundDict();
@@ -72,7 +78,8 @@ namespace Platformer.Mechanics
         }
 
         [Serializable]
-        public class PlayerPosDict : SerializedDictionary<string, Vector3>{
+        public class PlayerPosDict : SerializedDictionary<string, Vector3>
+        {
             public PlayerPosDict GetCopy()
             {
                 var ret = new PlayerPosDict();
@@ -84,7 +91,8 @@ namespace Platformer.Mechanics
             }
         }
         [Serializable]
-        public class AvailableSpellsDict : SerializedDictionary<string, bool>{
+        public class AvailableSpellsDict : SerializedDictionary<string, bool>
+        {
             public AvailableSpellsDict GetCopy()
             {
                 var ret = new AvailableSpellsDict();
@@ -95,6 +103,5 @@ namespace Platformer.Mechanics
                 return ret;
             }
         }
-
     }
 }
