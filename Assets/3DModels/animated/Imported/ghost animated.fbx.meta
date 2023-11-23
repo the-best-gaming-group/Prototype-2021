@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9dfb8e5bea2004c4fb07cdf57aac93a0
+guid: c4338f9c8a3431b44b7f1533fed37776
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,18 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_SWShieldMtl
-    second: {fileID: 2100000, guid: cf44ea9fe5c2d7f4485e7af68fda7173, type: 2}
+      name: ghost eyes mat
+    second: {fileID: 2100000, guid: ca56867c343b33943b48d808a9466e78, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_SWSkeletonMtl
-    second: {fileID: 2100000, guid: 82da5bffb2878e64a924945d24df8da8, type: 2}
+      name: ghost mat
+    second: {fileID: 2100000, guid: d39c399851250234fbb08f11d6d3e4dc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_SWSwordMtl
-    second: {fileID: 2100000, guid: 464189c83cc9c834da7d3b3009f8ab55, type: 2}
+      name: ghost scarf mat
+    second: {fileID: 2100000, guid: fb36b8ac7675c404091e7ae147d5c921, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tiara Diamond mat
+    second: {fileID: 2100000, guid: bd393f848c57a0341a63c7f4c3ad32b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tiara metal mat
+    second: {fileID: 2100000, guid: 14074e1c4815c9e41b9405b86bc113ce, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -27,7 +37,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleCurves: 1
+    resampleCurves: 0
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
@@ -39,7 +49,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -48,11 +58,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Attack
-      takeName: Armature|Attack
-      internalID: 4723146814002874508
+      name: Ghost Idle
+      takeName: Ghost bones|Ghost Idle
+      internalID: -8542689599587474993
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 163
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -61,12 +71,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 1
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -77,25 +87,25 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Idle
-      takeName: Armature|Idle
-      internalID: -8945691123924629249
+      name: Ghost jump
+      takeName: Ghost bones|Ghost jump
+      internalID: 3781968280190956610
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -106,11 +116,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Walk cycle
-      takeName: Armature|Walk cycle
-      internalID: 1576476361801437094
+      name: Ghost left
+      takeName: Ghost bones|Ghost left
+      internalID: -3509804414048080409
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 72
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -119,12 +129,41 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 1
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ghost right
+      takeName: Ghost bones|Ghost right
+      internalID: -1110544557247574796
+      firstFrame: 0
+      lastFrame: 72
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -168,7 +207,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -191,7 +230,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Armature
+    rootMotionBoneName: lower ghost
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
