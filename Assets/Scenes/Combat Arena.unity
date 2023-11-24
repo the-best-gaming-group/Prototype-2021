@@ -1253,6 +1253,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -128332929419528387, guid: 882f3385d8e4c6144a7f4f0488ce02c0, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -2832659898622591212, guid: 882f3385d8e4c6144a7f4f0488ce02c0, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &360658767
@@ -11235,6 +11237,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1662389402}
     m_Modifications:
+    - target: {fileID: 2741198951973423920, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.6591588
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741198951973423920, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.64613426
+      objectReference: {fileID: 0}
     - target: {fileID: 3124537134492634220, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -11282,6 +11292,26 @@ PrefabInstance:
     - target: {fileID: 3124537134492634221, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
       propertyPath: m_Name
       value: MonsterEye
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124537134492634221, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091767217991010930, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.68960863
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091767217991010930, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.72418046
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091767217991010930, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0011634649
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091767217991010930, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0011600181
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
