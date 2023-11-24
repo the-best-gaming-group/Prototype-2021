@@ -11187,12 +11187,16 @@ PrefabInstance:
       value: Skeleton NLA w_Lights
       objectReference: {fileID: 0}
     - target: {fileID: 477157573640264512, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 477157573640264512, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 996673087137595898, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 996673087137595898, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
       propertyPath: m_LocalPosition.x
