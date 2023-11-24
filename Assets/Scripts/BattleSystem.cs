@@ -235,7 +235,15 @@ public class BattleSystem : MonoBehaviour
         {
             case < 25:
                 sendKnife(false);
-                battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
+                var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
+                if (lowerCaseEnemyName.Contains("skeleton"))
+                {
+                    battleDialog.text = dialogText.Replace("<harm>", "threw a swinging sword at");
+                }
+                else
+                {
+                    battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
+                }
                 yield return new WaitForSeconds(1f);
                 break;
             case < 50:
@@ -355,10 +363,24 @@ public class BattleSystem : MonoBehaviour
         return lightningObj;
     }
 
-    GameObject sendKnife(bool isFromPlayer = true)
-    { 
-        animator.Play((isFromPlayer ? "Player" : "Enemy") + "ThrowKnife");
+    private IEnumerator animateThrow(string anim)
+    {
+        enemyAnimator.SetBool(anim, true);
+        yield return wait2sec;
+        enemyAnimator.SetBool(anim, false);
+    }
 
+    GameObject sendKnife(bool isFromPlayer = true)
+    {
+        if (isFromPlayer)
+        {
+            animator.Play("PlayerThrowKnife");
+        }
+        else
+        {
+            StartCoroutine(animateThrow("isThrow"));
+        }
+        //animator.Play((isFromPlayer ? "Player" : "Enemy") + "ThrowKnife");
         return null;
     }
 
