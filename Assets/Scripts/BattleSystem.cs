@@ -14,12 +14,12 @@ public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
 public enum CombatOptions
 {
-    Slam = 14,
-    Firebolt = 22,
-    Electrocute = 20,
-    Knife = 11,
-    Stun = 8,
-    Heal = 10
+    Stun = 6,
+    Heal = 8,
+    Knife = 9,
+    Slam = 11,
+    Electrocute = 14,
+    Firebolt = 16
 }
 
 public class TurnActions {
@@ -232,18 +232,19 @@ public class BattleSystem : MonoBehaviour
     public int getRandomAbilityBasedOnEnemyType()
     {
         var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
-        if (lowerCaseEnemyName.Contains("skeleton"))
-        {
-            //return 1;
-            return Time.renderedFrameCount % 50; // slam or throw for skeleton
-        }
 
-        return Time.renderedFrameCount % 50 + (lowerCaseEnemyName.Contains("chess") || lowerCaseEnemyName.Contains("horse") ? 50 : 0);
+        return Time.renderedFrameCount % 50 + (lowerCaseEnemyName switch
+        {
+            string enemyName when enemyName.Contains("skeleton") => 0, //skeleton lower 2 abilities: knife or slam
+            string enemyName when enemyName.Contains("monster") => 25, //monster middle 2: slam or fire
+            string enemyName when enemyName.Contains("chess") || enemyName.Contains("horse") => 50, //top 2: fire or electrocute (unsure enemy name yet but MUST CONTAINS "horse" or "chess")
+            _ => 0  //default: lower 2 abilities
+        });
     }
 
     IEnumerator EnemyTurn()
     {
-        int randomInt = getRandomAbilityBasedOnEnemyType() + 10;
+        int randomInt = getRandomAbilityBasedOnEnemyType();
         CombatOptions enemyAction = CombatOptions.Knife;
         string dialogText = "The enemy <harm> you";
 
