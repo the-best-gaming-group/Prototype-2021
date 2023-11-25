@@ -12,6 +12,7 @@ TagManager:
   - BackgroundMusic
   - Event
   - anchorTag
+  - enemyReference
   layers:
   - Default
   - TransparentFX
