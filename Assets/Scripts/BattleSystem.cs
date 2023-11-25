@@ -41,6 +41,7 @@ public class BattleSystem : MonoBehaviour
     GameObject player;
     PlayerHealthBar playerHP;
     RigidbodyConstraints playerRBConstraints;
+    RigidbodyConstraints enemyRBConstraints;
     GameObject enemy;
     PlayerHealthBar enemyHP;
     [SerializeField] AudioSource winSound;
@@ -74,6 +75,8 @@ public class BattleSystem : MonoBehaviour
     WaitForSeconds wait3sec = new WaitForSeconds(3f);
     WaitForSeconds wait2sec = new WaitForSeconds(2f);
     WaitForSeconds wait1sec = new WaitForSeconds(1f);
+    GameObject ghostBasic;
+    GameObject enemyReference;
 
     readonly List<TurnActions> turnActions = new ();
     public ResourceHandler resourceHandler = new();
@@ -92,12 +95,28 @@ public class BattleSystem : MonoBehaviour
         //freeze rotation/position
         playerRBConstraints = player.GetComponentInChildren<Rigidbody>().constraints;
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
-        enemy.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;
 
-        enemyAnimator = enemy.GetComponentInChildren<Animator>(); // enemy animation controller
+        enemyReference = GameObject.FindWithTag("enemyReference");
+
+        enemyRBConstraints = enemyReference.GetComponent<Rigidbody>().constraints;
+        //enemyReference.GetComponent<Rigidbody>().constraints = (RigidbodyConstraints)122;
+
+        enemyAnimator = enemyReference.GetComponent<Animator>(); // enemy animation controller
+        ghostBasic = GameObject.Find("ghost basic");
 
     }
-    
+
+    private void FixedUpdate()
+    {
+        battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
+        enemyReference = GameObject.FindWithTag("enemyReference");
+        Debug.Log(enemyReference.name);
+
+        player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
+        enemyReference.GetComponent<Rigidbody>().constraints = (RigidbodyConstraints)122;
+        enemyAnimator = enemyReference.GetComponent<Animator>();
+    }
+
     public void Resume()
     {
         GetComponentInChildren<TurnbasedDialogHandler>().Disable();
@@ -215,7 +234,8 @@ public class BattleSystem : MonoBehaviour
         var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
         if (lowerCaseEnemyName.Contains("skeleton"))
         {
-            return 1;
+            //return 1;
+            return Time.renderedFrameCount % 50; // slam or throw for skeleton
         }
 
         return Time.renderedFrameCount % 50 + (lowerCaseEnemyName.Contains("chess") || lowerCaseEnemyName.Contains("horse") ? 50 : 0);
@@ -223,7 +243,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        int randomInt = getRandomAbilityBasedOnEnemyType();
+        int randomInt = getRandomAbilityBasedOnEnemyType() + 10;
         CombatOptions enemyAction = CombatOptions.Knife;
         string dialogText = "The enemy <harm> you";
 
@@ -235,8 +255,7 @@ public class BattleSystem : MonoBehaviour
         {
             case < 25:
                 sendKnife(false);
-                var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
-                if (lowerCaseEnemyName.Contains("skeleton"))
+                if (enemyReference.name.ToLower().Contains("skel"))
                 {
                     battleDialog.text = dialogText.Replace("<harm>", "threw a swinging sword at");
                 }
@@ -244,7 +263,7 @@ public class BattleSystem : MonoBehaviour
                 {
                     battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
                 }
-                yield return new WaitForSeconds(1f);
+                yield return wait1sec;
                 break;
             case < 50:
                 enemyAction = CombatOptions.Slam;
@@ -320,7 +339,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             GameObject fire = GameObject.Instantiate(fireboltAsset);
-            fire.transform.position = enemy.transform.position + new Vector3(-1, .5f, -1);
+            fire.transform.position = GameObject.FindWithTag("enemyReference").transform.position + new Vector3(-1, .5f, -1);
             fire.transform.rotation = new Quaternion(0, 0.70711f, 0, -0.70711f);
         }
         //var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
@@ -334,7 +353,9 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator animateAndWaitThenDeactivate(string anim)
     {
         enemyAnimator.SetBool(anim, true);
-        yield return jumpWait; //new WaitForSeconds(5.6f);
+        yield return wait2sec;
+        animator.Play("PlayerSlammed");
+        yield return new WaitForSeconds(3.6f);
         enemyAnimator.SetBool(anim, false);
     }
 
@@ -346,7 +367,10 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            StartCoroutine(animateAndWaitThenDeactivate("isCombat"));
+            if (enemyReference.name.ToLower().Contains("skel") || enemyReference.name.ToLower().Contains("eye"))
+            {
+                StartCoroutine(animateAndWaitThenDeactivate("isCombat"));
+            }
         }
         //animator.Play((isFromPlayer ? "Enemy" : "Player") + "Slammed");
 
@@ -356,8 +380,8 @@ public class BattleSystem : MonoBehaviour
     {
         var lightningObj = GameObject.Instantiate(lightningAsset);
         var lightningComp = lightningObj.GetComponent<LightningBoltScript>();
-        lightningComp.StartObject = player;
-        lightningComp.EndObject = enemy;
+        lightningComp.StartObject = GameObject.Find("ghost basic");
+        lightningComp.EndObject = GameObject.FindWithTag("enemyReference");
         lightningComp.Generations = 3;
 
         return lightningObj;
@@ -378,7 +402,14 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            StartCoroutine(animateThrow("isThrow"));
+            if (enemyReference.name.ToLower().Contains("skel")) // sword throw skeleton
+            {
+                StartCoroutine(animateThrow("isThrow"));
+            }
+            else
+            {
+                animator.Play("EnemyThrowKnife");
+            }
         }
         //animator.Play((isFromPlayer ? "Player" : "Enemy") + "ThrowKnife");
         return null;
@@ -388,7 +419,7 @@ public class BattleSystem : MonoBehaviour
     {
         try
         {
-            GameObject.Instantiate(healAsset, player.transform);
+            GameObject.Instantiate(healAsset, GameObject.Find("ghost basic").transform);
         } catch (Exception) { }
         playerHP.TakeDamage(-(int)CombatOptions.Heal);
         battleDialog.text = $"You gained {(int)CombatOptions.Heal}HP";
@@ -402,7 +433,7 @@ public class BattleSystem : MonoBehaviour
         animator.Play("PlayerStun");
         try
         {
-            stunObj = Instantiate(enemyStunAsset, enemy.transform);
+            stunObj = Instantiate(enemyStunAsset, GameObject.FindWithTag("enemyReference").transform);
         }
         catch (Exception) { }
 
