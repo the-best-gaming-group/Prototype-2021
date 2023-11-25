@@ -17,7 +17,7 @@ public enum CombatOptions
     Slam = 14,
     Firebolt = 22,
     Electrocute = 20,
-    Knife = 10,
+    Knife = 11,
     Stun = 8,
     Heal = 10
 }
