@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 6572097868507290497}
   m_Layer: 0
   m_Name: Skeleton NLA w_Lights
-  m_TagString: Untagged
+  m_TagString: enemyReference
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,9 +128,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477157573640264512}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.022, y: 0.022, z: 0.022}
+  m_LocalScale: {x: 0.0104, y: 0.0104, z: 0.0104}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4624852483629083021}
@@ -145,7 +145,7 @@ Transform:
   - {fileID: 8883210812242476772}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6572097868507290496
 Animator:
   serializedVersion: 5
