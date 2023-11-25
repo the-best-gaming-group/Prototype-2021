@@ -28,10 +28,9 @@ public class EnemySpawner : MonoBehaviour
 		if (enemyToSpawn != null)
 		{
             // Instantiate the enemy
-            //Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
-            var enemyObjTransform = GameObject.Find("Enemy").gameObject.transform;
+            var enemyObjTransform = GameObject.Find("Enemi").transform;
 
-            Instantiate(enemyToSpawn, enemyObjTransform.position, Quaternion.identity, enemyObjTransform);
+            Instantiate(enemyToSpawn, transform.position, transform.rotation);
         }
 		else
 		{
