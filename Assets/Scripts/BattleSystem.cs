@@ -14,10 +14,10 @@ public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
 public enum CombatOptions
 {
-    Slam = 11,
-    Firebolt = 16,
-    Electrocute = 12,
-    Knife = 14,
+    Slam = 14,
+    Firebolt = 22,
+    Electrocute = 20,
+    Knife = 11,
     Stun = 8,
     Heal = 10
 }
@@ -210,9 +210,20 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    public int getRandomAbilityBasedOnEnemyType()
+    {
+        var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
+        if (lowerCaseEnemyName.Contains("skeleton"))
+        {
+            return 1;
+        }
+
+        return Time.renderedFrameCount % 50 + (lowerCaseEnemyName.Contains("chess") || lowerCaseEnemyName.Contains("horse") ? 50 : 0);
+    }
+
     IEnumerator EnemyTurn()
     {
-        int randomInt = Time.renderedFrameCount % 100;
+        int randomInt = getRandomAbilityBasedOnEnemyType();
         CombatOptions enemyAction = CombatOptions.Knife;
         string dialogText = "The enemy <harm> you";
 
@@ -223,28 +234,36 @@ public class BattleSystem : MonoBehaviour
         switch (randomInt)
         {
             case < 25:
+                sendKnife(false);
+                var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
+                if (lowerCaseEnemyName.Contains("skeleton"))
+                {
+                    battleDialog.text = dialogText.Replace("<harm>", "threw a swinging sword at");
+                }
+                else
+                {
+                    battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
+                }
+                yield return new WaitForSeconds(1f);
+                break;
+            case < 50:
                 enemyAction = CombatOptions.Slam;
                 battleDialog.text = playerDodged ? "You dodged enemy's slam!" : dialogText.Replace("<harm>", "slammed");
                 if (!playerDodged) sendSlam(false);
                 yield return wait3sec; // important for animation to finish
                 break;
-            case < 50:
+            case < 75:
                 enemyAction = CombatOptions.Firebolt;
                 battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
                 sendFirebolt(false);
                 yield return wait1sec; //new WaitForSeconds(1f);
                 break;
-            case < 75:
+            default:
                 enemyAction = CombatOptions.Electrocute;
                 battleDialog.text = dialogText.Replace("<harm>", "electrocutes");
                 var lightning = sendLightning();
                 yield return wait1sec; //new WaitForSeconds(1f);
                 Destroy(lightning);
-                break;
-            default:
-                sendKnife(false);
-                battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
-                yield return wait1sec; //new WaitForSeconds(1f);
                 break;
         }
         if (!playerDodged || enemyAction is CombatOptions.Electrocute)
@@ -344,10 +363,24 @@ public class BattleSystem : MonoBehaviour
         return lightningObj;
     }
 
-    GameObject sendKnife(bool isFromPlayer = true)
-    { 
-        animator.Play((isFromPlayer ? "Player" : "Enemy") + "ThrowKnife");
+    private IEnumerator animateThrow(string anim)
+    {
+        enemyAnimator.SetBool(anim, true);
+        yield return wait2sec;
+        enemyAnimator.SetBool(anim, false);
+    }
 
+    GameObject sendKnife(bool isFromPlayer = true)
+    {
+        if (isFromPlayer)
+        {
+            animator.Play("PlayerThrowKnife");
+        }
+        else
+        {
+            StartCoroutine(animateThrow("isThrow"));
+        }
+        //animator.Play((isFromPlayer ? "Player" : "Enemy") + "ThrowKnife");
         return null;
     }
 
@@ -380,20 +413,15 @@ public class BattleSystem : MonoBehaviour
 
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.K))
-        // {
-        //     animator.Play("PlayerStun");
-        //     try
-        //     {
-        //         //healObj = GameObject.Instantiate(healAsset, player.transform);
-        //         healObj = GameObject.Instantiate(healAsset, player.transform);
-        //     } catch (Exception) { }
-        // }
-        // if (Input.GetKeyDown(KeyCode.Q))
-        // {
-        //     //Destroy(healObj);
-        //     Destroy(healObj);
-        // }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            battleDialog.text = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //Destroy(healObj);
+            Destroy(healObj);
+        }
     }
 
 

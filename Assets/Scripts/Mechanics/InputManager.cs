@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] HashSet<InputType> inputs;
+
     void Start()
     {
         inputs = new HashSet<InputType>();
@@ -66,7 +67,7 @@ public class InputManager : MonoBehaviour
         UP_MOVE,
         DOWN_MOVE
     }
-        
+
     public HashSet<InputType> GetInputs()
     {
         return inputs;
