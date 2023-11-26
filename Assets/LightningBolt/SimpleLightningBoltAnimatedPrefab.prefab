@@ -216,9 +216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartObject: {fileID: 156244}
-  StartPosition: {x: 0, y: 0, z: 0}
+  StartPosition: {x: 0, y: 1, z: 0}
   EndObject: {fileID: 103226}
-  EndPosition: {x: 0, y: 0, z: 0}
+  EndPosition: {x: 0, y: 1, z: 0}
   Generations: 3
   Duration: 0.03
   ChaosFactor: 0.15
