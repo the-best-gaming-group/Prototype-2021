@@ -11,6 +11,8 @@ TagManager:
   - Music
   - BackgroundMusic
   - Event
+  - anchorTag
+  - enemyReference
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - UI
   - Nasmesh
   - Player
-  - FireLayer
+  - 
   - 
   - 
   - 
@@ -47,4 +49,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bring fire effect in front
+    uniqueID: 304210531
     locked: 0

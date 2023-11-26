@@ -17,12 +17,10 @@ MonoBehaviour:
   - '"Another weary soul seeking solace in my warmth. What brings you to my hearth,
     traveler?"'
   - I seek answers. Can you shed light on the mysteries of me and this house?
-  - '"Answers lie not only in questions but also in the corners often overlooked.
-    Look within, young one."'
-  - I investigate the fireplace and discovers a hidden corner where a piece of newspaper
-    is hiding in.
-  - Wait, what's this? A piece of newspaper?
+  - The burning flame suddenly flickered for a few moments.
+  - '"Well... he who originally brought convenience and progress to people was swallowed
+    up by obsession."'
   responses:
-  - responseText: Pick up the fragment.
-    dialogueObject: {fileID: 11400000, guid: eb5ef2645c30e6541849d51db88e3801, type: 2}
+  - responseText: Who is he?
+    dialogueObject: {fileID: 0}
   needCondition: 0

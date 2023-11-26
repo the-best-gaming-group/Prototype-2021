@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Stair
   m_EditorClassIdentifier: 
   dialogue:
-  - There are still places unexplored, and important clues may be missed.
-  - I'd better make sure there's nothing I missed.
+  - There is thick dust on the steps leading to the second floor, and many of the
+    wood pieces are corroded and dilapidated.
+  - I think I'd better not risk going upstairs.
   responses: []
+  needCondition: 0

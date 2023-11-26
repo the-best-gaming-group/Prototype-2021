@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Shop
   m_EditorClassIdentifier: 
   dialogue:
-  - I find an old office bag lying against the wall in the hallway.
+  - There's an old office bag lying against the wall in the hallway.
   - Out of curiosity, I open it and bring my eyes closer, it looks bottomless inside.
-  - I reach out my hand...
+  - I reach out my hand.
   responses:
   - responseText: Let me see...
     dialogueObject: {fileID: 0}

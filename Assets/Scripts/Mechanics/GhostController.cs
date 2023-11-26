@@ -14,13 +14,9 @@ namespace Platformer.Mechanics
         public DialogueUI DialogueUI => dialogueUI;
         public IInteractable Interactable { get; set; }
 
-        private readonly static Vector3 RIGHT_TURN = new Vector3(0, 180, 0);
-        private readonly static Vector3 LEFT_TURN = new Vector3(0, -180, 0);
         private GameObject _ghost_model;
         private const float floatSpeed = 0.125f;
         private const float moveSpeed = 5f;
-        public TurnDirection turn_dir = NOT_TURNING;
-        public TurnDirection last_turn_dir = NOT_TURNING;
         public JumpState jump = InFlight;
         public bool controlEnabled = true;
         private bool usedDoubleJump = false;
@@ -35,11 +31,24 @@ namespace Platformer.Mechanics
         [SerializeField] AudioSource jumpSound;
         public Bounds Bounds => _collider.bounds;
         public bool SaveCheckpoint = true;
+        public ShopManager shopManager;
+
+        Animator anim; //
+        int horizontal; //
+        int vertical; //
+        GameObject anchor; //
+        Transform anchorManip; //
 
         void Awake()
         {
             _ghost_model = GameObject.Find("ghost basic");
             _rigidbody = GetComponent<Rigidbody>();
+            anim = _ghost_model.GetComponent<Animator>(); // animator inside ghost basic
+            horizontal = Animator.StringToHash("Horizontal"); // reference values in the Animmator called Horizontal/Vertical
+            vertical = Animator.StringToHash("Vertical"); //
+            anchor = GameObject.Find("Anchor"); // for rotation
+            anchorManip = anchor.transform; // to tell rotation direction
+
             var gm = GameManager.Instance;
             if (gm != null)
             {
@@ -53,38 +62,114 @@ namespace Platformer.Mechanics
                     transform.position = pos;
                 }
             }
+
+            if (shopManager == null)
+            {
+                Debug.LogWarning("ShopManager not found in the scene.");
+            }
         }
+
+        //void Update()
+        //{
+        //    // Dialogue part
+        //    if (dialogueUI != null && (shopManager.gameObject.activeSelf || dialogueUI.IsOpen))
+        //    {
+        //        DisableControl();
+        //        return;
+        //    }
+
+        //    keyHoriz = Input.GetAxis("Horizontal");
+        //    keyVert = Input.GetAxis("Vertical");
+        //    jumpPending = jumpPending || keyVert > 0;
+
+        //    // Dialogue part
+        //    if (Input.GetButtonDown("Jump") && !upPressed && !shopManager.gameObject.activeSelf)
+        //    {
+        //        upPressed = true;
+        //        Interactable?.Interact(this);
+        //        dialogueUI?.RegisterCloseAction(EnableControl);
+        //        /*
+        //        meaning:
+        //        if (Interactable != null)
+        //        {
+        //            Interactable.Interact(this);
+        //        }
+        //        */
+        //    }
+        //    else
+        //    {
+        //        upPressed = false;
+        //    }
+        //}
+
 
         void Update()
         {
             // Dialogue part
-            if (dialogueUI != null && dialogueUI.IsOpen)
+            if (shopManager != null)
             {
-                DisableControl();
-                return;
+                if (dialogueUI != null && (shopManager.gameObject.activeSelf || dialogueUI.IsOpen))
+                {
+                    DisableControl();
+                    return;
+                }
+            }
+            else
+            {
+                if (dialogueUI != null && dialogueUI.IsOpen)
+                {
+                    DisableControl();
+                    return;
+                }
             }
 
             keyHoriz = Input.GetAxis("Horizontal");
             keyVert = Input.GetAxis("Vertical");
+
+            if (keyVert < 0) keyVert = 0; // when pressing S it goes below 0 , just making sure no issues with rotation
+
             jumpPending = jumpPending || keyVert > 0;
 
             // Dialogue part
-            if (Input.GetButtonDown("Jump") && !upPressed)
+            if (shopManager != null)
             {
-                upPressed = true;
-                Interactable?.Interact(this);
-                dialogueUI?.RegisterCloseAction(EnableControl);
-                /*
-                meaning:
-                if (Interactable != null)
+                if (Input.GetButtonDown("Jump") && !upPressed && !shopManager.gameObject.activeSelf)
                 {
-                    Interactable.Interact(this);
+                    upPressed = true;
+                    Interactable?.Interact(this);
+                    dialogueUI?.RegisterCloseAction(EnableControl);
+                    /*
+                    meaning:
+                    if (Interactable != null)
+                    {
+                        Interactable.Interact(this);
+                    }
+                    */
                 }
-                */
+                else
+                {
+                    upPressed = false;
+                }
             }
             else
             {
-                upPressed = false;
+                if (Input.GetButtonDown("Jump") && !upPressed)
+                {
+                    upPressed = true;
+                    Interactable?.Interact(this);
+                    dialogueUI?.RegisterCloseAction(EnableControl);
+                    /*
+                    meaning:
+                    if (Interactable != null)
+                    {
+                        Interactable.Interact(this);
+                    }
+                    */
+                }
+                else
+                {
+                    upPressed = false;
+                }
             }
         }
 
@@ -105,12 +190,27 @@ namespace Platformer.Mechanics
             }
 
             var sideMove = keyHoriz * moveSpeed;
-            HandleTurn(sideMove);
+            HandleRotation(keyHoriz, keyVert); // rotate
             var upMove = HandleJump();
 
+            // Debugging 
+            //print("Side move is: " + sideMove + " | keyhoriz is: " + keyHoriz);
+            //print("Up move is: " + upMove + " | keyvert is: " + keyVert);
+            if (keyHoriz != 0 || keyVert != 0)
+                print("Pressed A(-1) or D(+1): " + keyHoriz + " | Pressed W(+1): " + keyVert);
+
+            UpdateAnimatorValues(keyHoriz, keyVert); //Right or Left movement animation
+            if(keyVert > 0)
+            {
+                anim.SetBool("isJumping", true);
+            }
+            else
+            {
+                anim.SetBool("isJumping", false);
+            }
+
             // Move horizontally
-            _rigidbody.MovePosition(_rigidbody.transform.position +
-                    new Vector3(sideMove * Time.deltaTime, 0, 0));
+            _rigidbody.MovePosition(_rigidbody.transform.position + new Vector3(sideMove * Time.deltaTime, 0, 0));
             // Move vertically
             _rigidbody.AddForce(new Vector3(0, upMove, 0), ForceMode.Impulse);
         }
@@ -130,47 +230,24 @@ namespace Platformer.Mechanics
             controlEnabled = true;
         }
 
-        private void HandleTurn(float sideMove)
+        private void HandleRotation(float keyHoriz, float keyVert)
         {
-            // Clamp down the movement before we go futher. This would be easier if
-            // Unity didn't roll 0 back to 359 and went negative instead
-            last_turn_dir = turn_dir;
-            if (turn_dir == RIGHT && transform.eulerAngles.y > 180)
-            {
-                _rigidbody.MoveRotation(Quaternion.Euler(0, 180f, 0));
-            }
-            else if (turn_dir == LEFT && transform.eulerAngles.y > 270)
-            {
-                _rigidbody.MoveRotation(Quaternion.Euler(0, 0, 0));
-            }
+            Vector3 targetDirection = Vector3.zero;
 
-            // Figure out which direction we need to try to turn toward
-            if (sideMove > 0 || sideMove == 0 && last_turn_dir == RIGHT && _rigidbody.transform.eulerAngles.y < 180)
-            {
-                turn_dir = RIGHT;
-            }
-            else if (sideMove < 0 || last_turn_dir == LEFT && _rigidbody.transform.eulerAngles.y > 0)
-            {
-                turn_dir = LEFT;
-            }
-            else
-            {
-                turn_dir = NOT_TURNING;
-            }
+            targetDirection = anchorManip.forward * keyVert; 
+            targetDirection += anchorManip.right * keyHoriz;
+            targetDirection.y = 0; 
+            targetDirection.z = 0;
+            targetDirection.Normalize();
 
-            // Set the turn
-            Quaternion deltaRotation = Quaternion.identity;
-            if (turn_dir == RIGHT)
-            {
-                deltaRotation = Quaternion.Euler(RIGHT_TURN * Time.fixedDeltaTime);
-            }
-            else if (turn_dir == LEFT)
-            {
-                deltaRotation = Quaternion.Euler(LEFT_TURN * Time.fixedDeltaTime);
-            }
+            // if we're moving right or left we can decide which way to rotate
+            if (targetDirection == Vector3.zero)
+                targetDirection = transform.forward;
 
-            // Turn
-            _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection); //tarot = lookrot(ta)
+            Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, 0); // 2*rotationSpeed * Time.deltaTime / rotationSpeed); // dividing slows rotation
+                                                                                          // ^ setting to 0 seems to fix anim rotation issues idk why
+            transform.rotation = playerRotation; 
         }
 
         private float HandleJump()
@@ -191,6 +268,7 @@ namespace Platformer.Mechanics
                         usedDoubleJump = true;
                         jumpSound.Play();
                         upMove = moveSpeed;
+                        //print("InFlight.Pending.UpMove: " + upMove);
                         jumpPending = false;
                         var curr_vel = _rigidbody.velocity;
                         _rigidbody.velocity = new Vector3(
@@ -204,8 +282,8 @@ namespace Platformer.Mechanics
                 case Grounded:
                     if (jumpPending)
                     {
-                        
                         upMove = moveSpeed;
+                        //print("Grounded.upMove: " + upMove);
                         jumpSound.Play();
                         jump = Jumping;
                         jumpPending = false;
@@ -223,6 +301,59 @@ namespace Platformer.Mechanics
             }
             return upMove;
         }
+
+        public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement)
+        {
+            //Animation snapping < optional
+            float snappedHoriz;
+            float snappedVerti;
+
+            if (horizontalMovement > 0 && horizontalMovement < 0.55f)
+            {
+                snappedHoriz = 0.5f;
+            }
+            else if (horizontalMovement > 0.55f)
+            {
+                snappedHoriz = 1;
+            }
+            else if (horizontalMovement < 0 && horizontalMovement > -0.55f)
+            {
+                snappedHoriz = -0.5f;
+            }
+            else if (horizontalMovement < -0.55f)
+            {
+                snappedHoriz = -1;
+            }
+            else
+            {
+                snappedHoriz = 0;
+            }
+
+            if (verticalMovement > 0 && verticalMovement < 0.55f)
+            {
+                snappedVerti = 0.5f;
+            }
+            else if (verticalMovement > 0.55f)
+            {
+                snappedVerti = 1;
+            }
+            else if (verticalMovement < 0 && verticalMovement > -0.55f)
+            {
+                snappedVerti = -0.5f;
+            }
+            else if (verticalMovement < -0.55f)
+            {
+                snappedVerti = -1;
+            }
+            else
+            {
+                snappedVerti = 0;
+            }
+
+            anim.SetFloat(horizontal, snappedHoriz, 0.1f, Time.deltaTime);
+            anim.SetFloat(vertical, snappedVerti, 0.1f, Time.deltaTime);
+        }
+
     }
     public enum TurnDirection
     {

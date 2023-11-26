@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
@@ -13,51 +10,86 @@ public class ShopManager : MonoBehaviour
 	public TextMeshProUGUI ConisTXT;
 	public Confirmation confirmationWindow;
 	public Button[] itemButtons;
+	public static bool GameIsPaused = false;
+	private GameManager gameManager;
+
+	void OnEnable()
+	{
+		Pause();
+	}
 
 	void Start()
 	{
-		//ID's
-		ConisTXT.text = "Coins:" + coins.ToString();
+		gameManager = GameManager.Instance;
+		ConisTXT.text = "Coins:" + gameManager.GetCoins().ToString();
 		shopItems[1, 1] = 1;
 		shopItems[1, 2] = 2;
 		shopItems[1, 3] = 3;
-		shopItems[1, 4] = 4;
 
 		//Price
 		shopItems[2, 1] = 10;
-		shopItems[2, 2] = 20;
-		shopItems[2, 3] = 30;
-		shopItems[2, 4] = 40;
+		shopItems[2, 2] = 30;
+		shopItems[2, 3] = 40;
 
 		//Names
-		itemNames[1] = "FireBall";
-		itemNames[2] = "Freeze";
-		itemNames[3] = "Heal";
-		itemNames[4] = "Stun";
+		itemNames[1] = "Knife Throw";
+		itemNames[2] = "Heal";
+		itemNames[3] = "Stun";
+		InitializeShop();
 	}
+
+	void Pause()
+	{
+		Time.timeScale = 0f;
+		GameIsPaused = true;
+	}
+
+	public void Resume()
+	{
+		Time.timeScale = 1f;
+		GameIsPaused = false;
+	}
+
+	public void InitializeShop()
+	{
+		for (int i = 1; i < itemButtons.Length + 1; i++)
+		{
+			if (GameManager.Instance.AvailableSpells.ContainsKey(itemNames[i]) && GameManager.Instance.AvailableSpells[itemNames[i]])
+			{
+				DisableItemButton(i);
+			}
+		}
+	}
+
 
 	public void Buy(int itemID)
 	{
-		// Retrieve the price for the item
 		int itemPrice = shopItems[2, itemID];
 
-		// Check if the player has enough coins
-		if (coins >= itemPrice)
+		if (gameManager.GetCoins() >= itemPrice)
 		{
-			// Open the confirmation window with the item name and price
 			confirmationWindow.OpenConfirmationWindow("Are you sure you want to buy " + itemNames[itemID] + " for $" + itemPrice + "?", itemID);
 		}
 		else
 		{
 			Debug.Log("You don't have any coin left.");
 		}
-
 	}
+
+	/* not interactable version
+    public void DisableItemButton(int itemID)
+    {
+        if (itemID < itemButtons.Length)
+        {
+            itemButtons[itemID - 1].interactable = false;
+        }
+    }
+	*/
 	public void DisableItemButton(int itemID)
 	{
 		if (itemID < itemButtons.Length)
 		{
-			itemButtons[itemID-1].interactable = false; // Disable the button
+			itemButtons[itemID - 1].gameObject.SetActive(false);
 		}
 	}
 }
