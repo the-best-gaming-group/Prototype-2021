@@ -9,12 +9,14 @@ public class Confirmation : MonoBehaviour
 	public TextMeshProUGUI messageText;
 	private ShopManager shopManager;
 	private GameManager gameManager;
+	public CoinManager coinManager;
 	private int itemID;
 
 	void Start()
 	{
 		gameManager = GameManager.Instance;
 		shopManager = FindObjectOfType<ShopManager>();
+		coinManager = FindObjectOfType<CoinManager>();
 		yesButton.onClick.AddListener(YesClicked);
 		noButton.onClick.AddListener(NoClicked);
 		gameObject.SetActive(false);
@@ -32,6 +34,7 @@ public class Confirmation : MonoBehaviour
 		gameObject.SetActive(false);
 		int itemPrice = shopManager.shopItems[2, itemID];
 		gameManager.SetCoins(gameManager.GetCoins() - itemPrice);
+		coinManager.UpdateCoinText();
 		shopManager.ConisTXT.text = "Coins: " + gameManager.GetCoins().ToString();
 		shopManager.DisableItemButton(itemID);
 		GameManager.Instance.AvailableSpells[shopManager.itemNames[itemID]] = true;

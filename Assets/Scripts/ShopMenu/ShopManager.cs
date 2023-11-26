@@ -21,7 +21,8 @@ public class ShopManager : MonoBehaviour
 	void Start()
 	{
 		gameManager = GameManager.Instance;
-		ConisTXT.text = "Coins:" + gameManager.GetCoins().ToString();
+		ConisTXT.text = "Coins: " + gameManager.GetCoins().ToString();
+		//ID's
 		shopItems[1, 1] = 1;
 		shopItems[1, 2] = 2;
 		shopItems[1, 3] = 3;
