@@ -9,6 +9,7 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 	[SerializeField] public Animator transitionAnim;
 	public string sceneName;
 	public bool IsDoor = true;
+	public bool CanEnter;
 
 	IEnumerator ChangeScene()
 	{
@@ -30,6 +31,9 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 
 	public void Invoke()
 	{
-		StartCoroutine(ChangeScene());
+		if (CanEnter)
+        {
+			StartCoroutine(ChangeScene());
+		}
 	}
 }
