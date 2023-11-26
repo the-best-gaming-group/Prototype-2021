@@ -368,7 +368,7 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            if (enemyReference.name.ToLower().Contains("skel") || enemyReference.name.ToLower().Contains("eye"))
+            if (enemyReference.name.ToLower().Contains("skel") || enemyReference.name.ToLower().Contains("eye") || enemyReference.name.ToLower().Contains("horse"))
             {
                 StartCoroutine(animateAndWaitThenDeactivate("isCombat"));
             }
@@ -395,6 +395,13 @@ public class BattleSystem : MonoBehaviour
         enemyAnimator.SetBool(anim, false);
     }
 
+    private IEnumerator bossThrow(string anim)
+    {
+        enemyAnimator.SetBool(anim, true);
+        yield return new WaitForSeconds(4f);
+        enemyAnimator.SetBool(anim, false);
+    }
+
     GameObject sendKnife(bool isFromPlayer = true)
     {
         if (isFromPlayer)
@@ -406,6 +413,10 @@ public class BattleSystem : MonoBehaviour
             if (enemyReference.name.ToLower().Contains("skel")) // sword throw skeleton
             {
                 StartCoroutine(animateThrow("isThrow"));
+            }
+            else if (enemyReference.name.ToLower().Contains("horse"))
+            {
+                StartCoroutine(bossThrow("isThrow"));
             }
             else
             {

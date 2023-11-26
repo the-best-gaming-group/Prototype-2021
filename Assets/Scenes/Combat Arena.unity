@@ -1404,6 +1404,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 477157573640264512, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
   - {fileID: 3124537134492634221, guid: 711c0ee44df329f45b20811ec4bae2b6, type: 3}
+  - {fileID: 7093917440301500035, guid: fa3ca4bac36767e498ebe40281da452b, type: 3}
 --- !u!1 &1677652188
 GameObject:
   m_ObjectHideFlags: 0
