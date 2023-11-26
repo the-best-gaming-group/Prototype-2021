@@ -178,6 +178,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2484672045249358923, guid: 7e307e91895514354a1de91f7f67546b, type: 3}
   m_PrefabInstance: {fileID: 341695369}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &327228093 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9063886343184105955, guid: 3f47cee679e1ff24db54a69ec6d6363e, type: 3}
+  m_PrefabInstance: {fileID: 1630690946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &341695369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -432,6 +437,7 @@ MonoBehaviour:
   knifeSound: {fileID: 1630690951}
   electrocuteSound: {fileID: 1630690949}
   healSound: {fileID: 381783671}
+  stunSound: {fileID: 327228093}
   fireboltAsset: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
   lightningAsset: {fileID: 178460, guid: 2736bbc2f2c78a949957b0719c2992bd, type: 3}
   knifeAsset: {fileID: 1450812945882496, guid: 1533f2e2578f00d4c8ae061c9420478f, type: 3}

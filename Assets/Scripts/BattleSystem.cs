@@ -50,6 +50,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] AudioSource knifeSound;
     [SerializeField] AudioSource electrocuteSound;
     [SerializeField] AudioSource healSound;
+    [SerializeField] AudioSource stunSound;
   
 
     public GameObject fireboltAsset;
@@ -442,6 +443,7 @@ public class BattleSystem : MonoBehaviour
         Destroy(stunObj);//remove prev stun effect if any
 
         animator.Play("PlayerStun");
+        stunSound.Play();
         try
         {
             stunObj = Instantiate(enemyStunAsset, GameObject.FindWithTag("enemyReference").transform);
