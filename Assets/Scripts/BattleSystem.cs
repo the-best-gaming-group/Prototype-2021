@@ -46,6 +46,12 @@ public class BattleSystem : MonoBehaviour
     PlayerHealthBar enemyHP;
     [SerializeField] AudioSource winSound;
     [SerializeField] AudioSource loseSound;
+    [SerializeField] AudioSource slamSound;
+    [SerializeField] AudioSource knifeSound;
+    [SerializeField] AudioSource electrocuteSound;
+    [SerializeField] AudioSource healSound;
+  
+
     public GameObject fireboltAsset;
     public GameObject lightningAsset;
     public GameObject knifeAsset;
@@ -355,6 +361,7 @@ public class BattleSystem : MonoBehaviour
         enemyAnimator.SetBool(anim, true);
         yield return wait2sec;
         animator.Play("PlayerSlammed");
+        slamSound.Play();
         yield return new WaitForSeconds(3.6f);
         enemyAnimator.SetBool(anim, false);
     }
@@ -364,6 +371,7 @@ public class BattleSystem : MonoBehaviour
         if(isFromPlayer)
         {
             animator.Play("EnemySlammed");
+            slamSound.Play();
         }
         else
         {
@@ -379,6 +387,7 @@ public class BattleSystem : MonoBehaviour
     GameObject sendLightning(bool isFromPlayer = true)
     {
         var lightningObj = GameObject.Instantiate(lightningAsset);
+        electrocuteSound.Play();
         var lightningComp = lightningObj.GetComponent<LightningBoltScript>();
         lightningComp.StartObject = GameObject.Find("ghost basic");
         lightningComp.EndObject = GameObject.FindWithTag("enemyReference");
@@ -412,6 +421,7 @@ public class BattleSystem : MonoBehaviour
             }
         }
         //animator.Play((isFromPlayer ? "Player" : "Enemy") + "ThrowKnife");
+        knifeSound.Play();
         return null;
     }
 
@@ -423,6 +433,7 @@ public class BattleSystem : MonoBehaviour
         } catch (Exception) { }
         playerHP.TakeDamage(-(int)CombatOptions.Heal);
         battleDialog.text = $"You gained {(int)CombatOptions.Heal}HP";
+        healSound.Play();
 
         return null;
     }

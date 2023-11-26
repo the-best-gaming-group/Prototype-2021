@@ -428,6 +428,10 @@ MonoBehaviour:
   dialogWaitTime: 2
   winSound: {fileID: 1630690947}
   loseSound: {fileID: 1630690948}
+  slamSound: {fileID: 1630690950}
+  knifeSound: {fileID: 1630690951}
+  electrocuteSound: {fileID: 1630690949}
+  healSound: {fileID: 381783671}
   fireboltAsset: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 3}
   lightningAsset: {fileID: 178460, guid: 2736bbc2f2c78a949957b0719c2992bd, type: 3}
   knifeAsset: {fileID: 1450812945882496, guid: 1533f2e2578f00d4c8ae061c9420478f, type: 3}
@@ -524,6 +528,11 @@ MonoBehaviour:
   selectedPanel: {fileID: 1882046356}
   selectionCanvas: {fileID: 3736514196221831980}
   selectedCanvas: {fileID: 3736514196221831979}
+--- !u!82 &381783671 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2656162867117179096, guid: 3f47cee679e1ff24db54a69ec6d6363e, type: 3}
+  m_PrefabInstance: {fileID: 1630690946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &475895440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,6 +1149,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1504934982553485669, guid: 632b8884559690449a2bc61f5e03fa7a, type: 3}
+      propertyPath: m_Volume
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504934982553485669, guid: 632b8884559690449a2bc61f5e03fa7a, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 34daa09d922514b4b83d384361b7ec08, type: 3}
     - target: {fileID: 1504934982553485671, guid: 632b8884559690449a2bc61f5e03fa7a, type: 3}
       propertyPath: m_Name
       value: CombatMusic (1)
@@ -1338,6 +1355,21 @@ AudioSource:
 --- !u!82 &1630690948 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3522482295661695199, guid: 3f47cee679e1ff24db54a69ec6d6363e, type: 3}
+  m_PrefabInstance: {fileID: 1630690946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1630690949 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2880179780897463206, guid: 3f47cee679e1ff24db54a69ec6d6363e, type: 3}
+  m_PrefabInstance: {fileID: 1630690946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1630690950 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2562341013894715331, guid: 3f47cee679e1ff24db54a69ec6d6363e, type: 3}
+  m_PrefabInstance: {fileID: 1630690946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1630690951 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2108065375309712880, guid: 3f47cee679e1ff24db54a69ec6d6363e, type: 3}
   m_PrefabInstance: {fileID: 1630690946}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1662389401
