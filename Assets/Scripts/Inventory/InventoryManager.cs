@@ -6,25 +6,20 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
     public InventoryData inventoryData;
+    public SceneChangeInvokable DoorToOpen;
 
     private bool hasNews1;
     private bool hasNews2;
+    private bool hasNews3;
     private bool condition;
 
     private DialogueObject dialogueObject;
+    private GameManager gameManager;
 
-    //private void Awake()
-    //{
-    //    if (Instance == null)
-    //    {
-    //        Instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
 
     public void AddItem(InventoryItem item)
     {
@@ -36,13 +31,12 @@ public class InventoryManager : MonoBehaviour
         inventoryData.RemoveItem(item);
     }
 
-
-
     public void CheckNewspaper()
     {
         Debug.Log("checking...");
         hasNews1 = false;
         hasNews2 = false;
+        hasNews3 = false;
         for (int i = 0; i < inventoryData.items.Count; i++)
         {
             if (inventoryData.items[i].itemName == "News1")
@@ -53,8 +47,12 @@ public class InventoryManager : MonoBehaviour
             {
                 hasNews2 = true;
             }
+            else if (inventoryData.items[i].itemName == "News3")
+            {
+                hasNews3 = true;
+            }
         }
-        if (hasNews1 && hasNews2)
+        if (hasNews1 && hasNews2 && hasNews3)
         {
             condition = true;
         }
@@ -83,26 +81,20 @@ public class InventoryManager : MonoBehaviour
         dialogueUI.ShowDialogue(dialogueObject);
     }
 
-    public void newspaperReward()
+    public void newspaperRemove(InventoryItem item)
     {
         if (condition)
         {
-            Debug.Log("get 50 coins");
+            RemoveItem(item);
         }
     }
 
-    public void newspaperRemove1(InventoryItem item)
+    public void OpenDoor()
     {
         if (condition)
         {
-            RemoveItem(item);
-        }
-    }
-    public void newspaperRemove2(InventoryItem item)
-    {
-        if (condition)
-        {
-            RemoveItem(item);
+            DoorToOpen.CanEnter = true;
+            gameManager.OpenDoor();
         }
     }
 
