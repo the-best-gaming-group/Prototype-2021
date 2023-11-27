@@ -721,7 +721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &206856027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11224,6 +11224,7 @@ GameObject:
   - component: {fileID: 1940558727}
   - component: {fileID: 1940558726}
   - component: {fileID: 1940558725}
+  - component: {fileID: 1940558728}
   m_Layer: 0
   m_Name: Door5_condition
   m_TagString: Untagged
@@ -11259,8 +11260,124 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 0}
-  events: []
+  dialogueObject: {fileID: 11400000, guid: 487e5df397041264db56fe4aec942763, type: 2}
+  events:
+  - name: I'd better stop for now.
+    onPickedResponse:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: I won't be stopped!
+    onPickedResponse:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: CheckNewspaper
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: completeNews
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 75e8ed652db7d6143903b5a895470427, type: 2}
+            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: notCompleteNews
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 00f741084b606ca4aa80097d4a6a273d, type: 2}
+            m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: responseDialogue
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 909992398}
+            m_ObjectArgumentAssemblyTypeName: DialogueUI, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: newspaperRemove
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: c0b6619f515fc4041a8f80435d7a3c7e, type: 2}
+            m_ObjectArgumentAssemblyTypeName: InventoryItem, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: newspaperRemove
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 89dff3c1294c6b647a8f7c066c35bbd9, type: 2}
+            m_ObjectArgumentAssemblyTypeName: InventoryItem, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: newspaperRemove
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 07ddf94fec5c8234ea0d91ad07fec9e7, type: 2}
+            m_ObjectArgumentAssemblyTypeName: InventoryItem, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: OpenDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 785907792}
+          m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+          m_MethodName: finished
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1940558723}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1940558726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11275,7 +11392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WillSpawn: 1
   uID: 
-  dialogueObject: {fileID: 0}
+  dialogueObject: {fileID: 11400000, guid: 487e5df397041264db56fe4aec942763, type: 2}
   visualCue: {fileID: 420592260}
   diaSound: {fileID: 0}
   savedDiagIdx: -1
@@ -11293,6 +11410,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.8271732, y: 5.525883, z: 4.6590214}
   m_Center: {x: -0.4543991, y: 2.262942, z: 1.8295107}
+--- !u!114 &1940558728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940558723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2ae5b1f2f78b94594f00c66c490615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2042894094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6957958040399178585, guid: 700ff031308e7264aa35bc26c58c9df4, type: 3}
@@ -19254,6 +19383,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829329, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: DoorToOpen
+      value: 
+      objectReference: {fileID: 7399455437859143716}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
 --- !u!1 &4284076509965770515
