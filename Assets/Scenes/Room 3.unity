@@ -1959,6 +1959,7 @@ MonoBehaviour:
   transitionAnim: {fileID: 1829732688}
   sceneName: Main Scene 1
   IsDoor: 1
+  CanEnter: 0
 --- !u!82 &1529454992
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2519,15 +2520,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6957958041533547513, guid: 700ff031308e7264aa35bc26c58c9df4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 6957958041533547513, guid: 700ff031308e7264aa35bc26c58c9df4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 177
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 6957958041533547513, guid: 700ff031308e7264aa35bc26c58c9df4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 700ff031308e7264aa35bc26c58c9df4, type: 3}
