@@ -518,6 +518,7 @@ MonoBehaviour:
   transitionAnim: {fileID: 1530500607}
   sceneName: 
   IsDoor: 0
+  CanEnter: 0
 --- !u!114 &377116119
 MonoBehaviour:
   m_ObjectHideFlags: 0

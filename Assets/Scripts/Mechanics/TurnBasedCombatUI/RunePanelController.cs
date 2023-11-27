@@ -98,6 +98,10 @@ public class RunePanelController : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             runes[i].ChangeSprites(runeSpriteMap[resourceHandler.GetRuneTypes()[i]]);
+            if (resourceHandler.GetRuneTypes()[i] == USED)
+            {
+                rerolls[i] = false;
+            }
         }
     }
     
