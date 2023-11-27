@@ -51,6 +51,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] AudioSource electrocuteSound;
     [SerializeField] AudioSource healSound;
     [SerializeField] AudioSource stunSound;
+    [SerializeField] AudioSource dodgeSound;
   
 
     public GameObject fireboltAsset;
@@ -256,9 +257,12 @@ public class BattleSystem : MonoBehaviour
         string dialogText = "The enemy <harm> you";
 
         if (playerDodged)
+        {
             animator.Play("PlayerDodge");
-         
-     
+            dodgeSound.Play();
+        }
+
+
         switch (randomInt)
         {
             case < 25:
@@ -266,18 +270,24 @@ public class BattleSystem : MonoBehaviour
                 if (enemyReference.name.ToLower().Contains("skel"))
                 {
                     battleDialog.text = dialogText.Replace("<harm>", "threw a swinging sword at");
+                    knifeSound.PlayDelayed(1);
                 }
                 else
                 {
                     battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
+                    knifeSound.PlayDelayed(2);
                 }
                 yield return wait1sec;
                 break;
             case < 50:
                 enemyAction = CombatOptions.Slam;
                 battleDialog.text = playerDodged ? "You dodged enemy's slam!" : dialogText.Replace("<harm>", "slammed");
-                if (!playerDodged) sendSlam(false);
-                yield return wait3sec; // important for animation to finish
+
+                if (!playerDodged) { 
+                    sendSlam(false);
+                    slamSound.PlayDelayed(2.7f);
+                }
+                    yield return wait3sec; // important for animation to finish
                 break;
             case < 75:
                 enemyAction = CombatOptions.Firebolt;
@@ -363,7 +373,6 @@ public class BattleSystem : MonoBehaviour
         enemyAnimator.SetBool(anim, true);
         yield return wait2sec;
         animator.Play("PlayerSlammed");
-        slamSound.Play();
         yield return new WaitForSeconds(3.6f);
         enemyAnimator.SetBool(anim, false);
     }
@@ -373,7 +382,8 @@ public class BattleSystem : MonoBehaviour
         if(isFromPlayer)
         {
             animator.Play("EnemySlammed");
-            slamSound.Play();
+            slamSound.PlayDelayed(2);
+
         }
         else
         {
@@ -383,7 +393,7 @@ public class BattleSystem : MonoBehaviour
             }
         }
         //animator.Play((isFromPlayer ? "Enemy" : "Player") + "Slammed");
-
+        
         return null;
     }
     GameObject sendLightning(bool isFromPlayer = true)
@@ -417,6 +427,7 @@ public class BattleSystem : MonoBehaviour
         if (isFromPlayer)
         {
             animator.Play("PlayerThrowKnife");
+            knifeSound.Play();
         }
         else
         {
@@ -431,10 +442,11 @@ public class BattleSystem : MonoBehaviour
             else
             {
                 animator.Play("EnemyThrowKnife");
+                knifeSound.PlayDelayed(3.5f);
             }
         }
         //animator.Play((isFromPlayer ? "Player" : "Enemy") + "ThrowKnife");
-        knifeSound.Play();
+        
         return null;
     }
 
