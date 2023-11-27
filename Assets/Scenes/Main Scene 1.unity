@@ -20091,6 +20091,7 @@ GameObject:
   - component: {fileID: 7399455437859143718}
   - component: {fileID: 7399455437859143717}
   - component: {fileID: 7399455437859143716}
+  - component: {fileID: 7399455437859143719}
   m_Layer: 0
   m_Name: Door_3
   m_TagString: Untagged
@@ -21929,6 +21930,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7399455437859143719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5475823192546782723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165cd87212cd384799349ac4e10a628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneChangeInvokablev: {fileID: 7399455437859143716}
 --- !u!4 &7456433106158890760
 Transform:
   m_ObjectHideFlags: 0

@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeleteDoor : MonoBehaviour
+public class AddCanEnter : MonoBehaviour
 {
+    public SceneChangeInvokable sceneChangeInvokablev;
     private GameManager gameManager;
 
     private void Start()
     {
         gameManager = GameManager.Instance;
-        string objectName = gameObject.name;
 
-        if (objectName == "Door5_condition" && gameManager.GetOpen())
+        if (gameManager.GetOpen())
         {
-            Destroy(gameObject);
+            sceneChangeInvokablev.CanEnter = true;
         }
     }
 }
