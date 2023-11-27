@@ -9,8 +9,9 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 	[SerializeField] public Animator transitionAnim;
 	public string sceneName;
 	public bool IsDoor = true;
+	public bool CanEnter;
 
-	IEnumerator ChangeScene()
+    IEnumerator ChangeScene()
 	{
 		Debug.Log("Changing Scene");
 
@@ -30,6 +31,17 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 
 	public void Invoke()
 	{
-		StartCoroutine(ChangeScene());
+		string currentScene = SceneManager.GetActiveScene().name;
+		if (currentScene == "Main Scene 1")
+        {
+			if (CanEnter)
+            {
+				StartCoroutine(ChangeScene());
+			}
+		}
+        else
+        {
+			StartCoroutine(ChangeScene());
+		}
 	}
 }
