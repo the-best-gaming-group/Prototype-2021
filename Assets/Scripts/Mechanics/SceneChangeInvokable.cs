@@ -11,7 +11,7 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 	public bool IsDoor = true;
 	public bool CanEnter;
 
-	IEnumerator ChangeScene()
+    IEnumerator ChangeScene()
 	{
 		Debug.Log("Changing Scene");
 
@@ -31,7 +31,15 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 
 	public void Invoke()
 	{
-		if (CanEnter)
+		string currentScene = SceneManager.GetActiveScene().name;
+		if (currentScene == "Main Scene 1")
+        {
+			if (CanEnter)
+            {
+				StartCoroutine(ChangeScene());
+			}
+		}
+        else
         {
 			StartCoroutine(ChangeScene());
 		}
