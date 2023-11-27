@@ -16,6 +16,11 @@ public class InventoryManager : MonoBehaviour
     private DialogueObject dialogueObject;
     private GameManager gameManager;
 
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
+
     public void AddItem(InventoryItem item)
     {
         inventoryData.AddItem(item);

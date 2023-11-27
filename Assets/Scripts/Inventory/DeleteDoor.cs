@@ -8,6 +8,7 @@ public class DeleteDoor : MonoBehaviour
 
     private void Start()
     {
+        gameManager = GameManager.Instance;
         string objectName = gameObject.name;
         if (objectName == "Door5_condition" && gameManager.GetOpen())
         {

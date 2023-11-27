@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
 
 	public void OpenDoor()
     {
+		Debug.Log("Call OpenDoor");
 		CanOpen = true;
 	}
 
