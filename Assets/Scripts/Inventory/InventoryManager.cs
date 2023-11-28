@@ -1,19 +1,23 @@
-using Platformer.Mechanics;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
-    public InventoryData inventoryData;
     public SceneChangeInvokable DoorToOpen;
+
+    public DialogueObject dialogueNo;
+    public InventoryItem news1;
+    public InventoryItem news2;
+    public InventoryItem news3;
+    public DialogueUI dialogueUI;
+    public GameObject toDestroy;
 
     private bool hasNews1;
     private bool hasNews2;
     private bool hasNews3;
     private bool condition;
 
-    private DialogueObject dialogueObject;
     private GameManager gameManager;
 
     private void Start()
@@ -23,31 +27,33 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(InventoryItem item)
     {
-        inventoryData.AddItem(item);
+        gameManager.AddItem(item);
     }
 
     public void RemoveItem(InventoryItem item)
     {
-        inventoryData.RemoveItem(item);
+        gameManager.RemoveItem(item);
     }
 
     public void CheckNewspaper()
     {
-        Debug.Log("checking...");
+        List<InventoryItem> items = gameManager.GetItmes();
+
         hasNews1 = false;
         hasNews2 = false;
         hasNews3 = false;
-        for (int i = 0; i < inventoryData.items.Count; i++)
+        //for (int i = 0; i < inventoryData.items.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
-            if (inventoryData.items[i].itemName == "News1")
+            if (items[i].itemName == "News1")
             {
                 hasNews1 = true;
             }
-            else if (inventoryData.items[i].itemName == "News2")
+            else if (items[i].itemName == "News2")
             {
                 hasNews2 = true;
             }
-            else if (inventoryData.items[i].itemName == "News3")
+            else if (items[i].itemName == "News3")
             {
                 hasNews3 = true;
             }
@@ -60,49 +66,20 @@ public class InventoryManager : MonoBehaviour
         {
             condition = false;
         }
-    }
 
-    public void completeNews(DialogueObject dialogueYes)
-    {
         if (condition)
         {
-            dialogueObject = dialogueYes;
-        }
-    }
-    public void notCompleteNews(DialogueObject dialogueNo)
-    {
-        if (!condition)
-        {
-            dialogueObject = dialogueNo;
-        }
-    }
-    public void responseDialogue(DialogueUI dialogueUI)
-    {
-        dialogueUI.ShowDialogue(dialogueObject);
-    }
-
-    public void newspaperRemove(InventoryItem item)
-    {
-        if (condition)
-        {
-            RemoveItem(item);
-        }
-    }
-
-    public void OpenDoor()
-    {
-        if (condition)
-        {
+            RemoveItem(news1);
+            RemoveItem(news2);
+            RemoveItem(news3);
             DoorToOpen.CanEnter = true;
             gameManager.OpenDoor();
-        }
-    }
-
-    public void finished(GameObject toDestroy)
-    {
-        if (condition)
-        {
             Destroy(toDestroy);
         }
+        else
+        {
+            dialogueUI.ShowDialogue(dialogueNo); 
+        }
+
     }
 }

@@ -369,6 +369,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4274689643213829329, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: news1
+      value: 
+      objectReference: {fileID: 11400000, guid: c0b6619f515fc4041a8f80435d7a3c7e, type: 2}
+    - target: {fileID: 4274689643213829329, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: news2
+      value: 
+      objectReference: {fileID: 11400000, guid: 89dff3c1294c6b647a8f7c066c35bbd9, type: 2}
+    - target: {fileID: 4274689643213829329, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
+      propertyPath: news3
+      value: 
+      objectReference: {fileID: 11400000, guid: 07ddf94fec5c8234ea0d91ad07fec9e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e91eed922881bf4ba9cfee172562d6f, type: 3}
 --- !u!114 &250074795 stripped
@@ -2784,6 +2796,7 @@ MonoBehaviour:
   transitionAnim: {fileID: 519494134}
   sceneName: Main Scene 1
   IsDoor: 1
+  CanEnter: 0
 --- !u!82 &1428212162
 AudioSource:
   m_ObjectHideFlags: 0

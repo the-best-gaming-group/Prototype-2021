@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private int playerHealth;
 	[SerializeField] private float coins;
 	[SerializeField] private bool CanOpen;
+	[SerializeField] private List<InventoryItem> items;
 	[SerializeField] public int[,] shopItems = new int[5, 5];
 	[SerializeField] public string[] itemNames = new string[5];
 	public Checkpoint.SpawnsDict Spawns = new();
@@ -119,6 +120,21 @@ public class GameManager : MonoBehaviour
 		return CanOpen;
 	}
 
+	public List<InventoryItem> GetItmes()
+    {
+		return items;
+    }
+
+	public void AddItem(InventoryItem item)
+	{
+		items.Add(item);
+	}
+
+	public void RemoveItem(InventoryItem item)
+    {
+		items.Remove(item);
+	}
+
 	public void RegisterRoomSpawner(RoomSpawner res)
 	{
 		Spawns.TryAdd(SceneName, new());
@@ -166,7 +182,8 @@ public class GameManager : MonoBehaviour
 			AvailableSpells,
 			SceneName,
 			coins,
-			CanOpen
+			CanOpen,
+			items
 		);
 		SaveFileManager.WriteToSaveFile(SaveFilePath, Checkpoint);
 	}
@@ -186,12 +203,14 @@ public class GameManager : MonoBehaviour
 		coins = Checkpoint.coins;
 		sceneChange.Invoke();
 		CanOpen = Checkpoint.CanOpen;
+		items = Checkpoint.items;
 	}
 
 	public void NewGame()
 	{
 		const string scene = "Main Scene 1";
-		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, 40, false);
+		items.Clear();
+		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, 40, false, items);
 		LoadCheckpoint();
 	}
 

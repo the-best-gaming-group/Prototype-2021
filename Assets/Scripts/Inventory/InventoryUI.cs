@@ -1,55 +1,44 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] private InventoryData data;
+    public static InventoryManager Instance;
+
     [SerializeField] private RectTransform panel;
     [SerializeField] private RectTransform inventoryFrame;
     [SerializeField] private RectTransform inventoryIcon;
 
-    public static InventoryUI Instance;
+    private GameManager gameManager;
     private int inventoryCount;
 
     private void Start()
     {
+        gameManager = GameManager.Instance;
         inventoryCount = 0;
+        Debug.Log("InventoryUI start");
+        Debug.Log(inventoryCount);
     }
-
-    //private void Awake()
-    //{
-    //    if (Instance == null)
-    //    {
-    //        Instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
 
     private void Update()
     {
-        if (data.items.Count != inventoryCount)
+        List<InventoryItem> items = gameManager.GetItmes();
+        //Debug.Log(inventoryCount);
+        //Debug.Log(items.Count);
+        if (items.Count != inventoryCount)
         {
-            UpdateInventory(data);
+            UpdateInventory(items);
         }
-
-        //if (SceneManager.GetActiveScene().name == "MainMenu" || SceneManager.GetActiveScene().name == "Combat Arena")
-        //{
-        //    Destroy(gameObject);
-        //}
     }
 
-    private void UpdateInventory(InventoryData data)
+    private void UpdateInventory(List<InventoryItem> items)
     {
         // Clear the inventory UI before updating it
         ClearInventory();
 
         // Iterate through the inventory items and create UI slots for each item
-        foreach (InventoryItem item in data.items)
+        foreach (InventoryItem item in items)
         {
             GameObject inventorySlot = Instantiate(inventoryFrame.gameObject, panel);
             inventorySlot.gameObject.SetActive(true);
@@ -60,8 +49,8 @@ public class InventoryUI : MonoBehaviour
             button.onClick.AddListener(() => OnInventorySlotClick(item));
         }
 
-        panel.sizeDelta = new Vector2(panel.sizeDelta.x, inventoryFrame.sizeDelta.y * data.items.Count);
-        inventoryCount = data.items.Count;
+        panel.sizeDelta = new Vector2(panel.sizeDelta.x, inventoryFrame.sizeDelta.y * items.Count);
+        inventoryCount = items.Count;
     }
 
 
