@@ -458,7 +458,7 @@ public class BattleSystem : MonoBehaviour
         stunSound.Play();
         try
         {
-            stunObj = Instantiate(enemyStunAsset, GameObject.FindWithTag("enemyReference").transform);
+            stunObj = Instantiate(enemyStunAsset, gameObject.transform);
         }
         catch (Exception) { }
 
