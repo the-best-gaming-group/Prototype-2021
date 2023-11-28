@@ -12,9 +12,9 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: prototype2021
-  defaultCursor: {fileID: 0}
+  companyName: The Others
+  productName: 1314 Shadowbrook St.
+  defaultCursor: {fileID: 2800000, guid: dbdedf00e4273d04dbb028fc10e4c3f6, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1
+  bundleVersion: 1.0
   preloadedAssets:
   - {fileID: 32900000, guid: c73a97feb992b6944bdbd7465bc858ae, type: 3}
   - {fileID: 32900000, guid: 906b612a0026c7e4cac6f964bcb3b68c, type: 3}
@@ -162,7 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.prototype2021
+    Standalone: com.The-Others.1314-Shadowbrook-St.
   buildNumber:
     Standalone: 0
     VisionOS: 0
