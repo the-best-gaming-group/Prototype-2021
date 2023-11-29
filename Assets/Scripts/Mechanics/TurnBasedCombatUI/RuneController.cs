@@ -50,9 +50,10 @@ public class RuneController : MonoBehaviour
         button.interactable = true;
         sprites = s;
         buttonImage.sprite = s.regular;
-        var ss = new SpriteState();
-        ss.disabledSprite = s.disabled;
-        button.spriteState = ss;
+        button.spriteState = new SpriteState
+        {
+            disabledSprite = s.disabled
+        };
         selectImage.sprite = s.hover;
     }
 }
