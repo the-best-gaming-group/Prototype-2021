@@ -17,6 +17,6 @@ MonoBehaviour:
   responses:
   - responseText: Leave.
     dialogueObject: {fileID: 11400000, guid: 79bfd19dcdfda724e91bbba1ebc4b9a5, type: 2}
-  - responseText: I do.
+  - responseText: You don't scare me.
     dialogueObject: {fileID: 11400000, guid: 02a2359ac33190741befb0279920c084, type: 2}
   needCondition: 0

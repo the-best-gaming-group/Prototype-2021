@@ -41,7 +41,6 @@ public class BattleSystem : MonoBehaviour
     GameObject player;
     PlayerHealthBar playerHP;
     RigidbodyConstraints playerRBConstraints;
-    RigidbodyConstraints enemyRBConstraints;
     GameObject enemy;
     PlayerHealthBar enemyHP;
     [SerializeField] AudioSource winSound;
@@ -96,7 +95,6 @@ public class BattleSystem : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         enemy = GameObject.FindWithTag("Enemy");
         playerHP = player.GetComponent<PlayerHealthBar>();
-// playerHP.TakeDamage(-100);//todo: for testing, comment or rm        
         enemyHP = enemy.GetComponentInChildren<PlayerHealthBar>();
         battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
         
@@ -106,23 +104,11 @@ public class BattleSystem : MonoBehaviour
 
         enemyReference = GameObject.FindWithTag("enemyReference");
 
-        enemyRBConstraints = enemyReference.GetComponent<Rigidbody>().constraints;
-        //enemyReference.GetComponent<Rigidbody>().constraints = (RigidbodyConstraints)122;
+        enemyReference.GetComponent<Rigidbody>().constraints = (RigidbodyConstraints)122;
 
         enemyAnimator = enemyReference.GetComponent<Animator>(); // enemy animation controller
         ghostBasic = GameObject.Find("ghost basic");
 
-    }
-
-    private void FixedUpdate()
-    {
-        battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
-        enemyReference = GameObject.FindWithTag("enemyReference");
-        Debug.Log(enemyReference.name);
-
-        player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
-        enemyReference.GetComponent<Rigidbody>().constraints = (RigidbodyConstraints)122;
-        enemyAnimator = enemyReference.GetComponent<Animator>();
     }
 
     public void Resume()
@@ -357,7 +343,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             GameObject fire = GameObject.Instantiate(fireboltAsset);
-            fire.transform.position = GameObject.FindWithTag("enemyReference").transform.position + new Vector3(-1, .5f, -1);
+            fire.transform.position = GameObject.FindWithTag("enemyReference").transform.position + new Vector3(-2, .5f, -1);
             fire.transform.rotation = new Quaternion(0, 0.70711f, 0, -0.70711f);
         }
         //var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
@@ -470,7 +456,7 @@ public class BattleSystem : MonoBehaviour
         stunSound.Play();
         try
         {
-            stunObj = Instantiate(enemyStunAsset, GameObject.FindWithTag("enemyReference").transform);
+            stunObj = Instantiate(enemyStunAsset, gameObject.transform);
         }
         catch (Exception) { }
 
