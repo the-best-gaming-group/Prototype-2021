@@ -418,7 +418,7 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator bossThrow(string anim)
     {
         enemyAnimator.SetBool(anim, true);
-        knifeSound.PlayDelayed(2f);
+        knifeSound.PlayDelayed(3.7f);
         yield return new WaitForSeconds(4f);
         enemyAnimator.SetBool(anim, false);
     }
