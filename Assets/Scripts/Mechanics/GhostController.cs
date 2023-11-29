@@ -197,7 +197,7 @@ namespace Platformer.Mechanics
             //print("Side move is: " + sideMove + " | keyhoriz is: " + keyHoriz);
             //print("Up move is: " + upMove + " | keyvert is: " + keyVert);
             if (keyHoriz != 0 || keyVert != 0)
-                print("Pressed A(-1) or D(+1): " + keyHoriz + " | Pressed W(+1): " + keyVert);
+                // print("Pressed A(-1) or D(+1): " + keyHoriz + " | Pressed W(+1): " + keyVert);
 
             UpdateAnimatorValues(keyHoriz, keyVert); //Right or Left movement animation
             if(keyVert > 0)

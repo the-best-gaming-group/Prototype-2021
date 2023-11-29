@@ -518,6 +518,7 @@ MonoBehaviour:
   transitionAnim: {fileID: 1530500607}
   sceneName: 
   IsDoor: 0
+  CanEnter: 0
 --- !u!114 &377116119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7272,7 +7273,7 @@ GameObject:
   - component: {fileID: 7982392035652527978}
   m_Layer: 0
   m_Name: ghost basic
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7499,6 +7500,10 @@ PrefabInstance:
     - target: {fileID: 3744728198339720117, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -227.0154
+      objectReference: {fileID: 0}
+    - target: {fileID: 3761918298264169912, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3854815291559714148, guid: cc2e61f16d1e597469db1bb9edac25c2, type: 3}
       propertyPath: m_IsActive

@@ -95,9 +95,14 @@ public class RunePanelController : MonoBehaviour
 
     public void ColorRunes(ResourceHandler resourceHandler)
     {
+        Rune[] runeTypes = resourceHandler.GetRuneTypes();
         for (int i = 0; i < 6; i++)
         {
-            runes[i].ChangeSprites(runeSpriteMap[resourceHandler.GetRuneTypes()[i]]);
+            runes[i].ChangeSprites(runeSpriteMap[runeTypes[i]]);
+            if (runeTypes[i] == USED)
+            {
+                rerolls[i] = false;
+            }
         }
     }
     
