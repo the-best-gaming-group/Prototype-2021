@@ -333,7 +333,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             GameObject fire = GameObject.Instantiate(fireboltAsset);
-            fire.transform.position = GameObject.FindWithTag("enemyReference").transform.position + new Vector3(-1, .5f, -1);
+            fire.transform.position = GameObject.FindWithTag("enemyReference").transform.position + new Vector3(-2, .5f, -1);
             fire.transform.rotation = new Quaternion(0, 0.70711f, 0, -0.70711f);
         }
         //var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
