@@ -3,6 +3,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using static GameManager;
 using static Rune;
+using System.Linq;
 public enum Rune
 {
     WATER = 0,

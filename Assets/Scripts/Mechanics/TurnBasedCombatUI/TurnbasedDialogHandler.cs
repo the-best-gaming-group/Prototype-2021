@@ -18,6 +18,8 @@ namespace Platformer.Mechanics
         public SubmitController sc;
         public ResourceHandler resourceHandler;
         public bool isEnabled = true;
+        public GameObject TutorialButtonBackground;
+        public GameObject TutorialButton;
         private List<Action> spellEffects = new();
         private RuneController[] rcs = new RuneController[6];
         private GameManager.Spell[] spells;
@@ -27,6 +29,8 @@ namespace Platformer.Mechanics
         private 
         void Start()
         {
+            TutorialButton = transform.parent.Find("TutorialButton").gameObject;
+            TutorialButtonBackground = transform.parent.Find("TutorialButtonBackground").gameObject;
             resourceHandler = bs.resourceHandler;
             bs.RegisterStartBattleListener(() => {
                 spells = bs.spells;
@@ -79,6 +83,8 @@ namespace Platformer.Mechanics
         {
             isEnabled = true;
             transform.gameObject.SetActive(true);            
+            TutorialButton.SetActive(true);
+            TutorialButtonBackground.SetActive(true);
             if (rerollButton != null)
             {
                 EventSystem.current.SetSelectedGameObject(rerollButton.gameObject);
@@ -90,6 +96,8 @@ namespace Platformer.Mechanics
         {
             isEnabled = false;
             transform.gameObject.SetActive(false);            
+            TutorialButton.SetActive(false);
+            TutorialButtonBackground.SetActive(false);
         }
         
         public void SetupNewRound()
@@ -98,10 +106,10 @@ namespace Platformer.Mechanics
             {
                 EventSystem.current.SetSelectedGameObject(rerollButton.gameObject);
                 rerollButton.OnSelect(null);
-            }
-            if (rerollButton != null && rerollButton == currentSelected)
-            {
-                rerollButton.EnableSelectImage();
+                if (rerollButton == currentSelected)
+                {
+                    rerollButton.EnableSelectImage();
+                }
             }
             if (submitButton != null)
             {
@@ -110,7 +118,6 @@ namespace Platformer.Mechanics
             resourceHandler.Initialize(null);
             rpc.DoReset(resourceHandler);
             ColorButtons();
-            rpc.ColorRunes(resourceHandler); // fixes a bug in build
         }
 
         /* All of these return a string because c# doesn't have function pointers */
