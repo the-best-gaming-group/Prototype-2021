@@ -15,6 +15,7 @@ MonoBehaviour:
   dialogue:
   - I approach the opened box.
   - Suddenly a group of black shadows jumps out and attacks.
-  - (start battle)
-  responses: []
+  responses:
+  - responseText: Defend yourself!
+    dialogueObject: {fileID: 0}
   needCondition: 0
