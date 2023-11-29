@@ -77,6 +77,7 @@ public class BattleSystem : MonoBehaviour
     Animator animator;
 
     Animator enemyAnimator;
+    Animator ghostAnimator;
     WaitForSeconds jumpWait = new WaitForSeconds(5.6f); // use to wait for anim to finish
     WaitForSeconds wait3sec = new WaitForSeconds(3f);
     WaitForSeconds wait2sec = new WaitForSeconds(2f);
@@ -107,7 +108,20 @@ public class BattleSystem : MonoBehaviour
 
         enemyAnimator = enemyReference.GetComponent<Animator>(); // enemy animation controller
         ghostBasic = GameObject.Find("ghost basic");
+        ghostAnimator = ghostBasic.GetComponent<Animator>();
 
+    }
+
+    private void FixedUpdate()
+    {
+        battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
+        enemyReference = GameObject.FindWithTag("enemyReference");
+        //Debug.Log(enemyReference.name);
+
+        player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
+        enemyReference.GetComponent<Rigidbody>().constraints = (RigidbodyConstraints)122;
+        enemyAnimator = enemyReference.GetComponent<Animator>();
+	    ghostAnimator = ghostBasic.GetComponent<Animator>();
     }
 
     public void Resume()
@@ -354,11 +368,18 @@ public class BattleSystem : MonoBehaviour
         enemyAnimator.SetBool(anim, false);
     }
 
+    private IEnumerator ghostSlam(string anim)
+    {
+        ghostAnimator.SetBool(anim, true);
+        yield return wait2sec;
+        ghostAnimator.SetBool(anim, false);
+    }
+
     GameObject sendSlam(bool isFromPlayer = true)
     {
         if(isFromPlayer)
         {
-            animator.Play("EnemySlammed");
+            StartCoroutine(ghostSlam("isCombat"));
             slamSound.Play();
         }
         else
