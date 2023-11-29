@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
 
 	public void NewGame()
 	{
-		const string scene = "Main Scene 1";
+		const string scene = "IntroStory";
 		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, 40, false);
 		LoadCheckpoint();
 	}
