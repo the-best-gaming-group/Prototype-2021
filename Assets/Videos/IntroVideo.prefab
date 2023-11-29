@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
-  videoToPlay: {fileID: 32900000, guid: 606eebafa0583fe408ae6498526a0a1b, type: 3}
+  videoToPlay: {fileID: 32900000, guid: 6257e6fc00f8fbb45a83f8e7845b753e, type: 3}
