@@ -121,7 +121,7 @@ public class BattleSystem : MonoBehaviour
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
         enemyReference.GetComponent<Rigidbody>().constraints = (RigidbodyConstraints)122;
         enemyAnimator = enemyReference.GetComponent<Animator>();
-	ghostAnimator = ghostBasic.GetComponent<Animator>();
+	    ghostAnimator = ghostBasic.GetComponent<Animator>();
     }
 
     public void Resume()
