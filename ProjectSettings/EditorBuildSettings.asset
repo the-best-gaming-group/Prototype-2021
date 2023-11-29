@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TrailerViewer.unity
     guid: 3b8ce67392c70a44daa906e3fc3d0543
+  - enabled: 1
+    path: Assets/Scenes/IntroStory.unity
+    guid: 322bb6bfba60c084684f4c0a9dbe1925
   m_configObjects: {}
