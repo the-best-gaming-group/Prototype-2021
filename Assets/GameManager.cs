@@ -17,11 +17,13 @@ public class GameManager : MonoBehaviour
 	public static GameManager Instance; // Singleton instance
 	public SpellManager Spellmanager;
 	public InputManager inputManager;
+	public InventoryManager inventoryManager;
 
 	public GameObject enemyToSpawn; // Store the collided enemy to spawn in the combat scene
 	[SerializeField] private int playerHealth;
 	[SerializeField] private float coins;
 	[SerializeField] private bool CanOpen;
+	[SerializeField] private List<string> items;
 	[SerializeField] public int[,] shopItems = new int[5, 5];
 	[SerializeField] public string[] itemNames = new string[5];
 	public Checkpoint.SpawnsDict Spawns = new();
@@ -119,6 +121,21 @@ public class GameManager : MonoBehaviour
 		return CanOpen;
 	}
 
+	public List<string> GetItmes()
+    {
+		return items;
+    }
+
+	public void AddItem(InventoryItem item)
+	{
+		items.Add(item.name);
+	}
+
+	public void RemoveItem(InventoryItem item)
+    {
+		items.Remove(item.name);
+	}
+
 	public void RegisterRoomSpawner(RoomSpawner res)
 	{
 		Spawns.TryAdd(SceneName, new());
@@ -166,7 +183,8 @@ public class GameManager : MonoBehaviour
 			AvailableSpells,
 			SceneName,
 			coins,
-			CanOpen
+			CanOpen,
+			items
 		);
 		SaveFileManager.WriteToSaveFile(SaveFilePath, Checkpoint);
 	}
@@ -186,12 +204,14 @@ public class GameManager : MonoBehaviour
 		coins = Checkpoint.coins;
 		sceneChange.Invoke();
 		CanOpen = Checkpoint.CanOpen;
+		items = Checkpoint.items;
 	}
 
 	public void NewGame()
 	{
 		const string scene = "IntroStory";
-		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, 40, false);
+		items.Clear();
+		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, 40, false, new());
 		LoadCheckpoint();
 	}
 
@@ -212,6 +232,7 @@ public class GameManager : MonoBehaviour
 	public async void AsyncGetCheckpoint()
 	{
 		Checkpoint = await SaveFileManager.ReadFromSaveFile(SaveFilePath);
+		Resources.UnloadUnusedAssets();
 	}
 
 	IEnumerator TryLoadCheckpoint()
@@ -247,6 +268,11 @@ public class GameManager : MonoBehaviour
 			availSpells[spellName] = true;
 		}
 		return availSpells;
+	}
+	
+	public void RegisterInventoryManager(InventoryManager im)
+	{
+		inventoryManager = im;
 	}
 
 }
