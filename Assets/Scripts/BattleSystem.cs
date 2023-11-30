@@ -267,6 +267,11 @@ public class BattleSystem : MonoBehaviour
                 {
                     battleDialog.text = dialogText.Replace("<harm>", "threw a swinging sword at");
                 }
+                else if (enemyReference.name.ToLower().Contains("horse"))
+                {
+                    battleDialog.text = dialogText.Replace("<harm>", "threw deadly katanas at");
+                    yield return wait1sec;
+                }
                 else
                 {
                     battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
@@ -427,8 +432,8 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator bossThrow(string anim)
     {
         enemyAnimator.SetBool(anim, true);
-        knifeSound.PlayDelayed(2f);
-        yield return new WaitForSeconds(4f);
+        knifeSound.PlayDelayed(3.7f);
+        yield return new WaitForSeconds(5f);
         enemyAnimator.SetBool(anim, false);
     }
 
