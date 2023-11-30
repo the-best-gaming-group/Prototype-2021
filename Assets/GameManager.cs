@@ -110,6 +110,11 @@ public class GameManager : MonoBehaviour
 		return coins;
 	}
 
+	public void AddCoins()
+	{
+		
+	}
+
 	public void OpenDoor()
     {
 		Debug.Log("Call OpenDoor");
