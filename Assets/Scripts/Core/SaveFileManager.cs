@@ -66,7 +66,6 @@ namespace Platformer.Core
                 var checkpoint = JsonUtility.FromJson<Checkpoint>(json);
                 json = null;
                 Debug.Log("Returning Checkpoint");
-                Resources.UnloadUnusedAssets();
                 return checkpoint;
             }
             catch (Exception)
