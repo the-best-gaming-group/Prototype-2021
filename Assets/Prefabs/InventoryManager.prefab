@@ -44,4 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0569a8098b9a9004dbc8f9401c4a56e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryData: {fileID: 11400000, guid: e767939084d28454e8d6912b70986bb8, type: 2}
+  DoorToOpen: {fileID: 0}
+  dialogueNo: {fileID: 0}
+  news1: {fileID: 11400000, guid: c0b6619f515fc4041a8f80435d7a3c7e, type: 2}
+  news2: {fileID: 11400000, guid: 89dff3c1294c6b647a8f7c066c35bbd9, type: 2}
+  news3: {fileID: 11400000, guid: 07ddf94fec5c8234ea0d91ad07fec9e7, type: 2}
+  dialogueUI: {fileID: 0}
+  toDestroy: {fileID: 0}
