@@ -853,6 +853,8 @@ MonoBehaviour:
   - {fileID: 4852101981503624023}
   sc: {fileID: 4852101980863236088}
   isEnabled: 1
+  TutorialButtonBackground: {fileID: 0}
+  TutorialButton: {fileID: 0}
 --- !u!1 &4852101980290393723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,7 +1366,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 12f6b26436c26f748b6ee0bec2d0e053, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9284b86f3eb81c04ba78b591ef25a825, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
