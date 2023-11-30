@@ -365,9 +365,9 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator animateAndWaitThenDeactivate(string anim)
     {
         enemyAnimator.SetBool(anim, true);
-        yield return wait2sec;
+        yield return new WaitForSeconds(1.5f);
         animator.Play("PlayerSlammed");
-        slamSound.Play();
+        slamSound.PlayDelayed(0.4f);
         yield return new WaitForSeconds(3.6f);
         enemyAnimator.SetBool(anim, false);
     }
@@ -375,6 +375,7 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator ghostSlam(string anim)
     {
         ghostAnimator.SetBool(anim, true);
+        slamSound.PlayDelayed(1f);
         yield return wait2sec;
         ghostAnimator.SetBool(anim, false);
     }
@@ -384,7 +385,6 @@ public class BattleSystem : MonoBehaviour
         if(isFromPlayer)
         {
             StartCoroutine(ghostSlam("isCombat"));
-            slamSound.Play();
         }
         else
         {
@@ -393,8 +393,6 @@ public class BattleSystem : MonoBehaviour
                 StartCoroutine(animateAndWaitThenDeactivate("isCombat"));
             }
         }
-        //animator.Play((isFromPlayer ? "Enemy" : "Player") + "Slammed");
-
         return null;
     }
     GameObject sendLightning(bool isFromPlayer = true)
@@ -412,6 +410,7 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator animateThrow(string anim)
     {
         enemyAnimator.SetBool(anim, true);
+        knifeSound.PlayDelayed(1f);
         yield return wait2sec;
         enemyAnimator.SetBool(anim, false);
     }
@@ -419,6 +418,7 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator bossThrow(string anim)
     {
         enemyAnimator.SetBool(anim, true);
+        knifeSound.PlayDelayed(2f);
         yield return new WaitForSeconds(4f);
         enemyAnimator.SetBool(anim, false);
     }
@@ -428,6 +428,7 @@ public class BattleSystem : MonoBehaviour
         if (isFromPlayer)
         {
             animator.Play("PlayerThrowKnife");
+            knifeSound.PlayDelayed(0.05f);
         }
         else
         {
@@ -442,10 +443,9 @@ public class BattleSystem : MonoBehaviour
             else
             {
                 animator.Play("EnemyThrowKnife");
+                knifeSound.PlayDelayed(0.05f);
             }
         }
-        //animator.Play((isFromPlayer ? "Player" : "Enemy") + "ThrowKnife");
-        knifeSound.Play();
         return null;
     }
 
@@ -466,7 +466,7 @@ public class BattleSystem : MonoBehaviour
         Destroy(stunObj);//remove prev stun effect if any
 
         animator.Play("PlayerStun");
-        stunSound.Play();
+        stunSound.PlayDelayed(0.2f);
         try
         {
             stunObj = Instantiate(enemyStunAsset, gameObject.transform);
