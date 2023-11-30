@@ -329,8 +329,19 @@ public class BattleSystem : MonoBehaviour
             winSound.Play();
             battleDialog.text = "You have prevailed!";
             var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
+            if (lowerCaseEnemyName.Contains("skeleton"))
+            {
+				battleDialog.text = "Coin + 30";
+				GameManager.Instance.SetCoins(GameManager.Instance.GetCoins() + 30);
+			}
+            else if (lowerCaseEnemyName.Contains("monster"))
+            {
+				battleDialog.text = "Coin + 30";
+				GameManager.Instance.SetCoins(GameManager.Instance.GetCoins() + 30);
+			}
             // This can be replaced with a confirmation UI when we're ready
             yield return new WaitForSecondsRealtime(2f);
+
             var sceneChanger = GetComponent<SceneChangeInvokable>();
             if (lowerCaseEnemyName.Contains("horse"))
             {

@@ -110,10 +110,11 @@ public class GameManager : MonoBehaviour
 		return coins;
 	}
 
-	public void AddCoins(float coin)
-	{
-		coins += coin;
-	}
+	//public void AddCoins(float coin)
+	//{
+	//	//coins += coin;
+	//	SetCoins(GetCoins() + coin);
+	//}
 
 	public void OpenDoor()
     {

@@ -7,7 +7,7 @@ public class CoinManager : MonoBehaviour
 {
 	public TextMeshProUGUI coinText;
 
-	void Start()
+	void Update()
 	{
 		UpdateCoinText();
 	}
