@@ -12946,6 +12946,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2551489439692984317, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
   m_PrefabInstance: {fileID: 1885970770}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1885970772 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6013862213860267868, guid: 21d886e05eef9f5498028605a617fe97, type: 3}
+  m_PrefabInstance: {fileID: 1885970770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ebd6b4f37da249d7b0811beec708f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1886675692
 GameObject:
   m_ObjectHideFlags: 0
@@ -22442,8 +22453,8 @@ GameObject:
   - component: {fileID: 2317338488611854298}
   - component: {fileID: 1136405150639947709}
   - component: {fileID: 7083286782933293396}
-  - component: {fileID: 7083286782933293395}
   - component: {fileID: 7083286782933293394}
+  - component: {fileID: 7083286782933293395}
   m_Layer: 0
   m_Name: Fireplace_Wood_Log_2
   m_TagString: Untagged
@@ -23996,6 +24007,18 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: DialogueObject, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1885970772}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: AddCoins
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 20
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2

@@ -110,9 +110,9 @@ public class GameManager : MonoBehaviour
 		return coins;
 	}
 
-	public void AddCoins()
+	public void AddCoins(float coin)
 	{
-		
+		coins += coin;
 	}
 
 	public void OpenDoor()
