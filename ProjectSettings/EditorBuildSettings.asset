@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/SplashScreen.unity
     guid: 098b184e5b7732b46ae61f6de776529e
   - enabled: 1
+    path: Assets/Scenes/TrailerViewer.unity
+    guid: 3b8ce67392c70a44daa906e3fc3d0543
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 2c19a80f0216d6c428a9b621176783ed
+  - enabled: 1
+    path: Assets/Scenes/IntroStory.unity
+    guid: 322bb6bfba60c084684f4c0a9dbe1925
   - enabled: 1
     path: Assets/Scenes/Main Scene 1.unity
     guid: dadb75c1c1c6d4b03b8fbfd358d319b9
@@ -33,15 +39,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Room 2.unity
     guid: 8bb66c0a5fcaa95449c084a20cb28b72
   - enabled: 1
-    path: Assets/Scenes/Combat Arena.unity
-    guid: ac82fbbbcf730f54bbcc4a07d10b30ac
-  - enabled: 1
     path: Assets/Scenes/Room 3.unity
     guid: 7212d21dc240d454aa6019fd55dffe87
   - enabled: 1
-    path: Assets/Scenes/TrailerViewer.unity
-    guid: 3b8ce67392c70a44daa906e3fc3d0543
+    path: Assets/Scenes/Combat Arena.unity
+    guid: ac82fbbbcf730f54bbcc4a07d10b30ac
   - enabled: 1
-    path: Assets/Scenes/IntroStory.unity
-    guid: 322bb6bfba60c084684f4c0a9dbe1925
+    path: Assets/Scenes/EndingStory.unity
+    guid: ea46824b4a9b27d488a5777d99768afe
   m_configObjects: {}

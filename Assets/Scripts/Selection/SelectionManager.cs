@@ -50,7 +50,7 @@ public class SelectionManager : MonoBehaviour
 
 		foreach (GameManager.Spell spell in gameManager.spells)
 		{
-			// gameManager.AvailableSpells[spell.name] = true;//todo: for testing, do not commit
+			 gameManager.AvailableSpells[spell.name] = true;//todo: for testing, do not commit
 			if (gameManager.AvailableSpells.TryGetValue(spell.name, out bool available) && available)
 			{
 				Button spellButton = Instantiate(spell.prefabButton, selectionPanel.transform);
