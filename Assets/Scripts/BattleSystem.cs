@@ -15,7 +15,7 @@ public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 public enum CombatOptions
 {
     Stun = 6,
-    Heal = 16,
+    Heal = 15,
     Knife = 9,
     Slam = 11,
     Electrocute = 14,
