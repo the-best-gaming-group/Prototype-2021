@@ -46,9 +46,4 @@ public class MainMenu : MonoBehaviour
     {
 		SceneManager.LoadScene("TrailerViewer");
     }
-
-	public void viewCredit()
-	{
-		SceneManager.LoadScene("Credits");
-	}
 }
