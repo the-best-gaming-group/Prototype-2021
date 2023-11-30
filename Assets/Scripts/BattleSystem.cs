@@ -88,6 +88,7 @@ public class BattleSystem : MonoBehaviour
     readonly List<TurnActions> turnActions = new ();
     public ResourceHandler resourceHandler = new();
     public GameManager.Spell[] spells = new GameManager.Spell[4];
+    private int playerPowerBoost = 2;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -207,7 +208,7 @@ public class BattleSystem : MonoBehaviour
                 battleDialog.text = "The enemy takes " + action.action.ToString();
                 var gameObj = action.actionFunc(true);
                 yield return new WaitForSeconds(action.waitTime);
-                int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
+                int enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * (int)action.action / 2, false);
                 GameObject.Destroy(gameObj);
             }
 
@@ -505,15 +506,31 @@ public class BattleSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        UpdateDifficulty();
+    }
+
+    private void UpdateDifficulty()
+    {
+        if (CheatCodeEntered())
         {
-            battleDialog.text = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
+            playerPowerBoost = (playerPowerBoost + 1) % 7;
+            Debug.Log($"Easier Difficulty, player's power boost = {playerPowerBoost}");
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (ResetDifficulty())
         {
-            //Destroy(healObj);
-            Destroy(healObj);
+            playerPowerBoost = 2;
+            Debug.Log("Reset Difficulty");
         }
+    }
+
+    private static bool ResetDifficulty()
+    {
+        return Input.GetKeyDown(KeyCode.R);
+    }
+
+    private static bool CheatCodeEntered()
+    {
+        return Input.GetKeyDown(KeyCode.E);
     }
 
 
