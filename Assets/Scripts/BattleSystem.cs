@@ -340,8 +340,8 @@ public class BattleSystem : MonoBehaviour
             else
             {
                 sceneChanger.sceneName = GameManager.Instance.PrepareForReturnFromCombat();
-                sceneChanger.Invoke();
             }
+            sceneChanger.Invoke();
         }
         else
         {
