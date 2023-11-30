@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    public static InventoryManager Instance;
+    public static InventoryManager inventoryManager;
 
     [SerializeField] private RectTransform panel;
     [SerializeField] private RectTransform inventoryFrame;
@@ -16,6 +18,7 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        inventoryManager = gameManager.inventoryManager;
         inventoryCount = 0;
         Debug.Log("InventoryUI start");
         Debug.Log(inventoryCount);
@@ -23,26 +26,35 @@ public class InventoryUI : MonoBehaviour
 
     private void Update()
     {
-        List<InventoryItem> items = gameManager.GetItmes();
-        //Debug.Log(inventoryCount);
-        //Debug.Log(items.Count);
+        List<string> items = gameManager.GetItmes();
         if (items.Count != inventoryCount)
         {
             UpdateInventory(items);
         }
     }
 
-    private void UpdateInventory(List<InventoryItem> items)
+    private void UpdateInventory(List<string> items)
     {
         // Clear the inventory UI before updating it
         ClearInventory();
 
         // Iterate through the inventory items and create UI slots for each item
-        foreach (InventoryItem item in items)
+        foreach (var item in items)
         {
             GameObject inventorySlot = Instantiate(inventoryFrame.gameObject, panel);
             inventorySlot.gameObject.SetActive(true);
-            inventorySlot.transform.GetChild(0).GetComponent<Image>().sprite = item.itemIcon;
+            var itemIcon = item switch
+            {
+                "News1" => inventoryManager.news1.itemIcon,
+                "News2" => inventoryManager.news2.itemIcon,
+                "News3" => inventoryManager.news3.itemIcon,
+                _       => null
+            };
+            if (itemIcon == null)
+            {
+                Debug.Log("Error: Unrecognized item name: " + item);
+            }
+            inventorySlot.transform.GetChild(0).GetComponent<Image>().sprite = itemIcon;
 
             // Add a button component to the inventory slot
             Button button = inventorySlot.AddComponent<Button>();
@@ -63,10 +75,10 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private void OnInventorySlotClick(InventoryItem item)
+    private void OnInventorySlotClick(string item)
     {
         // Handle the click event for the inventory slot here
         // You can implement actions such as using the item, displaying item details, etc.
-        Debug.Log("Clicked on: " + item.itemName);
+        Debug.Log("Clicked on: " + item);
     }
 }

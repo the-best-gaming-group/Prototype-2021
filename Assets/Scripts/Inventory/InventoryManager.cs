@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance;
     public SceneChangeInvokable DoorToOpen;
 
     public DialogueObject dialogueNo;
@@ -23,6 +22,7 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        gameManager.RegisterInventoryManager(this);
     }
 
     public void AddItem(InventoryItem item)
@@ -37,23 +37,22 @@ public class InventoryManager : MonoBehaviour
 
     public void CheckNewspaper()
     {
-        List<InventoryItem> items = gameManager.GetItmes();
+        List<string> items = gameManager.GetItmes();
 
         hasNews1 = false;
         hasNews2 = false;
         hasNews3 = false;
-        //for (int i = 0; i < inventoryData.items.Count; i++)
         for (int i = 0; i < items.Count; i++)
         {
-            if (items[i].itemName == "News1")
+            if (items[i] == "News1")
             {
                 hasNews1 = true;
             }
-            else if (items[i].itemName == "News2")
+            else if (items[i] == "News2")
             {
                 hasNews2 = true;
             }
-            else if (items[i].itemName == "News3")
+            else if (items[i] == "News3")
             {
                 hasNews3 = true;
             }

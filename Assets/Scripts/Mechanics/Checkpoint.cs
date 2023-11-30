@@ -17,7 +17,7 @@ namespace Platformer.Mechanics
         public string SceneName;
         public float coins;
         public bool CanOpen;
-        public List<InventoryItem> items;
+        [SerializeField] public List<string> items;
 
         public Checkpoint(
             int playerHealth,
@@ -28,7 +28,7 @@ namespace Platformer.Mechanics
             string SceneName,
             float coins,
             bool CanOpen,
-            List<InventoryItem> items
+            List<string> items
             )
         {
             //this.playerHealth = Math.Min(100, playerHealth + 30);        
