@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: Chess1
   m_EditorClassIdentifier: 
   dialogue:
-  - What are you talking about?
-  - Who are you?
-  - And, who am I...?
   - '"Time is a fickle thing, isn''t it? J Shadowbrook."'
   - '"You thought you could manipulate it to rewrite your own tragic history?"'
   - '"NO! You unleashed a torrent of chaos, trapping us all in this perpetual cycle."'

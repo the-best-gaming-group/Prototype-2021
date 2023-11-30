@@ -93,4 +93,6 @@ public class ShopManager : MonoBehaviour
 			itemButtons[itemID - 1].gameObject.SetActive(false);
 		}
 	}
+
+
 }
