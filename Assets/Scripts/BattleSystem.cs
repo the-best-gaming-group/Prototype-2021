@@ -207,7 +207,7 @@ public class BattleSystem : MonoBehaviour
                 battleDialog.text = "The enemy takes " + action.action.ToString();
                 var gameObj = action.actionFunc(true);
                 yield return new WaitForSeconds(action.waitTime);
-                int enemyNewHP = enemyHP.TakeDamage(2*(int)action.action, false);
+                int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
                 GameObject.Destroy(gameObj);
             }
 
@@ -240,13 +240,13 @@ public class BattleSystem : MonoBehaviour
     {
         var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
 
-        return Time.renderedFrameCount % 50 + (lowerCaseEnemyName switch
+        return lowerCaseEnemyName switch
         {
-            string enemyName when enemyName.Contains("skeleton") => 0, //skeleton lower 2 abilities: knife or slam
-            string enemyName when enemyName.Contains("monster") => 25, //monster middle 2: slam or fire
-            string enemyName when enemyName.Contains("chess") || enemyName.Contains("horse") => 50, //top 2: fire or electrocute (unsure enemy name yet but MUST CONTAINS "horse" or "chess")
-            _ => 0  //default: lower 2 abilities
-        });
+            string enemyName when enemyName.Contains("skeleton") => Time.renderedFrameCount % 50, //skeleton lower 2 abilities: knife or slam
+            string enemyName when enemyName.Contains("monster") => Time.renderedFrameCount % 50 + 25, //monster middle 2: slam or fire
+            string enemyName when enemyName.Contains("chess") || enemyName.Contains("horse") => Time.renderedFrameCount % 100, //final boss can do all 4 
+            _ => 100  //default: electrocute
+        };
     }
 
     IEnumerator EnemyTurn()
@@ -293,9 +293,13 @@ public class BattleSystem : MonoBehaviour
                 Destroy(lightning);
                 break;
         }
-        if (!playerDodged || enemyAction is CombatOptions.Electrocute)
-            playerHP.TakeDamage((int)enemyAction / (enemyAction is CombatOptions.Electrocute && playerDodged ? 2 : 1), true);
-
+        if (!playerDodged || enemyAction is CombatOptions.Electrocute) 
+        {   
+            var enemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
+            var damage = (int)enemyAction * (enemyName.Contains("chess") || enemyName.Contains("horse") ? 2 : 1);//if final boss x2 damage
+            damage = damage / (enemyAction is CombatOptions.Electrocute && playerDodged ? 2 : 1);//id dodging electrocute, only 1/2 damage 
+            playerHP.TakeDamage(damage, true);
+        }
         playerDodged = false;
 
         yield return new WaitForSeconds(dialogWaitTime);
