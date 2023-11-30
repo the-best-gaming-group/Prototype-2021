@@ -15,7 +15,7 @@ public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 public enum CombatOptions
 {
     Stun = 6,
-    Heal = 8,
+    Heal = 15,
     Knife = 9,
     Slam = 11,
     Electrocute = 14,
@@ -50,6 +50,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] AudioSource electrocuteSound;
     [SerializeField] AudioSource healSound;
     [SerializeField] AudioSource stunSound;
+    [SerializeField] AudioSource dodgeSound;
   
 
     public GameObject fireboltAsset;
@@ -257,9 +258,12 @@ public class BattleSystem : MonoBehaviour
         string dialogText = "The enemy <harm> you";
 
         if (playerDodged)
+        {
             animator.Play("PlayerDodge");
-         
-     
+            dodgeSound.Play();
+        }
+
+
         switch (randomInt)
         {
             case < 25:
@@ -267,6 +271,7 @@ public class BattleSystem : MonoBehaviour
                 if (enemyReference.name.ToLower().Contains("skel"))
                 {
                     battleDialog.text = dialogText.Replace("<harm>", "threw a swinging sword at");
+                    knifeSound.PlayDelayed(1);
                 }
                 else if (enemyReference.name.ToLower().Contains("horse"))
                 {
@@ -276,14 +281,19 @@ public class BattleSystem : MonoBehaviour
                 else
                 {
                     battleDialog.text = dialogText.Replace("<harm>", "threw a knife at");
+                    knifeSound.PlayDelayed(2);
                 }
                 yield return wait1sec;
                 break;
             case < 50:
                 enemyAction = CombatOptions.Slam;
                 battleDialog.text = playerDodged ? "You dodged enemy's slam!" : dialogText.Replace("<harm>", "slammed");
-                if (!playerDodged) sendSlam(false);
-                yield return wait3sec; // important for animation to finish
+
+                if (!playerDodged) { 
+                    sendSlam(false);
+                    slamSound.PlayDelayed(2.7f);
+                }
+                    yield return wait3sec; // important for animation to finish
                 break;
             case < 75:
                 enemyAction = CombatOptions.Firebolt;

@@ -100,17 +100,20 @@ public class ResourceHandler
         return true;
     }
     
-    public void CommitRunesForSpell(Spell s)
+    public bool[] CommitRunesForSpell(Spell s)
     {
         int[] costLeft = new int[4];
+        bool[] runesSpent = new bool[6];
         Array.Copy(s.cost, costLeft, 4);
         for (int i = 0; i < 6; i++)
         {
             if (!committed[i] && costLeft[(int)runes[i]]-- > 0)
             {
                 committed[i] = true;
+                runesSpent[i] = true;
             }
         }
+        return runesSpent;
     }
 
     public void UncommitRunes()

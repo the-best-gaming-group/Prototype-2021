@@ -171,7 +171,15 @@ namespace Platformer.Mechanics
         {
             if (resourceHandler.CanCastSpell(spells[i]))
             {
-                resourceHandler.CommitRunesForSpell(spells[i]);
+                var runesSpent = resourceHandler.CommitRunesForSpell(spells[i]);
+                for (int idx = 0; idx < 6; idx++)
+                {
+                    if (runesSpent[idx])
+                    {
+                        rpc.rerolls[idx] = false;
+                        rpc.runes[idx].SetRuneUnselected();
+                    }
+                }
                 spellEffects.Add(spells[i].eventFunc);
                 rpc.ColorRunes(resourceHandler);
                 ColorButtons();

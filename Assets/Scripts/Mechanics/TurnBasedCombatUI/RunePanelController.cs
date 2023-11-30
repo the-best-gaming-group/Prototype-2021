@@ -78,7 +78,7 @@ public class RunePanelController : MonoBehaviour
         {
             if (rerolls[i])
             {
-                runes[i].Toggle();
+                runes[i].SetRuneUnselected();
                 rerolls[i] = false;
             }
         }

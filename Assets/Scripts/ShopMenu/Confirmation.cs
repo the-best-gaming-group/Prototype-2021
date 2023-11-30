@@ -11,7 +11,7 @@ public class Confirmation : MonoBehaviour
 	private GameManager gameManager;
 	public CoinManager coinManager;
 	private int itemID;
-
+	
 	void Start()
 	{
 		gameManager = GameManager.Instance;
@@ -34,6 +34,7 @@ public class Confirmation : MonoBehaviour
 		gameObject.SetActive(false);
 		int itemPrice = shopManager.shopItems[2, itemID];
 		gameManager.SetCoins(gameManager.GetCoins() - itemPrice);
+		shopManager.buySound.Play();
 		coinManager.UpdateCoinText();
 		shopManager.ConisTXT.text = "Coins: " + gameManager.GetCoins().ToString();
 		shopManager.DisableItemButton(itemID);
@@ -45,4 +46,5 @@ public class Confirmation : MonoBehaviour
 	{
 		gameObject.SetActive(false);
 	}
+
 }
