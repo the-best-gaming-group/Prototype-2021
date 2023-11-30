@@ -10,10 +10,11 @@ public class ShopManager : MonoBehaviour
 	public TextMeshProUGUI ConisTXT;
 	public Confirmation confirmationWindow;
 	public Button[] itemButtons;
-	public static bool GameIsPaused = false;
+	public static bool GameIsPaused = false; 
+	[SerializeField] public AudioSource buySound;
 	private GameManager gameManager;
 
-	void OnEnable()
+    void OnEnable()
 	{
 		Pause();
 	}
@@ -70,6 +71,7 @@ public class ShopManager : MonoBehaviour
 		if (gameManager.GetCoins() >= itemPrice)
 		{
 			confirmationWindow.OpenConfirmationWindow("Are you sure you want to buy " + itemNames[itemID] + " for $" + itemPrice + "?", itemID);
+			
 		}
 		else
 		{
@@ -93,4 +95,6 @@ public class ShopManager : MonoBehaviour
 			itemButtons[itemID - 1].gameObject.SetActive(false);
 		}
 	}
+	
+	
 }
