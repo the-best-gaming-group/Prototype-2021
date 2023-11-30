@@ -25,6 +25,12 @@ public class RuneController : MonoBehaviour
         buttonImage = transform.Find("Button").GetComponent<Image>();
         selectImage = transform.Find("Select").GetComponent<Image>();
     }
+    
+    public void SetRuneUnselected()
+    {
+        isSelected = false;
+        buttonImage.sprite = sprites.regular;
+    }
 
     
     public void Toggle()
@@ -49,7 +55,14 @@ public class RuneController : MonoBehaviour
         }
         button.interactable = true;
         sprites = s;
-        buttonImage.sprite = s.regular;
+        if (isSelected)
+        {
+            buttonImage.sprite = s.selected;
+        }
+        else
+        {
+            buttonImage.sprite = s.regular;
+        }
         button.spriteState = new SpriteState
         {
             disabledSprite = s.disabled

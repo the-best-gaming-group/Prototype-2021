@@ -15,7 +15,7 @@ public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 public enum CombatOptions
 {
     Stun = 6,
-    Heal = 8,
+    Heal = 15,
     Knife = 9,
     Slam = 11,
     Electrocute = 14,
@@ -208,7 +208,7 @@ public class BattleSystem : MonoBehaviour
                 battleDialog.text = "The enemy takes " + action.action.ToString();
                 var gameObj = action.actionFunc(true);
                 yield return new WaitForSeconds(action.waitTime);
-                int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
+                int enemyNewHP = enemyHP.TakeDamage((int)action.action*2, false);
                 GameObject.Destroy(gameObj);
             }
 
