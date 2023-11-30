@@ -232,6 +232,7 @@ public class GameManager : MonoBehaviour
 	public async void AsyncGetCheckpoint()
 	{
 		Checkpoint = await SaveFileManager.ReadFromSaveFile(SaveFilePath);
+		Resources.UnloadUnusedAssets();
 	}
 
 	IEnumerator TryLoadCheckpoint()
