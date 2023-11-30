@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - This is a flickering old fireplace, its flames dancing with an ancient wisdom.
-  - '"Another weary soul seeking solace in my warmth. What brings you to my hearth,
-    traveler?"'
-  - I seek answers. Can you shed light on the mysteries of me and this house?
-  - The burning flame suddenly flickered for a few moments.
-  - '"Well... he who originally brought convenience and progress to people was swallowed
+  - '"Another weary soul seeking solace in my warmth. I know what you want."'
+  - '"Listen..."'
+  - '"He who originally brought convenience and progress to people was swallowed
     up by obsession."'
+  - '"And here''s something you may need."'
   responses:
-  - responseText: Who is he?
-    dialogueObject: {fileID: 0}
+  - responseText: Pick up the coin from the flames
+    dialogueObject: {fileID: 11400000, guid: c509576bd4c5d2044b89cf6d8733af1e, type: 2}
   needCondition: 0

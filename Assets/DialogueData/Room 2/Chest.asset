@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - I approach the opened box.
-  - Suddenly a group of black shadows jumps out and attacks.
   responses:
-  - responseText: Defend yourself!
-    dialogueObject: {fileID: 11400000, guid: 97d430b1d5f1dc041ac206e43cae30e0, type: 2}
+  - responseText: Let me see...
+    dialogueObject: {fileID: 11400000, guid: c5b656fe8c8366e44bccdae9f4f9d7f3, type: 2}
   needCondition: 0
