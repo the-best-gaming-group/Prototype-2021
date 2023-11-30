@@ -336,12 +336,32 @@ public class BattleSystem : MonoBehaviour
         player.GetComponentInChildren<Rigidbody>().constraints = playerRBConstraints;//restore ability to move/rotate
         if (state == BattleState.WON)
         {
-              winSound.Play();
+            winSound.Play();
             battleDialog.text = "You have prevailed!";
+            var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
+            if (lowerCaseEnemyName.Contains("skeleton"))
+            {
+				battleDialog.text += " Coin + 30";
+				GameManager.Instance.SetCoins(GameManager.Instance.GetCoins() + 30);
+			}
+            else if (lowerCaseEnemyName.Contains("monster"))
+            {
+				battleDialog.text += " Coin + 30";
+				GameManager.Instance.SetCoins(GameManager.Instance.GetCoins() + 30);
+			}
             // This can be replaced with a confirmation UI when we're ready
             yield return new WaitForSecondsRealtime(2f);
+
             var sceneChanger = GetComponent<SceneChangeInvokable>();
-            sceneChanger.sceneName = GameManager.Instance.PrepareForReturnFromCombat();
+            if (lowerCaseEnemyName.Contains("horse"))
+            {
+                // if defeat the boss, go to ending scene
+                sceneChanger.sceneName = "EndingStory";
+            }
+            else
+            {
+                sceneChanger.sceneName = GameManager.Instance.PrepareForReturnFromCombat();
+            }
             sceneChanger.Invoke();
         }
         else

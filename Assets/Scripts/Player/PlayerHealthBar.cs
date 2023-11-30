@@ -107,4 +107,13 @@ public class PlayerHealthBar : MonoBehaviour
 	{
 		TakeDamage(damage, true);
 	}
+
+	/*
+	 * This should be moved somewhere else but I'm too tired now to create a new script
+	*/
+	public void AddCoins(float coin)
+	{
+		//coins += coin;
+		GameManager.Instance.SetCoins(GameManager.Instance.GetCoins() + coin);
+	}
 }
