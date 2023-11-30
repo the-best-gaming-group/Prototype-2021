@@ -36,4 +36,14 @@ public class MainMenu : MonoBehaviour
 		Debug.Log("Quit");
 		Application.Quit();
 	}
+
+	public void viewSplash()
+    {
+		SceneManager.LoadScene("SplashScreen");
+    }
+
+	public void viewTrailer()
+    {
+		SceneManager.LoadScene("TrailerViewer");
+    }
 }
