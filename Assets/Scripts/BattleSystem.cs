@@ -77,6 +77,7 @@ public class BattleSystem : MonoBehaviour
     Animator animator;
 
     Animator enemyAnimator;
+    Animator ghostAnimator;
     WaitForSeconds jumpWait = new WaitForSeconds(5.6f); // use to wait for anim to finish
     WaitForSeconds wait3sec = new WaitForSeconds(3f);
     WaitForSeconds wait2sec = new WaitForSeconds(2f);
@@ -107,7 +108,20 @@ public class BattleSystem : MonoBehaviour
 
         enemyAnimator = enemyReference.GetComponent<Animator>(); // enemy animation controller
         ghostBasic = GameObject.Find("ghost basic");
+        ghostAnimator = ghostBasic.GetComponent<Animator>();
 
+    }
+
+    private void FixedUpdate()
+    {
+        battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
+        enemyReference = GameObject.FindWithTag("enemyReference");
+        //Debug.Log(enemyReference.name);
+
+        player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
+        enemyReference.GetComponent<Rigidbody>().constraints = (RigidbodyConstraints)122;
+        enemyAnimator = enemyReference.GetComponent<Animator>();
+	    ghostAnimator = ghostBasic.GetComponent<Animator>();
     }
 
     public void Resume()
@@ -193,7 +207,7 @@ public class BattleSystem : MonoBehaviour
                 battleDialog.text = "The enemy takes " + action.action.ToString();
                 var gameObj = action.actionFunc(true);
                 yield return new WaitForSeconds(action.waitTime);
-                int enemyNewHP = enemyHP.TakeDamage(2*(int)action.action, false);
+                int enemyNewHP = enemyHP.TakeDamage((int)action.action, false);
                 GameObject.Destroy(gameObj);
             }
 
@@ -226,13 +240,13 @@ public class BattleSystem : MonoBehaviour
     {
         var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
 
-        return Time.renderedFrameCount % 50 + (lowerCaseEnemyName switch
+        return lowerCaseEnemyName switch
         {
-            string enemyName when enemyName.Contains("skeleton") => 0, //skeleton lower 2 abilities: knife or slam
-            string enemyName when enemyName.Contains("monster") => 25, //monster middle 2: slam or fire
-            string enemyName when enemyName.Contains("chess") || enemyName.Contains("horse") => 50, //top 2: fire or electrocute (unsure enemy name yet but MUST CONTAINS "horse" or "chess")
-            _ => 0  //default: lower 2 abilities
-        });
+            string enemyName when enemyName.Contains("skeleton") => Time.renderedFrameCount % 50, //skeleton lower 2 abilities: knife or slam
+            string enemyName when enemyName.Contains("monster") => Time.renderedFrameCount % 50 + 25, //monster middle 2: slam or fire
+            string enemyName when enemyName.Contains("chess") || enemyName.Contains("horse") => Time.renderedFrameCount % 100, //final boss can do all 4 
+            _ => 100  //default: electrocute
+        };
     }
 
     IEnumerator EnemyTurn()
@@ -279,9 +293,13 @@ public class BattleSystem : MonoBehaviour
                 Destroy(lightning);
                 break;
         }
-        if (!playerDodged || enemyAction is CombatOptions.Electrocute)
-            playerHP.TakeDamage((int)enemyAction / (enemyAction is CombatOptions.Electrocute && playerDodged ? 2 : 1), true);
-
+        if (!playerDodged || enemyAction is CombatOptions.Electrocute) 
+        {   
+            var enemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
+            var damage = (int)enemyAction * (enemyName.Contains("chess") || enemyName.Contains("horse") ? 2 : 1);//if final boss x2 damage
+            damage = damage / (enemyAction is CombatOptions.Electrocute && playerDodged ? 2 : 1);//id dodging electrocute, only 1/2 damage 
+            playerHP.TakeDamage(damage, true);
+        }
         playerDodged = false;
 
         yield return new WaitForSeconds(dialogWaitTime);
@@ -333,7 +351,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             GameObject fire = GameObject.Instantiate(fireboltAsset);
-            fire.transform.position = GameObject.FindWithTag("enemyReference").transform.position + new Vector3(-1, .5f, -1);
+            fire.transform.position = GameObject.FindWithTag("enemyReference").transform.position + new Vector3(-2, .5f, -1);
             fire.transform.rotation = new Quaternion(0, 0.70711f, 0, -0.70711f);
         }
         //var currentPrefabObject = GameObject.Instantiate(fireboltAsset);
@@ -347,19 +365,26 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator animateAndWaitThenDeactivate(string anim)
     {
         enemyAnimator.SetBool(anim, true);
-        yield return wait2sec;
+        yield return new WaitForSeconds(1.5f);
         animator.Play("PlayerSlammed");
-        slamSound.Play();
+        slamSound.PlayDelayed(0.4f);
         yield return new WaitForSeconds(3.6f);
         enemyAnimator.SetBool(anim, false);
+    }
+
+    private IEnumerator ghostSlam(string anim)
+    {
+        ghostAnimator.SetBool(anim, true);
+        slamSound.PlayDelayed(1f);
+        yield return wait2sec;
+        ghostAnimator.SetBool(anim, false);
     }
 
     GameObject sendSlam(bool isFromPlayer = true)
     {
         if(isFromPlayer)
         {
-            animator.Play("EnemySlammed");
-            slamSound.Play();
+            StartCoroutine(ghostSlam("isCombat"));
         }
         else
         {
@@ -368,8 +393,6 @@ public class BattleSystem : MonoBehaviour
                 StartCoroutine(animateAndWaitThenDeactivate("isCombat"));
             }
         }
-        //animator.Play((isFromPlayer ? "Enemy" : "Player") + "Slammed");
-
         return null;
     }
     GameObject sendLightning(bool isFromPlayer = true)
@@ -387,6 +410,7 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator animateThrow(string anim)
     {
         enemyAnimator.SetBool(anim, true);
+        knifeSound.PlayDelayed(1f);
         yield return wait2sec;
         enemyAnimator.SetBool(anim, false);
     }
@@ -394,6 +418,7 @@ public class BattleSystem : MonoBehaviour
     private IEnumerator bossThrow(string anim)
     {
         enemyAnimator.SetBool(anim, true);
+        knifeSound.PlayDelayed(2f);
         yield return new WaitForSeconds(4f);
         enemyAnimator.SetBool(anim, false);
     }
@@ -403,6 +428,7 @@ public class BattleSystem : MonoBehaviour
         if (isFromPlayer)
         {
             animator.Play("PlayerThrowKnife");
+            knifeSound.PlayDelayed(0.05f);
         }
         else
         {
@@ -417,10 +443,9 @@ public class BattleSystem : MonoBehaviour
             else
             {
                 animator.Play("EnemyThrowKnife");
+                knifeSound.PlayDelayed(0.05f);
             }
         }
-        //animator.Play((isFromPlayer ? "Player" : "Enemy") + "ThrowKnife");
-        knifeSound.Play();
         return null;
     }
 
@@ -441,7 +466,7 @@ public class BattleSystem : MonoBehaviour
         Destroy(stunObj);//remove prev stun effect if any
 
         animator.Play("PlayerStun");
-        stunSound.Play();
+        stunSound.PlayDelayed(0.2f);
         try
         {
             stunObj = Instantiate(enemyStunAsset, gameObject.transform);
