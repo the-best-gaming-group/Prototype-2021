@@ -331,12 +331,12 @@ public class BattleSystem : MonoBehaviour
             var lowerCaseEnemyName = PlayerPrefs.GetString("ObjectToSpawn").ToLower();
             if (lowerCaseEnemyName.Contains("skeleton"))
             {
-				battleDialog.text = "Coin + 30";
+				battleDialog.text += " Coin + 30";
 				GameManager.Instance.SetCoins(GameManager.Instance.GetCoins() + 30);
 			}
             else if (lowerCaseEnemyName.Contains("monster"))
             {
-				battleDialog.text = "Coin + 30";
+				battleDialog.text += " Coin + 30";
 				GameManager.Instance.SetCoins(GameManager.Instance.GetCoins() + 30);
 			}
             // This can be replaced with a confirmation UI when we're ready
