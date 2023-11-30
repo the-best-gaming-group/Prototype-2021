@@ -311,12 +311,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7697716997777354927}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.92892, y: -1.5}
-  m_SizeDelta: {x: 1574.6163, y: 815.8407}
+  m_AnchoredPosition: {x: 6.5, y: -4.4}
+  m_SizeDelta: {x: 1457.4027, y: 728.7678}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1329899552545962872
 CanvasRenderer:
@@ -346,22 +346,38 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Combat has started and you must defeat the enemy! You do this by casting
-    SPELLS! But to cast your spells, you need a specific combination of RUNES for
-    each spell. For example, Fireball needs one Air and two Fire runes.
+  m_text: '1. Casting SPELLS to defeat the enemy
 
-    To get
-    the correct RUNES, you need to  REROLL them! To REROLL runes, you need to SELECT
-    the runes you would like to REROLL, and then select the REROLL button. But be
-    careful! You can only REROLL twice each turn; afterwards, you must use what you
-    have. If you cannot cast any spells because no runes match your spell costs,
+    2. Specific combination of
+    RUNES is required for each spell
+
+    3. SELECT the RUNES that you don''t need
+    and REROLL them
+
+    4. You can only REROLL twice each turn
+
+    5. SELECT
+    the spells that fit the requirement to make them in the using queue
+
+    6.
+    After SELECT a spell, it will RESERVE required runes and you cannot reroll them
+
+    7.
+    press RESET to unselect the spell you''ve chosen and free up the runes
+
+    8.
+    The REROLL CANNOT be RESET
+
+    9. Use mouse or keyboard (WASD for RUNES / 1234
+    for SPELLS)
+
+
+    ** If you cannot cast any spells because no runes match your
+    spell costs,
+
     you unfortunately must end your turn with no actions taken.
 
-    To select a
-    spell, click on it. If you have runes availalbe, it will RESERVE those runes
-    and you cannot reroll them. If you would like to UNRESERVE the runes and try
-    to reroll them, you can press RESET to unselect the spell you''ve chosen and
-    free up the runes. Good luck!'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b5d54a1a33509c4d92d2d0d9bf16dc0, type: 2}
   m_sharedMaterial: {fileID: -2733330888630039257, guid: 2b5d54a1a33509c4d92d2d0d9bf16dc0, type: 2}
@@ -388,15 +404,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 33
+  m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -424,7 +440,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.81082916, y: 1.4423103, z: -0.14534949, w: 0.9587477}
+  m_margin: {x: 0.8108291, y: 1.4423103, z: -3.4943504, w: 0.9587477}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -457,15 +473,15 @@ RectTransform:
   m_GameObject: {fileID: 1987623686153560402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.89, y: 1.3283582, z: 1.3283582}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5793738021666709132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000011444092, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6732536433609733049
@@ -523,13 +539,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 14.6
+  m_fontSizeBase: 14.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -559,7 +575,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 1.6133003, w: 0}
+  m_margin: {x: 0, y: 0, z: -0.12763262, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -908,6 +924,7 @@ RectTransform:
   m_LocalScale: {x: 18.4244, y: 9.05757, z: 1.4773}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8687267467813093599}
   - {fileID: 7597450902951019495}
   - {fileID: 5793738021666709132}
   m_Father: {fileID: 3736514195767739697}
@@ -915,8 +932,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.8116, y: 4.327}
-  m_SizeDelta: {x: 127.1111, y: 122.2747}
+  m_AnchoredPosition: {x: 0.26286, y: 0.00388}
+  m_SizeDelta: {x: 104.18, y: 119.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6813523171257169789
 CanvasRenderer:
@@ -1148,8 +1165,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -484.2, y: 442.2}
-  m_SizeDelta: {x: 40.1923, y: 30}
+  m_AnchoredPosition: {x: -474, y: 445.99994}
+  m_SizeDelta: {x: 23.5995, y: 22.7176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1157642806715204382
 CanvasRenderer:
@@ -1278,12 +1295,12 @@ RectTransform:
   m_Children:
   - {fileID: 3712183425967469176}
   m_Father: {fileID: 7697716997777354927}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49.8, y: 44.7}
-  m_SizeDelta: {x: 25.6275, y: 30}
+  m_AnchoredPosition: {x: 44.9, y: 45}
+  m_SizeDelta: {x: 16.98374, y: 26.11988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5136102830072089729
 CanvasRenderer:
@@ -1344,7 +1361,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.7647059}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1662,6 +1679,141 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!1 &7570652089954364911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8687267467813093599}
+  - component: {fileID: 8424729926620483420}
+  - component: {fileID: 7971881260522042038}
+  m_Layer: 5
+  m_Name: RULE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8687267467813093599
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570652089954364911}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.054275848, y: 0.11040489, z: 0.6769106}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7697716997777354927}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1.8, y: 76.7}
+  m_SizeDelta: {x: 1574.6163, y: 815.8407}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8424729926620483420
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570652089954364911}
+  m_CullTransparentMesh: 1
+--- !u!114 &7971881260522042038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570652089954364911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: RULE
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2b5d54a1a33509c4d92d2d0d9bf16dc0, type: 2}
+  m_sharedMaterial: {fileID: -2733330888630039257, guid: 2b5d54a1a33509c4d92d2d0d9bf16dc0, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 58.6
+  m_fontSizeBase: 58.6
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 1024
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0.81082916, y: 724.8486, z: -0.14534949, w: 0.9587477}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8357898320226910000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1832,8 +1984,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -484.2, y: 442.2}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -474, y: 446}
+  m_SizeDelta: {x: 58.7165, y: 75.7254}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &895872526344434533
 CanvasRenderer:
@@ -1856,7 +2008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2035,11 +2187,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
       propertyPath: m_margin.x
-      value: -193.107
+      value: -270.24484
       objectReference: {fileID: 0}
     - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
       propertyPath: m_margin.z
-      value: -190.56467
+      value: -295.0223
       objectReference: {fileID: 0}
     - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
       propertyPath: m_fontAsset
@@ -2065,6 +2217,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -2733330888630039257, guid: 2b5d54a1a33509c4d92d2d0d9bf16dc0, type: 2}
+    - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 8289351281399176249, guid: 92398f1eb68c22947ad9e26e1722138d, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
