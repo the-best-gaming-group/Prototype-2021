@@ -10,8 +10,8 @@ public class SpellsManager : MonoBehaviour
 {
 	public GameObject spellsPanel;
 	public static bool GameIsPaused = false;
-
 	private List<Button> spellButtons = new List<Button>();
+	public SpellsDetailsPanel spellDetailsPanelPrefab;
 
 	void Update()
 	{
@@ -54,6 +54,8 @@ public class SpellsManager : MonoBehaviour
 			{
 				Button spellButton = Instantiate(spell.prefabButton, spellsPanel.transform);
 				spellButtons.Add(spellButton);
+
+				spellButton.onClick.AddListener(() => ShowDetailsPanel(spell));
 			}
 		}
 	}
@@ -67,4 +69,20 @@ public class SpellsManager : MonoBehaviour
 
 		spellButtons.Clear();
 	}
+
+	private void ShowDetailsPanel(GameManager.Spell spell)
+	{
+		// Instantiate the details panel if not already instantiated
+		if (spellDetailsPanel == null)
+		{
+			spellDetailsPanel = Instantiate(spellDetailsPanelPrefab);
+		}
+
+		// Show details in the panel
+		spellDetailsPanel.ShowDetails(spell);
+
+		// Set the panel as active
+		spellDetailsPanel.gameObject.SetActive(true);
+	}
+
 }
