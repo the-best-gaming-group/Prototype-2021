@@ -50,10 +50,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spellmanager: {fileID: 2767644550855343835}
   inputManager: {fileID: 8654621077096372546}
+  inventoryManager: {fileID: 0}
   enemyToSpawn: {fileID: 0}
   playerHealth: 0
   coins: 0
   CanOpen: 0
+  items: []
   itemNames:
   - 
   - 
@@ -89,6 +91,7 @@ MonoBehaviour:
     SceneName: 
     coins: 0
     CanOpen: 0
+    items: []
   sceneChange: {fileID: 6013862213860267869}
   SaveFilePath: 
   DefaultSpells:
@@ -100,24 +103,31 @@ MonoBehaviour:
   - name: Dodge
     prefabButton: {fileID: 7313625124187144831, guid: 93c78d886e4da4cef997f5d82b6092c5, type: 3}
     cost: 00000000000000000200000001000000
+    description: DodgeDescription
   - name: Electrocute
     prefabButton: {fileID: 7313625124187144831, guid: 450f000e58d2241d08f966eaaa11d930, type: 3}
     cost: 01000000010000000000000001000000
+    description: ElectrocuteDescription
   - name: Fireball
     prefabButton: {fileID: 7313625124187144831, guid: e19c2675809564a30b2c2c9fbf908b4a, type: 3}
     cost: 00000000020000000000000001000000
+    description: FireballDescription
   - name: Heal
     prefabButton: {fileID: 7313625124187144831, guid: c0586a6f781804850932d5d6b0e70876, type: 3}
     cost: 02000000000000000000000000000000
+    description: HealDescription
   - name: Slam
     prefabButton: {fileID: 7313625124187144831, guid: 0c3ab464326ec4633b9552892ceeb4f8, type: 3}
     cost: 00000000000000000100000002000000
+    description: SlamlDescription
   - name: Stun
     prefabButton: {fileID: 7313625124187144831, guid: 9d62408400cb24a8dbaaba553797282a, type: 3}
     cost: 00000000010000000100000002000000
+    description: StunDescription
   - name: Knife Throw
     prefabButton: {fileID: 7313625124187144831, guid: e1eb69a7264a44ad8bb484cebc52a106, type: 3}
     cost: 00000000000000000100000001000000
+    description: KnifeThrowDescription
 --- !u!114 &6013862213860267869
 MonoBehaviour:
   m_ObjectHideFlags: 0

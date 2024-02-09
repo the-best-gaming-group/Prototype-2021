@@ -7,10 +7,16 @@ using System.Linq;
 
 public class SpellsManager : MonoBehaviour
 {
+	public GameObject panel;
 	public GameObject spellsPanel;
 	public static bool GameIsPaused = false;
 	private List<Button> spellButtons = new List<Button>();
 	public GameObject spellDetailsPanel;
+
+	void Start()
+	{
+		panel.SetActive(false);
+	}
 
 	void Update()
 	{
@@ -31,18 +37,16 @@ public class SpellsManager : MonoBehaviour
 
 	public void Resume()
 	{
-		spellsPanel.SetActive(false);
+		panel.SetActive(false);
 		Time.timeScale = 1f;
 		GameIsPaused = false;
-
-		// Hide and destroy the details panel when resuming
 		spellDetailsPanel.gameObject.SetActive(false);
 
 	}
 
 	void Pause()
 	{
-		spellsPanel.SetActive(true);
+		panel.SetActive(true);
 		Time.timeScale = 0f;
 		GameIsPaused = true;
 	}
@@ -63,6 +67,7 @@ public class SpellsManager : MonoBehaviour
 		}
 	}
 
+
 	private void ClearPanel()
 	{
 		foreach (Button button in spellButtons)
@@ -75,12 +80,6 @@ public class SpellsManager : MonoBehaviour
 
 	private void ShowDetailsPanel(GameManager.Spell spell)
 	{
-		//if (spellDetailsPanel == null)
-		//{
-		//	Debug.LogError("spellDetailsPanel is not assigned.");
-		//	return;
-		//}
-
 		SpellsDetailsPanel detailsPanel = spellDetailsPanel.GetComponent<SpellsDetailsPanel>();
 		if (detailsPanel != null)
 		{

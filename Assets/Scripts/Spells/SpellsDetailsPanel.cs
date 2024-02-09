@@ -8,11 +8,38 @@ public class SpellsDetailsPanel : MonoBehaviour
     public TextMeshProUGUI spellNameText;
     public Image spellImage;
     public TextMeshProUGUI spellCostText;
+	public TextMeshProUGUI spellDescriptionText;
 
-    public void ShowDetails(GameManager.Spell spell)
+	private string GetElementName(int index)
+	{
+		switch (index)
+		{
+			case 0: return "Water";
+			case 1: return "Fire";
+			case 2: return "Earth";
+			case 3: return "Wind";
+			default: return "Unknown";
+		}
+	}
+
+	private string GetElementColor(int index)
+	{
+		switch (index)
+		{
+			case 0: return "Blue";
+			case 1: return "Red";
+			case 2: return "Green";
+			case 3: return "Yellow";
+			default: return "Unknown";
+		}
+	}
+
+	public void ShowDetails(GameManager.Spell spell)
     {
         spellNameText.text = spell.name;
-        spellImage.sprite = spell.prefabButton.GetComponent<Image>().sprite; // Assuming the image is part of the button
-        spellCostText.text = "Cost: " + string.Join("/", spell.cost.Select(c => c.ToString()));
-    }
+        spellImage.sprite = spell.prefabButton.GetComponent<Image>().sprite; 
+		spellCostText.text = "Cost:\n" + string.Join("\n", spell.cost.Select((c, i) => $"{GetElementName(i)}({GetElementColor(i)}): {c}"));
+		spellDescriptionText.text = spell.description;
+
+	}
 }
