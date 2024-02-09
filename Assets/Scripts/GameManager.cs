@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 		public string name;
 		public Button prefabButton;
 		public int[] cost;
+		public string description;
 		public Action eventFunc;
 	}
 
