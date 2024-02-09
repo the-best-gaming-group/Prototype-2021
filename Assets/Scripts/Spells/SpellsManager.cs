@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
-using Unity.VisualScripting;
 
 public class SpellsManager : MonoBehaviour
 {
 	public GameObject spellsPanel;
 	public static bool GameIsPaused = false;
 	private List<Button> spellButtons = new List<Button>();
-	public SpellsDetailsPanel spellDetailsPanelPrefab;
+	public GameObject spellDetailsPanel;
 
 	void Update()
 	{
@@ -35,6 +34,10 @@ public class SpellsManager : MonoBehaviour
 		spellsPanel.SetActive(false);
 		Time.timeScale = 1f;
 		GameIsPaused = false;
+
+		// Hide and destroy the details panel when resuming
+		spellDetailsPanel.gameObject.SetActive(false);
+
 	}
 
 	void Pause()
@@ -72,17 +75,22 @@ public class SpellsManager : MonoBehaviour
 
 	private void ShowDetailsPanel(GameManager.Spell spell)
 	{
-		// Instantiate the details panel if not already instantiated
-		if (spellDetailsPanel == null)
+		//if (spellDetailsPanel == null)
+		//{
+		//	Debug.LogError("spellDetailsPanel is not assigned.");
+		//	return;
+		//}
+
+		SpellsDetailsPanel detailsPanel = spellDetailsPanel.GetComponent<SpellsDetailsPanel>();
+		if (detailsPanel != null)
 		{
-			spellDetailsPanel = Instantiate(spellDetailsPanelPrefab);
+			detailsPanel.gameObject.SetActive(true);
+			detailsPanel.ShowDetails(spell);
 		}
-
-		// Show details in the panel
-		spellDetailsPanel.ShowDetails(spell);
-
-		// Set the panel as active
-		spellDetailsPanel.gameObject.SetActive(true);
+		else
+		{
+			Debug.LogError("SpellsDetailsPanel component not found on spellDetailsPanel GameObject.");
+		}
 	}
 
 }
