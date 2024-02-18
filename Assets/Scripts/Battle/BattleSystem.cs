@@ -90,6 +90,7 @@ public class BattleSystem : MonoBehaviour
     public ResourceHandler resourceHandler = new();
     public GameManager.Spell[] spells = new GameManager.Spell[4];
     private int playerPowerBoost = 2;
+    private int DialogueCounter = 0;    //Used for player corresponding dialogue options by enemy type
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -209,9 +210,9 @@ public class BattleSystem : MonoBehaviour
                 battleDialog.text = "The enemy takes " + action.action.ToString();
                 var gameObj = action.actionFunc(true);
                 yield return new WaitForSeconds(action.waitTime);
-                int enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * (int)action.action / 2, false);
+                yield return SpellEffectByEnemy(action);
                 GameObject.Destroy(gameObj);
-            }
+            }            
 
             yield return new WaitForSeconds(dialogWaitTime);
             if (enemyHP.currentHealth <= 0)
@@ -235,6 +236,109 @@ public class BattleSystem : MonoBehaviour
             if (--remaningStunTurns == 0)
                 Destroy(stunObj);
             PlayerTurn();
+        }
+    }
+
+    //This Function plays goofy dialogues based on the spells used and also updates the enemy health.
+    IEnumerator SpellEffectByEnemy(TurnActions action)
+    {
+        int enemyNewHP;
+        if (action.action == CombatOptions.Slam && enemyReference.name.ToLower().Contains("skel"))
+        {
+            enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * (int)action.action, false);
+            switch (DialogueCounter)
+            {
+                case 0:
+                    DialogueCounter++;
+                    battleDialog.text = "Skeleton's bones rattled";
+                    yield return new WaitForSeconds(1.5f);
+                    battleDialog.text = "<size=60%> Skeleton: Be Careful! My bones are brittle from lack of vitamin D";
+                    yield return new WaitForSeconds(2.5f);
+                    break;
+                case 1:
+                    DialogueCounter++;
+                    battleDialog.text = "Skeleton's tooth fell out";
+                    yield return new WaitForSeconds(1.5f);
+                    battleDialog.text = "<size=60%> Skeleton: Just my Luck, if only we had a dentist in this mansion";
+                    yield return new WaitForSeconds(2.5f);
+                    break;
+                case 2:
+                    DialogueCounter++;
+                    battleDialog.text = "<size=60%> Skeleton: I got no Hair, but i sure got some hairline Fractures now";
+                    yield return new WaitForSeconds(2.5f);
+                    break;
+            }
+        }
+        else if (action.action == CombatOptions.Knife && enemyReference.name.ToLower().Contains("eye"))
+        {
+            enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * (int)action.action, false);
+            switch (DialogueCounter)
+            {
+                case 0:
+                    DialogueCounter++;
+                    battleDialog.text = "One of the Monster's eyes popped";
+                    yield return new WaitForSeconds(2f);
+                    battleDialog.text = "<size=60%> Eye Monster: I would have been in trouble if not for my 11 other eyes";
+                    yield return new WaitForSeconds(2.5f);
+                    break;
+                case 1:
+                    DialogueCounter++;
+                    battleDialog.text = "<size=60%> Eye Monster: That was my Favorite Eye!!";
+                    yield return new WaitForSeconds(2f);
+                    break;
+                case 2:
+                    DialogueCounter++;
+                    battleDialog.text = "<size=60%> Eye Monster: Are you in a Knife Throwing Competition, and my eyes the Bullseyes???";
+                    yield return new WaitForSeconds(2.5f);
+                    break;
+                default:
+                    DialogueCounter++;
+                    battleDialog.text = "<size=60%> Eye Monster: Stop it!! I am gonna run out of my eyes!!";
+                    yield return new WaitForSeconds(2.5f);
+                    break;
+            }
+        }
+        else if (action.action == CombatOptions.Firebolt && enemyReference.name.ToLower().Contains("horse"))
+        {
+            switch (DialogueCounter)
+            {
+                case 0:
+                    DialogueCounter++;
+                    enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * 8, false);
+                    battleDialog.text = "Boss started to glow slightly red";
+                    yield return new WaitForSeconds(1.7f);
+                    battleDialog.text = "<size=60%> Boss: who turned on the heater?";
+                    yield return new WaitForSeconds(2f);
+                    break;
+                case 1:
+                    DialogueCounter++;
+                    enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * 9, false);
+                    battleDialog.text = "Boss Turned even more reader";
+                    yield return new WaitForSeconds(1.7f);
+                    battleDialog.text = "<size=60%>  Boss: Somebody! turn on the A/C!";
+                    yield return new WaitForSeconds(2f);
+                    battleDialog.text = "<size=60%>  Boss: oh wait... our bills for utility are due since ages";
+                    yield return new WaitForSeconds(2f);
+                    break;
+                case 2:
+                    DialogueCounter++;
+                    enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * 10, false);
+                    battleDialog.text = "Boss started melting";
+                    yield return new WaitForSeconds(1f);
+                    battleDialog.text = "<size=60%> Boss: Go be a pyromaniac somewhere else!";
+                    yield return new WaitForSeconds(2.5f);
+                    break;
+                default:
+                    DialogueCounter++;
+                    enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * 12, false);
+                    battleDialog.text = "<size=60%> Boss: I am about to have a heat stroke!";
+                    yield return new WaitForSeconds(2f);
+                    break;
+            }
+        }
+        else
+        {
+            enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * (int)action.action / 2, false);
         }
     }
 
@@ -335,6 +439,8 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EndBattle()
     {
         player.GetComponentInChildren<Rigidbody>().constraints = playerRBConstraints;//restore ability to move/rotate
+        DialogueCounter = 0;    //Set the dialogue counter back to initial value
+        yield return DeathDialogues();
         if (state == BattleState.WON)
         {
             winSound.Play();
@@ -373,6 +479,27 @@ public class BattleSystem : MonoBehaviour
             yield return new WaitForSecondsRealtime(3f);
             // Debug.Log("AFter being defeated " + GameManager.Instance.GetPlayerHealth());
             GameManager.Instance.LoadCheckpoint();
+        }
+    }
+
+    IEnumerator DeathDialogues()
+    {
+        if (enemyReference.name.ToLower().Contains("skel"))
+        {
+            battleDialog.text = "skeleton: I will pick a bone with you next time!";
+            yield return new WaitForSeconds(2.5f);
+        }
+        else if (enemyReference.name.ToLower().Contains("eye"))
+        {
+            battleDialog.text = "eye monster: I did not... see that coming...";
+            yield return new WaitForSeconds(2.5f);
+        }
+        else if (enemyReference.name.ToLower().Contains("horse"))
+        {
+            battleDialog.text = "Boss: This is just the beginning";
+            yield return new WaitForSeconds(2f);
+            battleDialog.text = "The Boss Disappeared into the ground";
+            yield return new WaitForSeconds(2f);
         }
     }
 
