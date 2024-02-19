@@ -559,6 +559,7 @@ GameObject:
   - component: {fileID: 7182875986196243882}
   - component: {fileID: 3330695386162351436}
   - component: {fileID: 367297390819100283}
+  - component: {fileID: 4348356637367757319}
   m_Layer: 5
   m_Name: ClockPanel
   m_TagString: Untagged
@@ -623,6 +624,20 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &4348356637367757319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6871068345072638133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8341af4ab75b6ea40a6650996b7127a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minute: {fileID: 985611371943064189}
+  hour: {fileID: 4887869611015384553}
 --- !u!1 &8632345416304633822
 GameObject:
   m_ObjectHideFlags: 0
