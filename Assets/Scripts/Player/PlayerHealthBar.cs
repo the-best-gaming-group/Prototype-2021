@@ -80,11 +80,11 @@ public class PlayerHealthBar : MonoBehaviour
 		if (isPlayer)
         {
 			currentHealth = GameManager.Instance.GetPlayerHealth();
-			healthBar.SetHealth(currentHealth);
+			healthBar.SetHealth(currentHealth, currentHealth);
 		}
         else
         {
-			healthBar.SetHealth(maxHealth);
+			healthBar.SetHealth(maxHealth, maxHealth);
 		}
 
 	}
@@ -92,13 +92,14 @@ public class PlayerHealthBar : MonoBehaviour
 	public int TakeDamage(int damage, bool isPlayer = true)
 	{
 		Debug.Log("Taking damage: " + damage);
+		int oldHealth = currentHealth;
 		currentHealth = Mathf.Min(Mathf.Max(0, currentHealth - damage), 100);
 
 		if (isPlayer)
 		{
 			GameManager.Instance.SetPlayerHealth(currentHealth);
 		}
-		healthBar.SetHealth(currentHealth);
+		healthBar.SetHealth(currentHealth, oldHealth);
 
 		return currentHealth;
 	}
