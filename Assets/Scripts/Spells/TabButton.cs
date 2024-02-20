@@ -10,6 +10,12 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
     public TabGroup tabGroup;
     public Image background;
 
+    void Start()
+    {
+        background = GetComponent<Image>();
+        tabGroup.Subscribe(this);
+    }
+
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
         tabGroup.OnTabSelected(this);
