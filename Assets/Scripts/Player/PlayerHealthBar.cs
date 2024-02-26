@@ -80,11 +80,11 @@ public class PlayerHealthBar : MonoBehaviour
 		if (isPlayer)
         {
 			currentHealth = GameManager.Instance.GetPlayerHealth();
-			healthBar.SetHealth(currentHealth, currentHealth);
+			healthBar.SetHealth(currentHealth);
 		}
         else
         {
-			healthBar.SetHealth(maxHealth, maxHealth);
+			healthBar.SetHealth(maxHealth);
 		}
 
 	}
@@ -99,7 +99,7 @@ public class PlayerHealthBar : MonoBehaviour
 		{
 			GameManager.Instance.SetPlayerHealth(currentHealth);
 		}
-		healthBar.SetHealth(currentHealth, oldHealth);
+		healthBar.SetHealth(currentHealth);
 
 		return currentHealth;
 	}

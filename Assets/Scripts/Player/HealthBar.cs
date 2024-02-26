@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public GameObject FloatingTextPrefab;
     public Slider slider;
     public Gradient gradient;
     public Image fill;
@@ -23,7 +22,7 @@ public class HealthBar : MonoBehaviour
         healthText.text = health + " \\ " + health;
     }
 
-    public void SetHealth(int health, int oldHealth)
+    public void SetHealth(int health)
     {
         // Debug.Log("Setting health to: " + health);
 
@@ -34,18 +33,9 @@ public class HealthBar : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
         healthText.text = health + " \\ 100";
 
-        if(FloatingTextPrefab && health < oldHealth)
-        {
-            int damage = oldHealth - health;
-            showFloatingText(damage);
-        }
+        
             
     }
 
-    public void showFloatingText(int damage)
-    {
-        var go = Instantiate(FloatingTextPrefab, new Vector2(healthText.transform.position.x, healthText.transform.position.y) , Quaternion.identity);
-        go.GetComponent<TextMesh>().text = "-" + damage.ToString();
-    }
 
 }
