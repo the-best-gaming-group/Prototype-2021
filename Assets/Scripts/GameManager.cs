@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private int playerHealth;
 	[SerializeField] private float coins;
 	[SerializeField] private bool CanOpen;
-	[SerializeField] private List<string> items;
+	[SerializeField] public List<string> items;
 	[SerializeField] public int[,] shopItems = new int[5, 5];
 	[SerializeField] public string[] itemNames = new string[5];
 	public Checkpoint.SpawnsDict Spawns = new();

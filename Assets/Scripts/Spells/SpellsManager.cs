@@ -9,9 +9,13 @@ public class SpellsManager : MonoBehaviour
 {
 	public GameObject panel;
 	public GameObject spellsPanel;
+	public GameObject spellDetailsPanel;
+	public GameObject inventoryPanel;
+	public GameObject inventoryDetailsPanel;
 	public static bool GameIsPaused = false;
 	private List<Button> spellButtons = new List<Button>();
-	public GameObject spellDetailsPanel;
+	private List<Button> inventoryButtons = new List<Button>();
+
 
 	void Start()
 	{
@@ -41,6 +45,7 @@ public class SpellsManager : MonoBehaviour
 		Time.timeScale = 1f;
 		GameIsPaused = false;
 		spellDetailsPanel.gameObject.SetActive(false);
+		inventoryDetailsPanel.gameObject.SetActive(false);
 
 	}
 
@@ -65,6 +70,13 @@ public class SpellsManager : MonoBehaviour
 				spellButton.onClick.AddListener(() => ShowDetailsPanel(spell));
 			}
 		}
+
+		List<string> items = gameManager.GetItmes();
+
+		foreach (var item in items)
+		{
+			
+		}
 	}
 
 
@@ -76,6 +88,13 @@ public class SpellsManager : MonoBehaviour
 		}
 
 		spellButtons.Clear();
+
+		foreach (Button button in inventoryButtons)
+		{
+			Destroy(button.gameObject);
+		}
+
+		inventoryButtons.Clear();
 	}
 
 	private void ShowDetailsPanel(GameManager.Spell spell)
