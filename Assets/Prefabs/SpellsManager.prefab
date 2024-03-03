@@ -116,7 +116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &651612638887957031
 RectTransform:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 105, y: 150}
+  m_CellSize: {x: 105, y: 105}
   m_Spacing: {x: 100.01, y: 113.1}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -322,6 +322,9 @@ MonoBehaviour:
   objectsToSwap:
   - {fileID: 7262306393067481912}
   - {fileID: 420237092161000470}
+  objectsToClose:
+  - {fileID: 3472716852611482390}
+  - {fileID: 8057654297103423741}
 --- !u!114 &5089737093559165296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1541,8 +1544,8 @@ MonoBehaviour:
   panel: {fileID: 8048095598046507495}
   spellsPanel: {fileID: 7262306393067481912}
   spellDetailsPanel: {fileID: 3472716852611482390}
-  inventoryPanel: {fileID: 0}
-  inventoryDetailsPanel: {fileID: 0}
+  inventoryPanel: {fileID: 420237092161000470}
+  inventoryDetailsPanel: {fileID: 8057654297103423741}
 --- !u!1 &7960090726032568530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,14 +1774,14 @@ GameObject:
   - component: {fileID: 6663373886187475047}
   - component: {fileID: 2897994136108196763}
   - component: {fileID: 1724909608041833495}
-  - component: {fileID: 6714047248867647075}
+  - component: {fileID: 6005521784691755713}
   m_Layer: 0
   m_Name: InventoryDetailsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6663373886187475047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1840,7 +1843,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6714047248867647075
+--- !u!114 &6005521784691755713
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1849,13 +1852,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8057654297103423741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef7d04357ebf0453999f49610feea40c, type: 3}
+  m_Script: {fileID: 11500000, guid: 732e51a1880807146bd3bb87cb05e10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellNameText: {fileID: 3629839068290600117}
-  spellImage: {fileID: 7648282928643275143}
-  spellCostText: {fileID: 0}
-  spellDescriptionText: {fileID: 7213302240258626191}
+  inventoryNameText: {fileID: 3629839068290600117}
+  inventoryImage: {fileID: 7648282928643275143}
+  inventoryDescriptionText: {fileID: 7213302240258626191}
 --- !u!1 &8081288015314728217
 GameObject:
   m_ObjectHideFlags: 0

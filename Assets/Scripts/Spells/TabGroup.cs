@@ -10,6 +10,7 @@ public class TabGroup : MonoBehaviour
     public Sprite tabActive;
     public TabButton selectedTab;
     public List<GameObject> objectsToSwap;
+    public List<GameObject> objectsToClose;
 
     public void Subscribe(TabButton button)
     {
@@ -50,6 +51,7 @@ public class TabGroup : MonoBehaviour
             else
             {
                 objectsToSwap[i].SetActive(false);
+                objectsToClose[i].SetActive(false);
             }
         }
     }

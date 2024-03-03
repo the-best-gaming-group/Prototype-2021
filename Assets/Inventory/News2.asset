@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: News2
   itemIcon: {fileID: 21300000, guid: c6667eceefe1ead4092dfa07c00bdd40, type: 3}
+  itemButtonPrefab: {fileID: 4701028617855746068, guid: df91fcc2dfc4d0144b305daa86344fc3, type: 3}
+  itemInfo: yay 2
