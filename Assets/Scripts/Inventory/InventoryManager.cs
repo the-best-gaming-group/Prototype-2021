@@ -68,9 +68,6 @@ public class InventoryManager : MonoBehaviour
 
         if (condition)
         {
-            RemoveItem(news1);
-            RemoveItem(news2);
-            RemoveItem(news3);
             DoorToOpen.CanEnter = true;
             gameManager.OpenDoor();
             Destroy(toDestroy);
