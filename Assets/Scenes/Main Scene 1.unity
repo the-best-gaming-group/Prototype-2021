@@ -6341,11 +6341,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8683487254858230622, guid: c5338d9a8f3fffe45bc1a96f3cc70b3d, type: 3}
   m_PrefabInstance: {fileID: 320221218}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &320221220 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7473072417526752616, guid: c5338d9a8f3fffe45bc1a96f3cc70b3d, type: 3}
-  m_PrefabInstance: {fileID: 320221218}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &341720576
 GameObject:
   m_ObjectHideFlags: 0
@@ -22749,8 +22744,6 @@ GameObject:
   - component: {fileID: 8095525984225182203}
   - component: {fileID: 6322458716595500337}
   - component: {fileID: 8095525984225182206}
-  - component: {fileID: 8095525984225182205}
-  - component: {fileID: 8095525984225182204}
   - component: {fileID: 8095525984225182208}
   - component: {fileID: 8095525984225182207}
   m_Layer: 0
@@ -25130,39 +25123,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5529609745768420580}
   m_Mesh: {fileID: 4104380202958562290, guid: c0a1023cbb8ce63468d7ec8b40d626c8, type: 3}
---- !u!114 &8095525984225182204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5529609745768420580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WillSpawn: 1
-  uID: 
-  dialogueObject: {fileID: 11400000, guid: 20c42e4d8932fbd4b8c1368f28001bd3, type: 2}
-  visualCue: {fileID: 320221220}
-  diaSound: {fileID: 0}
-  savedDiagIdx: -1
-  finalDiags: []
---- !u!114 &8095525984225182205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5529609745768420580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f088d7e62925a48b1162855f1cef1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 11400000, guid: 20c42e4d8932fbd4b8c1368f28001bd3, type: 2}
-  events: []
 --- !u!65 &8095525984225182206
 BoxCollider:
   m_ObjectHideFlags: 0
