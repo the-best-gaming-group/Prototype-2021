@@ -6479,117 +6479,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4725837762048596271, guid: 810a3151378bb5b49a9eeb9b495076b4, type: 3}
   m_PrefabInstance: {fileID: 43646593}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &359446110
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 359446114}
-  - component: {fileID: 359446113}
-  - component: {fileID: 359446112}
-  - component: {fileID: 359446111}
-  - component: {fileID: 359446115}
-  m_Layer: 0
-  m_Name: Clock
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &359446111
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359446110}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 3.1401544, z: 5.587263}
-  m_Center: {x: 0, y: 1.0700772, z: -2.2936316}
---- !u!23 &359446112
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359446110}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &359446113
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359446110}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &359446114
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359446110}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.08, y: 0.7, z: 17.47}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &359446115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359446110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46eaefb6a3c315241b88ff25ccd0cafd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clockCanvas: {fileID: 410409037}
 --- !u!1001 &374204785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6687,7 +6576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8702890901000955356, guid: 14910e0785f89724cb9def0cab592f07, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8702890902400646664, guid: 14910e0785f89724cb9def0cab592f07, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6931,11 +6820,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385097121}
   m_Mesh: {fileID: -8915564870417481501, guid: 1aa4aa2f71f255244b41b2eee894dcab, type: 3}
---- !u!1 &410409037 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1752244109319370064, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
-  m_PrefabInstance: {fileID: 1752244109452913949}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &418990002
 GameObject:
   m_ObjectHideFlags: 0
@@ -10861,7 +10745,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 195e05106daa0264f8140e0d1768c9de, type: 3}
       propertyPath: m_RootOrder
-      value: 49
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 195e05106daa0264f8140e0d1768c9de, type: 3}
       propertyPath: m_LocalScale.x
@@ -15592,7 +15476,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1752244109302971809, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 1752244109302971809, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15642,6 +15526,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4077129456834412114, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4348356637367757319, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
       propertyPath: rotationSpeed
       value: 200
@@ -15653,7 +15541,7 @@ PrefabInstance:
     - target: {fileID: 8953620764867363398, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 359446115}
+      objectReference: {fileID: 9204922403924320247}
     - target: {fileID: 8953620764867363398, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseCanvas
@@ -15664,6 +15552,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+--- !u!1 &1752244109452913950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8632345416304633822, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+  m_PrefabInstance: {fileID: 1752244109452913949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!33 &1793100735876808498
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20133,6 +20026,8 @@ GameObject:
   - component: {fileID: 4218862054409731227}
   - component: {fileID: 9204922403924320246}
   - component: {fileID: 7786032920328680727}
+  - component: {fileID: 9204922403924320248}
+  - component: {fileID: 9204922403924320247}
   m_Layer: 0
   m_Name: wall clock outer
   m_TagString: Untagged
@@ -20368,3 +20263,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8505092213773474030}
   m_Mesh: {fileID: -2523303404227654617, guid: b427bee34d097b044a4030a6e478d021, type: 3}
+--- !u!114 &9204922403924320247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8505092213773474030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46eaefb6a3c315241b88ff25ccd0cafd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clockCanvas: {fileID: 1752244109452913950}
+--- !u!65 &9204922403924320248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8505092213773474030}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.018682702, y: 0.052249957, z: 0.05301534}
+  m_Center: {x: 0.00000448823, y: -0.02440033, z: 0.012568753}

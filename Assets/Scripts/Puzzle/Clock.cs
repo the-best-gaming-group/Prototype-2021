@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using System.Collections;
 
 public class Clock : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class Clock : MonoBehaviour
     public float targetMinuteAngle = 180f; // Target angle for 10:30
 
     private bool isWinningConditionMet = false;
+
+    public TextMeshProUGUI resultText; // Reference to the UI Text component
 
     private void Update()
     {
@@ -42,26 +46,6 @@ public class Clock : MonoBehaviour
         hour.Rotate(Vector3.forward, rotationSpeed * 0.083f * Time.deltaTime);
     }
 
-    //private void CheckWinningCondition()
-    //{
-    //    // Check if the clock hands are close to the target angles for 10:30
-    //    float currentHourAngle = hour.localEulerAngles.z;
-    //    float currentMinuteAngle = minute.localEulerAngles.z;
-
-    //    if (Mathf.Abs(currentHourAngle - targetHourAngle) < 5f && Mathf.Abs(currentMinuteAngle - targetMinuteAngle) < 5f)
-    //    {
-    //        Debug.Log("Congratulations! You've won!");
-    //        // Set the winning text or perform any other winning actions here
-
-    //        // Optionally, you can stop the clock hands from moving further
-    //        isWinningConditionMet = true;
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Not yet at 10:30. Keep adjusting!");
-    //    }
-    //}
-
     private void CheckWinningCondition()
     {
         float currentHourAngle = GetNormalizedAngle(hour.localEulerAngles.z);
@@ -72,15 +56,13 @@ public class Clock : MonoBehaviour
 
         if (Mathf.Abs(currentHourAngle - targetHourAngle) < 5f && Mathf.Abs(currentMinuteAngle - targetMinuteAngle) < 5f)
         {
-            Debug.Log("Congratulations! You've won!");
-            // Set the winning text or perform any other winning actions here
-
-            // Optionally, you can stop the clock hands from moving further
+            resultText.text = "Congratulations! This is the right time!";
             isWinningConditionMet = true;
         }
         else
         {
-            Debug.Log("Not yet at 10:30. Keep adjusting!");
+            resultText.text = "Not yet at the right time. Keep adjusting.";
+            StartCoroutine(ClearResultTextAfterDelay(2f));
         }
     }
 
@@ -90,4 +72,9 @@ public class Clock : MonoBehaviour
         return (angle + 360f) % 360f;
     }
 
+    private IEnumerator ClearResultTextAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        resultText.text = "";
+    }
 }

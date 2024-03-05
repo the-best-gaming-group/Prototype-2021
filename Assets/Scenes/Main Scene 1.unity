@@ -6545,7 +6545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &359446111
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6820,7 +6820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8702890901000955356, guid: 14910e0785f89724cb9def0cab592f07, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8702890902400646664, guid: 14910e0785f89724cb9def0cab592f07, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -20563,6 +20563,10 @@ PrefabInstance:
     - target: {fileID: 1752244109302971815, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
       propertyPath: m_Name
       value: PuzzleManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752244109302971815, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4348356637367757319, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
       propertyPath: rotationSpeed
