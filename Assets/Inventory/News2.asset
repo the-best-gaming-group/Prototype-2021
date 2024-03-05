@@ -15,4 +15,6 @@ MonoBehaviour:
   itemName: News2
   itemIcon: {fileID: 21300000, guid: c6667eceefe1ead4092dfa07c00bdd40, type: 3}
   itemButtonPrefab: {fileID: 4701028617855746068, guid: df91fcc2dfc4d0144b305daa86344fc3, type: 3}
-  itemInfo: yay 2
+  itemInfo: Investigative reports highlight an uncanny solution emerging from the
+    mysterious mansion - progress is found by retracing steps in reverse, challenging
+    the conventional flow of time.
