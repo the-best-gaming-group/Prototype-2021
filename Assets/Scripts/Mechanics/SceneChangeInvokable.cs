@@ -32,7 +32,7 @@ public class SceneChangeInvokable : MonoBehaviour, Invokable
 	public void Invoke()
 	{
 		string currentScene = SceneManager.GetActiveScene().name;
-		if (currentScene == "Main Scene 1")
+		if (currentScene == "Main Scene 1" || currentScene == "Main Scene 2")
         {
 			if (CanEnter)
             {

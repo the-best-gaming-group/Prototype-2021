@@ -9,9 +9,13 @@ public class SpellsManager : MonoBehaviour
 {
 	public GameObject panel;
 	public GameObject spellsPanel;
+	public GameObject spellDetailsPanel;
+	public GameObject inventoryPanel;
+	public GameObject inventoryDetailsPanel;
 	public static bool GameIsPaused = false;
 	private List<Button> spellButtons = new List<Button>();
-	public GameObject spellDetailsPanel;
+	private List<Button> inventoryButtons = new List<Button>();
+
 
 	void Start()
 	{
@@ -41,6 +45,7 @@ public class SpellsManager : MonoBehaviour
 		Time.timeScale = 1f;
 		GameIsPaused = false;
 		spellDetailsPanel.gameObject.SetActive(false);
+		inventoryDetailsPanel.gameObject.SetActive(false);
 
 	}
 
@@ -65,6 +70,64 @@ public class SpellsManager : MonoBehaviour
 				spellButton.onClick.AddListener(() => ShowDetailsPanel(spell));
 			}
 		}
+
+		List<string> items = gameManager.GetItmes();
+		InventoryManager inventoryManager = gameManager.inventoryManager;
+
+		foreach (var item in items)
+		{
+			var itemIcon = item switch
+			{
+				"News1" => inventoryManager.news1.itemIcon,
+				"News2" => inventoryManager.news2.itemIcon,
+				"News3" => inventoryManager.news3.itemIcon,
+				_ => null
+			};
+			if (itemIcon == null)
+			{
+				Debug.Log("Error: Unrecognized item name: " + item);
+			}
+
+			var itemPrefab = item switch
+			{
+				"News1" => inventoryManager.news1.itemButtonPrefab,
+				"News2" => inventoryManager.news2.itemButtonPrefab,
+				"News3" => inventoryManager.news3.itemButtonPrefab,
+				_ => null
+			};
+			if (itemPrefab == null)
+			{
+				Debug.Log("Error: Unrecognized item name: " + item);
+			}
+
+			var itemInfo = item switch
+			{
+				"News1" => inventoryManager.news1.itemInfo,
+				"News2" => inventoryManager.news2.itemInfo,
+				"News3" => inventoryManager.news3.itemInfo,
+				_ => null
+			};
+			if (itemInfo == null)
+			{
+				Debug.Log("Error: Unrecognized item name: " + item);
+			}
+
+			// Create a new button
+			Button inventoryButton = Instantiate(itemPrefab, inventoryPanel.transform);
+			Image buttonImage = inventoryButton.GetComponent<Image>();
+            if (buttonImage != null)
+            {
+                buttonImage.sprite = itemIcon;
+            }
+            else
+            {
+                Debug.LogError("Image component not found on the Button.");
+            }
+
+            inventoryButtons.Add(inventoryButton);
+
+			inventoryButton.onClick.AddListener(() => ShowItemsDetailsPanel(item, itemIcon, itemInfo));
+		}
 	}
 
 
@@ -76,6 +139,13 @@ public class SpellsManager : MonoBehaviour
 		}
 
 		spellButtons.Clear();
+
+		foreach (Button button in inventoryButtons)
+		{
+			Destroy(button.gameObject);
+		}
+
+		inventoryButtons.Clear();
 	}
 
 	private void ShowDetailsPanel(GameManager.Spell spell)
@@ -86,6 +156,20 @@ public class SpellsManager : MonoBehaviour
 			detailsPanel.gameObject.SetActive(true);
 			detailsPanel.ShowDetails(spell);
 		}
+		else
+		{
+			Debug.LogError("SpellsDetailsPanel component not found on spellDetailsPanel GameObject.");
+		}
+	}
+
+	private void ShowItemsDetailsPanel(string itemName, Sprite itemIcon, string itemInfo)
+	{
+		InventoryDetailsPanel detailsPanel = inventoryDetailsPanel.GetComponent<InventoryDetailsPanel>();
+		if (detailsPanel != null)
+		{
+			detailsPanel.gameObject.SetActive(true);
+			detailsPanel.ShowDetails(itemName, itemIcon, itemInfo);
+        }
 		else
 		{
 			Debug.LogError("SpellsDetailsPanel component not found on spellDetailsPanel GameObject.");
