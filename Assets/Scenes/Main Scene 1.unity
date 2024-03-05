@@ -6341,6 +6341,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8683487254858230622, guid: c5338d9a8f3fffe45bc1a96f3cc70b3d, type: 3}
   m_PrefabInstance: {fileID: 320221218}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &320221220 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7473072417526752616, guid: c5338d9a8f3fffe45bc1a96f3cc70b3d, type: 3}
+  m_PrefabInstance: {fileID: 320221218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &341720576
 GameObject:
   m_ObjectHideFlags: 0
@@ -22750,6 +22755,7 @@ GameObject:
   - component: {fileID: 8095525984225182206}
   - component: {fileID: 8095525984225182208}
   - component: {fileID: 8095525984225182207}
+  - component: {fileID: 8095525984225182209}
   m_Layer: 0
   m_Name: Stairs
   m_TagString: Untagged
@@ -25225,6 +25231,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReady: 0
+--- !u!114 &8095525984225182209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5529609745768420580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1986f9236a1b84c9b8742749b71a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WillSpawn: 1
+  uID: 
+  dialogueObject: {fileID: 11400000, guid: 75e8ed652db7d6143903b5a895470427, type: 2}
+  visualCue: {fileID: 320221220}
+  diaSound: {fileID: 0}
+  savedDiagIdx: -1
+  finalDiags: []
 --- !u!23 &8136866860060286909
 MeshRenderer:
   m_ObjectHideFlags: 0
