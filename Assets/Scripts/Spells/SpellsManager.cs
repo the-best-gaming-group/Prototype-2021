@@ -49,14 +49,14 @@ public class SpellsManager : MonoBehaviour
 
 	}
 
-	void Pause()
+	public void Pause()
 	{
 		panel.SetActive(true);
 		Time.timeScale = 0f;
 		GameIsPaused = true;
 	}
 
-	private void PopulatePanel()
+	public void PopulatePanel()
 	{
 		GameManager gameManager = GameManager.Instance;
 
@@ -131,7 +131,7 @@ public class SpellsManager : MonoBehaviour
 	}
 
 
-	private void ClearPanel()
+	public void ClearPanel()
 	{
 		foreach (Button button in spellButtons)
 		{
