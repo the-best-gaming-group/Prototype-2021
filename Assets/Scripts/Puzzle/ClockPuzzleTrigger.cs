@@ -3,6 +3,7 @@ using UnityEngine;
 public class ClockPuzzleTrigger : MonoBehaviour
 {
     public GameObject clockCanvas;
+    public GameObject activeCue;
 
     private bool playerInTriggerZone = false;
     private bool puzzleActivated = false;
@@ -11,10 +12,12 @@ public class ClockPuzzleTrigger : MonoBehaviour
     private void Start()
     {
         clockCanvas.SetActive(false);
+        activeCue.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("HIIIII");
+        activeCue.SetActive(true);
         if (other.CompareTag("Player") && !puzzleActivated)
         {
             // Player entered the trigger zone
@@ -24,6 +27,7 @@ public class ClockPuzzleTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        activeCue.SetActive(false);
         if (other.CompareTag("Player"))
         {
             // Player exited the trigger zone
