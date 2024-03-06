@@ -18,8 +18,21 @@ public class counterPuzzle : MonoBehaviour
     int counter2;
     int counter3;
     int counter4;
+	public GameObject panel;
 
-    public void upBottonPressed1()
+	public void Resume()
+	{
+		panel.SetActive(false);
+		Time.timeScale = 1f;
+	}
+
+	public void Pause()
+	{
+		panel.SetActive(true);
+		Time.timeScale = 0f;
+	}
+
+	public void upBottonPressed1()
     {
 
         if (counter1 < 10)
@@ -91,17 +104,22 @@ public class counterPuzzle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        successText.gameObject.SetActive(false);
+		successText.gameObject.SetActive(false);
         successImage.gameObject.SetActive(false);
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (counter1 == 1 && counter2 == 3 && counter3 == 1 && counter4 == 4)
-        {
-            successText.gameObject.SetActive(true);
-            successImage.gameObject.SetActive(true);
-        }
-    }
+	void Update()
+	{
+		if (panel.activeSelf)
+		{
+			Pause();
+		}
+
+		if (counter1 == 1 && counter2 == 3 && counter3 == 1 && counter4 == 4)
+		{
+			successText.gameObject.SetActive(true);
+			successImage.gameObject.SetActive(true);
+		}
+	}
+
 }
