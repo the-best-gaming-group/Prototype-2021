@@ -7479,6 +7479,7 @@ MonoBehaviour:
   numberText4: {fileID: 2003458311}
   successText: {fileID: 1872114412}
   successImage: {fileID: 1687505233}
+  panel: {fileID: 382363268}
 --- !u!114 &382363271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10657,6 +10658,18 @@ MonoBehaviour:
       - m_Target: {fileID: 6910779703763302716}
         m_TargetAssemblyTypeName: ClockPuzzleTrigger, Assembly-CSharp
         m_MethodName: CloseCanvas
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 382363270}
+        m_TargetAssemblyTypeName: counterPuzzle, Assembly-CSharp
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
