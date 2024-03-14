@@ -175,6 +175,13 @@ namespace Platformer.Mechanics
 
         protected void FixedUpdate()
         {
+            // froze the player when playing dialogue
+            if (!controlEnabled)
+            {
+                anim.SetBool("isJumping", false);
+                return;
+            }
+
             // Spoooky float!
             var curr_pos = _ghost_model.transform.position;
             _ghost_model.transform.position = new Vector3(
@@ -183,12 +190,6 @@ namespace Platformer.Mechanics
                 curr_pos.z
             );
 
-            // froze the player when playing dialogue
-            if (!controlEnabled)
-            {
-                return;
-            }
-
             var sideMove = keyHoriz * moveSpeed;
             HandleRotation(keyHoriz, keyVert); // rotate
             var upMove = HandleJump();
@@ -196,7 +197,7 @@ namespace Platformer.Mechanics
             // Debugging 
             //print("Side move is: " + sideMove + " | keyhoriz is: " + keyHoriz);
             //print("Up move is: " + upMove + " | keyvert is: " + keyVert);
-            if (keyHoriz != 0 || keyVert != 0)
+            // if (keyHoriz != 0 || keyVert != 0)
                 // print("Pressed A(-1) or D(+1): " + keyHoriz + " | Pressed W(+1): " + keyVert);
 
             UpdateAnimatorValues(keyHoriz, keyVert); //Right or Left movement animation

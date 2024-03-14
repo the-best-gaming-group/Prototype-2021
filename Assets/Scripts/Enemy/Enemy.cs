@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     public string uID;
     GameObject player;
     NavMeshAgent agent;
+    [SerializeField] private DialogueUI dialogueUI;
+    public DialogueUI DialogueUI => dialogueUI;
 
     [SerializeField] LayerMask groundLayer, playerLayer;
 
@@ -50,7 +52,15 @@ public class Enemy : MonoBehaviour
 
 	void Update()
     {
-        if (SceneManager.GetActiveScene().name != "Combat Arena")
+        if (dialogueUI.IsOpen)
+        {
+            agent.SetDestination(transform.position);
+            animator.SetBool("isChasing", false);
+            animator.SetBool("isPatroling", false);
+            return;
+        }
+
+        if (SceneManager.GetActiveScene().name != "Combat Arena" && !(dialogueUI.IsOpen))
         {
             Vector3 newPosition = transform.position;
 		    newPosition.z = player.transform.position.z;
