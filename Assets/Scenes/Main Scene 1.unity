@@ -6642,6 +6642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clockCanvas: {fileID: 410409037}
+  activeCue: {fileID: 0}
 --- !u!1001 &365466642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13923,7 +13924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 996673087137595898, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 996673087137595898, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
       propertyPath: m_LocalScale.x
@@ -14140,6 +14141,22 @@ PrefabInstance:
     - target: {fileID: 5377526429823784961, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 79.907585
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572097868507290497, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
+      propertyPath: range
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572097868507290497, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
+      propertyPath: dialogueUI
+      value: 
+      objectReference: {fileID: 909992398}
+    - target: {fileID: 6572097868507290497, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
+      propertyPath: sightRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572097868507290497, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
+      propertyPath: attackRange
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7118810853454659448, guid: 9089bb920bd88f342a0b26715dc92cd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

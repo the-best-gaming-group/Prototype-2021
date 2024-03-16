@@ -14,10 +14,10 @@ public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
 public enum CombatOptions
 {
-    Stun = 6,
+    Stun = 5,
     Heal = 15,
-    Knife = 9,
-    Slam = 11,
+    Knife = 10,
+    Slam = 12,
     Electrocute = 14,
     Firebolt = 16
 }
@@ -108,6 +108,18 @@ public class BattleSystem : MonoBehaviour
         enemyReference = GameObject.FindWithTag("enemyReference");
 
         enemyReference.GetComponent<Rigidbody>().constraints = (RigidbodyConstraints)122;
+
+        // Adjust the enemy health based on enemy type
+        if (enemyReference.name.ToLower().Contains("skel"))
+        {
+            enemyHP.healthBar.SetMaxHealth(60);
+            enemyHP.currentHealth = 60;
+        }
+        else if (enemyReference.name.ToLower().Contains("eye"))
+        {
+            enemyHP.healthBar.SetMaxHealth(75);
+            enemyHP.currentHealth = 75;
+        }
 
         enemyAnimator = enemyReference.GetComponent<Animator>(); // enemy animation controller
         ghostBasic = GameObject.Find("ghost basic");
@@ -245,7 +257,7 @@ public class BattleSystem : MonoBehaviour
         int enemyNewHP;
         if (action.action == CombatOptions.Slam && enemyReference.name.ToLower().Contains("skel"))
         {
-            enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * (int)action.action, false);
+            enemyNewHP = enemyHP.TakeDamage((int)(3.0f*playerPowerBoost/4 * (int)action.action), false);
             switch (DialogueCounter)
             {
                 case 0:
@@ -271,7 +283,7 @@ public class BattleSystem : MonoBehaviour
         }
         else if (action.action == CombatOptions.Knife && enemyReference.name.ToLower().Contains("eye"))
         {
-            enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * (int)action.action, false);
+            enemyNewHP = enemyHP.TakeDamage((int)(3.0f*playerPowerBoost/4 * (int)action.action), false);
             switch (DialogueCounter)
             {
                 case 0:
@@ -401,7 +413,7 @@ public class BattleSystem : MonoBehaviour
                 break;
             case < 75:
                 enemyAction = CombatOptions.Firebolt;
-                battleDialog.text = dialogText.Replace("<harm>", "threw a firebolt at");
+                battleDialog.text = dialogText.Replace("<harm>", "threw a fireball at");
                 sendFirebolt(false);
                 yield return wait1sec; //new WaitForSeconds(1f);
                 break;
