@@ -19,7 +19,12 @@ public enum CombatOptions
     Knife = 10,
     Slam = 12,
     Electrocute = 14,
-    Firebolt = 16
+    Firebolt = 16,
+    // element combo spells
+    FireElement = 10,
+    EarthElement = 10,
+    WaterElement = 10,
+    ElementalInfluence = 0
 }
 
 public class TurnActions {
@@ -163,6 +168,10 @@ public class BattleSystem : MonoBehaviour
                 "Slam"        => OnSlamButton,
                 "Stun"        => OnStunButton,
                 "Knife Throw" => OnKnifeButton,
+                "Fire Element" => OnFireEleButton,
+                "Earth Element" => OnEarthEleButton,
+                "Water Element" => OnWaterEleButton,
+                "Elemental Influence" => OnElementalButton,
                 _             => null
             };
             
@@ -652,6 +661,22 @@ public class BattleSystem : MonoBehaviour
 
         return null;
     }
+    GameObject sendFireEle(bool isFromPlayer = true)
+    {
+        return null;
+    }
+    GameObject sendEarthEle(bool isFromPlayer = true)
+    {
+        return null;
+    }
+    GameObject sendWaterEle(bool isFromPlayer = true)
+    {
+        return null;
+    }
+    GameObject sendElemental(bool isFromPlayer = true)
+    {
+        return null;
+    }
 
     void Update()
     {
@@ -690,7 +715,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.PLAYER_TURN)
         {
-            turnActions.Add(new (CombatOptions.Slam, 1.5f, sendSlam)) ;
+            turnActions.Add(new (CombatOptions.Slam, 1.5f, sendSlam));
         }
     }
 
@@ -737,6 +762,34 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.PLAYER_TURN)
         {
             turnActions.Add(new(CombatOptions.Heal, 0, selfHeal));
+        }
+    }
+    public void OnFireEleButton()
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.FireElement, 0, sendFireEle));
+        }
+    }
+    public void OnEarthEleButton()
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.EarthElement, 0, sendEarthEle));
+        }
+    }
+    public void OnWaterEleButton()
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.WaterElement, 0, sendWaterEle));
+        }
+    }
+    public void OnElementalButton()
+    {
+        if (state == BattleState.PLAYER_TURN)
+        {
+            turnActions.Add(new(CombatOptions.ElementalInfluence, 0, sendElemental));
         }
     }
 
