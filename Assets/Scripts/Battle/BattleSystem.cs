@@ -96,7 +96,21 @@ public class BattleSystem : MonoBehaviour
     public GameManager.Spell[] spells = new GameManager.Spell[4];
     private int playerPowerBoost = 2;
     private int DialogueCounter = 0;    //Used for player corresponding dialogue options by enemy type
-    void Start()
+
+	private int fireCount;
+	private int earthCount;
+	private int waterCount;
+	private int EleInfluenceDamange;
+
+	public void StartCombatRound()
+	{
+		fireCount = 0;
+		earthCount = 0;
+		waterCount = 0;
+		EleInfluenceDamange = 0;
+	}
+
+	void Start()
     {
         animator = GetComponent<Animator>();
         state = BattleState.START;
@@ -357,11 +371,16 @@ public class BattleSystem : MonoBehaviour
                     break;
             }
         }
-        else
+		else if (action.action == CombatOptions.ElementalInfluence)
+		{
+			enemyNewHP = enemyHP.TakeDamage(EleInfluenceDamange, false);
+		}
+		else
         {
             enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * (int)action.action / 2, false);
         }
-    }
+		StartCombatRound();
+	}
 
     public int getRandomAbilityBasedOnEnemyType()
     {
@@ -663,20 +682,34 @@ public class BattleSystem : MonoBehaviour
     }
     GameObject sendFireEle(bool isFromPlayer = true)
     {
-        return null;
-    }
+        if (fireCount == 0)
+		    fireCount++;
+		return null;
+	}
+
     GameObject sendEarthEle(bool isFromPlayer = true)
     {
-        return null;
+        if (earthCount == 0)
+		    earthCount++;
+		return null;
     }
+
     GameObject sendWaterEle(bool isFromPlayer = true)
     {
-        return null;
+        if (waterCount == 0)
+		    waterCount++;
+		return null;
     }
+
     GameObject sendElemental(bool isFromPlayer = true)
     {
+		int EleInfluenceDamange = (fireCount + earthCount + waterCount) * 10;
+		if (fireCount > 0 && earthCount > 0 && waterCount > 0)
+		{
+			EleInfluenceDamange += 10;
+		}
         return null;
-    }
+	}
 
     void Update()
     {
