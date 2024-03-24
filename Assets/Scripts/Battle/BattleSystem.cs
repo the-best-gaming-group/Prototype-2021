@@ -334,8 +334,8 @@ public class BattleSystem : MonoBehaviour
                 break;
             }
         }
-
-        if (state == BattleState.WON)
+		turnActions.Clear();
+		if (state == BattleState.WON)
         {
             StartCoroutine(EndBattle());
         }
