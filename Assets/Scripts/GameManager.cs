@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour
 	{
 		const string scene = "IntroStory";
 		items.Clear();
-		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, 40, false, new());
+		Checkpoint = new(100, new(), new(), new(), CreateDefaultAvailableSpells(), scene, 0, false, new());
 		LoadCheckpoint();
 	}
 

@@ -111,7 +111,7 @@ public class BattleSystem : MonoBehaviour
 		EleInfluenceDamange = 0;
 	}
 
-	private float playerTurnTimer = 5f;
+	private float playerTurnTimer = 8f;
 	private bool isTimerStarted = false;
     public bool hasSubmitted = false;
 	[SerializeField] TextMeshProUGUI timerText;
@@ -155,7 +155,7 @@ public class BattleSystem : MonoBehaviour
     public void StartPlayerTurnTimer()
 	{
 		hasSubmitted = false;
-		playerTurnTimer = 5f;
+		playerTurnTimer = 8f;
 		timerText.color = Color.white;
 	}
 
