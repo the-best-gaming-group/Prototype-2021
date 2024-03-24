@@ -101,6 +101,7 @@ public class BattleSystem : MonoBehaviour
 	private int earthCount;
 	private int waterCount;
 	private int EleInfluenceDamange;
+	private TurnbasedDialogHandler turnbasedDialogHandler;
 
 	public void StartCombatRound()
 	{
@@ -110,18 +111,75 @@ public class BattleSystem : MonoBehaviour
 		EleInfluenceDamange = 0;
 	}
 
+	private float playerTurnTimer = 5f;
+	private bool isTimerStarted = false;
+    public bool hasSubmitted = false;
+	[SerializeField] TextMeshProUGUI timerText;
+
+	void Update()
+	{
+		UpdateDifficulty();
+		if (state == BattleState.PLAYER_TURN)
+		{
+			if (!isTimerStarted)
+			{
+				StartPlayerTurnTimer();
+				isTimerStarted = true;
+			}
+
+			if (playerTurnTimer > 0)
+			{
+				playerTurnTimer -= Time.deltaTime;
+			}
+			else if (!hasSubmitted && playerTurnTimer < 0)
+			{
+				playerTurnTimer = 0;
+				StopPlayerTurnTimer();
+				SubmitAndEndPlayerTurn();
+			}
+			int minutes = Mathf.FloorToInt(playerTurnTimer / 60);
+			int seconds = Mathf.FloorToInt(playerTurnTimer % 60);
+			timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+		}
+		else
+		{
+			isTimerStarted = false;
+		}
+	}
+
+    private void SubmitAndEndPlayerTurn()
+    {
+		turnbasedDialogHandler.SubmitSelected();
+	}
+
+    public void StartPlayerTurnTimer()
+	{
+		hasSubmitted = false;
+		playerTurnTimer = 5f;
+		timerText.color = Color.white;
+	}
+
+	public void StopPlayerTurnTimer()
+	{
+		hasSubmitted = true;
+		playerTurnTimer = 0f;
+		timerText.text = "00:00";
+		timerText.color = Color.red;
+	}
+
+
 	void Start()
     {
-        animator = GetComponent<Animator>();
+		animator = GetComponent<Animator>();
         state = BattleState.START;
         player = GameObject.FindWithTag("Player");
         enemy = GameObject.FindWithTag("Enemy");
         playerHP = player.GetComponent<PlayerHealthBar>();
         enemyHP = enemy.GetComponentInChildren<PlayerHealthBar>();
         battleDialog = GameObject.FindWithTag("BattleDialog").GetComponent<TextMeshProUGUI>();
-        
-        //freeze rotation/position
-        playerRBConstraints = player.GetComponentInChildren<Rigidbody>().constraints;
+		turnbasedDialogHandler = GetComponentInChildren<TurnbasedDialogHandler>();
+		//freeze rotation/position
+		playerRBConstraints = player.GetComponentInChildren<Rigidbody>().constraints;
         player.GetComponentInChildren<Rigidbody>().constraints = (RigidbodyConstraints)122;//freeze position xz, rotation
 
         enemyReference = GameObject.FindWithTag("enemyReference");
@@ -230,7 +288,6 @@ public class BattleSystem : MonoBehaviour
     IEnumerator ProcessTurn()
     {
         StartCombatRound();
-        Debug.Log("Elemental Damage when startCombat = 0");
         foreach (var fun in playerTurnEndListeners)
         {
             fun();
@@ -735,11 +792,6 @@ public class BattleSystem : MonoBehaviour
 		}
         return null;
 	}
-
-    void Update()
-    {
-        UpdateDifficulty();
-    }
 
     private void UpdateDifficulty()
     {
