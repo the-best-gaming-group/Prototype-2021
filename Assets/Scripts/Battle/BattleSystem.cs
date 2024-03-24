@@ -395,7 +395,6 @@ public class BattleSystem : MonoBehaviour
         }
 		else if (action.action == CombatOptions.ElementalInfluence)
 		{
-            Debug.Log("combat = elemental" + EleInfluenceDamange);
 			enemyNewHP = enemyHP.TakeDamage(EleInfluenceDamange, false);
 		}
 		else
@@ -704,30 +703,32 @@ public class BattleSystem : MonoBehaviour
     }
     GameObject sendFireEle(bool isFromPlayer = true)
     {
-        if (fireCount == 0)
+		animator.Play("FireElement");
+		if (fireCount == 0)
 		    fireCount++;
 		return null;
 	}
 
     GameObject sendEarthEle(bool isFromPlayer = true)
     {
-        if (earthCount == 0)
+		animator.Play("EarthElement");
+		if (earthCount == 0)
 		    earthCount++;
 		return null;
     }
 
     GameObject sendWaterEle(bool isFromPlayer = true)
     {
-        if (waterCount == 0)
+		animator.Play("WaterElement");
+		if (waterCount == 0)
 		    waterCount++;
 		return null;
     }
 
     GameObject sendElemental(bool isFromPlayer = true)
     {
-        Debug.Log("fireCount" + fireCount + "waterCount" + waterCount + "earthCount" + earthCount);
-		int EleInfluenceDamange = (fireCount + earthCount + waterCount) * 10;
-        Debug.Log("Send Elemental, damage =" + EleInfluenceDamange);
+		animator.Play("ElementalInfluence");
+		EleInfluenceDamange = (fireCount + earthCount + waterCount) * 10;
         if (fireCount > 0 && earthCount > 0 && waterCount > 0)
 		{
 			EleInfluenceDamange += 10;
