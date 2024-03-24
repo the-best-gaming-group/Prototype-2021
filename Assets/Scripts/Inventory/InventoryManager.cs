@@ -11,6 +11,7 @@ public class InventoryManager : MonoBehaviour
     public InventoryItem news3;
     public DialogueUI dialogueUI;
     public GameObject toDestroy;
+    private PopUpManager pm;
 
     private bool hasNews1;
     private bool hasNews2;
@@ -23,11 +24,13 @@ public class InventoryManager : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         gameManager.RegisterInventoryManager(this);
+        pm = GameObject.FindGameObjectWithTag("PopMan").GetComponent<PopUpManager>();
     }
 
     public void AddItem(InventoryItem item)
     {
         gameManager.AddItem(item);
+        pm.CreatePopUp(item.itemName,item.itemIcon);
     }
 
     public void RemoveItem(InventoryItem item)
