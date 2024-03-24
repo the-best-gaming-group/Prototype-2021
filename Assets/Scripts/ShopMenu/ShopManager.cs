@@ -4,8 +4,8 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
-	public int[,] shopItems = new int[5, 5];
-	public string[] itemNames = new string[5];
+	public int[,] shopItems = new int[8, 8];
+	public string[] itemNames = new string[8];
 	public float coins;
 	public TextMeshProUGUI ConisTXT;
 	public Confirmation confirmationWindow;
@@ -102,6 +102,7 @@ public class ShopManager : MonoBehaviour
 	*/
 	public void DisableItemButton(int itemID)
 	{
+		Debug.Log(itemID);
 		if (itemID < itemButtons.Length)
 		{
 			itemButtons[itemID - 1].gameObject.SetActive(false);

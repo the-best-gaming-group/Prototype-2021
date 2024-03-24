@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1815208241556807436
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36,9 +36,9 @@ RectTransform:
   m_Father: {fileID: 8423094186587333976}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 67.59775, y: -270.32996}
   m_SizeDelta: {x: 135.1955, y: 193.9815}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3396559497438084895
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4f10f032dfd64a49b893528a74e4cf8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6da6ff98273f44c708e219ef6ed4120d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -415,7 +415,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1d13efdf516074186f5600ed491990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 3
+  ItemID: 4
   PriceTxt: {fileID: 3509778521018052730}
   ShopManager: {fileID: 5140712386346641024}
 --- !u!1 &713459773338467306
@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4f10f032dfd64a49b893528a74e4cf8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b27986792e124517b2f50f5f2434a74, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1240,7 +1240,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1257,7 +1257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1d13efdf516074186f5600ed491990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 3
+  ItemID: 5
   PriceTxt: {fileID: 2111479398392476311}
   ShopManager: {fileID: 5140712386346641024}
 --- !u!1 &2000487343139767188
@@ -1703,7 +1703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1592065397535729052
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1720,9 +1720,9 @@ RectTransform:
   m_Father: {fileID: 8423094186587333976}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 67.59775, y: -270.32996}
   m_SizeDelta: {x: 135.1955, y: 193.9815}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &899968413768395014
@@ -2469,8 +2469,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2136465741226969269}
   m_HandleRect: {fileID: 4929508341717956217}
   m_Direction: 0
-  m_Value: 0.49999982
-  m_Size: 0.6123846
+  m_Value: 0
+  m_Size: 0.99999857
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2653,7 +2653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &710444342218363683
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2670,9 +2670,9 @@ RectTransform:
   m_Father: {fileID: 8423094186587333976}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 67.59775, y: -270.32996}
   m_SizeDelta: {x: 135.1955, y: 193.9815}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7445417668285230383
@@ -2837,6 +2837,9 @@ MonoBehaviour:
   - 
   - 
   - 
+  - 
+  - 
+  - 
   coins: 0
   ConisTXT: {fileID: 4495871085008861660}
   confirmationWindow: {fileID: 7828772811703638878}
@@ -2847,6 +2850,7 @@ MonoBehaviour:
   - {fileID: 4847046673433443284}
   - {fileID: 3733556568697878478}
   - {fileID: 1586142188278971837}
+  - {fileID: 9217766854071892919}
   - {fileID: 9217766854071892919}
   buySound: {fileID: 4912563638842512370}
 --- !u!82 &4912563638842512370
@@ -3132,7 +3136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4f10f032dfd64a49b893528a74e4cf8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27d5b1e347599489792bb8c4b3403f90, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3193,7 +3197,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3210,7 +3214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1d13efdf516074186f5600ed491990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 3
+  ItemID: 7
   PriceTxt: {fileID: 5927296205478728069}
   ShopManager: {fileID: 5140712386346641024}
 --- !u!1 &6146252431625553169
@@ -3357,7 +3361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.31375, y: 0.76557577}
   m_AnchorMax: {x: 1, y: 0.76557577}
-  m_AnchoredPosition: {x: -125.500046, y: -105.77771}
+  m_AnchoredPosition: {x: -125.49997, y: -105.77771}
   m_SizeDelta: {x: 0, y: 540.6599}
   m_Pivot: {x: 0.49999997, y: 0.58039814}
 --- !u!114 &6498631915109431503
@@ -3830,7 +3834,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4f10f032dfd64a49b893528a74e4cf8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74e7a97d6608f451b9c279ab2dad997c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3891,7 +3895,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3908,7 +3912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1d13efdf516074186f5600ed491990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 3
+  ItemID: 6
   PriceTxt: {fileID: 437429682997290474}
   ShopManager: {fileID: 5140712386346641024}
 --- !u!1 &8281556688405955553

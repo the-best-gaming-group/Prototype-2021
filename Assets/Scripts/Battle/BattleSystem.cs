@@ -229,10 +229,31 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator ProcessTurn()
     {
+        StartCombatRound();
+        Debug.Log("Elemental Damage when startCombat = 0");
         foreach (var fun in playerTurnEndListeners)
         {
             fun();
         }
+
+        List<TurnActions> elementalInfluences = new List<TurnActions>();
+        List<TurnActions> otherActions = new List<TurnActions>();
+
+        foreach (var action in turnActions)
+        {
+            if (action.action == CombatOptions.ElementalInfluence)
+            {
+                elementalInfluences.Add(action);
+            }
+            else
+            {
+                otherActions.Add(action);
+            }
+        }
+
+        otherActions.AddRange(elementalInfluences);
+        turnActions.Clear();
+        turnActions.AddRange(otherActions);
 
         foreach (var action in turnActions)
         {
@@ -247,7 +268,7 @@ public class BattleSystem : MonoBehaviour
                 yield return new WaitForSeconds(action.waitTime);
                 yield return SpellEffectByEnemy(action);
                 GameObject.Destroy(gameObj);
-            }            
+            }
 
             yield return new WaitForSeconds(dialogWaitTime);
             if (enemyHP.currentHealth <= 0)
@@ -255,24 +276,25 @@ public class BattleSystem : MonoBehaviour
                 state = BattleState.WON;
                 break;
             }
-
         }
-        turnActions.Clear();
 
         if (state == BattleState.WON)
         {
             StartCoroutine(EndBattle());
-        } else if (remaningStunTurns < 1)
+        }
+        else if (remaningStunTurns < 1)
         {
             state = BattleState.ENEMY_TURN;
             StartCoroutine(EnemyTurn());
-        } else
+        }
+        else
         {
             if (--remaningStunTurns == 0)
                 Destroy(stunObj);
             PlayerTurn();
         }
     }
+
 
     //This Function plays goofy dialogues based on the spells used and also updates the enemy health.
     IEnumerator SpellEffectByEnemy(TurnActions action)
@@ -373,13 +395,13 @@ public class BattleSystem : MonoBehaviour
         }
 		else if (action.action == CombatOptions.ElementalInfluence)
 		{
+            Debug.Log("combat = elemental" + EleInfluenceDamange);
 			enemyNewHP = enemyHP.TakeDamage(EleInfluenceDamange, false);
 		}
 		else
         {
             enemyNewHP = enemyHP.TakeDamage(playerPowerBoost * (int)action.action / 2, false);
         }
-		StartCombatRound();
 	}
 
     public int getRandomAbilityBasedOnEnemyType()
@@ -703,8 +725,10 @@ public class BattleSystem : MonoBehaviour
 
     GameObject sendElemental(bool isFromPlayer = true)
     {
+        Debug.Log("fireCount" + fireCount + "waterCount" + waterCount + "earthCount" + earthCount);
 		int EleInfluenceDamange = (fireCount + earthCount + waterCount) * 10;
-		if (fireCount > 0 && earthCount > 0 && waterCount > 0)
+        Debug.Log("Send Elemental, damage =" + EleInfluenceDamange);
+        if (fireCount > 0 && earthCount > 0 && waterCount > 0)
 		{
 			EleInfluenceDamange += 10;
 		}
@@ -797,6 +821,7 @@ public class BattleSystem : MonoBehaviour
             turnActions.Add(new(CombatOptions.Heal, 0, selfHeal));
         }
     }
+
     public void OnFireEleButton()
     {
         if (state == BattleState.PLAYER_TURN)
@@ -825,7 +850,6 @@ public class BattleSystem : MonoBehaviour
             turnActions.Add(new(CombatOptions.ElementalInfluence, 0, sendElemental));
         }
     }
-
 
     public void OnEndTurnButton()//todo: remove listener on mouse click
     {
