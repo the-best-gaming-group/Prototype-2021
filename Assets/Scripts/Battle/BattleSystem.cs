@@ -12,6 +12,7 @@ using static Rune;
 [Serializable]
 public enum BattleState { START, PLAYER_TURN, ENEMY_TURN, WON, LOST }
 
+//Need to change enum to class, or it needs ot have unique damage
 public enum CombatOptions
 {
     Stun = 5,
@@ -21,9 +22,9 @@ public enum CombatOptions
     Electrocute = 14,
     Firebolt = 16,
     // element combo spells
-    FireElement = 10,
-    EarthElement = 10,
-    WaterElement = 10,
+    FireElement = 6,
+    EarthElement = 7,
+    WaterElement = 8,
     ElementalInfluence = 0
 }
 
