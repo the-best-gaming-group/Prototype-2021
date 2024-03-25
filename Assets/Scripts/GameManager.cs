@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour
 		public Button prefabButton;
 		public int[] cost;
 		public string description;
+		public string strongAgainst;
+		public bool weaknessIsFound;
+		
 		public Action eventFunc;
 	}
 
@@ -116,6 +119,10 @@ public class GameManager : MonoBehaviour
 	//	//coins += coin;
 	//	SetCoins(GetCoins() + coin);
 	//}
+
+	public void foundWeakness(string spellName){
+		spells.Find(x=> x.name == spellName).weaknessIsFound = true;
+	}
 
 	public void OpenDoor()
     {
