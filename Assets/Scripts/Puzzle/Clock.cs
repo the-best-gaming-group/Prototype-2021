@@ -11,7 +11,14 @@ public class Clock : MonoBehaviour
 
     private bool isWinningConditionMet = false;
 
+    private AudioSource audioSource;
+
     public TextMeshProUGUI resultText; // Reference to the UI Text component
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -56,6 +63,8 @@ public class Clock : MonoBehaviour
 
         if (Mathf.Abs(currentHourAngle - targetHourAngle) < 5f && Mathf.Abs(currentMinuteAngle - targetMinuteAngle) < 5f)
         {
+            audioSource.Stop();
+            audioSource.Play();
             resultText.text = "Congratulations! This is the right time!";
             isWinningConditionMet = true;
         }
