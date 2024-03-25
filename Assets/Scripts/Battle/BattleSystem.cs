@@ -785,7 +785,18 @@ public class BattleSystem : MonoBehaviour
 
     GameObject sendElemental(bool isFromPlayer = true)
     {
-		animator.Play("ElementalInfluence");
+        if (fireCount > 0)
+        {
+			animator.Play("PlayerThrowFireEle");
+		}
+		if (waterCount > 0)
+		{
+			animator.Play("PlayerThrowWaterEle");
+		}
+		if (earthCount > 0)
+		{
+			animator.Play("PlayerThrowEarthEle");
+		}
 		EleInfluenceDamange = (fireCount + earthCount + waterCount) * 10;
         if (fireCount > 0 && earthCount > 0 && waterCount > 0)
 		{
