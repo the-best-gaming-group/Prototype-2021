@@ -34,7 +34,7 @@ public class PopUpManager : MonoBehaviour
     public IEnumerator MovePopUp(GameObject createdPopUpObject, RectTransform PopupPosition, float direction)
     {
         Vector3 spawnLocation = new Vector3(PopupPosition.localPosition.x, PopupPosition.localPosition.y, PopupPosition.localPosition.z);
-        Vector3 finalLocation = new Vector3(PopupPosition.localPosition.x, PopupPosition.localPosition.y + (120f * direction), PopupPosition.localPosition.z);
+        Vector3 finalLocation = new Vector3(PopupPosition.localPosition.x, PopupPosition.localPosition.y + (280f * direction), PopupPosition.localPosition.z);
         if (direction < 0)
         {
             while (spawnLocation.y > finalLocation.y)

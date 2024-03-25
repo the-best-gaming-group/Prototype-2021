@@ -30,7 +30,7 @@ public class InventoryManager : MonoBehaviour
     public void AddItem(InventoryItem item)
     {
         gameManager.AddItem(item);
-        pm.CreatePopUp(item.itemName,item.itemIcon);
+        pm.CreatePopUp("You Found "+item.itemName+", press 'I' to check your inventory",item.itemIcon);
     }
 
     public void RemoveItem(InventoryItem item)

@@ -232,6 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 810a3151378bb5b49a9eeb9b495076b4, type: 3}
+--- !u!1 &43646594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4725837761477249130, guid: 810a3151378bb5b49a9eeb9b495076b4, type: 3}
+  m_PrefabInstance: {fileID: 43646593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &86554247 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8950806255565733741, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
@@ -7887,7 +7892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpPrefab: {fileID: 8506798256934328108, guid: cdb5eb989d9163840be8aa59a00b94d7, type: 3}
-  canvasObject: {fileID: 1820805538}
+  canvasObject: {fileID: 43646594}
   speed: 300
 --- !u!4 &572196582
 Transform:
@@ -9293,7 +9298,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4725837761477249125, guid: 810a3151378bb5b49a9eeb9b495076b4, type: 3}
   m_PrefabInstance: {fileID: 43646593}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 43646594}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2876aa0606b91f42950c8f3a7eb5235, type: 3}
@@ -12756,11 +12761,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1820805538 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8950806256672736105, guid: ece772f912916044dbf0b06c3fba0d89, type: 3}
-  m_PrefabInstance: {fileID: 1485276774}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1831345791
 GameObject:
   m_ObjectHideFlags: 0
