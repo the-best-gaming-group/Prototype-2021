@@ -761,7 +761,7 @@ public class BattleSystem : MonoBehaviour
     }
     GameObject sendFireEle(bool isFromPlayer = true)
     {
-		animator.Play("FireElement");
+		animator.Play("PlayerThrowFireEle");
 		if (fireCount == 0)
 		    fireCount++;
 		return null;
@@ -769,7 +769,7 @@ public class BattleSystem : MonoBehaviour
 
     GameObject sendEarthEle(bool isFromPlayer = true)
     {
-		animator.Play("EarthElement");
+		animator.Play("PlayerThrowEarthEle");
 		if (earthCount == 0)
 		    earthCount++;
 		return null;
@@ -777,7 +777,7 @@ public class BattleSystem : MonoBehaviour
 
     GameObject sendWaterEle(bool isFromPlayer = true)
     {
-		animator.Play("WaterElement");
+		animator.Play("PlayerThrowWaterEle");
 		if (waterCount == 0)
 		    waterCount++;
 		return null;
