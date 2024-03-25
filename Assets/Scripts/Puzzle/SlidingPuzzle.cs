@@ -15,6 +15,8 @@ public class SlidingPuzzle : MonoBehaviour
     [SerializeField] private Transform Tile7;
     [SerializeField] private Transform Tile8;
     private Camera cam;
+    private AudioSource audioSource;
+    public AudioClip puzzleComplete;
     private Vector3 T1;
     private Vector3 T2;
     private Vector3 T3;
@@ -37,6 +39,7 @@ public class SlidingPuzzle : MonoBehaviour
         T7.Set(-20,-50,-1);
         T8.Set(30,-50,-1);
         winCheck = 0f;
+        audioSource = GetComponent<AudioSource>();
     }
 
     
@@ -51,10 +54,13 @@ public class SlidingPuzzle : MonoBehaviour
             {
                 if (Vector2.Distance(empty.position,hit.transform.position) < 60)
                 {
+                    audioSource.Stop();
+                    audioSource.Play();
                     Vector3 lastEmptySpace = empty.position;
                     TileMovement thisTile = hit.transform.GetComponent<TileMovement>();
                     empty.position = thisTile.targetPosition;
                     thisTile.targetPosition = lastEmptySpace;
+                    
                 }
             }
         }
@@ -69,8 +75,10 @@ public class SlidingPuzzle : MonoBehaviour
     {
         if (ComparePositions(Tile1.position, T1) && ComparePositions(Tile2.position, T2) && ComparePositions(Tile3.position, T3) && ComparePositions(Tile4.position, T4) && ComparePositions(Tile5.position, T5) && ComparePositions(Tile6.position, T6) && ComparePositions(Tile7.position, T7) && ComparePositions(Tile8.position, T8))
         {
+            //audioSource.Stop();
+            //audioSource.PlayOneShot(puzzleComplete);
             Debug.Log("Win");
-            winUI.SetActive(true);
+            winUI.SetActive(true);  
             Won = true;
         }
     }
