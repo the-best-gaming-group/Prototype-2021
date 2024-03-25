@@ -121,26 +121,25 @@ public class BattleSystem : MonoBehaviour
 		UpdateDifficulty();
 		if (state == BattleState.PLAYER_TURN)
 		{
+			int minutes = Mathf.FloorToInt(playerTurnTimer / 60);
+			int seconds = Mathf.FloorToInt(playerTurnTimer % 60);
 			if (!isTimerStarted)
 			{
 				StartPlayerTurnTimer();
 				isTimerStarted = true;
 			}
-
 			if (playerTurnTimer > 0)
 			{
 				playerTurnTimer -= Time.deltaTime;
+				timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 			}
 			else if (!hasSubmitted && playerTurnTimer < 0)
 			{
 				playerTurnTimer = 0;
-				StopPlayerTurnTimer();
-                timerText.text = "";
+				timerText.text = "00:00";
+				timerText.color = Color.red;
 				SubmitAndEndPlayerTurn();
 			}
-			int minutes = Mathf.FloorToInt(playerTurnTimer / 60);
-			int seconds = Mathf.FloorToInt(playerTurnTimer % 60);
-			timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 		}
 		else
 		{
@@ -156,16 +155,16 @@ public class BattleSystem : MonoBehaviour
 
     public void StartPlayerTurnTimer()
 	{
+		timerText.color = Color.white;
 		hasSubmitted = false;
 		playerTurnTimer = 11f;
 	}
 
 	public void StopPlayerTurnTimer()
 	{
-		playerTurnTimer = 0f;
-		timerText.text = "00:00";
-		timerText.color = Color.red;
-        hasSubmitted = true;
+		playerTurnTimer = 0;
+		timerText.text = "";
+		hasSubmitted = true;
 	}
 
 
