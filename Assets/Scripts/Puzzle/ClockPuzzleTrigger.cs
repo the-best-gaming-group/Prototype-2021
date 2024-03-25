@@ -6,7 +6,7 @@ public class ClockPuzzleTrigger : MonoBehaviour
     public GameObject activeCue;
 
     private bool playerInTriggerZone = false;
-    private bool puzzleActivated = false;
+    public bool puzzleActivated = false;
 
 
     private void Start()

@@ -6717,6 +6717,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &299788148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4348356637367757319, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+  m_PrefabInstance: {fileID: 1752244109452913949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299788141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8341af4ab75b6ea40a6650996b7127a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &310986665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18768,6 +18779,54 @@ PrefabInstance:
       propertyPath: m_text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 299788148}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 9204922403924320247}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Clock, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ClockPuzzleTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127053407769107027, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4348356637367757319, guid: b08381ebf613ff34fa0bfba72ebd21f4, type: 3}
       propertyPath: panel
       value: 
@@ -22421,6 +22480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockCanvas: {fileID: 382363268}
   activeCue: {fileID: 575283980}
+  puzzleActivated: 0
 --- !u!65 &6910779703763302717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23807,6 +23867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockCanvas: {fileID: 1752244109452913950}
   activeCue: {fileID: 2116705295}
+  puzzleActivated: 0
 --- !u!65 &9204922403924320248
 BoxCollider:
   m_ObjectHideFlags: 0
